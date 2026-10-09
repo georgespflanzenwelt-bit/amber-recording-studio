@@ -1,0 +1,20 @@
+modules = ["nodejs-20"]
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[[ports]]
+localPort = 3001
+externalPort = 3001
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Start Website"
+mode = "sequential"
+author = 50951458
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
