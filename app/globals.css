@@ -42,3 +42,7 @@
 .site > main > .hero > .homeHeroShade{inset:0}
 .site > main > .hero > .heroText{padding-top:86px}
 @media(max-width:700px){.site > main > .hero{min-height:100vh;min-height:100svh}.site > main > .hero > .heroText{padding-top:76px}}
+
+/* German headline needs its own scale to keep both full lines inside the viewport. */
+.heroTextDE h1{font-size:clamp(36px,5.4vw,88px);max-width:calc(100vw - 14vw)}
+@media(max-width:700px){.heroTextDE h1{font-size:clamp(20px,5.5vw,42px);line-height:1.06}}
