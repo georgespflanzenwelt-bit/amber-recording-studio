@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "8jSgnM5JCX5Q_7THC3sIj"
+uri = "file://backups/amber-recording-studio-bilder-backup.zip"
+type = "unspecified"
+title = "Amber Recording Studio – Bilder-Backup"
+description = "ZIP mit allen 7 heruntergeladenen Unsplash-Fotos, 8 lokalen Studio-WebP-Dateien sowie einer Quellen- und Prüfsummenliste. Ca. 8,15 MB."
+logical_id = "0fabbf5f-8087-4208-aa48-d6f8a5bf7bfb"
+content_hash = "sha256:fc67cbd979f0c5b4b108d7c0796fb1f431eedd12dc8e87e0d40ffb0b3e0add77"
+size = 8154947
+mtime_ms = 1791511308543
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:edd6210d-c468-424e-96fc-8b260a8d521d/0fabbf5f-8087-4208-aa48-d6f8a5bf7bfb/55e3ff7f-fae0-4242-8bb4-8d77530635a2"
+storage_version_token = "1791511315104289"
+content_type = "application/octet-stream"
