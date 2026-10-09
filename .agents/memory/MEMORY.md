@@ -1,0 +1,1 @@
+- [Studio-Bildgestaltung](studio-visual-constraints.md) — Motiv möglichst vollständig zeigen; bestehende Hero-Texte und Endpositionen bei Animationen bewahren.
