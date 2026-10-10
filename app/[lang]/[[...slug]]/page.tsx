@@ -34,7 +34,7 @@ const credits:Credit[]=[
 ];
 function Photo({src,caption}:{src:string;caption?:string}){return <div className="photobox"><div className="photo" style={{backgroundImage:"url('"+src+"')"}}/>{caption&&<small className="photoCaption">{caption}</small>}</div>}
 
-type Artist={id:string;name:string;image:string;title?:string;contribution?:string;year?:string;description?:string};
+type Artist={id:string;name:string;image:string;title?:string;contribution?:string;year?:string;description?:string;by?:string};
 function ArtistStrip({lang}:{lang:Lang}){
  const [artists,setArtists]=useState<Artist[]>([]);
  const [selected,setSelected]=useState<Artist|null>(null);
@@ -55,7 +55,7 @@ function ArtistStrip({lang}:{lang:Lang}){
   <div className="artistStripHeading"><small>{lang==="de"?"UNSERE ZUSAMMENARBEITEN":"OUR COLLABORATIONS"}</small><span>{lang==="de"?"ZIEHEN, ANHALTEN & ANKLICKEN":"DRAG, PAUSE & EXPLORE"}</span></div>
   <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>{hovering.current=true;paused.current=true}} onMouseLeave={()=>{hovering.current=false;if(!dragging.current)paused.current=false}}>
    {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className="artistTile" key={artist.id+"-"+i} onClick={()=>{if(!moved.current)setSelected(artist);moved.current=false}} aria-label={artist.name}>
-     <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaTitle">{artist.title||"—"}</span><span className="artistMetaDivider"/><span className="artistMetaLabel">{lang==="de"?"MEIN BEITRAG":"MY CONTRIBUTION"}</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaDate">{artist.year||"—"}</span><span className="artistMetaExplore">{lang==="de"?"DETAILS ANSEHEN":"VIEW DETAILS"} ↗</span></span>
+     <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaTitle">{artist.title||"—"}</span><span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaBy">by {artist.by||"George Brasch"}</span><span className="artistMetaDate">{lang==="de"?"DATUM":"DATE"}: {artist.year||"—"}</span><span className="artistMetaExplore">{lang==="de"?"DETAILS ANSEHEN":"VIEW DETAILS"} ↗</span></span>
     </button>)}
   </div>
   {selected&&<div className="artistModalBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
