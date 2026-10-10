@@ -39,7 +39,7 @@ function ArtistStrip({lang}:{lang:Lang}){
  const [artists,setArtists]=useState<Artist[]>([]);
  const [selected,setSelected]=useState<Artist|null>(null);
  const track=useRef<HTMLDivElement|null>(null);
- const paused=useRef(false);const dragging=useRef(false);const moved=useRef(false);
+ const paused=useRef(false);const hovering=useRef(false);const dragging=useRef(false);const moved=useRef(false);
  const dragStart=useRef({x:0,scroll:0});
  useEffect(()=>{let alive=true;fetch("/api/artists",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive&&Array.isArray(data.artists))setArtists(data.artists)}).catch(()=>{});return()=>{alive=false}},[]);
  useEffect(()=>{const el=track.current;if(!el||artists.length===0)return;let raf=0;let prev=0;
@@ -49,11 +49,11 @@ function ArtistStrip({lang}:{lang:Lang}){
  useEffect(()=>{if(!selected)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setSelected(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[selected]);
  const down=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="mouse"&&e.button!==0)return;dragging.current=true;paused.current=true;moved.current=false;dragStart.current={x:e.clientX,scroll:track.current?.scrollLeft||0};e.currentTarget.setPointerCapture(e.pointerId)};
  const move=(e:React.PointerEvent<HTMLDivElement>)=>{if(!dragging.current||!track.current)return;const distance=e.clientX-dragStart.current.x;if(Math.abs(distance)>6)moved.current=true;track.current.scrollLeft=dragStart.current.scroll-distance;const half=track.current.scrollWidth/2;if(half>0){if(track.current.scrollLeft>=half){track.current.scrollLeft-=half;dragStart.current={x:e.clientX,scroll:track.current.scrollLeft}}}};
- const up=(e:React.PointerEvent<HTMLDivElement>)=>{dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);paused.current=false;};
+ const up=(e:React.PointerEvent<HTMLDivElement>)=>{dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);paused.current=hovering.current;};
  if(!artists.length)return <section className="artistStripEmpty"><span>{lang==="de"?"ARTISTS & COLLABORATIONS":"ARTISTS & COLLABORATIONS"}</span><p>{lang==="de"?"Künstlerfotos werden aus public/images/artist/ geladen, sobald sie dort vorhanden sind.":"Artist portraits appear here once added to public/images/artist/."}</p></section>;
  return <section className="artistStrip" aria-label="Artists and collaborators">
   <div className="artistStripHeading"><small>{lang==="de"?"UNSERE ZUSAMMENARBEITEN":"OUR COLLABORATIONS"}</small><span>{lang==="de"?"ZIEHEN, ANHALTEN & ANKLICKEN":"DRAG, PAUSE & EXPLORE"}</span></div>
-  <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>paused.current=true} onMouseLeave={()=>{if(!dragging.current)paused.current=false}}>
+  <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>{hovering.current=true;paused.current=true}} onMouseLeave={()=>{hovering.current=false;if(!dragging.current)paused.current=false}}>
    {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className="artistTile" key={artist.id+"-"+i} onClick={()=>{if(!moved.current)setSelected(artist);moved.current=false}} aria-label={artist.name}>
      <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><strong>{artist.name}</strong><span>{lang==="de"?"MEHR ERFAHREN":"VIEW DETAILS"} ↗</span></span>
     </button>)}
