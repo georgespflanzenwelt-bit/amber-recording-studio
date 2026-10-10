@@ -72,3 +72,16 @@
 .artistStripEmpty{text-align:center;padding:65px 25px}.artistStripEmpty>span{letter-spacing:.2em;font-weight:800}.artistStripEmpty p{color:#9e9e9e;margin:25px auto 0;font-size:13px;max-width:560px}
 @media(max-width:700px){.artistStripHeading{margin:0 20px 24px;align-items:start;flex-direction:column}.artistTile{flex-basis:195px;height:265px}.artistModal{grid-template-columns:1fr}.artistModal>img{height:235px;min-height:0}.artistModal>div{padding:30px 25px}.artistOverlay{opacity:.0}}
 @media(prefers-reduced-motion:reduce){.artistOverlay{transition:none}}
+
+/* Compact editorial hierarchy for artist card metadata. */
+.artistOverlay{gap:5px;justify-content:center;padding:15px 14px;line-height:1.25}
+.artistOverlay strong{font:700 clamp(12px,.95vw,16px) Manrope,sans-serif;line-height:1.2;letter-spacing:.025em}
+.artistOverlay .artistMetaLabel{font-size:9px;letter-spacing:.16em;color:#d8b572;font-weight:700}
+.artistOverlay .artistMetaTitle{font-size:11px;font-weight:500;color:white;max-width:100%;line-height:1.35}
+.artistOverlay .artistMetaDivider{width:35px;height:1px;background:#c9a266;margin:8px auto}
+.artistOverlay .artistMetaRole{font-size:11px;line-height:1.4;color:#f6f5f2}
+.artistOverlay .artistMetaDate{font-size:10px;letter-spacing:.12em;color:#e0c18b;margin-top:7px}
+.artistOverlay .artistMetaExplore{font-size:9px;letter-spacing:.12em;margin-top:10px;color:#f4f0e9}
+.artistModalTitle{font-size:21px;letter-spacing:-.02em;margin:0 0 20px}
+.artistModalCredit,.artistModalYear{font-size:13px}
+@media(max-width:700px){.artistOverlay strong{font-size:13px}.artistOverlay .artistMetaLabel{font-size:8px}}
