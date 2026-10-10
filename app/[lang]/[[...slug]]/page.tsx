@@ -33,6 +33,40 @@ const credits:Credit[]=[
 {id:4,title:"Haus & Boot",artist:"Kool Savas",year:"2001",genre:"Hip-Hop",roles:["Recording"],producer:"George",image:img.gear}
 ];
 function Photo({src,caption}:{src:string;caption?:string}){return <div className="photobox"><div className="photo" style={{backgroundImage:"url('"+src+"')"}}/>{caption&&<small className="photoCaption">{caption}</small>}</div>}
+
+type Artist={id:string;name:string;image:string};
+function ArtistStrip({lang}:{lang:Lang}){
+ const [artists,setArtists]=useState<Artist[]>([]);
+ const [selected,setSelected]=useState<Artist|null>(null);
+ const track=useRef<HTMLDivElement|null>(null);
+ const paused=useRef(false);const dragging=useRef(false);const moved=useRef(false);
+ const dragStart=useRef({x:0,scroll:0});
+ useEffect(()=>{let alive=true;fetch("/api/artists",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive&&Array.isArray(data.artists))setArtists(data.artists)}).catch(()=>{});return()=>{alive=false}},[]);
+ useEffect(()=>{const el=track.current;if(!el||artists.length===0)return;let raf=0;let prev=0;
+ const tick=(time:number)=>{if(prev===0)prev=time;const delta=Math.min(48,time-prev);prev=time;
+ if(!paused.current&&!dragging.current){el.scrollLeft+=delta*.045;const half=el.scrollWidth/2;if(half>0&&el.scrollLeft>=half)el.scrollLeft-=half}
+ raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick);return()=>cancelAnimationFrame(raf)},[artists]);
+ useEffect(()=>{if(!selected)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setSelected(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[selected]);
+ const down=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="mouse"&&e.button!==0)return;dragging.current=true;paused.current=true;moved.current=false;dragStart.current={x:e.clientX,scroll:track.current?.scrollLeft||0};e.currentTarget.setPointerCapture(e.pointerId)};
+ const move=(e:React.PointerEvent<HTMLDivElement>)=>{if(!dragging.current||!track.current)return;const distance=e.clientX-dragStart.current.x;if(Math.abs(distance)>6)moved.current=true;track.current.scrollLeft=dragStart.current.scroll-distance;const half=track.current.scrollWidth/2;if(half>0){if(track.current.scrollLeft>=half){track.current.scrollLeft-=half;dragStart.current={x:e.clientX,scroll:track.current.scrollLeft}}}};
+ const up=(e:React.PointerEvent<HTMLDivElement>)=>{dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);paused.current=false;};
+ if(!artists.length)return <section className="artistStripEmpty"><span>{lang==="de"?"ARTISTS & COLLABORATIONS":"ARTISTS & COLLABORATIONS"}</span><p>{lang==="de"?"Künstlerfotos werden aus public/images/artist/ geladen, sobald sie dort vorhanden sind.":"Artist portraits appear here once added to public/images/artist/."}</p></section>;
+ return <section className="artistStrip" aria-label="Artists and collaborators">
+  <div className="artistStripHeading"><small>{lang==="de"?"UNSERE ZUSAMMENARBEITEN":"OUR COLLABORATIONS"}</small><span>{lang==="de"?"ZIEHEN, ANHALTEN & ANKLICKEN":"DRAG, PAUSE & EXPLORE"}</span></div>
+  <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>paused.current=true} onMouseLeave={()=>{if(!dragging.current)paused.current=false}}>
+   {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className="artistTile" key={artist.id+"-"+i} onClick={()=>{if(!moved.current)setSelected(artist);moved.current=false}} aria-label={artist.name}>
+     <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><strong>{artist.name}</strong><span>{lang==="de"?"MEHR ERFAHREN":"VIEW DETAILS"} ↗</span></span>
+    </button>)}
+  </div>
+  {selected&&<div className="artistModalBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
+    <section className="artistModal" role="dialog" aria-modal="true" aria-label={selected.name}>
+     <button className="artistModalClose" onClick={()=>setSelected(null)} aria-label="Close"><X/></button>
+     <img src={selected.image} alt={selected.name}/><div><small>AMBER / ARTIST</small><h2>{selected.name}</h2><p>{lang==="de"?"Weitere Informationen zu den gemeinsamen Aufnahmen, Produktionen oder Mixing-Credits werden nach Prüfung der Veröffentlichungen ergänzt.":"Details of the recording, production or mixing collaboration will be added after the release credits are verified."}</p><button className="artistModalBack" onClick={()=>setSelected(null)}>{lang==="de"?"SCHLIESSEN":"CLOSE"}</button></div>
+    </section>
+  </div>}
+ </section>
+}
+
 export default function Page(){
 const params=useParams();const router=useRouter();const lang:Lang=params.lang==="de"?"de":"en";const t=dictionary[lang];const raw=params.slug;const slug=Array.isArray(raw)?raw[0]||"":"";const current=paths.includes(slug)?slug:"";const url=(s:string,l:Lang=lang)=>"/"+l+(s?"/"+s:"");
  const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
@@ -50,6 +84,7 @@ return <div className="site">
 <main key={lang+current}>
  {current===""?<><section className="hero" style={{backgroundImage:"linear-gradient(90deg,rgba(5,8,10,.82),rgba(5,8,10,.15))"}}><img ref={heroImage} className={`homeHeroImage${heroImageLoaded?" is-loaded":""}`} src="/images/studio/03_Studio2_4K.webp" alt="" aria-hidden="true" onLoad={()=>setHeroImageLoaded(true)} /><div className="homeHeroShade"/><div className={"heroText reveal shown "+(lang==="de"?"heroTextDE":"")}><small className="warm">{t.tag}</small><h1>{t.hero.split("\n").map((line,i)=><span key={i}>{line}</span>)}</h1><p>{t.sub}</p>{link("credits",t.discover,"textLink light")}</div><div className="scroll"><ArrowDown size={18}/> SCROLL TO EXPLORE</div><span className="pageNumber">01 / 05</span></section>
 <section className="intro wrap"><small className="eyebrow warm">{t.origin}</small><div className="columns"><h2 className="reveal">{t.approach}</h2><div className="reveal"><p>{t.intro}</p>{link("team",t.nav[6])}</div></div></section>
+<ArtistStrip lang={lang}/>
 <section className="serviceList"><div className="wrap sectionTitle"><small>01 / SERVICES</small><h2>{t.services}</h2></div>{paths.slice(1,5).map((s,i)=><a className="serviceRow reveal" href={url(s)} key={s} onClick={e=>{e.preventDefault();go(s)}}><div className="serviceBg" style={{backgroundImage:"url('"+serviceImages[i]+"')"}}/><div className="serviceCopy"><small>0{i+1} / AMBER</small><h3>{descriptions[s as keyof typeof descriptions][lang][0]}</h3><span className="circleArrow"><ArrowUpRight/></span></div></a>)}</section>
 <section className="featured wrap"><div className="sectionTitle"><small>02 / THE WORK</small><h2>{t.selected}</h2></div><div className="featureLayout reveal"><Photo src={img.gear}/><div className="featureText"><small>GEORGE “REDBONE” BRASCH</small><h2>SELECTED EXPERIENCE.</h2><p>Azad · Till Brönner · Kool Savas · Deborah Cox</p>{link("credits",t.all,"outlineLink")}</div></div></section>
 <section className="peopleBanner" style={{backgroundImage:"linear-gradient(90deg,rgba(4,8,10,.88),rgba(4,8,10,.2)),url('"+img.team+"')"}}><div className="wrap"><small>03 / TEAM</small><h2>{t.team}</h2><p>{t.teamIntro}</p>{link("team",t.nav[6],"textLink light")}</div></section></>:
