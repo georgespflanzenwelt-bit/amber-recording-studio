@@ -201,3 +201,9 @@
 .creditsShowcase .amberCoverGrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
 @media(max-width:1100px){.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:700px){.creditsGenreDropdown{width:100%;min-width:0}.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+
+/* Elegant direct invitation from the collaborators marquee to the credits page. */
+.artistCreditsCallout{display:flex;justify-content:center;align-items:center;padding:35px 20px 7px;background:#050505}
+.artistCreditsLink{display:inline-flex;align-items:center;justify-content:center;gap:23px;color:#d5b17c;border-bottom:1px solid #bc9867;padding:0 3px 13px;font-family:Manrope,sans-serif;font-size:clamp(15px,1.6vw,23px);font-weight:500;letter-spacing:.19em;transition:color .25s,border-color .25s,gap .25s}
+.artistCreditsLink:hover,.artistCreditsLink:focus-visible{color:#fff;border-color:#fff;gap:31px}
+@media(max-width:700px){.artistCreditsCallout{padding:27px 16px 3px}.artistCreditsLink{font-size:13px;letter-spacing:.11em;gap:12px}}
