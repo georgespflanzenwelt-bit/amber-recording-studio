@@ -13,7 +13,7 @@ export async function GET(){
    const artist=single?single[1].trim():first.replace(/\s+(?:Leben|Blue Eyes Soul)\s*\(Album\).*$/i,"").trim();
    const title=single?single[2].trim():(parts[1]&&!/^(mixed|remix|record|produc|engineer)/i.test(parts[1])?parts[1]:first.slice(artist.length).replace(/^\s*[-–]\s*/,"").trim());
    const validGenres=["Hip-Hop","Soul","R&B","Jazz","Reggae","Pop","Rock","Electronic","House","Drum & Bass"];
-   const norm=(v:string)=>v.toLowerCase().replace(/[\\s-]/g,"").replace(/&/g,"and");
+   const norm=(v:string)=>v.toLowerCase().replace(/[\s-]/g,"").replace(/&/g,"and");
    const last=parts[parts.length-1]||"";
    const candidates=last.split("+").map(x=>x.trim()).filter(Boolean);
    const parsedGenres=candidates.map(x=>validGenres.find(g=>norm(g)===norm(x)||g==="Hip-Hop"&&norm(x)==="hiphop"||g==="Electronic"&&norm(x)==="elektronic"));
