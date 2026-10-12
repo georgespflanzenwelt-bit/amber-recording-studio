@@ -7,12 +7,12 @@ type Lang="en"|"de";
 type Credit={id:number;title:string;artist:string;year:string;genre:string;roles:string[];producer:string;image:string;audio?:string;youtube?:string};
 const img={
 hero:"https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=2200&q=85",
-mix:"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1800&q=85",
-mic:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85",
-production:"https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1800&q=85",
-film:"https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=85",
-team:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1800&q=85",
-gear:"https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=1600&q=85"
+mix:"/images/studio2/01%20Desk.jpeg",
+mic:"/images/studio2/07%20Mikrophone1.jpeg",
+production:"/images/studio2/09%20Moog-Nord.jpeg",
+film:"/images/studio2/22%20Tape.jpeg",
+team:"/images/studio2/26%20Desk%20Dark1.jpeg",
+gear:"/images/studio2/05%20LA2A.jpeg"
 };
 const paths=["","mixing-mastering","production-songwriting","film-scoring","recording","credits","team","booking"];
 const dictionary={
