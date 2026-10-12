@@ -8,7 +8,7 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"")};
  const current=embed(chosen);
- return <><div className="amberCoverGrid">{entries.map(e=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
+ return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map(e=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
   <img src={e.image} alt={e.artist+" – "+e.title} loading="lazy"/>
   <span className="amberCoverOverlay"><span className="amberMetaLabel">ARTIST / BAND</span><strong>{e.artist}</strong><span className="amberMetaLabel">TITLE</span><span className="amberCoverTitle">{e.title||"—"}</span><span className="amberMetaLabel">CREDITS:</span><span className="amberCoverRole">{[e.work,e.creditName].filter(Boolean).join(" · ")}</span><span className="amberPlay"><Play size={22} fill="currentColor"/></span></span>
  </button>)}</div>
