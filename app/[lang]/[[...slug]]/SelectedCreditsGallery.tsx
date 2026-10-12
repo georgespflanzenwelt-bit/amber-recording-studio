@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useState} from "react";
 import {Play,X,ArrowUpRight} from "lucide-react";
-export type SelectedEntry={name:string;artist:string;title:string;work:string;creditName:string;image:string;key:string|null;spotifyUrl?:string;tracks?:{title:string;spotifyUrl?:string}[]};
+export type SelectedEntry={name:string;artist:string;title:string;work:string;creditName:string;image:string;key:string|null;genre?:string;spotifyUrl?:string;tracks?:{title:string;spotifyUrl?:string}[]};
 function embed(url?:string){if(!url)return "";try{const u=new URL(url);if(u.hostname!=="open.spotify.com")return "";const m=u.pathname.match(/^\/(?:intl-[a-z]+\/)?(track|album|playlist)\/([a-zA-Z0-9]{22})/);return m?"https://open.spotify.com/embed/"+m[1]+"/"+m[2]:""}catch{return ""}}
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");
