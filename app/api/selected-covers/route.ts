@@ -1,10 +1,11 @@
 import {NextResponse} from "next/server";
-import {readdir} from "node:fs/promises";
+import {readdir,readFile} from "node:fs/promises";
 import path from "node:path";
 export const dynamic="force-dynamic";
 export async function GET(){
  try{
   const names=(await readdir(path.join(process.cwd(),"public","selected credits"))).filter(x=>/\.(jpe?g|png|webp|avif)$/i.test(x)).sort();
+  const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data","selected-credits.json"),"utf8").catch(()=>"{}")) as {covers?:Record<string,{spotifyUrl?:string;tracks?:{title:string;spotifyUrl?:string}[]}>};
   const entries=names.map(name=>{
    const parts=name.replace(/\.[^.]+$/,"").split(/__+/).map(s=>s.replace(/_/g," ").replace(/\s+/g," ").trim());
    const first=parts[0]||"";
@@ -17,7 +18,8 @@ export async function GET(){
    const image="/selected%20credits/"+encodeURIComponent(name);
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
-   return {name,artist,title,work,creditName,image,key};
+   const extra=metadata.covers?.[name]||{};
+   return {name,artist,title,work,creditName,image,key,spotifyUrl:extra.spotifyUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[]};
   });
   entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
   const covers=Object.fromEntries(entries.filter(e=>e.key).map(e=>[e.key,e.image]));
