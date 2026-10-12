@@ -17,22 +17,11 @@ gear:"/images/studio2/05%20LA2A.jpeg"
 };
 
 function TapeVideo({className,label}:{className:string;label?:string}){
- const ref=useRef<HTMLVideoElement>(null);
- useEffect(()=>{
-  const v=ref.current;if(!v)return;
-  let lastRestart=0;
-  const restart=()=>{
-   if(Date.now()-lastRestart<800)return;
-   lastRestart=Date.now();
-   try{v.currentTime=0;}catch{}
-   const attempt=v.play();if(attempt)void attempt.catch(()=>{v.load();void v.play().catch(()=>{});});
-  };
-  const check=()=>{if(Number.isFinite(v.duration)&&v.duration>1&&v.currentTime>=v.duration-.3)restart();};
-  v.addEventListener("timeupdate",check);v.addEventListener("ended",restart);
-  const id=window.setInterval(check,250);
-  return()=>{window.clearInterval(id);v.removeEventListener("timeupdate",check);v.removeEventListener("ended",restart);};
- },[]);
- return <video ref={ref} className={className} src="/studio-video/Tape.mp4" autoPlay muted loop playsInline preload="auto" poster={img.film} aria-hidden={label?undefined:true} aria-label={label}/>;
+ const [cycle,setCycle]=useState(0);
+ const switching=useRef(false);
+ const replay=()=>{if(switching.current)return;switching.current=true;setCycle(n=>n+1);};
+ useEffect(()=>{switching.current=false;},[cycle]);
+ return <video key={cycle} className={className} src="/studio-video/Tape.mp4" autoPlay muted playsInline preload="auto" poster={img.film} onTimeUpdate={e=>{const v=e.currentTarget;if(Number.isFinite(v.duration)&&v.duration>1&&v.currentTime>=v.duration-.25)replay();}} onEnded={replay} aria-hidden={label?undefined:true} aria-label={label}/>;
 }
 const paths=["","mixing-mastering","production-songwriting","film-scoring","recording","credits","team","booking"];
 const dictionary={
