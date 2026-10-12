@@ -19,6 +19,7 @@ export async function GET(){
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
    return {name,artist,title,work,creditName,image,key};
   });
+  entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
   const covers=Object.fromEntries(entries.filter(e=>e.key).map(e=>[e.key,e.image]));
   return NextResponse.json({covers,entries});
  }catch{return NextResponse.json({covers:{},entries:[]})}
