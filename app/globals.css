@@ -214,3 +214,13 @@
 
 /* Film Scoring homepage video matches service image geometry. */
 .serviceVideo{display:block;width:116%;height:116%;object-fit:cover;object-position:center;pointer-events:none}
+
+/* Video-backed homepage introduction. Text remains readable on bright footage. */
+.introVideoSection{position:relative;isolation:isolate;overflow:hidden;background:#14191b;color:#fff}
+.introVolumeVideo,.introVolumeShade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.introVolumeVideo{z-index:-2;object-fit:cover}
+.introVolumeShade{z-index:-1;background:linear-gradient(90deg,rgba(3,8,10,.68),rgba(3,8,10,.52))}
+.introVolumeContent{position:relative;z-index:1}
+.introVideoSection .columns h2,.introVideoSection .columns p,.introVideoSection .textLink{color:#fff}
+.introVideoSection .columns p{color:#f1f1ef;text-shadow:0 1px 10px #0008}
+.introVideoSection .textLink{border-color:#fff}
