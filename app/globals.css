@@ -207,3 +207,7 @@
 .artistCreditsLink{display:inline-flex;align-items:center;justify-content:center;gap:23px;color:#d5b17c;border-bottom:1px solid #bc9867;padding:0 3px 13px;font-family:Manrope,sans-serif;font-size:clamp(15px,1.6vw,23px);font-weight:500;letter-spacing:.19em;transition:color .25s,border-color .25s,gap .25s}
 .artistCreditsLink:hover,.artistCreditsLink:focus-visible{color:#fff;border-color:#fff;gap:31px}
 @media(max-width:700px){.artistCreditsCallout{padding:27px 16px 3px}.artistCreditsLink{font-size:13px;letter-spacing:.11em;gap:12px}}
+
+/* Film Scoring video replaces only its lower detail image. */
+.filmLoopWrap{position:relative;min-height:660px;background:#101719;overflow:hidden}.filmLoopVideo{display:block;width:100%;height:660px;object-fit:cover}.filmLoopCaption{position:absolute;left:5vw;bottom:30px;color:white;text-shadow:0 1px 5px #000;font-size:11px;letter-spacing:.16em;font-weight:800}
+@media(max-width:700px){.filmLoopWrap{min-height:380px}.filmLoopVideo{height:380px}}
