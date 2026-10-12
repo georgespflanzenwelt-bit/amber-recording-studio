@@ -188,3 +188,16 @@
 .amberTrackNote{font-size:12px;color:#aaa;line-height:1.7;margin:8px 0 0}
 .amberPreviewAlbum .amberSpotifyLink{margin:0;padding:22px 38px;width:100%;background:#121212}
 @media(max-width:700px){.amberPreviewPanel.amberPreviewAlbum{border-radius:17px}.amberPreviewAlbum .amberPreviewHead{padding:54px 20px 20px;min-height:0;gap:14px}.amberPreviewAlbum .amberPreviewHead>img{width:100px;height:100px}.amberPreviewAlbum .amberPreviewIdentity{padding-right:0}.amberPreviewAlbum .amberPreviewIdentity h2{font-size:24px;margin:7px 0}.amberPreviewAlbum .amberPreviewIdentity p{font-size:14px}.amberPreviewBrand{top:17px;left:20px;right:auto}.amberAlbumControls{padding:12px 20px}.amberPreviewAlbum>iframe{width:calc(100% - 40px);margin:0 20px 15px}.amberPreviewAlbum>.amberPreviewPending{margin:0 20px 20px}.amberPreviewAlbum .amberTrackList{padding:20px}.amberPreviewAlbum .amberTrackList>button{font-size:13px;gap:9px;padding:13px 5px}.amberPreviewAlbum .amberSpotifyLink{padding:18px 20px}}
+
+/* Custom themed credits genre dropdown: native option popups ignore site colors on macOS. */
+.creditsGenreLabel{font-size:10px;font-weight:700;letter-spacing:.2em;color:#cda47f;white-space:nowrap}
+.creditsGenreDropdown{position:relative;min-width:240px;z-index:20}
+.creditsGenreTrigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:25px;background:#17191b;color:#f6f1ea;border:1px solid #b79162;border-radius:999px;padding:12px 19px;font-size:12px;font-weight:700;text-align:left}
+.creditsGenreTrigger>span{color:#d4aa78;font-size:19px;line-height:.5}
+.creditsGenreMenu{position:absolute;top:calc(100% + 8px);left:0;width:100%;max-height:360px;overflow-y:auto;background:#202123;color:#f6f1ea;border:1px solid #6f6256;border-radius:16px;padding:8px;box-shadow:0 20px 45px #000a}
+.creditsGenreMenu button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 13px;text-align:left;background:transparent;border:0;border-radius:9px;color:#eee9e2;font-size:12px}
+.creditsGenreMenu button:hover,.creditsGenreMenu button[aria-selected=true]{background:#44392e;color:#f2c18e}
+.creditsGenreMenu button span{color:#d4aa78}
+.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+@media(max-width:1100px){.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.creditsGenreDropdown{width:100%;min-width:0}.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
