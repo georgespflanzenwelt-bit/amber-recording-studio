@@ -91,3 +91,10 @@
 .subHero h1{font-size:clamp(48px,7vw,112px);max-width:calc(100vw - 10vw);overflow-wrap:normal}
 .heroTextDE h1{font-size:clamp(38px,6vw,100px);letter-spacing:-.025em;word-spacing:.07em;max-width:calc(100vw - 13vw)}
 @media(max-width:700px){.subHero h1{font-size:clamp(34px,8vw,58px);max-width:calc(100vw - 40px)}.heroTextDE h1{font-size:clamp(29px,7vw,49px);max-width:calc(100vw - 40px)}}
+
+/* Compact Selected Credits: roughly half-width cover cards on desktop. */
+.creditGrid{grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.creditArt{height:auto;aspect-ratio:1 / 1;background-size:contain;background-repeat:no-repeat;background-color:#181e20}
+.creditDetail{padding:15px 12px}.creditDetail h3{font-size:18px;line-height:1.25;overflow-wrap:break-word}.creditDetail p{font-size:13px;line-height:1.4}.creditDetail small,.creditDetail>span{font-size:10px;line-height:1.5}
+@media(max-width:1200px){.creditGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.creditGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.creditArt{height:auto}.creditDetail{padding:12px 10px}.creditDetail h3{font-size:16px}}
