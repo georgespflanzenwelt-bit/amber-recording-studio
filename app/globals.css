@@ -211,3 +211,6 @@
 /* Film Scoring video replaces only its lower detail image. */
 .filmLoopWrap{position:relative;min-height:660px;background:#101719;overflow:hidden}.filmLoopVideo{display:block;width:100%;height:660px;object-fit:cover}.filmLoopCaption{position:absolute;left:5vw;bottom:30px;color:white;text-shadow:0 1px 5px #000;font-size:11px;letter-spacing:.16em;font-weight:800}
 @media(max-width:700px){.filmLoopWrap{min-height:380px}.filmLoopVideo{height:380px}}
+
+/* Film Scoring homepage video matches service image geometry. */
+.serviceVideo{display:block;width:116%;height:116%;object-fit:cover;object-position:center;pointer-events:none}
