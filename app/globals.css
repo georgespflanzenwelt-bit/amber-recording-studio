@@ -103,3 +103,35 @@
 .creditDetail .creditLabel{display:block;margin-top:12px;margin-bottom:5px;letter-spacing:.1em}
 .creditDetail .creditValue{display:block;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
 .creditDetail>p{margin:7px 0 10px;overflow-wrap:anywhere}
+
+/* Selected Credits: artwork-only tiles, editorial hover, Spotify-ready preview. */
+.amberCoverGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.amberCoverTile{appearance:none;position:relative;display:block;width:100%;aspect-ratio:1;padding:0;border:0;background:#151719;color:#fff;overflow:hidden;text-align:left}
+.amberCoverTile>img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .45s ease}
+.amberCoverOverlay{position:absolute;inset:0;padding:15px 13px;background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.82));opacity:0;transition:opacity .25s ease;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;overflow:auto}
+.amberCoverTile:hover .amberCoverOverlay,.amberCoverTile:focus-visible .amberCoverOverlay{opacity:1}
+.amberCoverTile:hover>img{transform:scale(1.035)}
+.amberMetaLabel{font:700 9px 'DM Sans',sans-serif;letter-spacing:.13em;color:#d7ab65;margin-top:6px}
+.amberCoverOverlay strong{font:800 clamp(12px,1.2vw,18px) Manrope,sans-serif;line-height:1.17}
+.amberCoverTitle,.amberCoverRole{font-size:clamp(10px,.85vw,13px);line-height:1.32;overflow-wrap:anywhere}
+.amberPlay{position:absolute;right:11px;bottom:11px;width:37px;height:37px;border:1px solid #e5d4b7;border-radius:50%;display:grid;place-items:center;background:#d9b27b;color:#111}
+.amberCoverRole{padding-right:36px}
+.amberPreviewBackdrop{position:fixed;inset:0;z-index:250;background:#030506de;display:grid;place-items:center;padding:18px}
+.amberPreviewPanel{position:relative;width:min(530px,100%);max-height:min(90vh,850px);overflow:auto;background:#17191a;color:#f7f6f3;padding:26px;box-shadow:0 30px 80px #000a}
+.amberPreviewClose{position:absolute;top:12px;right:12px;color:white;background:#333;border:0;width:36px;height:36px;display:grid;place-items:center;z-index:2}
+.amberPreviewHead{display:flex;gap:18px;align-items:center;padding:10px 30px 24px 0}
+.amberPreviewHead img{height:92px;width:92px;object-fit:contain;background:#080808;flex-shrink:0}
+.amberPreviewHead small{font-size:9px;letter-spacing:.16em;color:#d9b27b}
+.amberPreviewHead h2{font-size:28px;line-height:1.12;letter-spacing:-.03em;margin:8px 0 3px}
+.amberPreviewHead p{font-size:14px;margin:0 0 5px}
+.amberPreviewHead span{font-size:11px;color:#c4c2bc;line-height:1.5}
+.amberPreviewPanel iframe{display:block;border:0;border-radius:8px;background:#101010}
+.amberPreviewPending{background:#242727;padding:42px 24px;display:grid;place-items:center;text-align:center;gap:12px;color:#b5bab8;font-size:13px;line-height:1.5}
+.amberTrackList{padding:20px 0 0}.amberTrackList>small{font-size:10px;letter-spacing:.16em;color:#d9b27b}
+.amberTrackList>button{width:100%;display:flex;align-items:center;gap:14px;border:0;border-bottom:1px solid #ffffff19;background:transparent;color:#f6f3ed;padding:12px 5px;text-align:left;font-size:12px}
+.amberTrackList>button span{color:#aaa}.amberTrackList>button strong{flex:1;font-weight:500}.amberTrackList>button:disabled{opacity:.5;cursor:not-allowed}.amberTrackList>button.chosen{color:#dbb37c}
+.amberSpotifyLink{display:inline-flex;align-items:center;gap:8px;color:#d9b27b;font-size:11px;letter-spacing:.1em;margin-top:19px}
+@media(max-width:1200px){.amberCoverGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.amberCoverGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.amberCoverOverlay{padding:10px 8px;gap:2px}.amberMetaLabel{font-size:8px;margin-top:3px}.amberCoverOverlay strong{font-size:13px}.amberCoverTitle,.amberCoverRole{font-size:10px}.amberPlay{width:28px;height:28px;right:6px;bottom:6px}.amberPreviewPanel{padding:18px}.amberPreviewHead img{height:75px;width:75px}.amberPreviewHead h2{font-size:21px}}
+@media(hover:none){.amberCoverOverlay{opacity:0}.amberCoverTile:focus-visible .amberCoverOverlay{opacity:1}}
+@media(prefers-reduced-motion:reduce){.amberCoverTile>img,.amberCoverOverlay{transition:none}}
