@@ -154,3 +154,5 @@
 .creditsShowcase .amberPlay{background:#d0a778;color:#111;border:0}
 @media(max-width:1000px){.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.creditsShowcase{padding:55px 20px 80px}.creditsShowcaseTop{grid-template-columns:1fr;gap:16px}.creditsHeadline{font-size:clamp(25px,7vw,42px);letter-spacing:.01em}.creditsShowcaseCopy{justify-self:start;font-size:12px}.creditsFilterRow{gap:7px;margin-bottom:22px}.creditsFilterChip{min-width:0;padding:9px 12px;font-size:9px}.creditsShowcase .amberCoverGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+
+.amberCreditsEmpty{grid-column:1/-1;color:#bdb9b5;font-size:13px;padding:32px 0;line-height:1.6}
