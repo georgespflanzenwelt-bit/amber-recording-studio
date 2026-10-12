@@ -17,11 +17,24 @@ gear:"/images/studio2/05%20LA2A.jpeg"
 };
 
 function TapeVideo({className,label}:{className:string;label?:string}){
- const [cycle,setCycle]=useState(0);
- const switching=useRef(false);
- const replay=()=>{if(switching.current)return;switching.current=true;setCycle(n=>n+1);};
- useEffect(()=>{switching.current=false;},[cycle]);
- return <video key={cycle} className={className} src="/studio-video/Tape.mp4" autoPlay muted playsInline preload="auto" poster={img.film} onTimeUpdate={e=>{const v=e.currentTarget;if(Number.isFinite(v.duration)&&v.duration>1&&v.currentTime>=v.duration-.25)replay();}} onEnded={replay} aria-hidden={label?undefined:true} aria-label={label}/>;
+ const ref=useRef<HTMLVideoElement>(null);
+ useEffect(()=>{
+  const v=ref.current;if(!v)return;
+  let frame=0;
+  const restart=()=>{
+   if(v.seeking)return;
+   try{v.currentTime=0;}catch{return;}
+   if(v.paused)void v.play().catch(()=>{});
+  };
+  const check=()=>{
+   if(v.readyState>=2&&Number.isFinite(v.duration)&&v.duration>1&&v.currentTime>=v.duration-0.5)restart();
+   frame=requestAnimationFrame(check);
+  };
+  frame=requestAnimationFrame(check);
+  v.addEventListener("ended",restart);
+  return()=>{cancelAnimationFrame(frame);v.removeEventListener("ended",restart);};
+ },[]);
+ return <video ref={ref} className={className} src="/studio-video/Tape.mp4" autoPlay muted loop playsInline preload="auto" poster={img.film} aria-hidden={label?undefined:true} aria-label={label}/>;
 }
 const paths=["","mixing-mastering","production-songwriting","film-scoring","recording","credits","team","booking"];
 const dictionary={
