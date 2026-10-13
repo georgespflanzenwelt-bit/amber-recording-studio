@@ -289,3 +289,9 @@
 .artistCreditsCallout.collabEnterRight.shown{animation:amberCreditsFullRight 2.55s linear both}
 .serviceList .sectionTitle.collabEnterLeft.shown{animation:amberServicesFullLeft 2.55s linear both}
 @media(prefers-reduced-motion:reduce){.artistCreditsCallout.collabEnterRight.shown,.serviceList .sectionTitle.collabEnterLeft.shown{animation:none}}
+
+/* Animate only WHAT WE DO horizontally; 01 / SERVICES simply fades in. */
+@keyframes amberServicesLabelFade{from{opacity:0}to{opacity:1}}
+.serviceList .sectionTitle .servicesLabelFade{animation:amberServicesLabelFade 1.1s ease both}
+.serviceList .sectionTitle h2.collabEnterLeft.shown{animation:amberServicesFullLeft 2.55s linear both}
+@media(prefers-reduced-motion:reduce){.serviceList .sectionTitle .servicesLabelFade,.serviceList .sectionTitle h2.collabEnterLeft.shown{animation:none}}
