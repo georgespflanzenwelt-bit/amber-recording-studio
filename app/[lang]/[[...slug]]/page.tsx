@@ -56,7 +56,7 @@ const credits:Credit[]=[
 ];
 function Photo({src,caption}:{src:string;caption?:string}){return <div className="photobox"><div className="photo" style={{backgroundImage:"url('"+src+"')"}}/>{caption&&<small className="photoCaption">{caption}</small>}</div>}
 
-type Artist={id:string;name:string;image:string;title?:string;contribution?:string;year?:string;description?:string;by?:string};
+type Artist={id:string;name:string;image:string;title?:string;label?:string;contribution?:string;year?:string;description?:string;by?:string};
 function ArtistStrip({lang}:{lang:Lang}){
  const router=useRouter();
  const [artists,setArtists]=useState<Artist[]>([]);
@@ -79,14 +79,14 @@ function ArtistStrip({lang}:{lang:Lang}){
   <div className="artistStripHeading"><small>{lang==="de"?"UNSERE ZUSAMMENARBEITEN":"OUR COLLABORATIONS"}</small><span>{lang==="de"?"ZIEHEN, ANHALTEN & ANKLICKEN":"DRAG, PAUSE & EXPLORE"}</span></div>
   <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>{hovering.current=true;paused.current=true}} onMouseLeave={()=>{hovering.current=false;if(!dragging.current)paused.current=false}}>
    {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className="artistTile" key={artist.id+"-"+i} onClick={()=>{if(!moved.current)setSelected(artist);moved.current=false}} aria-label={artist.name}>
-     <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaLabel">TITLE</span><span className="artistMetaTitle">{artist.title||"—"}</span><span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaLabel">CREDIT</span><span className="artistMetaBy">{(artist.by||"George Brasch").replace(/^by\s+/i,"")}</span></span>
+     <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaLabel">TITLE</span><span className="artistMetaTitle">{artist.title||"—"}</span>{artist.label&&<><span className="artistMetaLabel">LABEL</span><span className="artistMetaTitle">{artist.label}</span></>}<span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaLabel">CREDIT</span><span className="artistMetaBy">{(artist.by||"George Brasch").replace(/^by\s+/i,"")}</span></span>
     </button>)}
   </div>
   <div className="artistCreditsCallout collabEnterRight"><a href={"/"+lang+"/credits"} className="artistCreditsLink" onClick={e=>{if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();router.push("/"+lang+"/credits")}}><span>{lang==="de"?"ALLE CREDITS ENTDECKEN":"EXPLORE ALL CREDITS"}</span></a></div>
    {selected&&<div className="artistModalBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
     <section className="artistModal" role="dialog" aria-modal="true" aria-label={selected.name}>
      <button className="artistModalClose" onClick={()=>setSelected(null)} aria-label="Close"><X/></button>
-     <img src={selected.image} alt={selected.name}/><div><small>AMBER / ARTIST</small><h2>{selected.name}</h2>{selected.title&&<h3 className="artistModalTitle">{selected.title}</h3>}{selected.contribution&&<p className="artistModalCredit"><b>{lang==="de"?"MEIN BEITRAG":"MY CONTRIBUTION"}:</b> {selected.contribution}</p>}<p>{selected.description||(lang==="de"?"Weitere Informationen zu unserer Zusammenarbeit werden nach Prüfung der Credits ergänzt.":"Collaboration details will follow once the credits are verified.")}</p><button className="artistModalBack" onClick={()=>setSelected(null)}>{lang==="de"?"SCHLIESSEN":"CLOSE"}</button></div>
+     <img src={selected.image} alt={selected.name}/><div><small>AMBER / ARTIST</small><h2>{selected.name}</h2>{selected.title&&<h3 className="artistModalTitle">{selected.title}</h3>}{selected.label&&<p className="artistModalCredit"><b>LABEL:</b> {selected.label}</p>}{selected.contribution&&<p className="artistModalCredit"><b>{lang==="de"?"MEIN BEITRAG":"MY CONTRIBUTION"}:</b> {selected.contribution}</p>}<p>{selected.description||(lang==="de"?"Weitere Informationen zu unserer Zusammenarbeit werden nach Prüfung der Credits ergänzt.":"Collaboration details will follow once the credits are verified.")}</p><button className="artistModalBack" onClick={()=>setSelected(null)}>{lang==="de"?"SCHLIESSEN":"CLOSE"}</button></div>
     </section>
   </div>}
  </section>
