@@ -262,3 +262,9 @@
  100%{opacity:1;transform:none}
 }
 @media(prefers-reduced-motion:reduce){.collabMotion{opacity:1;transform:none!important}.collabMotion.shown{animation:none!important}}
+
+/* Reliable visible collaboration animations: credits from right, services heading from left. */
+.collabEnterLeft,.collabEnterRight{opacity:1;transform:none}
+.collabEnterLeft.shown{animation:collabEnterLeft 1.3s both cubic-bezier(.18,.72,.2,1)}
+.collabEnterRight.shown{animation:collabEnterRight 1.3s both cubic-bezier(.18,.72,.2,1)}
+@media(prefers-reduced-motion:reduce){.collabEnterLeft.shown,.collabEnterRight.shown{animation:none}}
