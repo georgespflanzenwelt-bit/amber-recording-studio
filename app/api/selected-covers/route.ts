@@ -15,7 +15,7 @@ export async function GET(){
    const validGenres=["Hip-Hop","Soul","R&B","Jazz","Reggae","Pop","Rock","Electronic","House","Drum & Bass"];
    const norm=(v:string)=>v.toLowerCase().replace(/[\s-]/g,"").replace(/&/g,"and");
    const last=parts[parts.length-1]||"";
-   const trackNumbers=/^\d+(?:\s*,\s*\d+)*$/.test(last)?last.split(",").map(x=>x.trim()).join(", "):"";
+   const trackNumbers=/^(?:all|\d+(?:\s*,\s*\d+)*)$/i.test(last)?(/^all$/i.test(last)?"All":last.split(",").map(x=>x.trim()).join(", ")):"";
    const genreField=trackNumbers?parts[parts.length-2]||"":last;
    const candidates=genreField.split("+").map(x=>x.trim()).filter(Boolean);
    const parsedGenres=candidates.map(x=>validGenres.find(g=>norm(g)===norm(x)||g==="Hip-Hop"&&norm(x)==="hiphop"||g==="Electronic"&&norm(x)==="elektronic"));
