@@ -300,3 +300,8 @@
 .artistCreditsCallout.collabEnterRight.shown{animation:none!important;transform:none!important;opacity:1}
 .artistCreditsCallout.collabEnterRight.shown .artistCreditsLink{animation:amberCreditsFullRight 2.55s linear both;will-change:transform}
 @media(prefers-reduced-motion:reduce){.artistCreditsCallout.collabEnterRight.shown .artistCreditsLink{animation:none}}
+
+/* Separate credit activity/track numbers from the credited person. */
+.amberCreditActivity,.amberCreditName{display:block}
+.amberCreditName{margin-top:5px}
+.amberPreviewCredit .amberCreditName{margin-top:6px}
