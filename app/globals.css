@@ -240,3 +240,25 @@
 .site > main > .hero{overflow:hidden}
 .site > main > .hero > .homeHeroImage{transform-origin:center center;animation:amberHeroBreath 30s ease-in-out infinite;will-change:transform}
 @media(prefers-reduced-motion:reduce){.site > main > .hero > .homeHeroImage{animation:none}}
+
+/* Collaboration: opposing entrances with a short squash-and-bounce landing. */
+.collabMotion{opacity:0}
+.collabFromLeft{transform:translate3d(-100px,0,0) scaleX(1.04)}
+.collabFromRight{transform:translate3d(100px,0,0) scaleX(1.04)}
+.collabMotion.collabFromLeft.shown{animation:collabEnterLeft 1.3s both cubic-bezier(.18,.72,.2,1)}
+.collabMotion.collabFromRight.shown{animation:collabEnterRight 1.3s both cubic-bezier(.18,.72,.2,1)}
+@keyframes collabEnterLeft{
+ 0%{opacity:0;transform:translate3d(-100px,0,0) scaleX(1.04)}
+ 65%{opacity:1;transform:translate3d(10px,0,0) scaleX(.94) scaleY(1.045)}
+ 79%{transform:translate3d(-5px,0,0) scaleX(1.035) scaleY(.98)}
+ 91%{transform:translate3d(2px,0,0) scaleX(.992) scaleY(1.005)}
+ 100%{opacity:1;transform:none}
+}
+@keyframes collabEnterRight{
+ 0%{opacity:0;transform:translate3d(100px,0,0) scaleX(1.04)}
+ 65%{opacity:1;transform:translate3d(-10px,0,0) scaleX(.94) scaleY(1.045)}
+ 79%{transform:translate3d(5px,0,0) scaleX(1.035) scaleY(.98)}
+ 91%{transform:translate3d(-2px,0,0) scaleX(.992) scaleY(1.005)}
+ 100%{opacity:1;transform:none}
+}
+@media(prefers-reduced-motion:reduce){.collabMotion{opacity:1;transform:none!important}.collabMotion.shown{animation:none!important}}
