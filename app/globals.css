@@ -238,5 +238,5 @@
 /* Home hero: gentle 30-second push-in and 30-second return, endlessly. */
 @keyframes amberHeroBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.085)}}
 .site > main > .hero{overflow:hidden}
-.site > main > .hero > .homeHeroImage{transform-origin:center center;animation:amberHeroBreath 60s ease-in-out infinite;will-change:transform}
+.site > main > .hero > .homeHeroImage{transform-origin:center center;animation:amberHeroBreath 30s ease-in-out infinite;will-change:transform}
 @media(prefers-reduced-motion:reduce){.site > main > .hero > .homeHeroImage{animation:none}}
