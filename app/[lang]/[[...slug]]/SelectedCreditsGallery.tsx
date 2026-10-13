@@ -6,7 +6,7 @@ function embed(url?:string){if(!url)return "";try{const u=new URL(url);if(u.host
 function formatActivity(work:string,trackNumbers:string|undefined,lang:"de"|"en"){
  const jobs=work.replace(/\s+by\s*$/i,"").split("+").map(x=>x.trim()).filter(Boolean);
  const activity=jobs.length>1?jobs.slice(0,-1).join(", ")+(lang==="de"?" und ":" and ")+jobs[jobs.length-1]:(jobs[0]||"");
- return trackNumbers==="All"?"All "+activity:[trackNumbers?"Tracks "+trackNumbers:"",activity].filter(Boolean).join(" – ");
+ return trackNumbers==="All"?"All "+activity:[trackNumbers?(trackNumbers.includes(",")?"Tracks ":"Track ")+trackNumbers:"",activity].filter(Boolean).join(" – ");
 }
 function CreditLines({entry,lang}:{entry:SelectedEntry;lang:"de"|"en"}){
  return <><span className="amberCreditActivity">{formatActivity(entry.work,entry.trackNumbers,lang)}</span><span className="amberCreditName">{entry.creditName}</span></>;
