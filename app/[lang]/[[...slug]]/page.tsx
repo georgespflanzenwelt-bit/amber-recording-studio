@@ -91,11 +91,29 @@ function ArtistStrip({lang}:{lang:Lang}){
  </section>
 }
 
+type CoversResponse={covers:Record<string,string>;entries:SelectedEntry[]};
+let sharedCovers:CoversResponse|null=null;
+let pendingCovers:Promise<CoversResponse>|null=null;
+let prewarmedCovers=false;
+function getSharedCovers():Promise<CoversResponse>{
+ if(sharedCovers)return Promise.resolve(sharedCovers);
+ if(!pendingCovers)pendingCovers=fetch("/api/selected-covers").then(r=>{if(!r.ok)throw Error("Covers unavailable");return r.json()}).then((data:CoversResponse)=>{sharedCovers={covers:data.covers||{},entries:data.entries||[]};return sharedCovers}).catch(e=>{pendingCovers=null;throw e});
+ return pendingCovers;
+}
+function warmCoverImages(entries:SelectedEntry[]){
+ if(prewarmedCovers||typeof window==="undefined")return;
+ prewarmedCovers=true;
+ let next=0;
+ const loadNext=()=>{if(next>=entries.length)return;const image=new Image();image.decoding="async";image.onload=loadNext;image.onerror=loadNext;image.src=entries[next++].image;};
+ for(let i=0;i<3;i++)loadNext();
+}
+
 export default function Page(){
 const params=useParams();const router=useRouter();const lang:Lang=params.lang==="de"?"de":"en";const t=dictionary[lang];const raw=params.slug;const slug=Array.isArray(raw)?raw[0]||"":"";const current=paths.includes(slug)?slug:"";const url=(s:string,l:Lang=lang)=>"/"+l+(s?"/"+s:"");
- const [selectedCovers,setSelectedCovers]=useState<Record<string,string>>({});
- const [coverEntries,setCoverEntries]=useState<SelectedEntry[]>([]);
- useEffect(()=>{fetch("/api/selected-covers",{cache:"no-store"}).then(r=>r.json()).then(data=>{setSelectedCovers(data.covers||{});setCoverEntries(data.entries||[])}).catch(()=>{})},[]);
+ const [selectedCovers,setSelectedCovers]=useState<Record<string,string>>(()=>sharedCovers?.covers||{});
+ const [coverEntries,setCoverEntries]=useState<SelectedEntry[]>(()=>sharedCovers?.entries||[]);
+ useEffect(()=>{let alive=true;getSharedCovers().then(data=>{if(alive){setSelectedCovers(data.covers);setCoverEntries(data.entries)}}).catch(()=>{});return()=>{alive=false}},[]);
+ useEffect(()=>{if(current!=="")return;const id=window.setTimeout(()=>{getSharedCovers().then(data=>warmCoverImages(data.entries)).catch(()=>{})},1500);return()=>window.clearTimeout(id)},[current]);
  const [creditFilter,setCreditFilter]=useState("ALL");const [creditGenre,setCreditGenre]=useState("ALL");const [genreOpen,setGenreOpen]=useState(false);const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
  useEffect(()=>{const image=heroImage.current;setHeroImageLoaded(!!image?.complete&&image.naturalWidth>0)},[current,lang]);
 useEffect(()=>{setMenu(false);const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("shown");obs.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll(".reveal, .collabEnterLeft").forEach(e=>obs.observe(e));return()=>obs.disconnect()},[slug,lang]);
