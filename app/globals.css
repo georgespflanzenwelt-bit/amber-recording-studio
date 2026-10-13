@@ -268,3 +268,24 @@
 .collabEnterLeft.shown{animation:collabEnterLeft 1.3s both cubic-bezier(.18,.72,.2,1)}
 .collabEnterRight.shown{animation:collabEnterRight 1.3s both cubic-bezier(.18,.72,.2,1)}
 @media(prefers-reduced-motion:reduce){.collabEnterLeft.shown,.collabEnterRight.shown{animation:none}}
+
+/* Full-viewport collaboration entrances: 2s glide, then a soft squash/bounce. */
+@keyframes amberCreditsFullRight{
+  0%{opacity:1;transform:translate3d(110vw,0,0) scale(1)}
+  76%{transform:translate3d(0,0,0) scale(1)}
+  83%{transform:translate3d(-10px,0,0) scaleX(.92) scaleY(1.055)}
+  90%{transform:translate3d(5px,0,0) scaleX(1.045) scaleY(.978)}
+  96%{transform:translate3d(-2px,0,0) scaleX(.99) scaleY(1.008)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes amberServicesFullLeft{
+  0%{opacity:1;transform:translate3d(-110vw,0,0) scale(1)}
+  76%{transform:translate3d(0,0,0) scale(1)}
+  83%{transform:translate3d(10px,0,0) scaleX(.92) scaleY(1.055)}
+  90%{transform:translate3d(-5px,0,0) scaleX(1.045) scaleY(.978)}
+  96%{transform:translate3d(2px,0,0) scaleX(.99) scaleY(1.008)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+.artistCreditsCallout.collabEnterRight.shown{animation:amberCreditsFullRight 2.55s linear both}
+.serviceList .sectionTitle.collabEnterLeft.shown{animation:amberServicesFullLeft 2.55s linear both}
+@media(prefers-reduced-motion:reduce){.artistCreditsCallout.collabEnterRight.shown,.serviceList .sectionTitle.collabEnterLeft.shown{animation:none}}
