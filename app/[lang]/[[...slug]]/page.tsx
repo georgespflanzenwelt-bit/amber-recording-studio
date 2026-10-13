@@ -80,7 +80,7 @@ function ArtistStrip({lang}:{lang:Lang}){
      <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaLabel">TITLE</span><span className="artistMetaTitle">{artist.title||"—"}</span><span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaLabel">CREDIT</span><span className="artistMetaBy">{(artist.by||"George Brasch").replace(/^by\s+/i,"")}</span><span className="artistMetaExplore">{lang==="de"?"DETAILS ANSEHEN":"VIEW DETAILS"} ↗</span></span>
     </button>)}
   </div>
-  <div className="artistCreditsCallout collabEnterLeft"><a href={"/"+lang+"/credits"} className="artistCreditsLink"><span>{lang==="de"?"ALLE CREDITS ENTDECKEN":"EXPLORE ALL CREDITS"}</span></a></div>
+  <div className="artistCreditsCallout collabEnterRight"><a href={"/"+lang+"/credits"} className="artistCreditsLink"><span>{lang==="de"?"ALLE CREDITS ENTDECKEN":"EXPLORE ALL CREDITS"}</span></a></div>
    {selected&&<div className="artistModalBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
     <section className="artistModal" role="dialog" aria-modal="true" aria-label={selected.name}>
      <button className="artistModalClose" onClick={()=>setSelected(null)} aria-label="Close"><X/></button>
