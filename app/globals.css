@@ -305,3 +305,8 @@
 .amberCreditActivity,.amberCreditName{display:block}
 .amberCreditName{margin-top:5px}
 .amberPreviewCredit .amberCreditName{margin-top:6px}
+
+/* Native AMBER audio preview inside the existing credit modal. */
+.amberLocalPlayer{display:flex;flex-direction:column;gap:24px;justify-content:center;min-height:150px;padding:28px;background:#242829;color:#d6b481}
+.amberLocalPlayer small{font-size:11px;font-weight:700;letter-spacing:.17em}
+.amberLocalPlayer audio{display:block;max-width:100%}
