@@ -58,6 +58,7 @@ function Photo({src,caption}:{src:string;caption?:string}){return <div className
 
 type Artist={id:string;name:string;image:string;title?:string;contribution?:string;year?:string;description?:string;by?:string};
 function ArtistStrip({lang}:{lang:Lang}){
+ const router=useRouter();
  const [artists,setArtists]=useState<Artist[]>([]);
  const [selected,setSelected]=useState<Artist|null>(null);
  const track=useRef<HTMLDivElement|null>(null);
@@ -81,7 +82,7 @@ function ArtistStrip({lang}:{lang:Lang}){
      <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaLabel">TITLE</span><span className="artistMetaTitle">{artist.title||"—"}</span><span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaLabel">CREDIT</span><span className="artistMetaBy">{(artist.by||"George Brasch").replace(/^by\s+/i,"")}</span></span>
     </button>)}
   </div>
-  <div className="artistCreditsCallout collabEnterRight"><a href={"/"+lang+"/credits"} className="artistCreditsLink"><span>{lang==="de"?"ALLE CREDITS ENTDECKEN":"EXPLORE ALL CREDITS"}</span></a></div>
+  <div className="artistCreditsCallout collabEnterRight"><a href={"/"+lang+"/credits"} className="artistCreditsLink" onClick={e=>{if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();router.push("/"+lang+"/credits")}}><span>{lang==="de"?"ALLE CREDITS ENTDECKEN":"EXPLORE ALL CREDITS"}</span></a></div>
    {selected&&<div className="artistModalBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
     <section className="artistModal" role="dialog" aria-modal="true" aria-label={selected.name}>
      <button className="artistModalClose" onClick={()=>setSelected(null)} aria-label="Close"><X/></button>
@@ -114,6 +115,7 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
  const [coverEntries,setCoverEntries]=useState<SelectedEntry[]>(()=>sharedCovers?.entries||[]);
  useEffect(()=>{let alive=true;getSharedCovers().then(data=>{if(alive){setSelectedCovers(data.covers);setCoverEntries(data.entries)}}).catch(()=>{});return()=>{alive=false}},[]);
  useEffect(()=>{if(current!=="")return;const id=window.setTimeout(()=>{getSharedCovers().then(data=>warmCoverImages(data.entries)).catch(()=>{})},1500);return()=>window.clearTimeout(id)},[current]);
+ useEffect(()=>{if(current!=="")return;router.prefetch(url("credits"));},[current,lang,router]);
  const [creditFilter,setCreditFilter]=useState("ALL");const [creditGenre,setCreditGenre]=useState("ALL");const [genreOpen,setGenreOpen]=useState(false);const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
  useEffect(()=>{const image=heroImage.current;setHeroImageLoaded(!!image?.complete&&image.naturalWidth>0)},[current,lang]);
 useEffect(()=>{setMenu(false);const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("shown");obs.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll(".reveal, .collabEnterLeft").forEach(e=>obs.observe(e));return()=>obs.disconnect()},[slug,lang]);
