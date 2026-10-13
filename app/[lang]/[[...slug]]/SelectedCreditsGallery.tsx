@@ -9,8 +9,8 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"")};
  const current=embed(chosen);const isAlbum=!!active&&(!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(active.spotifyUrl||""));
- return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map(e=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
-  <img src={e.image} alt={e.artist+" – "+e.title} loading="lazy"/>
+ return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map((e,i)=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
+  <img src={e.image} alt={e.artist+" – "+e.title} loading={i<10?"eager":"lazy"} fetchPriority={i<5?"high":"auto"}/>
   <span className="amberCoverOverlay"><span className="amberMetaLabel">ARTIST / BAND</span><strong>{e.artist}</strong><span className="amberMetaLabel">{lang==="de"?"TITEL":"TITLE"}</span><span className="amberCoverTitle">{e.title||"—"}</span><span className="amberMetaLabel">CREDIT:</span><span className="amberCoverRole">{formatCredit(e.work,e.creditName,lang)}</span><span className="amberPlay"><Play size={22} fill="currentColor"/></span></span>
  </button>)}</div>
  {active&&<div className="amberPreviewBackdrop" onMouseDown={ev=>{if(ev.target===ev.currentTarget)setActive(null)}}>
