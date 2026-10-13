@@ -295,3 +295,8 @@
 .serviceList .sectionTitle .servicesLabelFade{animation:amberServicesLabelFade 1.1s ease both}
 .serviceList .sectionTitle h2.collabEnterLeft.shown{animation:amberServicesFullLeft 2.55s linear both}
 @media(prefers-reduced-motion:reduce){.serviceList .sectionTitle .servicesLabelFade,.serviceList .sectionTitle h2.collabEnterLeft.shown{animation:none}}
+
+/* Avoid compositing seams: animate the credits text/link, never its full-width black section. */
+.artistCreditsCallout.collabEnterRight.shown{animation:none!important;transform:none!important;opacity:1}
+.artistCreditsCallout.collabEnterRight.shown .artistCreditsLink{animation:amberCreditsFullRight 2.55s linear both;will-change:transform}
+@media(prefers-reduced-motion:reduce){.artistCreditsCallout.collabEnterRight.shown .artistCreditsLink{animation:none}}
