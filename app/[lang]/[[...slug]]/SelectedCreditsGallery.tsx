@@ -4,8 +4,13 @@ import {Play,Pause,SkipBack,SkipForward,X,ArrowUpRight} from "lucide-react";
 export type SelectedEntry={name:string;artist:string;title:string;label?:string;work:string;creditName:string;trackNumbers?:string;image:string;key:string|null;genre?:string;spotifyUrl?:string;youtubeUrl?:string;tracks?:{title:string;spotifyUrl?:string}[]};
 function embed(url?:string){if(!url)return "";try{const u=new URL(url);if(u.hostname!=="open.spotify.com")return "";const m=u.pathname.match(/^\/(?:intl-[a-z]+\/)?(track|album|playlist)\/([a-zA-Z0-9]{22})/);return m?"https://open.spotify.com/embed/"+m[1]+"/"+m[2]:""}catch{return ""}}
 function formatActivity(work:string,trackNumbers:string|undefined,lang:"de"|"en"){
- const jobs=work.replace(/\s+by\s*$/i,"").split(/\+(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
- const activity=jobs.length>1?jobs.slice(0,-1).join(", ")+(lang==="de"?" und ":" and ")+jobs[jobs.length-1]:(jobs[0]||"");
+ const activity=work.replace(/\s+by\s*$/i,"").split(/\s*·\s*/).filter(Boolean).map(group=>{
+  const jobs=group.split(/\+(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
+  const shared=jobs.length>1?jobs[jobs.length-1].match(/\s*(\(\d+(?:\s*[, &+]\s*\d+)*\))$/):null;
+  if(shared)jobs[jobs.length-1]=jobs[jobs.length-1].slice(0,-shared[1].length).trim();
+  const joined=jobs.length>1?jobs.slice(0,-1).join(", ")+(lang==="de"?" und ":" and ")+jobs[jobs.length-1]:(jobs[0]||"");
+  return joined+(shared?" "+shared[1]:"");
+ }).join(" · ");
  return trackNumbers==="All"?"All "+activity:[trackNumbers?(trackNumbers.includes(",")||trackNumbers.includes("–")?"Tracks ":"Track ")+(trackNumbers.split(",").length===2?trackNumbers.split(",").map(n=>n.trim()).join(" & "):trackNumbers):"",activity].filter(Boolean).join(" – ");
 }
 function CreditLines({entry,lang}:{entry:SelectedEntry;lang:"de"|"en"}){
