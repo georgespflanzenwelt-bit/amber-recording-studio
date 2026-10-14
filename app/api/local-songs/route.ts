@@ -3,8 +3,13 @@ import {readdir} from "node:fs/promises";
 import path from "node:path";
 export const dynamic="force-dynamic";
 export async function GET(){
- try{
-  const files=(await readdir(path.join(process.cwd(),"public","songs"))).filter(f=>/\.(mp3|m4a|ogg|wav|flac)$/i.test(f)).sort((a,b)=>{const na=Number(a.match(/^\s*(\d+)/)?.[1]||999999),nb=Number(b.match(/^\s*(\d+)/)?.[1]||999999);return na-nb||a.localeCompare(b,undefined,{numeric:true})});
-  return NextResponse.json({files:files.map(name=>({name:name.replace(/\.[^.]+$/,""),url:"/songs/"+encodeURIComponent(name),order:Number(name.match(/^\s*(\d+)/)?.[1]||999999)}))});
- }catch{return NextResponse.json({files:[]})}
+ const folders=["songs","Donna Renee__Keep on believing"];
+ const files=(await Promise.all(folders.map(async folder=>{
+  try{
+   const names=(await readdir(path.join(process.cwd(),"public",folder))).filter(name=>/\.(mp3|m4a|ogg|wav|flac)$/i.test(name));
+   return names.map(name=>({name:name.replace(/\.[^.]+$/,""),url:"/"+encodeURIComponent(folder)+"/"+encodeURIComponent(name),order:Number(name.match(/^\s*(\d+)/)?.[1]||999999),albumFolder:folder==="songs"?"":folder}));
+  }catch{return []}
+ }))).flat();
+ files.sort((a,b)=>a.order-b.order||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ return NextResponse.json({files});
 }
