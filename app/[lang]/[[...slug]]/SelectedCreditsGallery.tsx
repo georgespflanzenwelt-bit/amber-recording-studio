@@ -13,23 +13,24 @@ function CreditLines({entry,lang}:{entry:SelectedEntry;lang:"de"|"en"}){
 }
 
 function normalizeSong(value:string){return value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ")}
+function songTitle(value:string){
+ return normalizeSong(value.replace(/\s*\([^)]*\)/g,"").split(/\s+(?:ft\.?|feat\.?|featuring)\s+/i)[0].replace(/\b(?:single|album|ep|maxi)\b/gi,""));
+}
 function matchLocalSong(entry:SelectedEntry|null,files:{name:string;url:string}[]){
  if(!entry)return undefined;
  const artist=normalizeSong(entry.artist);
- const title=normalizeSong(entry.title.replace(/\s*\([^)]*\)/g,"").replace(/\b(?:single|album|ep|maxi)\b/gi,""));
+ const title=songTitle(entry.title);
  if(!artist||!title)return undefined;
- // Match the artist and song title only. Everything following the title in the audio
- // filename (remix/version/label/etc.) is optional and ignored.
+ // All files in public/songs are eligible. Compare artist and song, ignoring
+ // featuring credits and subsequent version/label details.
  const matches=files.filter(file=>{
-  const sections=file.name.split(/__+/).map(normalizeSong).filter(Boolean);
-  if(sections.length>=2&&sections[0]===artist){
-   return sections[1]===title||sections[1].startsWith(title+" ");
+  const sections=file.name.split(/__+/).map(x=>x.trim()).filter(Boolean);
+  if(sections.length>=2){
+   return normalizeSong(sections[0])===artist&&songTitle(sections[1])===title;
   }
   const full=normalizeSong(file.name);
-  return full.startsWith(artist+" "+title)&&(
-   full.length===artist.length+1+title.length||
-   full[artist.length+1+title.length]===" "
-  );
+  const prefix=artist+" "+title;
+  return full===prefix||full.startsWith(prefix+" ");
  });
  return matches.length===1?matches[0].url:undefined;
 }
