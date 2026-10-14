@@ -37,17 +37,18 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
 
 function LocalDiscography({songs,selected,onSelect,artist,title,cover}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string}){
  const audio=useRef<HTMLAudioElement>(null);
+ const resumeOnChange=useRef(false);
  const [playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
  const [lengths,setLengths]=useState<Record<string,number>>({});
  const index=Math.max(0,songs.findIndex(s=>s.url===selected));
  const fmt=(n:number)=>Number.isFinite(n)?Math.floor(n/60).toString().padStart(2,"0")+":"+Math.floor(n%60).toString().padStart(2,"0"):"--:--";
- useEffect(()=>{setPlaying(false);setTime(0);setDuration(0)},[selected]);
+ useEffect(()=>{setPlaying(false);setTime(0);setDuration(0);if(resumeOnChange.current&&audio.current){resumeOnChange.current=false;void audio.current.play().catch(()=>setPlaying(false))}},[selected]);
  const toggle=()=>{const el=audio.current;if(!el)return;if(el.paused){void el.play().then(()=>setPlaying(true)).catch(()=>setPlaying(false))}else{el.pause();setPlaying(false)}};
- const choose=(url:string)=>{onSelect(url)};
+ const choose=(url:string)=>{if(url===selected)return;resumeOnChange.current=!!audio.current&&!audio.current.paused;onSelect(url)};
  return <div className="amberDiscography">
   <div className="amberDiscHeader"><img src={cover} alt=""/><div className="amberDiscInfo"><small>AMBER / DISCOGRAPHY</small><strong>{artist}</strong><span>{title}</span></div><div className="amberDiscTransport"><button type="button" aria-label="Previous" disabled={index===0} onClick={()=>choose(songs[index-1].url)}><SkipBack size={18} fill="currentColor"/></button><button type="button" aria-label="Next" disabled={index===songs.length-1} onClick={()=>choose(songs[index+1].url)}><SkipForward size={18} fill="currentColor"/></button><button type="button" aria-label="Play or pause" className="amberDiscMainPlay" onClick={toggle}>{playing?<Pause size={22} fill="currentColor"/>:<Play size={22} fill="currentColor"/>}</button></div></div>
   <div className="amberDiscSeek"><span>{fmt(time)}</span><input aria-label="Playback position" type="range" min={0} max={duration||1} step=".1" value={Math.min(time,duration||1)} onChange={e=>{if(audio.current){audio.current.currentTime=Number(e.target.value);setTime(Number(e.target.value))}}}/><span>{fmt(duration)}</span></div>
-  <audio ref={audio} key={selected} src={selected} preload="metadata" onLoadedMetadata={e=>{const d=e.currentTarget.duration;setDuration(d);setLengths(old=>({...old,[selected]:d}))}} onTimeUpdate={e=>setTime(e.currentTarget.currentTime)} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);if(index<songs.length-1)choose(songs[index+1].url)}}/>
+  <audio ref={audio} key={selected} src={selected} preload="metadata" onLoadedMetadata={e=>{const d=e.currentTarget.duration;setDuration(d);setLengths(old=>({...old,[selected]:d}))}} onTimeUpdate={e=>setTime(e.currentTarget.currentTime)} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);if(index<songs.length-1){resumeOnChange.current=true;onSelect(songs[index+1].url)}}}/>
   <div className="amberDiscTracks">{songs.map((song,i)=><button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className="amberDiscTrackName">{song.name.replace(/^\s*\d+\s*/,"").replace(/__+/g," · ").replace(/_/g," ")}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>)}</div>
  </div>;
 }
