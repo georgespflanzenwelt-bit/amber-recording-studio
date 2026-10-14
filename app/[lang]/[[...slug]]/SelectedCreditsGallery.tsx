@@ -14,14 +14,14 @@ function CreditLines({entry,lang}:{entry:SelectedEntry;lang:"de"|"en"}){
 
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");
- const [localSongs,setLocalSongs]=useState<{shanice?:string;aaliyah?:string}>({});
+ const [localSongs,setLocalSongs]=useState<{shanice?:string;aaliyah?:string;alfonzo?:string;tboz?:string}>({});
  useEffect(()=>{fetch("/api/local-songs").then(r=>r.json()).then(setLocalSongs).catch(()=>{})},[]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"")};
  const current=embed(chosen);
  const artist=(active?.artist||"").toLowerCase();
  const title=(active?.title||"").toLowerCase();
- const localAudio=artist.includes("shanice")&&/close\s+my\s+eyes/i.test(title)?localSongs.shanice:artist.includes("aaliyah")&&/if\s+your\s+girl\s+only\s+knew/i.test(title)?localSongs.aaliyah:undefined;
+ const localAudio=artist.includes("shanice")&&/close\s+my\s+eyes/i.test(title)?localSongs.shanice:artist.includes("aaliyah")&&/if\s+your\s+girl\s+only\s+knew/i.test(title)?localSongs.aaliyah:artist.includes("alfonzo hunter")&&/just\s+the\s+way/i.test(title)?localSongs.alfonzo:/t[\s-]*boz/i.test(artist)&&/touch\s+myself/i.test(title)?localSongs.tboz:undefined;
  const isAlbum=!!active&&(!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(active.spotifyUrl||""));
  return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map((e,i)=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
   <img src={e.image} alt={e.artist+" – "+e.title} loading={i<10?"eager":"lazy"} fetchPriority={i<5?"high":"auto"}/>
