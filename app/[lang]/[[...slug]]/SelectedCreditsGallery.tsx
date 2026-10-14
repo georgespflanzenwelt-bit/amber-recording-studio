@@ -28,6 +28,10 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
+ const journeyVolume=artist==="a journey into dnb"?(title==="vol 1"?"journey into dnb vol1":title==="vol 2"?"journey into dnb vol2":""):"";
+ if(journeyVolume){
+  return files.filter(file=>normalizeSong(file.albumFolder||"")===normalizeSong(journeyVolume)).sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ }
  const belloSingle=artist==="mistha bello"&&title==="daddy on the run";
  if(belloSingle){
   return files.filter(file=>normalizeSong(file.albumFolder||"")==="bello daddy on the run").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
