@@ -16,14 +16,14 @@ function normalizeSong(value:string){return value.normalize("NFD").replace(/[\u0
 function songTitle(value:string){
  return normalizeSong(value.replace(/\s*\([^)]*\)/g,"").split(/\s+(?:ft\.?|feat\.?|featuring)\s+/i)[0].replace(/\b(?:single|album|ep|maxi)\b/gi,""));
 }
-function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;order?:number;albumFolder?:string}[]){
+function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;order?:number;albumFolder?:string;albumKey?:string}[]){
  if(!entry)return [];
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
- const albumFiles=files.filter(file=>file.albumFolder&&normalizeSong(file.albumFolder.split(/__+/)[0]||"")===artist&&songTitle(file.albumFolder.split(/__+/).slice(1).join(" "))===title);
+ const albumFiles=files.filter(file=>file.albumKey==="donna-renee-keep-on-believing"&&artist==="donna renee"&&title==="keep on believing"||!!file.albumFolder&&normalizeSong(file.albumFolder.split(/__+/)[0]||"")===artist&&songTitle(file.albumFolder.split(/__+/).slice(1).join(" "))===title);
  if(albumFiles.length)return albumFiles.sort((a,b)=>(a.order||999999)-(b.order||999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const matches=files.filter(file=>{if(file.albumFolder)return false;
   const sections=file.name.replace(/^\s*\d+\s*/,"").split(/__+/).map(x=>x.trim()).filter(Boolean);
@@ -61,7 +61,7 @@ function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang
 }
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
- const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string}[]>([]);
+ const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string;albumKey?:string}[]>([]);
  useEffect(()=>{setActive(previous=>previous?entries.find(entry=>entry.name===previous.name)||previous:null)},[entries]);
  useEffect(()=>{if(!active)return;let alive=true;fetch("/api/local-songs",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive)setLocalSongs(data.files||[])}).catch(()=>{});return()=>{alive=false}},[active?.name]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
