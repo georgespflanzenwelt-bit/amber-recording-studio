@@ -96,7 +96,7 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  useEffect(()=>{if(!active)return;let alive=true;setAudioLoad("loading");fetch("/api/local-songs",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(data=>{if(alive){setLocalSongs(data.files||[]);setAudioLoad("loaded")}}).catch(()=>{if(alive)setAudioLoad("error")});return()=>{alive=false}},[active?.name]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"");setLocalChoice("")};
- const brotherCredit=!!active&&/^brothers? keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
+ const brotherCredit=!!active&&/^(?:brothers?|bothers) keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
  const spotifyUrl=brotherCredit?"https://open.spotify.com/album/3KG6ZSyMsjJCN3FQtgx1DT":active?.spotifyUrl||"";
  const current=embed(chosen)||embed(spotifyUrl);
  const youtubeVideo=active?.youtubeUrl?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)?.[1]||"";
