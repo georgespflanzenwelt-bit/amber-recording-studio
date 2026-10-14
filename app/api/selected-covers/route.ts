@@ -27,10 +27,10 @@ export async function GET(){
     const trimmed=part.trim().replace(/\s+by\s*$/i,"").trim();
     const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
     const role=(match?match[1]:trimmed).trim();
-    const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded"};
+    const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded",ap:"Additional Production"};
     return (codes[role]||role)+(match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
    }).join("+");
-   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec)$/.test(cleaned)||roleWords.test(cleaned)});
+   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec|ap)$/.test(cleaned)||roleWords.test(cleaned)});
    const hasLabel=workEnd-workStart>=3&&!isRole(parts[workStart]||"")&&isRole(parts[workStart+1]||"");
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
