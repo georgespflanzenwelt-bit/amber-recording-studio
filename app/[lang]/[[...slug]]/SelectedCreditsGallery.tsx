@@ -97,8 +97,8 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"");setLocalChoice("")};
  const brotherCredit=!!active&&/^brothers? keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
- const spotifyUrl=active?.spotifyUrl||(brotherCredit?"https://open.spotify.com/album/3KG6ZSyMsjJCN3FQtgx1DT":"");
- const current=embed(chosen||spotifyUrl);
+ const spotifyUrl=brotherCredit?"https://open.spotify.com/album/3KG6ZSyMsjJCN3FQtgx1DT":active?.spotifyUrl||"";
+ const current=embed(chosen)||embed(spotifyUrl);
  const youtubeVideo=active?.youtubeUrl?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)?.[1]||"";
  const localMatches=matchLocalSongs(active,localSongs);const localAudio=localMatches.find(x=>x.url===localChoice)?.url||localMatches[0]?.url;
  const isAlbum=!!active&&(!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(spotifyUrl||""));
