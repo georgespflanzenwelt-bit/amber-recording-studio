@@ -310,3 +310,5 @@
 .amberLocalPlayer{display:flex;flex-direction:column;gap:24px;justify-content:center;min-height:150px;padding:28px;background:#242829;color:#d6b481}
 .amberLocalPlayer small{font-size:11px;font-weight:700;letter-spacing:.17em}
 .amberLocalPlayer audio{display:block;max-width:100%}
+
+.amberLocalChoices{display:flex;flex-direction:column;gap:7px;width:100%}.amberLocalChoices button{border:1px solid #555;background:#191d1e;color:#ddd;padding:10px 12px;text-align:left;cursor:pointer;font:inherit}.amberLocalChoices button.is-active{border-color:#d6b481;color:#d6b481;background:#31302a}
