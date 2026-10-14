@@ -35,13 +35,13 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  return matches.sort((a,b)=>(a.order||999999)-(b.order||999999));
 }
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
- const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");
- const [localSongs,setLocalSongs]=useState<{name:string;url:string}[]>([]);
+ const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
+ const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number}[]>([]);
  useEffect(()=>{fetch("/api/local-songs",{cache:"no-store"}).then(r=>r.json()).then(data=>setLocalSongs(data.files||[])).catch(()=>{})},[]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
- const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"")};
+ const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"");setLocalChoice("")};
  const current=embed(chosen);
- const localAudio=matchLocalSong(active,localSongs);
+ const localMatches=matchLocalSongs(active,localSongs);const localAudio=localMatches.find(x=>x.url===localChoice)?.url||localMatches[0]?.url;
  const isAlbum=!!active&&(!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(active.spotifyUrl||""));
  return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map((e,i)=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
   <img src={e.image} alt={e.artist+" – "+e.title} loading={i<10?"eager":"lazy"} fetchPriority={i<5?"high":"auto"}/>
