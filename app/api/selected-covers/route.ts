@@ -23,12 +23,14 @@ export async function GET(){
    const workEnd=parts.length-(trackNumbers?1:0)-(hasFilenameGenre?1:0);
    const workStart=parts[1]===title?2:1;
    const roleWords=/\b(?:mix(?:ed|ing)?|master(?:ed|ing)?|produc(?:ed|tion|er)?|compos(?:ed|er|ition)?|record(?:ed|ing)?|remix(?:ed)?|arrang(?:ed|ement)?|engineer|songwrit(?:er|ing)?)\b/i;
-   const expandRole=(value:string)=>value.split("+").map(part=>{
+   const expandRole=(value:string)=>value.split(/\+(?![^()]*\))/).map(part=>{
     const trimmed=part.trim().replace(/\s+by\s*$/i,"").trim();
+    const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
+    const role=(match?match[1]:trimmed).trim();
     const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded"};
-    return codes[trimmed]||trimmed;
+    return (codes[role]||role)+(match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
    }).join("+");
-   const isRole=(value:string)=>value.split("+").every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec)$/.test(cleaned)||roleWords.test(cleaned)});
+   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec)$/.test(cleaned)||roleWords.test(cleaned)});
    const hasLabel=workEnd-workStart>=3&&!isRole(parts[workStart]||"")&&isRole(parts[workStart+1]||"");
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
