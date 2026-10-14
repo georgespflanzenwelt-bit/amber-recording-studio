@@ -18,7 +18,7 @@ export async function GET(){
    const trackNumbers=/^(?:all|\d+(?:\s*[-–]\s*\d+)?(?:\s*,\s*\d+(?:\s*[-–]\s*\d+)?)*)$/i.test(last)?(/^all$/i.test(last)?"All":last.split(",").map(x=>x.trim().replace(/\s*[-–]\s*/g,"–")).join(", ")):"";
    const genreField=trackNumbers?parts[parts.length-2]||"":last;
    const candidates=genreField.split("+").map(x=>x.trim()).filter(Boolean);
-   const parsedGenres=candidates.map(x=>validGenres.find(g=>norm(g)===norm(x)||g==="Hip-Hop"&&norm(x)==="hiphop"||g==="Electronic"&&norm(x)==="elektronic"));
+   const parsedGenres=candidates.map(x=>validGenres.find(g=>norm(g)===norm(x)||g==="Hip-Hop"&&norm(x)==="hiphop"||g==="Electronic"&&norm(x)==="elektronic"||g==="Drum & Bass"&&norm(x)==="dnb"));
    const hasFilenameGenre=candidates.length>0&&parsedGenres.every(Boolean);
    const workEnd=parts.length-(trackNumbers?1:0)-(hasFilenameGenre?1:0);
    const workStart=parts[1]===title?2:1;
