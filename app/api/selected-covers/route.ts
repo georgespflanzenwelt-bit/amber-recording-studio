@@ -49,7 +49,8 @@ export async function GET(){
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
    const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/[’´`]/g,"\x27").replace(/\s+/g," ").trim();
-   const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||{};
+   const brotherAlbum=/^brothers?\s+keepers?$/i.test(artist)&&/^am\s+i\s+my\s+brother.?s\s+keeper/i.test(title);
+   const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||(brotherAlbum?{spotifyUrl:"https://open.spotify.com/album/3KG6ZSyMsjJCN3FQtgx1DT"}:{});
    return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[]};
   });
   entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
