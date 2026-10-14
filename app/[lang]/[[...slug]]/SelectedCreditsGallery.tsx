@@ -1,6 +1,6 @@
 "use client";
-import {useEffect,useState} from "react";
-import {Play,X,ArrowUpRight} from "lucide-react";
+import {useEffect,useRef,useState} from "react";
+import {Play,Pause,SkipBack,SkipForward,X,ArrowUpRight} from "lucide-react";
 export type SelectedEntry={name:string;artist:string;title:string;label?:string;work:string;creditName:string;trackNumbers?:string;image:string;key:string|null;genre?:string;spotifyUrl?:string;tracks?:{title:string;spotifyUrl?:string}[]};
 function embed(url?:string){if(!url)return "";try{const u=new URL(url);if(u.hostname!=="open.spotify.com")return "";const m=u.pathname.match(/^\/(?:intl-[a-z]+\/)?(track|album|playlist)\/([a-zA-Z0-9]{22})/);return m?"https://open.spotify.com/embed/"+m[1]+"/"+m[2]:""}catch{return ""}}
 function formatActivity(work:string,trackNumbers:string|undefined,lang:"de"|"en"){
@@ -34,6 +34,24 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  });
  return matches.sort((a,b)=>(a.order||999999)-(b.order||999999));
 }
+
+function LocalDiscography({songs,selected,onSelect,artist,title,cover}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string}){
+ const audio=useRef<HTMLAudioElement>(null);
+ const [playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
+ const [lengths,setLengths]=useState<Record<string,number>>({});
+ const index=Math.max(0,songs.findIndex(s=>s.url===selected));
+ const fmt=(n:number)=>Number.isFinite(n)?Math.floor(n/60).toString().padStart(2,"0")+":"+Math.floor(n%60).toString().padStart(2,"0"):"--:--";
+ useEffect(()=>{setPlaying(false);setTime(0);setDuration(0)},[selected]);
+ const toggle=()=>{const el=audio.current;if(!el)return;if(el.paused){void el.play().then(()=>setPlaying(true)).catch(()=>setPlaying(false))}else{el.pause();setPlaying(false)}};
+ const choose=(url:string)=>{onSelect(url)};
+ return <div className="amberDiscography">
+  <div className="amberDiscTop"><img src={cover} alt=""/><div className="amberDiscInfo"><small>AMBER / DISCOGRAPHY</small><strong>{artist}</strong><span>{title}</span></div></div>
+  <div className="amberDiscTransport"><button type="button" aria-label="Previous" disabled={index===0} onClick={()=>choose(songs[index-1].url)}><SkipBack size={19}/></button><button type="button" aria-label="Play or pause" className="amberDiscMainPlay" onClick={toggle}>{playing?<Pause size={23} fill="currentColor"/>:<Play size={23} fill="currentColor"/>}</button><button type="button" aria-label="Next" disabled={index===songs.length-1} onClick={()=>choose(songs[index+1].url)}><SkipForward size={19}/></button></div>
+  <div className="amberDiscSeek"><span>{fmt(time)}</span><input aria-label="Playback position" type="range" min={0} max={duration||1} step=".1" value={Math.min(time,duration||1)} onChange={e=>{if(audio.current){audio.current.currentTime=Number(e.target.value);setTime(Number(e.target.value))}}}/><span>{fmt(duration)}</span></div>
+  <audio ref={audio} key={selected} src={selected} preload="metadata" onLoadedMetadata={e=>{const d=e.currentTarget.duration;setDuration(d);setLengths(old=>({...old,[selected]:d}))}} onTimeUpdate={e=>setTime(e.currentTarget.currentTime)} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);if(index<songs.length-1)choose(songs[index+1].url)}}/>
+  <div className="amberDiscTracks">{songs.map((song,i)=><button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className="amberDiscTrackName">{song.name.replace(/^\s*\d+\s*/,"").replace(/__+/g," · ").replace(/_/g," ")}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>)}</div>
+ </div>;
+}
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
  const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number}[]>([]);
@@ -52,7 +70,7 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  <button className="amberPreviewClose" onClick={()=>setActive(null)} aria-label={lang==="de"?"Schließen":"Close"}><X/></button>
  <div className="amberPreviewHead"><img src={active.image} alt=""/><div className="amberPreviewIdentity"><small>{isAlbum?(lang==="de"?"ALBUM / DISKOGRAFIE":"ALBUM / DISCOGRAPHY"):(lang==="de"?"SINGLE / REFERENZ":"SINGLE / CREDIT")}</small><h2>{active.artist}</h2><p>{active.title}</p>{active.label&&<p className="amberPreviewLabel"><b>LABEL:</b> {active.label}</p>}<span className="amberPreviewCredit"><CreditLines entry={active} lang={lang}/></span></div><div className="amberPreviewBrand">AMBER<span>.</span></div></div>
  {isAlbum&&<div className="amberAlbumControls"><span>{lang==="de"?"HÖRPROBE / SPOTIFY":"PREVIEW / SPOTIFY"}</span><span>{active.tracks?.length?active.tracks.length+" TRACKS":lang==="de"?"ALBUM":"ALBUM"}</span></div>}
- {localAudio?<div className="amberLocalPlayer"><small>AMBER / AUDIO</small>{localMatches.length>1&&<div className="amberLocalChoices">{localMatches.map((song,i)=><button type="button" key={song.url} className={localAudio===song.url?"is-active":""} onClick={()=>setLocalChoice(song.url)}>{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")} · {song.name.replace(/^\s*\d+\s*/,"").replace(/_/g," ")}</button>)}</div>}<audio key={localAudio} src={localAudio} controls preload="metadata" controlsList="nodownload" style={{width:"100%"}}>{lang==="de"?"Dein Browser unterstützt die Audiowiedergabe nicht.":"Your browser does not support audio playback."}</audio></div>:current?<iframe key={current} title={"Spotify: "+active.artist+" "+active.title} src={current+"?utm_source=generator&theme=0"} width="100%" height={isAlbum?280:352} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" />:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}
+ {localAudio?<LocalDiscography songs={localMatches} selected={localAudio} onSelect={setLocalChoice} artist={active.artist} title={active.title} cover={active.image}/>:current?<iframe key={current} title={"Spotify: "+active.artist+" "+active.title} src={current+"?utm_source=generator&theme=0"} width="100%" height={isAlbum?280:352} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" />:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}
  {isAlbum&&<div className="amberTrackList"><small>{lang==="de"?"TITELLISTE":"TRACKLIST"}</small>{active.tracks?.length?active.tracks.map((t,i)=><button type="button" key={i} disabled={!embed(t.spotifyUrl)} className={t.spotifyUrl===chosen?"chosen":""} onClick={()=>setChosen(t.spotifyUrl||"")}><span>{String(i+1).padStart(2,"0")}</span><strong>{t.title}</strong>{embed(t.spotifyUrl)?<Play size={13}/>:<span className="amberTrackPending">—</span>}</button>):<p className="amberTrackNote">{lang==="de"?"Die Titelliste wird ergänzt, sobald die offiziellen Titel zugeordnet sind.":"Track selection will appear once official releases have been linked."}</p>}</div>}
  {active.spotifyUrl&&<a className="amberSpotifyLink" href={active.spotifyUrl} target="_blank" rel="noopener noreferrer">{lang==="de"?"AUF SPOTIFY ÖFFNEN":"OPEN ON SPOTIFY"} <ArrowUpRight size={16}/></a>}
  </section></div>}</>
