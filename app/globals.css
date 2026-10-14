@@ -334,3 +334,27 @@
 .amberDiscTrackName{flex:1;min-width:0;font-size:13px;line-height:1.4}
 .amberDiscDuration{font-size:12px;color:#999;font-variant-numeric:tabular-nums}
 @media(max-width:700px){.amberDiscTop{padding:15px;gap:12px}.amberDiscTop>img{width:76px;height:76px}.amberDiscSeek{padding:8px 13px 18px}.amberDiscTracks{padding:8px}}
+
+/* Compact streaming-style modal for AMBER audio; Spotify iframe stays official. */
+.amberPreviewPanel.amberCompactModal{width:min(390px,calc(100vw - 32px));max-height:min(90vh,850px);padding:0;border-radius:13px;overflow:hidden;background:#121212;box-shadow:0 20px 70px #000b}
+.amberCompactModal .amberPreviewClose{z-index:9;top:10px;right:10px;width:32px;height:32px;background:#292929}
+.amberCompactModal .amberDiscography{width:100%;margin:0;background:#121212}
+.amberCompactModal .amberDiscHeader{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:96px auto;gap:12px;padding:16px 16px 0;background:#202020;align-items:center}
+.amberCompactModal .amberDiscHeader>img{width:96px;height:96px;object-fit:cover;border-radius:7px;box-shadow:0 4px 12px #0007}
+.amberCompactModal .amberDiscInfo{gap:5px;align-self:center;padding-right:22px}
+.amberCompactModal .amberDiscInfo small{font-size:8px;letter-spacing:.12em;color:#b7b7b7}
+.amberCompactModal .amberDiscInfo strong{font-size:20px;line-height:1.16;color:#fff;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.amberCompactModal .amberDiscInfo span{font-size:11px;color:#b7b7b7}
+.amberCompactModal .amberDiscTransport{grid-column:1/-1;display:flex;justify-content:flex-end;align-items:center;gap:12px;background:transparent;padding:0 0 8px;min-height:54px}
+.amberCompactModal .amberDiscTransport button{padding:5px;color:#b9b9b9}
+.amberCompactModal .amberDiscTransport .amberDiscMainPlay{width:45px;height:45px;background:white;color:#171717;margin-left:8px}
+.amberCompactModal .amberDiscSeek{padding:0 16px 12px;background:#202020;gap:8px;font-size:10px}
+.amberCompactModal .amberDiscSeek input{height:3px}
+.amberCompactModal .amberDiscTracks{padding:8px 10px 18px;background:#121212;max-height:370px}
+.amberCompactModal .amberDiscTracks button{min-height:51px;gap:9px;padding:9px 9px}
+.amberCompactModal .amberDiscNumber{width:23px;color:#777;font-size:12px}
+.amberCompactModal .amberDiscTrackName{font-size:12px;line-height:1.3;color:#efefef}
+.amberCompactModal .amberDiscDuration{font-size:11px;color:#a9a9a9}
+.amberCompactModal .amberDiscTracks button.is-active{background:transparent}
+.amberCompactModal .amberDiscTracks button.is-active .amberDiscTrackName{color:#d6b481}
+@media(max-width:430px){.amberCompactModal .amberDiscHeader{grid-template-columns:76px minmax(0,1fr);grid-template-rows:76px auto;gap:10px;padding:14px 13px 0}.amberCompactModal .amberDiscHeader>img{width:76px;height:76px}.amberCompactModal .amberDiscInfo strong{font-size:17px}}
