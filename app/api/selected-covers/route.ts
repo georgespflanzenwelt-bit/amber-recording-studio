@@ -54,7 +54,17 @@ export async function GET(){
    return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[]};
   });
   entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
-  const covers=Object.fromEntries(entries.filter(e=>e.key).map(e=>[e.key,e.image]));
-  return NextResponse.json({covers,entries});
+  // Replit may retain duplicate cover files alongside the tracked originals.
+  // Show a credit only once, without deleting any cover or changing distinct releases.
+  const canonical=(value:string)=>value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+  const seen=new Set<string>();
+  const uniqueEntries=entries.filter(entry=>{
+   const identity=[entry.artist,entry.title,entry.label,entry.work,entry.creditName,entry.trackNumbers].map(canonical).join("|");
+   if(seen.has(identity))return false;
+   seen.add(identity);
+   return true;
+  });
+  const covers=Object.fromEntries(uniqueEntries.filter(e=>e.key).map(e=>[e.key,e.image]));
+  return NextResponse.json({covers,entries:uniqueEntries});
  }catch{return NextResponse.json({covers:{},entries:[]})}
 }
