@@ -358,3 +358,8 @@
 .amberCompactModal .amberDiscTracks button.is-active{background:transparent}
 .amberCompactModal .amberDiscTracks button.is-active .amberDiscTrackName{color:#d6b481}
 @media(max-width:430px){.amberCompactModal .amberDiscHeader{grid-template-columns:76px minmax(0,1fr);grid-template-rows:76px auto;gap:10px;padding:14px 13px 0}.amberCompactModal .amberDiscHeader>img{width:76px;height:76px}.amberCompactModal .amberDiscInfo strong{font-size:17px}}
+
+/* Credits beneath the song title in the compact AMBER player. */
+.amberCompactModal .amberDiscCredit{display:block;margin-top:5px;color:#d0d0d0;font-size:11px;line-height:1.4}
+.amberCompactModal .amberDiscCredit .amberCreditActivity,.amberCompactModal .amberDiscCredit .amberCreditName{display:block}
+.amberCompactModal .amberDiscCredit .amberCreditName{margin-top:2px;color:#aaa}
