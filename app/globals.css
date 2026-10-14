@@ -399,3 +399,19 @@
 .amberSpotifyCreditBrand span{color:#d4ad7a}
 .amberSpotifyModal .amberListeningCard{margin:10px 20px 20px;padding:5px;border-top-color:#d4ad7a55}
 @media(max-width:600px){.amberSpotifyModal .amberSpotifyCreditBar{padding:23px 48px 9px 16px;gap:10px}.amberSpotifyCreditMain>strong{font-size:16px}.amberSpotifyCreditBrand{display:none}.amberSpotifyModal .amberListeningCard{margin:9px 10px 15px;padding:4px}}
+
+/* Smaller Spotify modal, without changing the native AMBER player. */
+.amberPreviewPanel.amberSpotifyModal{width:min(490px,calc(100vw - 30px));border-radius:13px}
+.amberSpotifyModal .amberSpotifyCreditBar{padding:18px 49px 7px 17px;gap:8px}
+.amberSpotifyCreditMain{gap:4px}
+.amberSpotifyCreditMain>small{font-size:8px}
+.amberSpotifyCreditMain>strong{font-size:15px}
+.amberSpotifyCreditRole{font-size:10px;line-height:1.35}
+.amberSpotifyCreditRole .amberCreditName{margin-top:1px}
+.amberSpotifyCreditMain>p{font-size:9px}
+.amberSpotifyCreditBrand{font-size:9px}
+.amberSpotifyModal .amberPreviewClose{top:9px;right:9px;width:29px;height:29px}
+.amberSpotifyModal .amberListeningCard{margin:7px 11px 12px;padding:3px;border-radius:10px}
+.amberSpotifyModal .amberListeningCard>iframe{border-radius:7px}
+.amberSpotifyModal .amberSpotifyLink{padding:10px 16px;font-size:10px}
+@media(max-width:600px){.amberPreviewPanel.amberSpotifyModal{width:min(490px,calc(100vw - 24px))}.amberSpotifyModal .amberSpotifyCreditBar{padding:17px 44px 7px 12px}.amberSpotifyModal .amberListeningCard{margin:7px 8px 10px;padding:3px}}
