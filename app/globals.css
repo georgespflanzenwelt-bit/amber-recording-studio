@@ -385,3 +385,17 @@
 .amberListeningCard>.amberPreviewPending{margin:0;border-radius:10px}
 .amberSpotifyModal .amberSpotifyLink{margin:0;padding:15px 34px;background:#191919;border-top:1px solid #ffffff10}
 @media(max-width:600px){.amberSpotifyModal .amberPreviewHead{padding:49px 17px 16px;gap:13px;align-items:flex-start}.amberSpotifyModal .amberPreviewHead>img{width:94px;height:94px}.amberSpotifyModal .amberPreviewIdentity{padding-right:0}.amberSpotifyModal .amberPreviewIdentity h2{font-size:24px}.amberSpotifyModal .amberPreviewIdentity p{font-size:13px}.amberSpotifyModal .amberPreviewBrand{right:62px;top:19px}.amberListenHeading{padding:12px 17px}.amberListeningCard{margin:0 14px 17px;padding:5px}}
+
+/* Compact Spotify presentation: cover appears only inside the official embed. */
+.amberSpotifyModal .amberSpotifyCreditBar{display:flex;justify-content:space-between;gap:24px;padding:26px 58px 13px 26px;align-items:flex-start}
+.amberSpotifyCreditMain{min-width:0;display:flex;flex-direction:column;gap:6px}
+.amberSpotifyCreditMain>small{color:#d4ad7a;font-size:9px;font-weight:750;letter-spacing:.16em}
+.amberSpotifyCreditMain>strong{font-size:19px;line-height:1.25;letter-spacing:-.02em}
+.amberSpotifyCreditMain>strong span{font-weight:400;color:#ddd}
+.amberSpotifyCreditRole{font-size:12px;color:#cfcac3;line-height:1.4}
+.amberSpotifyCreditRole .amberCreditName{margin-top:2px;color:#a9a9a9}
+.amberSpotifyCreditMain>p{font-size:10px;color:#aaa;margin:1px 0 0}
+.amberSpotifyCreditBrand{font-size:10px;font-weight:800;letter-spacing:.13em;color:#eee;white-space:nowrap}
+.amberSpotifyCreditBrand span{color:#d4ad7a}
+.amberSpotifyModal .amberListeningCard{margin:10px 20px 20px;padding:5px;border-top-color:#d4ad7a55}
+@media(max-width:600px){.amberSpotifyModal .amberSpotifyCreditBar{padding:23px 48px 9px 16px;gap:10px}.amberSpotifyCreditMain>strong{font-size:16px}.amberSpotifyCreditBrand{display:none}.amberSpotifyModal .amberListeningCard{margin:9px 10px 15px;padding:4px}}
