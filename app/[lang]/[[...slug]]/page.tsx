@@ -96,9 +96,10 @@ type CoversResponse={covers:Record<string,string>;entries:SelectedEntry[]};
 let sharedCovers:CoversResponse|null=null;
 let pendingCovers:Promise<CoversResponse>|null=null;
 let prewarmedCovers=false;
-function getSharedCovers():Promise<CoversResponse>{
- if(sharedCovers)return Promise.resolve(sharedCovers);
- if(!pendingCovers)pendingCovers=fetch("/api/selected-covers").then(r=>{if(!r.ok)throw Error("Covers unavailable");return r.json()}).then((data:CoversResponse)=>{sharedCovers={covers:data.covers||{},entries:data.entries||[]};return sharedCovers}).catch(e=>{pendingCovers=null;throw e});
+function getSharedCovers(refresh=false):Promise<CoversResponse>{
+ if(!refresh&&sharedCovers)return Promise.resolve(sharedCovers);
+ if(refresh)pendingCovers=null;
+ if(!pendingCovers)pendingCovers=fetch("/api/selected-covers",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Covers unavailable");return r.json()}).then((data:CoversResponse)=>{sharedCovers={covers:data.covers||{},entries:data.entries||[]};return sharedCovers}).catch(e=>{pendingCovers=null;throw e});
  return pendingCovers;
 }
 function warmCoverImages(entries:SelectedEntry[]){
@@ -113,7 +114,7 @@ export default function Page(){
 const params=useParams();const router=useRouter();const lang:Lang=params.lang==="de"?"de":"en";const t=dictionary[lang];const raw=params.slug;const slug=Array.isArray(raw)?raw[0]||"":"";const current=paths.includes(slug)?slug:"";const url=(s:string,l:Lang=lang)=>"/"+l+(s?"/"+s:"");
  const [selectedCovers,setSelectedCovers]=useState<Record<string,string>>(()=>sharedCovers?.covers||{});
  const [coverEntries,setCoverEntries]=useState<SelectedEntry[]>(()=>sharedCovers?.entries||[]);
- useEffect(()=>{let alive=true;getSharedCovers().then(data=>{if(alive){setSelectedCovers(data.covers);setCoverEntries(data.entries)}}).catch(()=>{});return()=>{alive=false}},[]);
+ useEffect(()=>{let alive=true;getSharedCovers(current==="credits").then(data=>{if(alive){setSelectedCovers(data.covers);setCoverEntries(data.entries)}}).catch(()=>{});return()=>{alive=false}},[current]);
  useEffect(()=>{if(current!=="")return;const id=window.setTimeout(()=>{getSharedCovers().then(data=>warmCoverImages(data.entries)).catch(()=>{})},1500);return()=>window.clearTimeout(id)},[current]);
  useEffect(()=>{if(current!=="")return;router.prefetch(url("credits"));},[current,lang,router]);
  const [creditFilter,setCreditFilter]=useState("ALL");const [creditGenre,setCreditGenre]=useState("ALL");const [genreOpen,setGenreOpen]=useState(false);const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
