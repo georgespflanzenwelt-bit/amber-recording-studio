@@ -23,7 +23,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
- const albumFiles=files.filter(file=>file.albumFolder&&normalizeSong(file.albumFolder)===normalizeSong(entry.artist+"__"+entry.title.replace(/\s*\(album\)\s*$/i,"")));
+ const albumFiles=files.filter(file=>file.albumFolder&&normalizeSong(file.albumFolder.split(/__+/)[0]||"")===artist&&songTitle(file.albumFolder.split(/__+/).slice(1).join(" "))===title);
  if(albumFiles.length)return albumFiles.sort((a,b)=>(a.order||999999)-(b.order||999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const matches=files.filter(file=>{if(file.albumFolder)return false;
   const sections=file.name.replace(/^\s*\d+\s*/,"").split(/__+/).map(x=>x.trim()).filter(Boolean);
@@ -37,7 +37,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  return matches.sort((a,b)=>(a.order||999999)-(b.order||999999));
 }
 
-function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
+function displayLocalTitle(name:string,artist:string){\n const stripped=name.replace(/^\\s*\\d+\\s*/,"").split(/__+/);\n return (stripped.length>1&&normalizeSong(stripped[0])===normalizeSong(artist)?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();\n}\n\nfunction LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
  const audio=useRef<HTMLAudioElement>(null);
  const resumeOnChange=useRef(false);
  const [playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
@@ -51,7 +51,7 @@ function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang
   <div className="amberDiscHeader"><img src={cover} alt=""/><div className="amberDiscInfo"><small>AMBER / DISCOGRAPHY</small><strong>{artist}</strong><span>{title}</span><div className="amberDiscCredit"><CreditLines entry={entry} lang={lang}/></div></div><div className="amberDiscTransport"><button type="button" aria-label="Previous" disabled={index===0} onClick={()=>choose(songs[index-1].url)}><SkipBack size={18} fill="currentColor"/></button><button type="button" aria-label="Next" disabled={index===songs.length-1} onClick={()=>choose(songs[index+1].url)}><SkipForward size={18} fill="currentColor"/></button><button type="button" aria-label="Play or pause" className="amberDiscMainPlay" onClick={toggle}>{playing?<Pause size={22} fill="currentColor"/>:<Play size={22} fill="currentColor"/>}</button></div></div>
   <div className="amberDiscSeek"><span>{fmt(time)}</span><input aria-label="Playback position" type="range" min={0} max={duration||1} step=".1" value={Math.min(time,duration||1)} onChange={e=>{if(audio.current){audio.current.currentTime=Number(e.target.value);setTime(Number(e.target.value))}}}/><span>{fmt(duration)}</span></div>
   <audio ref={audio} key={selected} src={selected} preload="metadata" onLoadedMetadata={e=>{const d=e.currentTarget.duration;setDuration(d);setLengths(old=>({...old,[selected]:d}))}} onTimeUpdate={e=>setTime(e.currentTarget.currentTime)} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);if(index<songs.length-1){resumeOnChange.current=true;onSelect(songs[index+1].url)}}}/>
-  <div className="amberDiscTracks">{songs.map((song,i)=><button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className="amberDiscTrackName">{song.name.replace(/^\s*\d+\s*/,"").replace(/__+/g," · ").replace(/_/g," ")}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>)}</div>
+  <div className="amberDiscTracks">{songs.map((song,i)=><button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className="amberDiscTrackName">{displayLocalTitle(song.name,artist)}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>)}</div>
  </div>;
 }
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
