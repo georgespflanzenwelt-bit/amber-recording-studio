@@ -4,7 +4,7 @@ import path from "node:path";
 export const dynamic="force-dynamic";
 export async function GET(){
  const root=path.join(process.cwd(),"public");
- const folders=["songs","Donna Renee__Keep on believing"];
+ const folders=["songs","Donna Renee__Keep on believing","journey into DnB vol1","journey into DnB vol2"];
  try{
   const dirs=await readdir(root,{withFileTypes:true});
   folders.push(...dirs.filter(item=>item.isDirectory()&&!folders.includes(item.name)&&item.name.includes("__")).map(item=>item.name));
