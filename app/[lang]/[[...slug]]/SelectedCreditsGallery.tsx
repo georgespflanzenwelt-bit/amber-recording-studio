@@ -43,6 +43,10 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
   const selected=files.filter(file=>normalizeSong(decodeURIComponent(file.url||"")).includes("donna renee")&&normalizeSong(decodeURIComponent(file.url||"")).includes("keep on believing"));
   return selected.sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  }
+ const dabruEp=artist.includes("dabrutack")&&normalizeSong(entry.title).includes("wie man s spricht");
+ if(dabruEp){
+  return files.filter(file=>normalizeSong(file.albumFolder||"")==="dabrutack").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ }
  const albumFiles=files.filter(file=>{
   if(!file.albumFolder)return false;
   const folder=normalizeSong(file.albumFolder);
