@@ -312,3 +312,25 @@
 .amberLocalPlayer audio{display:block;max-width:100%}
 
 .amberLocalChoices{display:flex;flex-direction:column;gap:7px;width:100%}.amberLocalChoices button{border:1px solid #555;background:#191d1e;color:#ddd;padding:10px 12px;text-align:left;cursor:pointer;font:inherit}.amberLocalChoices button.is-active{border-color:#d6b481;color:#d6b481;background:#31302a}
+
+/* AMBER local discography player, editorial dark streaming layout. */
+.amberDiscography{background:#121212;color:#f7f7f7;margin:0;overflow:hidden}
+.amberDiscTop{display:flex;gap:17px;align-items:center;padding:22px 25px 8px;background:linear-gradient(135deg,#292929,#1c1c1c)}
+.amberDiscTop>img{width:106px;height:106px;object-fit:cover;box-shadow:0 5px 22px #0008}
+.amberDiscInfo{display:flex;flex-direction:column;min-width:0;gap:7px}
+.amberDiscInfo small{font-size:10px;letter-spacing:.15em;color:#d6b481}
+.amberDiscInfo strong{font-size:clamp(18px,2.8vw,27px);line-height:1.12;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.amberDiscInfo span{color:#bababa;font-size:13px;line-height:1.35}
+.amberDiscTransport{display:flex;justify-content:center;align-items:center;gap:22px;background:#1c1c1c;padding:9px 20px 6px}
+.amberDiscTransport button{display:grid;place-items:center;background:none;border:0;color:#bdbdbd;cursor:pointer;padding:7px}
+.amberDiscTransport button:disabled{opacity:.25;cursor:default}
+.amberDiscTransport .amberDiscMainPlay{border-radius:50%;background:#fff;color:#141414;width:51px;height:51px}
+.amberDiscSeek{display:flex;align-items:center;gap:12px;background:#1c1c1c;padding:9px 24px 24px;color:#aaa;font-size:11px;font-variant-numeric:tabular-nums}
+.amberDiscSeek input{flex:1;min-width:0;accent-color:#d6b481;cursor:pointer}
+.amberDiscTracks{background:#121212;padding:9px 16px 20px;max-height:320px;overflow-y:auto}
+.amberDiscTracks button{display:flex;align-items:center;gap:14px;width:100%;border:0;background:transparent;text-align:left;color:#ddd;min-height:50px;padding:10px 8px;cursor:pointer}
+.amberDiscTracks button:hover,.amberDiscTracks button.is-active{background:#252525;color:#d6b481}
+.amberDiscNumber{width:26px;flex-shrink:0;color:#888;font-size:13px}
+.amberDiscTrackName{flex:1;min-width:0;font-size:13px;line-height:1.4}
+.amberDiscDuration{font-size:12px;color:#999;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.amberDiscTop{padding:15px;gap:12px}.amberDiscTop>img{width:76px;height:76px}.amberDiscSeek{padding:8px 13px 18px}.amberDiscTracks{padding:8px}}
