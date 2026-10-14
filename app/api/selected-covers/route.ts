@@ -22,11 +22,17 @@ export async function GET(){
    const hasFilenameGenre=candidates.length>0&&parsedGenres.every(Boolean);
    const workEnd=parts.length-(trackNumbers?1:0)-(hasFilenameGenre?1:0);
    const workStart=parts[1]===title?2:1;
-   const rolePattern=/^(?:[CPRM](?:\s*\+\s*[CPRM])*|.*\b(?:mix(?:ed|ing)?|master(?:ed|ing)?|produc(?:ed|tion|er)?|compos(?:ed|er|ition)?|record(?:ed|ing)?|remix(?:ed)?|arrang(?:ed|ement)?|engineer|songwrit(?:er|ing)?)\b.*)$/i;
-   const hasLabel=workEnd-workStart>=3&&!rolePattern.test(parts[workStart]||"")&&rolePattern.test(parts[workStart+1]||"");
+   const roleWords=/\b(?:mix(?:ed|ing)?|master(?:ed|ing)?|produc(?:ed|tion|er)?|compos(?:ed|er|ition)?|record(?:ed|ing)?|remix(?:ed)?|arrang(?:ed|ement)?|engineer|songwrit(?:er|ing)?)\b/i;
+   const expandRole=(value:string)=>value.split("+").map(part=>{
+    const trimmed=part.trim().replace(/\s+by\s*$/i,"").trim();
+    const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered"};
+    return codes[trimmed]||trimmed;
+   }).join("+");
+   const isRole=(value:string)=>value.split("+").every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").trim();return /^(?:C|P|R|M|Ma)$/.test(cleaned)||roleWords.test(cleaned)});
+   const hasLabel=workEnd-workStart>=3&&!isRole(parts[workStart]||"")&&isRole(parts[workStart+1]||"");
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
-   const work=workParts.filter(x=>!/^by\s+/i.test(x)&&!/^George Brasch\s*\.?$/i.test(x)).map(x=>x.replace(/\b[CPRM]\b/g,letter=>({C:"Composed",P:"Produced",R:"Remixed",M:"Mixed"}[letter]||letter))).join(" · ").trim();
+   const work=workParts.filter(x=>!/^by\s+/i.test(x)&&!/^George Brasch\s*\.?$/i.test(x)).map(expandRole).join(" · ").trim();
    const creditName=parts.find(x=>/George Brasch/i.test(x))?.match(/George Brasch/i)?.[0]||"George Brasch";
    const image="/selected%20credits/"+encodeURIComponent(name);
    const lower=(artist+" "+title).toLowerCase();
