@@ -23,6 +23,10 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
+ const belloSingle=artist==="mistha bello"&&title==="daddy on the run";
+ if(belloSingle){
+  return files.filter(file=>normalizeSong(file.albumFolder||"")==="bello daddy on the run").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ }
  const donnaAlbum=artist.includes("donna renee")&&normalizeSong(entry.title).includes("keep on believing");
  if(donnaAlbum){
   const selected=files.filter(file=>normalizeSong(decodeURIComponent(file.url||"")).includes("donna renee")&&normalizeSong(decodeURIComponent(file.url||"")).includes("keep on believing"));
@@ -49,7 +53,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
 
 function displayLocalTitle(name:string,artist:string){
  const stripped=name.replace(/^\s*\d+\s*/,"").split(/__+/);
- return (stripped.length>1&&normalizeSong(stripped[0])===normalizeSong(artist)?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();
+ return (stripped.length>1&&(normalizeSong(stripped[0])===normalizeSong(artist)||normalizeSong(artist)==="mistha bello"&&normalizeSong(stripped[0])==="bello")?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();
 }
 
 function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
