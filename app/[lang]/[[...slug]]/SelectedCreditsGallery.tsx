@@ -18,7 +18,19 @@ function matchLocalSong(entry:SelectedEntry|null,files:{name:string;url:string}[
  const artist=normalizeSong(entry.artist);
  const title=normalizeSong(entry.title.replace(/\s*\([^)]*\)/g,"").replace(/\b(?:single|album|ep|maxi)\b/gi,""));
  if(!artist||!title)return undefined;
- const matches=files.filter(file=>{const n=normalizeSong(file.name);return n.startsWith(artist+" ")&&(" "+n.slice(artist.length).trim()+" ").includes(" "+title+" ");});
+ // Match the artist and song title only. Everything following the title in the audio
+ // filename (remix/version/label/etc.) is optional and ignored.
+ const matches=files.filter(file=>{
+  const sections=file.name.split(/__+/).map(normalizeSong).filter(Boolean);
+  if(sections.length>=2&&sections[0]===artist){
+   return sections[1]===title||sections[1].startsWith(title+" ");
+  }
+  const full=normalizeSong(file.name);
+  return full.startsWith(artist+" "+title)&&(
+   full.length===artist.length+1+title.length||
+   full[artist.length+1+title.length]===" "
+  );
+ });
  return matches.length===1?matches[0].url:undefined;
 }
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
