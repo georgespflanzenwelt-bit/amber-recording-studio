@@ -40,7 +40,7 @@ export async function GET(){
    const image="/selected%20credits/"+encodeURIComponent(name);
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
-   const releaseKey=(artist+"::"+title).toLowerCase().replace(/\s+/g," ").trim();
+   const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/\s+/g," ").trim();
    const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||{};
    return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[]};
   });
