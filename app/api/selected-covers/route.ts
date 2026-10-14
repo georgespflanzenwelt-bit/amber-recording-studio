@@ -23,15 +23,25 @@ export async function GET(){
    const workEnd=parts.length-(trackNumbers?1:0)-(hasFilenameGenre?1:0);
    const workStart=parts[1]===title?2:1;
    const roleWords=/\b(?:mix(?:ed|ing)?|master(?:ed|ing)?|produc(?:ed|tion|er)?|compos(?:ed|er|ition)?|record(?:ed|ing)?|remix(?:ed)?|arrang(?:ed|ement)?|engineer|songwrit(?:er|ing)?)\b/i;
-   const expandRole=(value:string)=>value.split(/\+(?![^()]*\))/).map(part=>{
-    const trimmed=part.trim().replace(/\s+by\s*$/i,"").trim();
-    const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
-    const except=trimmed.match(/^(.*?)\s*\(\s*except\s+(?:T\s*)?([\d\s,+-]+)\s*\)$/i);
-    const role=(match?match[1]:except?except[1]:trimmed).trim();
-    const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded",ap:"Additional Production",Ap:"Additional Production",AP:"Additional Production"};
-    return (codes[role]||role)+(except?" (except tracks "+except[2].trim().replace(/\s*[+,]\s*/g,", ")+")":match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
+   const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded",ap:"Additional Production",Ap:"Additional Production",AP:"Additional Production"};
+   const groups=(value:string)=>value.split(/,(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
+   const roles=(value:string)=>value.split(/\+(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
+   const roleBase=(value:string)=>value.replace(/\s+by\s*$/i,"").replace(/\s*\((?:\d+(?:\s*[+,]\s*\d+)*|except\s+(?:T\s*)?[\d\s,+-]+)\)\s*$/i,"").trim();
+   const isOneRole=(value:string)=>/^(?:C|P|R|M|Ma|CP|Rec|ap)$/i.test(roleBase(value))||roleWords.test(roleBase(value));
+   const isRole=(value:string)=>groups(value).every(group=>roles(group).every(isOneRole));
+   const expandRole=(value:string)=>groups(value).flatMap(group=>{
+    const pieces=roles(group);
+    const groupTracks=pieces.length>1?pieces[pieces.length-1].match(/\s*\((\d+(?:\s*[+,]\s*\d+)*)\)\s*$/):null;
+    return pieces.map(part=>{
+     const trimmed=part.replace(/\s+by\s*$/i,"").trim();
+     const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
+     const except=trimmed.match(/^(.*?)\s*\(\s*except\s+(?:T\s*)?([\d\s,+-]+)\s*\)$/i);
+     const role=roleBase(trimmed);
+     const expanded=codes[role]||role;
+     const nums=match?.[2]||groupTracks?.[1];
+     return expanded+(except?" (except tracks "+except[2].trim().replace(/\s*[+,]\s*/g,", ")+")":nums?" ("+nums.replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
+    });
    }).join("+");
-   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").replace(/\s*\(\s*except\s+(?:T\s*)?[\d\s,+-]+\s*\)$/i,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec|ap)$/i.test(cleaned)||roleWords.test(cleaned)});
    const hasLabel=workEnd-workStart>=3&&!isRole(parts[workStart]||"")&&isRole(parts[workStart+1]||"");
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
