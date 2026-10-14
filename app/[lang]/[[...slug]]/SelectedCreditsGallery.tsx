@@ -58,7 +58,7 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
  const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string}[]>([]);
  useEffect(()=>{setActive(previous=>previous?entries.find(entry=>entry.name===previous.name)||previous:null)},[entries]);
- useEffect(()=>{fetch("/api/local-songs",{cache:"no-store"}).then(r=>r.json()).then(data=>setLocalSongs(data.files||[])).catch(()=>{})},[]);
+ useEffect(()=>{if(!active)return;let alive=true;fetch("/api/local-songs",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive)setLocalSongs(data.files||[])}).catch(()=>{});return()=>{alive=false}},[active?.name]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.spotifyUrl||"");setLocalChoice("")};
  const current=embed(chosen);
