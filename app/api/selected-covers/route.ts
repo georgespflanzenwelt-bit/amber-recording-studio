@@ -26,11 +26,12 @@ export async function GET(){
    const expandRole=(value:string)=>value.split(/\+(?![^()]*\))/).map(part=>{
     const trimmed=part.trim().replace(/\s+by\s*$/i,"").trim();
     const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
-    const role=(match?match[1]:trimmed).trim();
+    const except=trimmed.match(/^(.*?)\s*\(\s*except\s+(?:T\s*)?([\d\s,+-]+)\s*\)$/i);
+    const role=(match?match[1]:except?except[1]:trimmed).trim();
     const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded",ap:"Additional Production",Ap:"Additional Production",AP:"Additional Production"};
-    return (codes[role]||role)+(match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
+    return (codes[role]||role)+(except?" (except tracks "+except[2].trim().replace(/\s*[+,]\s*/g,", ")+")":match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
    }).join("+");
-   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec|ap)$/i.test(cleaned)||roleWords.test(cleaned)});
+   const isRole=(value:string)=>value.split(/\+(?![^()]*\))/).every(part=>{const cleaned=part.trim().replace(/\s+by\s*$/i,"").replace(/\s*\(\d+(?:\s*[+,]\s*\d+)*\)$/,"").replace(/\s*\(\s*except\s+(?:T\s*)?[\d\s,+-]+\s*\)$/i,"").trim();return /^(?:C|P|R|M|Ma|CP|Rec|ap)$/i.test(cleaned)||roleWords.test(cleaned)});
    const hasLabel=workEnd-workStart>=3&&!isRole(parts[workStart]||"")&&isRole(parts[workStart+1]||"");
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
