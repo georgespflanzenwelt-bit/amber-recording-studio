@@ -16,23 +16,23 @@ function normalizeSong(value:string){return value.normalize("NFD").replace(/[\u0
 function songTitle(value:string){
  return normalizeSong(value.replace(/\s*\([^)]*\)/g,"").split(/\s+(?:ft\.?|feat\.?|featuring)\s+/i)[0].replace(/\b(?:single|album|ep|maxi)\b/gi,""));
 }
-function matchLocalSong(entry:SelectedEntry|null,files:{name:string;url:string}[]){
- if(!entry)return undefined;
+function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;order?:number}[]){
+ if(!entry)return [];
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
- if(!artist||!title)return undefined;
+ if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
  const matches=files.filter(file=>{
-  const sections=file.name.split(/__+/).map(x=>x.trim()).filter(Boolean);
+  const sections=file.name.replace(/^\s*\d+\s*/,"").split(/__+/).map(x=>x.trim()).filter(Boolean);
   if(sections.length>=2){
    return normalizeSong(sections[0])===artist&&songTitle(sections[1])===title;
   }
-  const full=normalizeSong(file.name);
+  const full=normalizeSong(file.name.replace(/^\s*\d+\s*/,""));
   const prefix=artist+" "+title;
   return full===prefix||full.startsWith(prefix+" ");
  });
- return matches.length===1?matches[0].url:undefined;
+ return matches.sort((a,b)=>(a.order||999999)-(b.order||999999));
 }
 export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");
