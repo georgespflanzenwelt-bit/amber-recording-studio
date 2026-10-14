@@ -37,7 +37,12 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  return matches.sort((a,b)=>(a.order||999999)-(b.order||999999));
 }
 
-function displayLocalTitle(name:string,artist:string){\n const stripped=name.replace(/^\\s*\\d+\\s*/,"").split(/__+/);\n return (stripped.length>1&&normalizeSong(stripped[0])===normalizeSong(artist)?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();\n}\n\nfunction LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
+function displayLocalTitle(name:string,artist:string){
+ const stripped=name.replace(/^\s*\d+\s*/,"").split(/__+/);
+ return (stripped.length>1&&normalizeSong(stripped[0])===normalizeSong(artist)?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();
+}
+
+function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
  const audio=useRef<HTMLAudioElement>(null);
  const resumeOnChange=useRef(false);
  const [playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
