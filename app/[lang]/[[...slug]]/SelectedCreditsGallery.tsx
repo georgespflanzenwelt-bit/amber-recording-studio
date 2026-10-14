@@ -23,6 +23,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
+ const donnaAlbum=artist.includes("donna renee")&&normalizeSong(entry.title).includes("keep on believing");
+ if(donnaAlbum){const selected=files.filter(file=>normalizeSong(file.albumFolder||"").includes("donna renee")&&normalizeSong(file.albumFolder||"").includes("keep on believing"));return selected.sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));}
  const albumFiles=files.filter(file=>{
   if(!file.albumFolder)return false;
   const folder=normalizeSong(file.albumFolder);
