@@ -12,7 +12,7 @@ export async function GET(){
  const files=(await Promise.all(folders.map(async folder=>{
   try{
    const names=(await readdir(path.join(root,folder))).filter(name=>/\.(mp3|m4a|ogg|wav|flac)$/i.test(name));
-   return names.map(name=>({name:name.replace(/\.[^.]+$/,""),url:"/"+encodeURIComponent(folder)+"/"+encodeURIComponent(name),order:Number(name.match(/^\s*(\d+)/)?.[1]||999999),albumFolder:folder==="songs"?"":folder,albumKey:folder.toLowerCase().startsWith("donna renee__keep on believing")?"donna-renee-keep-on-believing":""}));
+   return names.map(name=>({name:name.replace(/\.[^.]+$/,""),url:"/"+encodeURIComponent(folder)+"/"+encodeURIComponent(name),order:Number(name.match(/^\s*(\d+)/)?.[1]||999999),albumFolder:folder==="songs"?"":folder,albumKey:/^donna\s*renee[\s_]+keep\s*on\s*believing$/i.test(folder.replace(/_/g," ").replace(/\s+/g," ").trim())?"donna-renee-keep-on-believing":""}));
   }catch{return []}
  }))).flat();
  files.sort((a,b)=>a.order-b.order||a.name.localeCompare(b.name,undefined,{numeric:true}));
