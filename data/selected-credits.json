@@ -1,4 +1,8 @@
 {
   "_comment": "Optional metadata by exact filename from public/selected credits. Spotify URLs must refer to verified official releases. tracks is optional.",
-  "covers": {}
+  "covers": {
+    "AZAD__Leben (Album) __Mixed by__George Brasch__HipHop.jpg": {
+      "spotifyUrl": "https://open.spotify.com/album/0rk3xvwzQSN2d7ctkxgMpD"
+    }
+  }
 }
