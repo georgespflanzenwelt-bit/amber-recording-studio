@@ -1,6 +1,13 @@
 {
   "_comment": "Optional metadata by exact filename from public/selected credits. Spotify URLs must refer to verified official releases. tracks is optional.",
-  "covers": {},
+  "covers": {
+    "AZAD__Gegen den Strom (Single)__Pelham, Universal__Mixed__George Brasch__HipHop__1,2,4,5,7,8.jpg": {
+      "spotifyUrl": "https://open.spotify.com/album/0DxDTOIqBobLKXKSahNpPE"
+    },
+    "AZAD__Gegen den Strom (Single)__Mixed by__George Brasch__HipHop.jpg": {
+      "spotifyUrl": "https://open.spotify.com/album/0DxDTOIqBobLKXKSahNpPE"
+    }
+  },
   "releases": {
     "azad::leben (album)": {
       "spotifyUrl": "https://open.spotify.com/album/0rk3xvwzQSN2d7ctkxgMpD"
@@ -102,7 +109,7 @@
       "spotifyUrl": "https://open.spotify.com/album/3KG6ZSyMsjJCN3FQtgx1DT"
     },
     "azad::gegen den strom (single)": {
-      "spotifyUrl": "https://open.spotify.com/album/0rk3xvwzQSN2d7ctkxgMpD"
+      "spotifyUrl": "https://open.spotify.com/album/0DxDTOIqBobLKXKSahNpPE"
     }
   }
 }
