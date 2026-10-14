@@ -419,3 +419,7 @@
 /* Spotify album width balances readable track names and a taller official tracklist. */
 .amberPreviewPanel.amberSpotifyModal{width:min(550px,calc(100vw - 30px))}
 @media(max-width:600px){.amberPreviewPanel.amberSpotifyModal{width:min(550px,calc(100vw - 24px))}}
+
+/* Narrower centered Spotify embed; preserve the modal and AMBER credit heading size. */
+.amberSpotifyModal .amberListeningCard{width:calc(100% - 64px);max-width:486px;margin:7px auto 14px}
+@media(max-width:600px){.amberSpotifyModal .amberListeningCard{width:calc(100% - 28px);margin:7px auto 12px}}
