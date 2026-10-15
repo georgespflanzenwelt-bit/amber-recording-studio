@@ -29,6 +29,15 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ if(artist==="donna renee"&&title==="follow"){
+  const cleanName=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
+  const albumTrack=files.filter(file=>file.albumFolder==="Donna Renee__Keep on believing"&&/^follow(?:$|\s)/.test(cleanName(file.name))).sort((a,b)=>{
+   const rank=(name:string)=>{const value=cleanName(name);return value==="follow"?0:/^follow (?:album|original)(?: version)?$/.test(value)?1:2};
+   return rank(a.name)-rank(b.name)||(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true});
+  })[0];
+  const remixTrack=files.find(file=>file.albumFolder==="Donna Renee - Follow"&&cleanName(file.name)==="follow h bus gb house edit");
+  return [...(albumTrack?[{...albumTrack,order:1}]:[]),...(remixTrack?[{...remixTrack,order:2}]:[])];
+ }
  if(artist==="bektas"&&title==="was lousn")return files.filter(file=>file.albumFolder==="Bektas").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  if(artist==="kinzmania"&&title==="reality")return files.filter(file=>file.albumFolder==="Kinzmania").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const coolFolder=artist==="cool struttin"?(title==="varoius vol one"?"Cool Struttin 1":title==="varoius volume 2"?"Cool Struttin 2":title==="volume3"?"Cool Struttin 3":""):"";
