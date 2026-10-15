@@ -49,9 +49,10 @@ export async function GET(){
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
    const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/[’´`]/g,"\x27").replace(/\s+/g," ").trim();
+   const olympicDoOne=/\blifts$/i.test(artist)&&/^do one\s*\(album\)$/i.test(title);
    const brotherAlbum=/^brothers?\s+keepers?$/i.test(artist)&&/^am\s+i\s+my\s+brother.?s\s+keeper/i.test(title);
    const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||(brotherAlbum?{spotifyUrl:"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N"}:{});
-   return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[],youtubePlaylist:extra.youtubePlaylist?.id&&Array.isArray(extra.youtubePlaylist.tracks)?extra.youtubePlaylist:undefined};
+   return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:olympicDoOne?"https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr":extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[],youtubePlaylist:extra.youtubePlaylist?.id&&Array.isArray(extra.youtubePlaylist.tracks)?extra.youtubePlaylist:undefined};
   });
   entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
   // Replit may retain duplicate cover files alongside the tracked originals.
