@@ -47,6 +47,10 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(dabruEp){
   return files.filter(file=>normalizeSong(file.albumFolder||"")==="dabrutack").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  }
+ const meliAlbum=artist==="meli"&&title==="skill en masse";
+ if(meliAlbum){
+  return files.filter(file=>normalizeSong(file.albumFolder||"")==="meli skills en masse").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ }
  const albumFiles=files.filter(file=>{
   if(!file.albumFolder)return false;
   const folder=normalizeSong(file.albumFolder);
