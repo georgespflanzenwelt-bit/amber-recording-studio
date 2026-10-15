@@ -39,10 +39,11 @@ export default function YouTubePlaylistDiscography({playlist,entry,credit,lang}:
    const ids=target.getPlaylist();
    if(Array.isArray(ids)&&ids.length){
     setCount(ids.length);
-    setVerified(ids.length===playlist.tracks.length&&(!playlist.firstVideoId||ids[0]===playlist.firstVideoId));
+    const matches=ids.length===playlist.tracks.length&&(!playlist.firstVideoId||ids[0]===playlist.firstVideoId);
+    setVerified(matches);
+    const current=target.getPlaylistIndex();
+    if(matches&&current>=0&&current<playlist.tracks.length)setIndex(current);
    }
-   const current=target.getPlaylistIndex();
-   if(current>=0&&current<playlist.tracks.length)setIndex(current);
   };
   const initialize=()=>{
    if(disposed||!mount.current||!win.YT?.Player)return;
