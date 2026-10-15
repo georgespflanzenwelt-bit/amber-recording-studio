@@ -49,6 +49,18 @@
     },
     "CURSE__Goldene Zeiten (Singel)__Jive__Vocal Recording by__George Brasch.jpg": {
       "spotifyUrl": "https://open.spotify.com/track/79ivPwL7hx3BldRSf4zj9V"
+    },
+    "Moabit__Bär auf Speed (Single)__New Noise, Virgin__M__George Brasch__HipHop__1, 2, 7.jpg": {
+      "tracks": [
+        {
+          "title": "Track 01",
+          "spotifyUrl": "https://open.spotify.com/track/3x1Q4bdlYfrEhRExlWSycw"
+        },
+        {
+          "title": "Track 02",
+          "spotifyUrl": "https://open.spotify.com/track/3IdvqWhqIWDbL1O82QdfCs"
+        }
+      ]
     }
   },
   "releases": {
