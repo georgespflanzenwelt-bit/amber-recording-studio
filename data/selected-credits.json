@@ -17,10 +17,32 @@
       "spotifyUrl": "https://open.spotify.com/album/7bOxjB69Ku0HizIuo7L3d4"
     },
     "Seeed__Next (Album)__Downbeat, Warner__M__ George Brasch__Reggae__8, 12.jpg": {
-      "spotifyUrl": "https://open.spotify.com/playlist/7CZ5mdeeSjvUs5xVEB47FX"
+      "tracks": [
+        {
+          "title": "Track 8",
+          "spotifyUrl": "https://open.spotify.com/track/0NvDxyeYCkz4exW3yeh94L"
+        },
+        {
+          "title": "Track 12",
+          "spotifyUrl": "https://open.spotify.com/track/7oRgqffwv9uoKjdM5EuWQk"
+        }
+      ]
     },
     "Seeed__Music Monk__Downbeat, East West__M__George Brasch__3, 14.jpg": {
-      "spotifyUrl": "https://open.spotify.com/playlist/0qgqAmaJWfQOt1Mi1s9EJB"
+      "tracks": [
+        {
+          "title": "Track 2",
+          "spotifyUrl": "https://open.spotify.com/track/0tPt1o11e25Dd4nfS9AS2D"
+        },
+        {
+          "title": "Track 3",
+          "spotifyUrl": "https://open.spotify.com/track/4bJIM2tHXmAsiypme5ccvZ"
+        },
+        {
+          "title": "Track 14",
+          "spotifyUrl": "https://open.spotify.com/track/3tHxXgFxngNWjvfuOpxg3D"
+        }
+      ]
     },
     "SEEED__Music Monk (Album)__Downbeat, Warner__M__George Brasch__Reggae__10.jpg": {
       "spotifyUrl": "https://open.spotify.com/track/2WjP6HxBOnNNtaQ4LXYK4A"
@@ -138,9 +160,6 @@
     "optik::mixtape vol1.": {
       "spotifyUrl": "https://open.spotify.com/album/7bOxjB69Ku0HizIuo7L3d4"
     },
-    "seeed::next (album)": {
-      "spotifyUrl": "https://open.spotify.com/playlist/7CZ5mdeeSjvUs5xVEB47FX"
-    },
     "eko::jetzt kommen wir auf die sachen (ep)": {
       "spotifyUrl": "https://open.spotify.com/album/6yjEOjNCJrG2KEidFv82kL"
     },
@@ -151,7 +170,20 @@
       "spotifyUrl": "https://open.spotify.com/track/0dcPmf0cJ73imtXaJruY2n"
     },
     "seeed::music monk english": {
-      "spotifyUrl": "https://open.spotify.com/playlist/0qgqAmaJWfQOt1Mi1s9EJB"
+      "tracks": [
+        {
+          "title": "Track 2",
+          "spotifyUrl": "https://open.spotify.com/track/0tPt1o11e25Dd4nfS9AS2D"
+        },
+        {
+          "title": "Track 3",
+          "spotifyUrl": "https://open.spotify.com/track/4bJIM2tHXmAsiypme5ccvZ"
+        },
+        {
+          "title": "Track 14",
+          "spotifyUrl": "https://open.spotify.com/track/3tHxXgFxngNWjvfuOpxg3D"
+        }
+      ]
     }
   }
 }
