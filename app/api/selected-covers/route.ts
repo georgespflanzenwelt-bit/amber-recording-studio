@@ -5,7 +5,7 @@ export const dynamic="force-dynamic";
 export async function GET(){
  try{
   const names=(await readdir(path.join(process.cwd(),"public","selected credits"))).filter(x=>/\.(jpe?g|png|webp|avif)$/i.test(x)).sort();
-  const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data","selected-credits.json"),"utf8").catch(()=>"{}")) as {covers?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[]}>;releases?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[]}>};
+  const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data","selected-credits.json"),"utf8").catch(()=>"{}")) as {covers?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>;releases?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>};
   const entries=names.map(name=>{
    const parts=name.replace(/\.[^.]+$/,"").split(/__+/).map(s=>s.replace(/_/g," ").replace(/\s+/g," ").trim());
    const first=parts[0]||"";
@@ -51,7 +51,7 @@ export async function GET(){
    const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/[’´`]/g,"\x27").replace(/\s+/g," ").trim();
    const brotherAlbum=/^brothers?\s+keepers?$/i.test(artist)&&/^am\s+i\s+my\s+brother.?s\s+keeper/i.test(title);
    const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||(brotherAlbum?{spotifyUrl:"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N"}:{});
-   return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[]};
+   return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),spotifyUrl:extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[],youtubePlaylist:extra.youtubePlaylist?.id&&Array.isArray(extra.youtubePlaylist.tracks)?extra.youtubePlaylist:undefined};
   });
   entries.sort((a,b)=>a.artist.localeCompare(b.artist,"de",{sensitivity:"base",numeric:true})||a.title.localeCompare(b.title,"de",{sensitivity:"base",numeric:true}));
   // Replit may retain duplicate cover files alongside the tracked originals.
