@@ -28,6 +28,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
+ const daizzSingle=artist==="daizz"&&title.startsWith("didn t i");
+ if(daizzSingle)return files.filter(file=>normalizeSong(file.albumFolder||"")==="daizz").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const bloodAndVeins=artist==="best boy electric"&&title==="blood veins";
  if(bloodAndVeins)return files.filter(file=>normalizeSong(file.albumFolder||"")==="journey into dnb vol1"&&file.order===9&&normalizeSong(file.name).includes("blood veins"));
  const journeyVolume=artist==="a journey into dnb"?(title==="vol 1"?"journey into dnb vol1":title==="vol 2"?"journey into dnb vol2":""):"";
