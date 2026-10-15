@@ -113,7 +113,8 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
  const open=(entry:SelectedEntry)=>{setActive(entry);setChosen(entry.tracks?.[0]?.spotifyUrl||entry.spotifyUrl||"");setLocalChoice("")};
  const brotherCredit=!!active&&/^(?:brothers?|bothers) keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
- const spotifyUrl=brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":active?.spotifyUrl||"";
+ const olympicDoOne=!!active&&/^ol+ympic lifts$/.test(normalizeSong(active.artist))&&normalizeSong(active.title)==="do one album";
+ const spotifyUrl=brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":olympicDoOne?(active?.spotifyUrl||"https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr"):active?.spotifyUrl||"";
  const current=brotherCredit?embed(spotifyUrl):embed(chosen)||embed(spotifyUrl);
  const youtubeVideo=active?.youtubeUrl?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)?.[1]||"";
  const localMatches=matchLocalSongs(active,localSongs);const localAudio=localMatches.find(x=>x.url===localChoice)?.url||localMatches[0]?.url;
