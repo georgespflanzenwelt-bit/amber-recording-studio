@@ -146,6 +146,9 @@
     },
     "seeed::live": {
       "spotifyUrl": "https://open.spotify.com/track/0dcPmf0cJ73imtXaJruY2n"
+    },
+    "seeed::music monk english": {
+      "spotifyUrl": "https://open.spotify.com/playlist/0qgqAmaJWfQOt1Mi1s9EJB"
     }
   }
 }
