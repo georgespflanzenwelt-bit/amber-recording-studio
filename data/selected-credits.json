@@ -460,6 +460,9 @@
           }
         ]
       }
+    },
+    "seeed::waterpumpe (single)": {
+      "spotifyUrl": "https://open.spotify.com/track/2WjP6HxBOnNNtaQ4LXYK4A"
     }
   }
 }
