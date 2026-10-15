@@ -31,12 +31,11 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  if(artist==="donna renee"&&title==="follow"){
   const cleanName=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
-  const albumTrack=files.find(file=>(file.albumKey==="donna-renee-keep-on-believing"||normalizeSong(file.albumFolder||"")==="donna renee keep on believing")&&file.order===7&&cleanName(file.name)==="donna renee follow");
-  // The original album recording also needs to appear when Replit's audio API
-  // has not indexed its local-only album folder. Keep its actual filename and URL.
-  const originalTrack={name:"01 Follow (Original)",url:albumTrack?.url||"/"+encodeURIComponent("Donna Renee__Keep on believing")+"/"+encodeURIComponent("07 Donna Renee__Follow.m4a"),order:1,albumFolder:albumTrack?.albumFolder||"Donna Renee__Keep on believing"};
+  // Select the exact file URL from the same API results used by the working
+  // Keep on Believing album. The actual Replit folder is named "Donna Renne".
+  const albumTrack=files.find(file=>file.order===7&&cleanName(file.name)==="donna renee follow"&&normalizeSong(decodeURIComponent(file.url)).includes("keep on believing"));
   const remixTrack=files.find(file=>file.albumFolder==="Donna Renee - Follow"&&cleanName(file.name)==="follow h bus gb house edit");
-  return [originalTrack,...(remixTrack?[{...remixTrack,name:"02 Follow (H-Bus GB House Edit)",order:2}]:[])];
+  return [...(albumTrack?[{...albumTrack,name:"01 Follow (Original)",order:1}]:[]),...(remixTrack?[{...remixTrack,name:"02 Follow (H-Bus GB House Edit)",order:2}]:[])];
  }
  if(artist==="bektas"&&title==="was lousn")return files.filter(file=>file.albumFolder==="Bektas").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  if(artist==="kinzmania"&&title==="reality")return files.filter(file=>file.albumFolder==="Kinzmania").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
