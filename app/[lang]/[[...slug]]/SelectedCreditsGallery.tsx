@@ -29,6 +29,17 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ if(artist.replace(/^\d+\s+/,"")==="various street jazz"&&title==="the prophet speaks"){
+  const sourceTitle=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
+  const track02=files.find(file=>file.albumFolder==="Cool Struttin 3"&&file.order===16&&sourceTitle(file.name)==="dream");
+  const track06=files.find(file=>file.albumFolder==="Cool Struttin 1"&&file.order===10&&sourceTitle(file.name)==="choices");
+  const track09=files.find(file=>file.albumFolder==="Spinning Wheel"&&file.order===9&&sourceTitle(file.name)==="basis of attraction spinning wheel 1");
+  return [
+   ...(track02?[{...track02,name:"02 Just a Dream",order:2}]:[]),
+   ...(track06?[{...track06,name:"06 Choices",order:6}]:[]),
+   ...(track09?[{...track09,name:"09 Basis of Attraction – Spinning Wheel",order:9}]:[])
+  ];
+ }
  if(artist==="donna renee"&&title==="follow"){
   const cleanName=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
   // Select the exact file URL from the same API results used by the working
