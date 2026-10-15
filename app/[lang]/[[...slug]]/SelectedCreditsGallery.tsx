@@ -28,6 +28,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  if(!artist||!title)return [];
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
+ const siestoSingle=artist==="siesto"&&title.startsWith("every time i hear slow jam");
+ if(siestoSingle)return files.filter(file=>normalizeSong(file.albumFolder||"")==="siesto"&&normalizeSong(file.name)==="siesto slowjam");
  const daizzSingle=artist==="daizz"&&title.startsWith("didn t i");
  if(daizzSingle)return files.filter(file=>normalizeSong(file.albumFolder||"")==="daizz").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const bloodAndVeins=artist==="best boy electric"&&title==="blood veins";
