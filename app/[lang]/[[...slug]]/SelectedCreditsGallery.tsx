@@ -29,6 +29,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ if(artist==="kinzmania"&&title==="reality")return files.filter(file=>file.albumFolder==="Kinzmania").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const coolFolder=artist==="cool struttin"?(title==="varoius vol one"?"Cool Struttin 1":title==="varoius volume 2"?"Cool Struttin 2":title==="volume3"?"Cool Struttin 3":""):"";
  if(coolFolder)return files.filter(file=>file.albumFolder===coolFolder).sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  if(artist==="jason"&&title==="the roof")return files.filter(file=>file.albumFolder==="Jason"&&normalizeSong(file.name)==="the roof dj rafal remix");
