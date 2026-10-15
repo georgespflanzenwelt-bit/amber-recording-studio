@@ -90,7 +90,26 @@ function displayLocalTitle(name:string,artist:string){
  return (stripped.length>1&&(normalizeSong(stripped[0])===normalizeSong(artist)||normalizeSong(artist)==="mistha bello"&&normalizeSong(stripped[0])==="bello")?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();
 }
 
-function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
+const coolStruttinTrackCredits:Record<string,Record<number,{artist:string;title?:string}>>={
+ "Cool Struttin 1":{
+  9:{artist:"Step Three"},
+  10:{artist:"Quiet Archievers"}
+ },
+ "Cool Struttin 2":{
+  1:{artist:"Mistah Bello with Step Three",title:"Daddy On The Run"},
+  4:{artist:"Chinyare",title:"Realize"}
+ },
+ "Cool Struttin 3":{
+  1:{artist:"Tree Top feat. Torro"},
+  8:{artist:"Chinyare"},
+  11:{artist:"Donna Renee"},
+  13:{artist:"Step Three feat. Mistah Bello"},
+  16:{artist:"Step Three"},
+  17:{artist:"Tree Top"}
+ }
+};
+
+function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang}:{songs:{name:string;url:string;order?:number;albumFolder?:string}[];selected:string;onSelect:(url:string)=>void;artist:string;title:string;cover:string;entry:SelectedEntry;lang:"de"|"en"}){
  const audio=useRef<HTMLAudioElement>(null);
  const resumeOnChange=useRef(false);
  const [playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
@@ -108,7 +127,7 @@ function LocalDiscography({songs,selected,onSelect,artist,title,cover,entry,lang
   <div className="amberDiscSeek"><span>{fmt(time)}</span><input aria-label="Playback position" type="range" min={0} max={duration||1} step=".1" value={Math.min(time,duration||1)} onChange={e=>{if(audio.current){audio.current.currentTime=Number(e.target.value);setTime(Number(e.target.value))}}}/><span>{fmt(duration)}</span></div>
   <audio ref={audio} key={selected} src={selected} preload="metadata" onLoadedMetadata={loaded} onError={e=>{const code=e.currentTarget.error?.code;setAudioError(code===4?"Audiodatei nicht lesbar oder nicht unterstützt":code===3?"Fehler beim Dekodieren der Audiodatei":"Audiodatei konnte nicht geladen werden");setPlaying(false)}} onTimeUpdate={e=>setTime(e.currentTarget.currentTime)} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);if(index<songs.length-1){resumeOnChange.current=true;onSelect(songs[index+1].url)}}}/>
   {audioError&&<p role="alert" style={{padding:"8px 18px",color:"#e5b778",fontSize:12}}>{audioError} · Track {songs[index]?.order}. Bitte die Datei in Replit direkt prüfen.</p>}
-  <div className="amberDiscTracks">{songs.map((song,i)=><button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className="amberDiscTrackName">{displayLocalTitle(song.name,artist)}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>)}</div>
+  <div className="amberDiscTracks">{songs.map((song,i)=>{const credit=song.albumFolder?coolStruttinTrackCredits[song.albumFolder]?.[song.order??0]:undefined;return <button type="button" key={song.url} className={song.url===selected?"is-active":""} onClick={()=>{if(song.url===selected)toggle();else choose(song.url)}}><span className="amberDiscNumber">{String(song.order&&song.order!==999999?song.order:i+1).padStart(2,"0")}</span><span className={credit?"amberDiscTrackName amberCoolTrackName":"amberDiscTrackName"}>{credit?<><strong>{credit.title||displayLocalTitle(song.name,artist)}</strong><small>{credit.artist}</small></>:displayLocalTitle(song.name,artist)}</span><span className="amberDiscDuration">{lengths[song.url]?fmt(lengths[song.url]):song.url===selected?fmt(duration):"—"}</span></button>})}</div>
  </div>;
 }
 
