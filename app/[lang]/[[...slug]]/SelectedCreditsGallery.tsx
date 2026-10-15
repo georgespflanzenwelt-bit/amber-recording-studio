@@ -29,6 +29,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ if(artist==="jason"&&title==="the roof")return files.filter(file=>file.albumFolder==="Jason"&&normalizeSong(file.name)==="the roof dj rafal remix");
  if(artist==="sekou"&&title==="the ambassador")return files.filter(file=>file.albumFolder==="SEKOU").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  if(artist==="mirco nontschew dr shaggyman"&&title==="gimme dat bodylotion")return files.filter(file=>file.albumFolder==="Mirco Nontschew"&&normalizeSong(file.name)==="body lotion");
  if(artist==="j luv"&&title==="weil du mich liebst")return files.filter(file=>file.albumFolder==="J-Luv"&&normalizeSong(file.name).startsWith("weil du mich liebst")&&normalizeSong(file.name).includes("optik remix"));
