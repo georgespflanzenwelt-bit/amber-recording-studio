@@ -26,6 +26,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ const linkedFolder=artist==="pyranja"&&title==="egal was ihr sagt"?"Pyrania-Egal was ihr sagt":artist==="em loomes"&&title==="afraid of you"?"Em Loomes":artist==="mb 1000"&&title==="kalter schweiss"?"MB 1000-Kalter Schweiß":artist==="dj ara"&&title==="negabass"?"DJ Ara - Negerbass":"";
+ if(linkedFolder)return files.filter(file=>file.albumFolder===linkedFolder).sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  // All files in public/songs are eligible. Compare artist and song, ignoring
  // featuring credits and subsequent version/label details.
  const siestoSingle=artist==="siesto"&&title.startsWith("every time i hear slow jam");
