@@ -260,6 +260,40 @@
     },
     "ollympic lifts::do one (album)": {
       "spotifyUrl": "https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr"
+    },
+    "rza::the world according to rza": {
+      "youtubeTracks": [
+        {
+          "number": 1,
+          "title": "Intro",
+          "artist": "RZA",
+          "youtubeUrl": "https://www.youtube.com/watch?v=pA_i2TNKXWE"
+        },
+        {
+          "number": 12,
+          "title": "Souls On Fire (feat. Deborah Cox)",
+          "artist": "Xavier Naidoo",
+          "youtubeUrl": "https://www.youtube.com/watch?v=SGqlN74Qf4c"
+        },
+        {
+          "number": 13,
+          "title": "Ich Weiss (On My Mind)",
+          "artist": "Curse",
+          "youtubeUrl": "https://www.youtube.com/watch?v=6wdkAkLaoOo"
+        },
+        {
+          "number": 14,
+          "title": "Black Star Line-Up",
+          "artist": "Afrob & Sekou",
+          "youtubeUrl": "https://www.youtube.com/watch?v=GzrSdKBi3Hk"
+        },
+        {
+          "number": 18,
+          "title": "Uzathan Gelen Ses",
+          "artist": "Fuat, Bektas & Germ",
+          "youtubeUrl": "https://www.youtube.com/watch?v=f3R4wEu2BVE"
+        }
+      ]
     }
   }
 }
