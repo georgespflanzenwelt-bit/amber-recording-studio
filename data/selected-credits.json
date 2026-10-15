@@ -119,6 +119,86 @@
           "youtubeUrl": "https://www.youtube.com/watch?v=f3R4wEu2BVE"
         }
       ]
+    },
+    "MOR__NLP (Album)__Royal Bunker__M__George Brasch__HipHop__All.jpg": {
+      "youtubePlaylist": {
+        "id": "PLD8C2F954C06542DF",
+        "firstVideoId": "qf6AcQB0wMw",
+        "tracks": [
+          {
+            "number": 1,
+            "title": "Intro (feat. Valezka)"
+          },
+          {
+            "number": 2,
+            "title": "Schlangen (feat. J-Luv)"
+          },
+          {
+            "number": 3,
+            "title": "Tsjakkaa (Skit) (feat. Emile Ratelband)"
+          },
+          {
+            "number": 4,
+            "title": "NLP"
+          },
+          {
+            "number": 5,
+            "title": "Eintr8"
+          },
+          {
+            "number": 6,
+            "title": "Elefanten"
+          },
+          {
+            "number": 7,
+            "title": "Wer Rhymed Gewinnt (feat. Laki, Jeyz & Lenny)"
+          },
+          {
+            "number": 8,
+            "title": "Br8"
+          },
+          {
+            "number": 9,
+            "title": "Hörst Du, Was Du Sagst?"
+          },
+          {
+            "number": 10,
+            "title": "Louis (Skit)"
+          },
+          {
+            "number": 11,
+            "title": "Bei Mir"
+          },
+          {
+            "number": 12,
+            "title": "Wer Du Bist / Wie Du Heißt"
+          },
+          {
+            "number": 13,
+            "title": "Gib 8"
+          },
+          {
+            "number": 14,
+            "title": "Spreng Die Bank"
+          },
+          {
+            "number": 15,
+            "title": "Jeden Weg (feat. J-Luv)"
+          },
+          {
+            "number": 16,
+            "title": "Fremd Im Eigenen Land II"
+          },
+          {
+            "number": 17,
+            "title": "Nordwestberlin (feat. Azad)"
+          },
+          {
+            "number": 18,
+            "title": "Rain"
+          }
+        ]
+      }
     }
   },
   "releases": {
@@ -294,6 +374,86 @@
           "youtubeUrl": "https://www.youtube.com/watch?v=f3R4wEu2BVE"
         }
       ]
+    },
+    "mor::nlp (album)": {
+      "youtubePlaylist": {
+        "id": "PLD8C2F954C06542DF",
+        "firstVideoId": "qf6AcQB0wMw",
+        "tracks": [
+          {
+            "number": 1,
+            "title": "Intro (feat. Valezka)"
+          },
+          {
+            "number": 2,
+            "title": "Schlangen (feat. J-Luv)"
+          },
+          {
+            "number": 3,
+            "title": "Tsjakkaa (Skit) (feat. Emile Ratelband)"
+          },
+          {
+            "number": 4,
+            "title": "NLP"
+          },
+          {
+            "number": 5,
+            "title": "Eintr8"
+          },
+          {
+            "number": 6,
+            "title": "Elefanten"
+          },
+          {
+            "number": 7,
+            "title": "Wer Rhymed Gewinnt (feat. Laki, Jeyz & Lenny)"
+          },
+          {
+            "number": 8,
+            "title": "Br8"
+          },
+          {
+            "number": 9,
+            "title": "Hörst Du, Was Du Sagst?"
+          },
+          {
+            "number": 10,
+            "title": "Louis (Skit)"
+          },
+          {
+            "number": 11,
+            "title": "Bei Mir"
+          },
+          {
+            "number": 12,
+            "title": "Wer Du Bist / Wie Du Heißt"
+          },
+          {
+            "number": 13,
+            "title": "Gib 8"
+          },
+          {
+            "number": 14,
+            "title": "Spreng Die Bank"
+          },
+          {
+            "number": 15,
+            "title": "Jeden Weg (feat. J-Luv)"
+          },
+          {
+            "number": 16,
+            "title": "Fremd Im Eigenen Land II"
+          },
+          {
+            "number": 17,
+            "title": "Nordwestberlin (feat. Azad)"
+          },
+          {
+            "number": 18,
+            "title": "Rain"
+          }
+        ]
+      }
     }
   }
 }
