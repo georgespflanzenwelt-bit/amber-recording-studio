@@ -15,6 +15,9 @@
     },
     "OPTIK__MIXTAPE VOL1. __Subword, BMG__M (except 12,17)__George Brasch__HipHop.jpg": {
       "spotifyUrl": "https://open.spotify.com/album/7bOxjB69Ku0HizIuo7L3d4"
+    },
+    "Seeed__Next (Album)__Downbeat, Warner__M__ George Brasch__Reggae__8, 12.jpg": {
+      "spotifyUrl": "https://open.spotify.com/playlist/7CZ5mdeeSjvUs5xVEB47FX"
     }
   },
   "releases": {
@@ -128,6 +131,9 @@
     },
     "optik::mixtape vol1.": {
       "spotifyUrl": "https://open.spotify.com/album/7bOxjB69Ku0HizIuo7L3d4"
+    },
+    "seeed::next (album)": {
+      "spotifyUrl": "https://open.spotify.com/playlist/7CZ5mdeeSjvUs5xVEB47FX"
     }
   }
 }
