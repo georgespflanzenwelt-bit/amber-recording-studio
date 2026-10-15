@@ -354,6 +354,9 @@
 .amberCompactModal .amberDiscTracks button{min-height:51px;gap:9px;padding:9px 9px}
 .amberCompactModal .amberDiscNumber{width:23px;color:#777;font-size:12px}
 .amberCompactModal .amberDiscTrackName{font-size:12px;line-height:1.3;color:#efefef}
+.amberCompactModal .amberCoolTrackName{display:flex;flex-direction:column;gap:3px;min-width:0}
+.amberCompactModal .amberCoolTrackName strong{font-weight:500;color:inherit}
+.amberCompactModal .amberCoolTrackName small{font-size:10px;font-weight:400;color:#a6a6a6;line-height:1.35}
 .amberCompactModal .amberDiscDuration{font-size:11px;color:#a9a9a9}
 .amberCompactModal .amberDiscTracks button.is-active{background:transparent}
 .amberCompactModal .amberDiscTracks button.is-active .amberDiscTrackName{color:#d6b481}
