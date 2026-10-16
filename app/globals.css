@@ -509,3 +509,10 @@
 
 /* Booking hero: Headphone photography behind the opening headline */
 .darkIntro.bookingHero{background-size:cover;background-position:center center;background-repeat:no-repeat}
+
+/* Editorial separator before booking service cards */
+.bookingServicesDivider{min-height:116px;padding:23px 5vw;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;background:#ebe7df;border-block:1px solid #c8c1b4;color:#1b2526}
+.bookingServicesDivider>span{font-size:11px;letter-spacing:.12em;font-weight:800;color:#9b7537}
+.bookingServicesDivider>span:last-child{text-align:right}
+.bookingServicesDivider strong{font-size:clamp(17px,1.65vw,26px);font-weight:800;letter-spacing:-.025em;text-align:center}
+@media(max-width:700px){.bookingServicesDivider{grid-template-columns:1fr;gap:8px;padding:22px 20px;min-height:0}.bookingServicesDivider strong{text-align:left}.bookingServicesDivider>span:last-child{text-align:left}}
