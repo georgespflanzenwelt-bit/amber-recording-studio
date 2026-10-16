@@ -506,3 +506,6 @@
 .bookingPolicyDisclosure .bookingPolicyGrid p{font-size:14px;line-height:1.65}
 @media(max-width:850px){.bookingServiceTiles{grid-template-columns:repeat(3,minmax(0,1fr))}.bookingPolicyDisclosure>summary{flex-wrap:wrap;padding:25px 5vw}.bookingPolicyDisclosure>summary strong{order:2;flex-basis:100%}}
 @media(max-width:550px){.bookingServices{padding:45px 0}.bookingServiceTiles{grid-template-columns:repeat(2,minmax(0,1fr))}.bookingServiceTile{min-height:130px;padding:12px}.bookingServiceTiles .bookingServiceTile:last-child{grid-column:1/-1;aspect-ratio:2.6/1}.bookingServiceDetail{padding:19px}.bookingPolicyDisclosure .bookingPolicyHead{grid-template-columns:1fr}}
+
+/* Booking hero: Headphone photography behind the opening headline */
+.darkIntro.bookingHero{background-size:cover;background-position:center center;background-repeat:no-repeat}
