@@ -525,3 +525,6 @@
 .bookingHeroTitle>span,.bookingHeroTitle>em{display:block;white-space:nowrap}
 .bookingHeroTitle>em{transform:scaleX(1.055);transform-origin:left center}
 @media(max-width:700px){.darkIntro.bookingHero{padding-top:22px;padding-bottom:174px}.bookingHeroTitle{font-size:clamp(43px,9vw,59px)!important}.bookingHeroTitle>em{transform:scaleX(1.055)}}
+
+/* Slightly more spacing between words in the Booking services headline */
+.bookingServicesTop h2{word-spacing:.12em}
