@@ -48,7 +48,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
   const remixTrack=files.find(file=>file.albumFolder==="Donna Renee - Follow"&&cleanName(file.name)==="follow h bus gb house edit");
   return [...(albumTrack?[{...albumTrack,name:"01 Follow (Original)",order:1}]:[]),...(remixTrack?[{...remixTrack,name:"02 Follow (H-Bus GB House Edit)",order:2}]:[])];
  }
- if(artist==="asher d"&&title==="food for thought")return files.filter(file=>normalizeSong(file.albumFolder||"")==="asher d food for thought").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ if(artist==="asher d"&&(title==="food for tought"||title==="food for thought"))return files.filter(file=>file.albumFolder==="Asher D__Food for Thought"&&file.order===8&&normalizeSong(file.name.replace(/^\s*\d+\s*/,""))==="food for thought");
  if(artist==="bektas"&&title==="was lousn")return files.filter(file=>file.albumFolder==="Bektas").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  if(artist==="kinzmania"&&title==="reality")return files.filter(file=>file.albumFolder==="Kinzmania").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
  const coolFolder=artist==="cool struttin"?(title==="varoius vol one"?"Cool Struttin 1":title==="varoius volume 2"?"Cool Struttin 2":title==="volume3"?"Cool Struttin 3":""):"";
