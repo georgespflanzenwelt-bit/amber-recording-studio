@@ -448,3 +448,30 @@
 .amberYouTubeModal .amberPlaylistNotice{margin:8px 0 2px;color:#d6b481;font-size:11px;line-height:1.45}
 .amberYouTubeModal .amberDiscTracks button:disabled{cursor:default;opacity:.65}
 .amberYouTubeModal .amberDiscTracks button:disabled:hover{background:transparent;color:#ddd}
+
+/* Booking policy — editorial layout, scoped to the booking page */
+.bookingPolicy{background:#ebe7df;color:#182224;padding:104px 0 88px}
+.bookingPolicyHead{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:8vw;align-items:end;padding-bottom:76px}
+.bookingPolicyHead small,.bookingPolicyDeposit>span,.bookingPolicyFoot{font-size:11px;font-weight:800;letter-spacing:.15em}
+.bookingPolicyHead small,.bookingPolicyNumber{color:#9b7537}
+.bookingPolicyHead h2{font-size:clamp(44px,5.4vw,80px);letter-spacing:-.045em;line-height:1.03;margin:24px 0 28px}
+.bookingPolicyHead h2 em{font-style:normal;color:#98743c}
+.bookingPolicyHead>div>p{font-size:18px;line-height:1.7;max-width:680px;color:#56605b}
+.bookingPolicyDeposit{border-top:2px solid #98743c;border-bottom:1px solid #b9b7ac;padding:20px 0 25px}
+.bookingPolicyDeposit strong{display:block;font-size:clamp(85px,10vw,150px);letter-spacing:-.09em;line-height:1.07;font-weight:700;margin:6px 0 10px}
+.bookingPolicyDeposit strong span{font-size:.43em;vertical-align:top;letter-spacing:-.04em;margin-left:10px}
+.bookingPolicyDeposit p{font-size:15px;line-height:1.75;color:#525b57;max-width:410px}
+.bookingPolicyGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #b9b7ac}
+.bookingPolicyGrid article{padding:35px 8% 43px 0;border-bottom:1px solid #b9b7ac;min-width:0}
+.bookingPolicyGrid article:nth-child(even){border-left:1px solid #b9b7ac;padding-left:9%;padding-right:0}
+.bookingPolicyNumber{font-size:13px;font-weight:800;letter-spacing:.12em}
+.bookingPolicyGrid h3{font-size:clamp(20px,2vw,28px);letter-spacing:-.025em;margin:16px 0}
+.bookingPolicyGrid p{font-size:15px;line-height:1.85;color:#515d57;max-width:610px}
+.bookingPolicyGrid .bookingPolicyCancel{background:#1a2527;color:#f5f1e8;padding:35px 9% 43px;margin-left:0}
+.bookingPolicyGrid .bookingPolicyCancel h3{color:#f5f1e8}
+.bookingPolicyGrid .bookingPolicyCancel p{color:#c5ccc6}
+.bookingPolicyGrid .bookingPolicyDelivery{grid-column:1/-1;padding-right:0}
+.bookingPolicyGrid .bookingPolicyDelivery p{max-width:940px}
+.bookingPolicyFoot{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:36px;color:#7a8179}
+.bookingPolicyFoot strong{color:#98743c}
+@media(max-width:750px){.bookingPolicy{padding:70px 0 60px}.bookingPolicyHead{grid-template-columns:1fr;gap:35px;padding-bottom:45px}.bookingPolicyHead h2{font-size:clamp(39px,9vw,60px)}.bookingPolicyHead>div>p{font-size:16px}.bookingPolicyDeposit strong{font-size:94px}.bookingPolicyGrid{grid-template-columns:1fr}.bookingPolicyGrid article,.bookingPolicyGrid article:nth-child(even){border-left:0;padding:28px 0 32px}.bookingPolicyGrid .bookingPolicyCancel{padding:30px 22px;margin:0 -22px}.bookingPolicyGrid .bookingPolicyDelivery{grid-column:auto}.bookingPolicyFoot{font-size:9px;flex-wrap:wrap}}
