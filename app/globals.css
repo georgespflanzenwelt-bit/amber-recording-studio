@@ -518,8 +518,10 @@
 @media(max-width:700px){.bookingServicesDivider{grid-template-columns:1fr;gap:8px;padding:22px 20px;min-height:0}.bookingServicesDivider strong{text-align:left}.bookingServicesDivider>span:last-child{text-align:left}}
 
 /* Booking hero: lift the complete copy and align the headline endings */
-.darkIntro.bookingHero{padding-top:95px;padding-bottom:165px}
+.darkIntro.bookingHero{padding-top:45px;padding-bottom:215px}
+.darkIntro.bookingHero .wrap>small{display:block}
+.darkIntro.bookingHero .bookingHeroTitle{margin-top:7px}
 .bookingHeroTitle{display:flex;flex-direction:column;align-items:flex-start;width:max-content;max-width:100%}
 .bookingHeroTitle>span,.bookingHeroTitle>em{display:block;white-space:nowrap}
 .bookingHeroTitle>em{transform:scaleX(1.055);transform-origin:left center}
-@media(max-width:700px){.darkIntro.bookingHero{padding-top:76px;padding-bottom:120px}.bookingHeroTitle{font-size:clamp(43px,9vw,59px)!important}.bookingHeroTitle>em{transform:scaleX(1.055)}}
+@media(max-width:700px){.darkIntro.bookingHero{padding-top:48px;padding-bottom:148px}.bookingHeroTitle{font-size:clamp(43px,9vw,59px)!important}.bookingHeroTitle>em{transform:scaleX(1.055)}}
