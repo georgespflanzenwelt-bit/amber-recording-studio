@@ -495,11 +495,10 @@
 .bookingGuestMixing p:last-child{margin-bottom:0}
 .bookingServiceDetail button{background:transparent;color:#fff;border:1px solid #ffffff60;padding:8px;cursor:pointer}
 .bookingPolicyDisclosure{background:#ebe7df;color:#182224}
-.bookingPolicyDisclosure>summary{cursor:pointer;list-style:none;display:flex;gap:15px;align-items:center;justify-content:space-between;padding:30px max(5vw,calc((100vw - 1200px)/2));border-bottom:1px solid #b9b7ac}
+.bookingPolicyDisclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px max(5vw,calc((100vw - 1200px)/2));border-bottom:1px solid #b9b7ac}
 .bookingPolicyDisclosure>summary::-webkit-details-marker{display:none}
-.bookingPolicyDisclosure>summary>span:first-child{font-size:10px;letter-spacing:.12em;color:#98743c;font-weight:800}
 .bookingPolicyDisclosure>summary strong{font-size:clamp(16px,2vw,25px);letter-spacing:-.02em}
-.bookingDisclosureAction{font-size:11px;font-weight:800;letter-spacing:.08em;color:#98743c;white-space:nowrap}
+@media(min-width:1100px){.bookingPolicyDisclosure>summary strong{white-space:nowrap}}
 .bookingPolicyDisclosure .bookingPolicy{padding-top:38px;padding-bottom:45px}
 .bookingPolicyDisclosure .bookingPolicyHead{gap:5vw;padding-bottom:34px}
 .bookingPolicyDisclosure .bookingPolicyHead h2{font-size:clamp(34px,4vw,56px);margin:15px 0}
@@ -507,7 +506,7 @@
 .bookingPolicyDisclosure .bookingPolicyGrid article{padding-top:22px;padding-bottom:25px}
 .bookingPolicyDisclosure .bookingPolicyGrid h3{font-size:21px;margin:10px 0}
 .bookingPolicyDisclosure .bookingPolicyGrid p{font-size:14px;line-height:1.65}
-@media(max-width:850px){.bookingServiceTiles{grid-template-columns:repeat(3,minmax(0,1fr))}.bookingPolicyDisclosure>summary{flex-wrap:wrap;padding:25px 5vw}.bookingPolicyDisclosure>summary strong{order:2;flex-basis:100%}}
+@media(max-width:850px){.bookingServiceTiles{grid-template-columns:repeat(3,minmax(0,1fr))}.bookingPolicyDisclosure>summary{padding:25px 5vw}}
 @media(max-width:550px){.bookingServices{padding:45px 0}.bookingServiceTiles{grid-template-columns:repeat(2,minmax(0,1fr))}.bookingServiceTile{min-height:130px;padding:12px}.bookingServiceTiles .bookingServiceTile:last-child{grid-column:1/-1;aspect-ratio:2.6/1}.bookingServiceDetail{padding:19px}.bookingPolicyDisclosure .bookingPolicyHead{grid-template-columns:1fr}}
 
 /* Booking hero: Headphone photography behind the opening headline */
