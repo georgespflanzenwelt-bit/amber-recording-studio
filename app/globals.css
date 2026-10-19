@@ -528,8 +528,8 @@
 @media(min-width:701px){
 .darkIntro.bookingHero .bookingHeroTitle{letter-spacing:-.047em}
 .darkIntro.bookingHero .bookingHeroTitle>span{word-spacing:.07em}
-.darkIntro.bookingHero .bookingHeroTitle>em{transform:scaleX(1.071)}
-.darkIntro.bookingHero .wrap>p{margin-top:-30px}
+.darkIntro.bookingHero .bookingHeroTitle>em{transform:scaleX(1.071) translateY(-16px)}
+.darkIntro.bookingHero .wrap>p{margin-top:-46px}
 }
 
 /* Slightly more spacing between words in the Booking services headline */
