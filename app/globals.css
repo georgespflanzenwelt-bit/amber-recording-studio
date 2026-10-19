@@ -490,6 +490,9 @@
 .bookingServiceDetail{margin-top:14px;padding:24px 27px;border:1px solid #a68c5b;background:rgba(11,18,21,.88);display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 .bookingServiceDetail h3{font-size:24px;margin:7px 0}
 .bookingServiceDetail p{font-size:15px;line-height:1.65;max-width:820px;color:#d0d4ce}
+.bookingGuestMixing{border-top:1px solid rgba(166,140,91,.55);margin-top:29px;padding-top:23px}
+.bookingGuestMixing h4{font-size:15px;line-height:1.4;letter-spacing:.075em;color:#d8aa62;margin:0 0 17px;font-weight:800}
+.bookingGuestMixing p:last-child{margin-bottom:0}
 .bookingServiceDetail button{background:transparent;color:#fff;border:1px solid #ffffff60;padding:8px;cursor:pointer}
 .bookingPolicyDisclosure{background:#ebe7df;color:#182224}
 .bookingPolicyDisclosure>summary{cursor:pointer;list-style:none;display:flex;gap:15px;align-items:center;justify-content:space-between;padding:30px max(5vw,calc((100vw - 1200px)/2));border-bottom:1px solid #b9b7ac}
