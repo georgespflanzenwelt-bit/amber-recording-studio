@@ -536,3 +536,32 @@
 
 /* Slightly more spacing between words in the Booking services headline */
 .bookingServicesTop h2{word-spacing:.12em}
+
+/* Booking contact: centered midnight-blue inquiry card */
+.bookingContactShell{background:#030819;padding:86px 20px 112px;color:#f5f7fc;font-family:'DM Sans',sans-serif}
+.bookingContactCard{width:min(650px,100%);margin:0 auto;background:linear-gradient(180deg,#0d152d 0%,#0b1329 100%);border:1px solid rgba(170,188,220,.12);border-radius:20px;padding:32px;box-shadow:0 22px 65px rgba(0,0,0,.24)}
+.bookingContactBadge{display:inline-flex;align-items:center;min-height:25px;border:1px solid rgba(176,194,227,.22);border-radius:999px;padding:5px 12px;color:#bac7de;letter-spacing:.19em;font-size:10px;font-weight:800}
+.bookingContactTitle{font-family:Manrope,sans-serif;font-size:clamp(27px,3vw,34px);letter-spacing:-.045em;line-height:1.12;font-weight:800;margin:17px 0 8px;color:#fff}
+.bookingContactIntro{font-size:13px;line-height:1.65;color:#9ba9c3;margin:0 0 28px;max-width:535px}
+.bookingContactForm.bookingForm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
+.bookingContactForm.bookingForm label{display:flex;flex-direction:column;gap:8px;min-width:0;color:#aebbd3;letter-spacing:.16em;font-size:10px;font-weight:800;text-transform:uppercase}
+.bookingContactForm.bookingForm .wideField,.bookingContactForm.bookingForm .formNotice,.bookingContactForm.bookingForm .formPrepared{grid-column:1/-1}
+.bookingContactForm.bookingForm input,.bookingContactForm.bookingForm select,.bookingContactForm.bookingForm textarea{background:#03091b;border:1px solid #1b2945;border-radius:9px;color:#f4f7fd;width:100%;min-width:0;padding:13px 14px;font-size:14px;font-weight:500;letter-spacing:normal;line-height:1.45;outline:none;color-scheme:dark}
+.bookingContactForm.bookingForm input::placeholder,.bookingContactForm.bookingForm textarea::placeholder{color:#8996af;opacity:1}
+.bookingContactForm.bookingForm input:focus-visible,.bookingContactForm.bookingForm select:focus-visible,.bookingContactForm.bookingForm textarea:focus-visible{border-color:#728cb9;box-shadow:0 0 0 3px rgba(126,153,200,.17);outline:none}
+.bookingContactForm.bookingForm textarea{resize:vertical;min-height:105px}
+.bookingContactForm.bookingForm select{cursor:pointer}
+.bookingContactForm.bookingForm .bookingDemoLabel input[type=file]{font-size:12px;color:#aebbd3;padding:9px;min-height:44px}
+.bookingContactForm.bookingForm input[type=file]::file-selector-button{background:#1b2945;border:0;border-radius:6px;color:#e4eaf8;padding:7px 10px;margin-right:12px;font:700 11px 'DM Sans',sans-serif;cursor:pointer}
+.bookingContactForm.bookingForm .bookingUploadHint,.bookingContactForm.bookingForm .bookingUploadSelected,.bookingContactForm.bookingForm .bookingUploadError{font-size:11px;font-weight:500;line-height:1.5;letter-spacing:normal;text-transform:none}
+.bookingContactForm.bookingForm .bookingUploadHint{color:#8393b0}
+.bookingContactForm.bookingForm .bookingUploadSelected{color:#b6d4c1;overflow-wrap:anywhere}
+.bookingContactForm.bookingForm .bookingUploadError{color:#ffc0bb}
+.bookingContactForm.bookingForm .formNotice{font-size:12px;line-height:1.65;color:#95a3bb;letter-spacing:normal;text-transform:none;font-weight:500;margin:0}
+.bookingContactForm.bookingForm .bookingContactSubmit{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:14px;justify-content:center;width:auto;min-height:44px;background:#bdc7d9;border:0;border-radius:999px;padding:12px 20px;color:#071024;font-size:11px;font-weight:800;letter-spacing:.09em;transition:background .2s ease,transform .2s ease}
+.bookingContactForm.bookingForm .bookingContactSubmit:hover{background:#e0e7f4;transform:translateY(-1px)}
+.bookingContactForm.bookingForm .formPrepared{background:rgba(255,255,255,.035);border:1px solid rgba(176,194,227,.15);border-radius:12px;padding:18px;color:#e7ecf8}
+.bookingContactForm.bookingForm .formPrepared strong{font-size:14px}
+.bookingContactForm.bookingForm .formPrepared p{font-size:12px;line-height:1.6;color:#9ba9c3;margin:9px 0 13px}
+.bookingContactForm.bookingForm .formPrepared textarea{min-height:130px}
+@media(max-width:700px){.bookingContactShell{padding:64px 16px 80px}.bookingContactCard{padding:25px 18px;border-radius:17px}.bookingContactForm.bookingForm{grid-template-columns:1fr;gap:16px}.bookingContactForm.bookingForm .wideField,.bookingContactForm.bookingForm .formNotice,.bookingContactForm.bookingForm .formPrepared,.bookingContactForm.bookingForm .bookingContactSubmit{grid-column:1/-1}.bookingContactTitle{font-size:clamp(27px,7.5vw,34px)}}
