@@ -565,3 +565,19 @@
 .bookingContactForm.bookingForm .formPrepared p{font-size:12px;line-height:1.6;color:#9ba9c3;margin:9px 0 13px}
 .bookingContactForm.bookingForm .formPrepared textarea{min-height:130px}
 @media(max-width:700px){.bookingContactShell{padding:64px 16px 80px}.bookingContactCard{padding:25px 18px;border-radius:17px}.bookingContactForm.bookingForm{grid-template-columns:1fr;gap:16px}.bookingContactForm.bookingForm .wideField,.bookingContactForm.bookingForm .formNotice,.bookingContactForm.bookingForm .formPrepared,.bookingContactForm.bookingForm .bookingContactSubmit{grid-column:1/-1}.bookingContactTitle{font-size:clamp(27px,7.5vw,34px)}}
+
+/* Booking selects: custom menu matches the midnight-blue form rather than macOS native grey */
+.bookingContactForm.bookingForm .bookingDropdownField{position:relative;min-width:0;z-index:1}
+.bookingContactForm.bookingForm .bookingDropdownField:focus-within{z-index:35}
+.bookingContactForm.bookingForm .bookingDropdownLabel{display:block;margin-bottom:8px;color:#aebbd3;letter-spacing:.16em;font-size:10px;font-weight:800;line-height:1.35;text-transform:uppercase}
+.bookingContactForm.bookingForm .bookingDropdown{position:relative;min-width:0}
+.bookingContactForm.bookingForm .bookingDropdownTrigger{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px;width:100%;min-height:48px;padding:13px 14px;border:1px solid #1b2945;border-radius:9px;background:#03091b;color:#f4f7fd;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;line-height:1.45;letter-spacing:normal;cursor:pointer}
+.bookingContactForm.bookingForm .bookingDropdownTrigger svg{flex:none;color:#aebbd3;transition:transform .16s ease}
+.bookingContactForm.bookingForm .bookingDropdownTrigger.isOpen{border-color:#728cb9;box-shadow:0 0 0 3px rgba(126,153,200,.17)}
+.bookingContactForm.bookingForm .bookingDropdownTrigger.isOpen svg{transform:rotate(180deg)}
+.bookingContactForm.bookingForm .bookingDropdownMenu{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;max-height:min(340px,48vh);overflow-y:auto;overscroll-behavior:contain;background:#0d152d;border:1px solid #35486b;border-radius:10px;padding:6px;box-shadow:0 20px 40px rgba(0,0,0,.5);scrollbar-color:#526584 #0d152d}
+.bookingContactForm.bookingForm .bookingDropdownOption{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:41px;padding:10px 11px;border-radius:6px;color:#e8edf8;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;line-height:1.4;letter-spacing:normal;cursor:pointer;outline:none}
+.bookingContactForm.bookingForm .bookingDropdownOption:hover,.bookingContactForm.bookingForm .bookingDropdownOption:focus-visible{background:#263856;color:#fff}
+.bookingContactForm.bookingForm .bookingDropdownOption.isSelected{background:#1a2a47;color:#fff}
+.bookingContactForm.bookingForm .bookingDropdownOption.isSelected:hover,.bookingContactForm.bookingForm .bookingDropdownOption.isSelected:focus-visible{background:#30486c}
+.bookingContactForm.bookingForm .bookingDropdownCheck{flex:none;color:#d8aa62;font-size:15px;font-weight:800}
