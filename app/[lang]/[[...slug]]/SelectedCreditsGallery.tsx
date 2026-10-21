@@ -29,6 +29,13 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ // The seven local mixes belong to public/songs/Loophole. Use only the file
+ // URLs discovered by /api/local-songs and keep their original track numbers.
+ if(artist==="loophole"&&title==="closer to reality"){
+  return files.filter(file=>file.albumFolder==="songs/Loophole"&&/^\\s*0?[1-7]\\s+Loophole\\s*-\\s*/i.test(file.name))
+   .map(file=>({...file,name:file.name.replace(/^\\s*\\d+\\s+Loophole\\s*-\\s*/i,"")}))
+   .sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
+ }
  // The cover is labelled "Rootsman come over", while the local song file in
  // public/songs is named "Abijah - Rootsman Take Over.m4a". Reuse the exact
  // URL returned by /api/local-songs instead of constructing a file path.
