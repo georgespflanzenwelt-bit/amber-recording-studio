@@ -54,6 +54,14 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
    ...(track09?[{...track09,name:"09 Basis of Attraction – Spinning Wheel",order:9}]:[])
   ];
  }
+ // The Somwhere single is labelled with a misspelling on its cover.
+ // Match only the four numbered files discovered in public/songs/Donna Renee Somwhere;
+ // keep the original URLs returned by the API rather than constructing file paths.
+ if(artist==="donna renee"&&(title==="somwhere"||title==="somewhere")){
+  const expected:Record<number,string>={1:"somewhere",2:"somewhere radio version",3:"somewhere redbone remix",4:"i believe"};
+  return files.filter(file=>file.albumFolder==="songs/Donna Renee Somwhere"&&file.order!==undefined&&expected[file.order]===normalizeSong(file.name.replace(/^\s*\d+\s*/,"")))
+   .sort((a,b)=>(a.order??999999)-(b.order??999999));
+ }
  if(artist==="donna renee"&&title==="follow"){
   const cleanName=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
   // Select the exact file URL from the same API results used by the working
