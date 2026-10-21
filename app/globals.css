@@ -709,6 +709,7 @@
 .darkIntro.teamHero{padding-top:75px;padding-bottom:115px}
 .teamHeroCopy{display:block;width:max-content;max-width:100%}
 .darkIntro.teamHero h1{width:max-content;max-width:100%;white-space:nowrap;margin:0 0 15px;font-size:clamp(52px,9.4vw,150px);line-height:1;letter-spacing:-.09em}
+@media(min-width:1500px){.darkIntro.teamHero h1{font-size:clamp(150px,9.3vw,190px)}}
 .darkIntro.teamHero p{display:block;width:100%;max-width:none;margin:0;font-size:clamp(16px,2vw,31px);line-height:1.35;letter-spacing:0;white-space:nowrap;text-align:justify;text-align-last:justify}
 @media(max-width:900px){.darkIntro.teamHero h1{white-space:normal;font-size:clamp(48px,9vw,83px)}.darkIntro.teamHero p{white-space:normal;text-align:left;font-size:clamp(17px,2.9vw,26px)}}
 @media(max-width:700px){.darkIntro.teamHero{padding-top:68px;padding-bottom:80px}.teamHeroCopy{width:100%}.darkIntro.teamHero h1{margin:0 0 15px;font-size:clamp(42px,10vw,65px)}.darkIntro.teamHero p{max-width:100%;font-size:clamp(16px,4.5vw,22px)}}
