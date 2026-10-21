@@ -705,3 +705,9 @@
 @media(max-width:850px){.historyEditorial{grid-template-columns:1fr;gap:32px}.historySectionIntro{position:static}.historyYearEntry{grid-template-columns:1fr;gap:17px}.historyTimeline{padding-top:65px;padding-bottom:70px}.historyHeroInner{padding-top:82px;padding-bottom:83px}}
 @media(max-width:700px){.historyHero h1{font-size:clamp(40px,10.4vw,67px);overflow-wrap:break-word}.historyHero small,.historyClosing small{font-size:9px}.historyProse p,.historyYearCopy p{font-size:16px;line-height:1.75}.historySectionIntro h2{font-size:clamp(30px,8vw,46px)}.historyYearEntry{padding:30px 0 35px}.historyHeroLine{margin-top:33px}}
 
+/* Studio & Team: lift the whole heading group and keep its subtitle close. */
+.darkIntro.teamHero{padding-top:75px;padding-bottom:115px}
+.darkIntro.teamHero h1{margin:22px 0 9px}
+.darkIntro.teamHero p{max-width:900px;margin:0}
+.teamHeroIntroSecond{display:block}
+@media(max-width:700px){.darkIntro.teamHero{padding-top:68px;padding-bottom:80px}.darkIntro.teamHero h1{margin:17px 0 9px}.darkIntro.teamHero p{max-width:100%}}
