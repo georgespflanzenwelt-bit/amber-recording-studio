@@ -144,7 +144,15 @@
 .creditsHeadline{font-family:Manrope,sans-serif;font-size:clamp(32px,3.15vw,57px);letter-spacing:.035em;line-height:1.03;font-weight:500;margin:0}
 .creditsHeadline span{display:block}
 .creditsShowcaseEditorial{width:100%;max-width:390px;justify-self:end;display:flex;flex-direction:column;align-items:flex-start;transform:none}
-@media(min-width:1201px){.creditsShowcaseTop{margin-bottom:30px}.creditsShowcaseEditorial{margin-top:175px}}
+/* Wide desktop: restore the left headline's lower editorial position. Keep the
+   Charts block independent of the row height so it can extend down beside
+   the filters without creating a large empty area above the gallery. */
+@media(min-width:1201px) and (max-width:1499px){.creditsShowcaseEditorial{margin-top:95px}}
+@media(min-width:1500px){
+ .creditsShowcase{padding-top:25px}
+ .creditsShowcaseTop{position:relative;min-height:390px;align-items:end;margin-bottom:30px}
+ .creditsShowcaseEditorial{position:absolute;right:0;bottom:-180px;margin-top:0;transform:none}
+}
 .creditsAwardsHeadline{font-family:Manrope,sans-serif;color:#f6f2ed;font-size:clamp(16px,1.23vw,21px);font-weight:800;line-height:1.15;letter-spacing:-.045em;white-space:nowrap;margin:0 0 22px}
 .creditsShowcaseCopy{max-width:390px;color:#bbb8b8;font-size:13px;line-height:1.75;margin:0 0 3px}
 .creditsShowcaseCopy strong{display:block;color:#e9c29a;font-size:14px;line-height:1.55;font-weight:800;margin-bottom:12px}
