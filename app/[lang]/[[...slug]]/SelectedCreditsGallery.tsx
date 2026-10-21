@@ -29,6 +29,13 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ // The cover is labelled "Rootsman come over", while the local song file in
+ // public/songs is named "Abijah - Rootsman Take Over.m4a". Reuse the exact
+ // URL returned by /api/local-songs instead of constructing a file path.
+ if(artist==="abijah"&&title==="rootsman come over"){
+  const track=files.find(file=>!file.albumFolder&&normalizeSong(file.name)==="abijah rootsman take over");
+  return track?[{...track,name:"Rootsman Take Over",order:1}]:[];
+ }
  if(artist.replace(/^\d+\s+/,"")==="various street jazz"&&title==="the prophet speaks"){
   const sourceTitle=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
   const track02=files.find(file=>file.albumFolder==="Cool Struttin 3"&&file.order===16&&sourceTitle(file.name)==="dream");
