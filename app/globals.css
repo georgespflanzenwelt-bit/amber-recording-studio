@@ -147,11 +147,16 @@
 /* Wide desktop: restore the left headline's lower editorial position. Keep the
    Charts block independent of the row height so it can extend down beside
    the filters without creating a large empty area above the gallery. */
-@media(min-width:1201px) and (max-width:1499px){.creditsShowcaseEditorial{margin-top:95px}}
-@media(min-width:1500px){
- .creditsShowcase{padding-top:25px}
- .creditsShowcaseTop{position:relative;min-height:390px;align-items:end;margin-bottom:10px}
- .creditsShowcaseEditorial{position:absolute;right:0;bottom:-520px;margin-top:0;transform:none}
+/* Wide desktop: align the Charts CTA with the bottom of the genre dropdown,
+   not with an accumulating absolute pixel offset. Keep covers on the next row. */
+@media(min-width:1201px){
+ .creditsShowcase{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.65fr);column-gap:35px;align-content:start}
+ .creditsShowcaseTop{display:contents}
+ .creditsShowcaseTop>div:first-child{grid-column:1;grid-row:1;align-self:end}
+ .creditsShowcaseEditorial{position:static;grid-column:2;grid-row:1 / 4;align-self:end;justify-self:end;margin:0 0 28px;transform:none;bottom:auto}
+ .creditsFilterRow{grid-column:1;grid-row:2}
+ .creditsGenreRow{grid-column:1;grid-row:3}
+ .creditsShowcase>.amberCoverGrid{grid-column:1 / -1;grid-row:4}
 }
 .creditsAwardsHeadline{font-family:Manrope,sans-serif;color:#f6f2ed;font-size:clamp(16px,1.23vw,21px);font-weight:800;line-height:1.15;letter-spacing:-.045em;white-space:nowrap;margin:0 0 22px}
 .creditsShowcaseCopy{max-width:390px;color:#bbb8b8;font-size:13px;line-height:1.75;margin:0 0 3px}
