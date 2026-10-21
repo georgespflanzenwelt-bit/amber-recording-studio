@@ -728,10 +728,10 @@
 .teamShowcase .teamHeroCopy{width:100%;max-width:100%}
 .teamShowcase .teamHero h1{
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-start;
   align-items:baseline;
-  gap:.02em;
-  width:100%;
+  gap:.1em;
+  width:max-content;
   max-width:100%;
   font-size:clamp(46px,8.7vw,151px);
   letter-spacing:-.075em;
@@ -747,7 +747,7 @@
 .teamShowcase .teamGeorgeCopy .teamGeorgeHighlight,.teamShowcase .teamGeorgeCopy .teamGeorgeBio strong{color:#fff}
 .teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
 @media(max-width:900px){
-  .teamShowcase .teamHero h1{display:block;white-space:normal;font-size:clamp(48px,9vw,83px)}
+  .teamShowcase .teamHero h1{display:flex;flex-wrap:wrap;white-space:normal;font-size:clamp(48px,9vw,83px)}
   .teamShowcase .teamHero p{white-space:normal;text-align:left;text-align-last:left}
   .teamShowcase .teamGeorge{grid-template-columns:1fr;gap:30px}
   .teamShowcase .teamShowcaseProfiles{padding-bottom:85px}
