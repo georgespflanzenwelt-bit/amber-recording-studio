@@ -713,3 +713,46 @@
 .darkIntro.teamHero p{display:block;width:100%;max-width:none;margin:0;font-size:clamp(16px,2vw,31px);line-height:1.35;letter-spacing:0;white-space:nowrap;text-align:justify;text-align-last:justify}
 @media(max-width:900px){.darkIntro.teamHero h1{white-space:normal;font-size:clamp(48px,9vw,83px)}.darkIntro.teamHero p{white-space:normal;text-align:left;font-size:clamp(17px,2.9vw,26px)}}
 @media(max-width:700px){.darkIntro.teamHero{padding-top:68px;padding-bottom:80px}.teamHeroCopy{width:100%}.darkIntro.teamHero h1{margin:0 0 15px;font-size:clamp(42px,10vw,65px)}.darkIntro.teamHero p{max-width:100%;font-size:clamp(16px,4.5vw,22px)}}
+
+/* Studio & Team only: studio-desk backdrop and profile on the same dark canvas. */
+.teamShowcase{
+  isolation:isolate;
+  color:#f7f6f1;
+  background-color:#101719;
+  background-image:linear-gradient(180deg,rgba(9,15,17,.97) 0%,rgba(9,15,17,.91) 26%,rgba(9,15,17,.78) 52%,rgba(9,15,17,.57) 100%),url('/images/studio2/26%20Desk%20Dark1.jpeg');
+  background-position:center center,center bottom;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.teamShowcase .darkIntro.teamHero{background:transparent;padding-bottom:40px}
+.teamShowcase .teamHeroCopy{width:100%;max-width:100%}
+.teamShowcase .teamHero h1{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:.02em;
+  width:100%;
+  max-width:100%;
+  font-size:clamp(46px,8.7vw,151px);
+  letter-spacing:-.075em;
+  white-space:nowrap;
+}
+.teamShowcase .teamHero p{width:100%;max-width:100%;text-align:justify;text-align-last:justify}
+.teamShowcase .teamShowcaseProfiles{padding-top:0;padding-bottom:105px}
+.teamShowcase .teamGeorge{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-bottom:0}
+.teamShowcase .teamGeorgeCopy{padding:0}
+.teamShowcase .teamGeorgeCopy h2,.teamShowcase .teamGeorgeCopy h3{color:#f7f6f1}
+.teamShowcase .teamGeorgeCopy .teamGeorgeRoles{color:#d8aa62}
+.teamShowcase .teamGeorgeCopy p{color:#d1d9d5}
+.teamShowcase .teamGeorgeCopy .teamGeorgeHighlight,.teamShowcase .teamGeorgeCopy .teamGeorgeBio strong{color:#fff}
+.teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
+@media(max-width:900px){
+  .teamShowcase .teamHero h1{display:block;white-space:normal;font-size:clamp(48px,9vw,83px)}
+  .teamShowcase .teamHero p{white-space:normal;text-align:left;text-align-last:left}
+  .teamShowcase .teamGeorge{grid-template-columns:1fr;gap:30px}
+  .teamShowcase .teamShowcaseProfiles{padding-bottom:85px}
+}
+@media(max-width:700px){
+  .teamShowcase .teamHero h1{font-size:clamp(42px,10vw,65px)}
+  .teamShowcase .teamShowcaseProfiles{padding-bottom:75px}
+}
