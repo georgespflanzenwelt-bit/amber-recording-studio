@@ -252,6 +252,14 @@
 .introVideoSection .columns h2,.introVideoSection .columns p,.introVideoSection .textLink{color:#fff}
 .introVideoSection .columns p{color:#f1f1ef;text-shadow:0 1px 10px #0008}
 .introVideoSection .textLink{border-color:#fff}
+/* Home intro: warm-gold streaming audit card beneath Studio & Team. */
+.introVideoSection{padding-bottom:65px}
+.introStreamingStat{display:flex;flex-direction:column;align-items:flex-start;gap:7px;width:min(445px,100%);margin-top:35px;padding:21px 24px 20px;background:linear-gradient(125deg,rgba(36,29,21,.76),rgba(8,10,11,.68));border:1px solid rgba(219,165,88,.53);border-radius:11px;box-shadow:0 12px 34px rgba(0,0,0,.21);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#f8f4ed}
+.introStreamingStat .bookingStreamingStatEyebrow{color:#e6b676}
+.introStreamingStat .bookingStreamingStatValue{color:#dba657;font-size:clamp(29px,2.4vw,39px)}
+.introStreamingStat .bookingStreamingStatLabel{color:#f7f2ea}
+.introStreamingStat .bookingStreamingStatNote{width:100%;color:#f2dfc4;border-top-color:rgba(230,182,118,.38);font-size:10px;letter-spacing:0}
+@media(max-width:700px){.introVideoSection{padding-bottom:65px}.introStreamingStat{margin-top:28px;padding:18px 18px 17px}.introStreamingStat .bookingStreamingStatValue{font-size:30px}.introStreamingStat .bookingStreamingStatNote{font-size:clamp(8px,2.6vw,10px)}}
 
 /* Film Scoring detail hero: moving Tape video, legible text above the film. */
 .filmVideoHero{position:relative;isolation:isolate;overflow:hidden;background:#101719}
