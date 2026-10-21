@@ -100,7 +100,7 @@ export default function YouTubePlaylistDiscography({playlist,entry,credit,lang}:
    {count!==null&&!verified&&<p className="amberPlaylistNotice">{lang==="de"?"YouTube meldet "+count+" Videos statt der erwarteten "+playlist.tracks.length+". Die Titelliste bleibt deshalb vorsorglich ohne Direktwahl.":"YouTube returns "+count+" videos instead of the expected "+playlist.tracks.length+". Direct track selection is disabled to avoid mismatches."}</p>}
    {error&&<p className="amberPlaylistNotice" role="alert">{error}</p>}
   </div>
-  <div className="amberDiscTracks" aria-label={lang==="de"?"NLP Albumtitelliste":"NLP album tracklist"}>
+  <div className="amberDiscTracks" aria-label={lang==="de"?entry.title+" – Albumtitelliste":entry.title+" – album tracklist"}>
    {playlist.tracks.map((track,i)=><button type="button" key={track.number} disabled={!verified} className={i===index&&verified?"is-active":""} onClick={()=>select(i)}>
     <span className="amberDiscNumber">{String(track.number).padStart(2,"0")}</span><span className="amberDiscTrackName">{track.title}</span><Play size={13}/>
    </button>)}
