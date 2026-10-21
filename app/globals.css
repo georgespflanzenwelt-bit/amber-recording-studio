@@ -791,3 +791,47 @@
 .teamShowcase .teamGeorgeCopy .teamGeorgeHighlightBreak{display:block}
 @media(max-width:900px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(43px,7vw,64px)}}
 @media(max-width:700px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(41px,10vw,56px)}}
+
+/* Booking inquiry: price grid over LA2-New video; scoped to Booking only. */
+.bookingInquiryStage.bookingContactShell{position:relative;isolation:isolate;overflow:hidden;background:#071018;padding:clamp(32px,4vw,56px) clamp(18px,4vw,72px) clamp(46px,5vw,76px)}
+.bookingInquiryVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.52) saturate(.83);opacity:.82;pointer-events:none;z-index:0}
+.bookingInquiryShade{position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(90deg,rgba(4,9,16,.87) 0%,rgba(4,9,16,.62) 45%,rgba(4,9,16,.82) 100%)}
+.bookingInquiryGrid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.08fr);align-items:start;gap:clamp(23px,3vw,52px);width:min(1560px,100%);margin:0 auto}
+.bookingPriceRail{min-width:0;color:#f6f2eb;padding-top:6px}
+.bookingPriceIntro{margin-bottom:19px}
+.bookingPriceEyebrow{display:inline-block;padding:7px 12px;border:1px solid rgba(218,166,83,.48);border-radius:30px;color:#e0b67c;font-size:10px;font-weight:800;letter-spacing:.16em}
+.bookingPriceIntro h2{margin:13px 0 6px;font-size:clamp(26px,2.35vw,36px);line-height:1.1;letter-spacing:-.045em;color:#fff}
+.bookingPriceIntro h2 em{color:#daa653;font-style:normal}
+.bookingPriceIntro p{margin:0;color:#b9c5c6;font-size:12px;line-height:1.55;max-width:580px}
+.bookingPriceCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bookingPriceCard{min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(234,222,202,.23);border-radius:14px;padding:17px 17px 15px;background:linear-gradient(160deg,rgba(26,36,41,.88),rgba(10,19,25,.78));box-shadow:0 15px 28px #0003;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.bookingPriceCategory{font-size:9px;font-weight:800;letter-spacing:.17em;color:#d9ac68}
+.bookingInquiryStage .bookingPriceCard h3{font-size:clamp(18px,1.45vw,23px);letter-spacing:-.045em;line-height:1.12;margin:8px 0 5px;color:#fff}
+.bookingPriceCardTop>p{font-size:11px;line-height:1.4;color:#c1c9c7;margin:0 0 12px;min-height:2.8em}
+.bookingPriceAmount{border-top:1px solid #ffffff27;border-bottom:1px solid #ffffff27;padding:10px 0 9px;display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:baseline}
+.bookingPriceAmount strong{font-family:Manrope,sans-serif;font-size:clamp(24px,2vw,32px);line-height:1.12;color:#fff;letter-spacing:-.055em}
+.bookingPriceAmount>span{font-size:9px;letter-spacing:.12em;color:#d6a960;font-weight:800}
+.bookingPriceAmount small{display:block;grid-column:1/-1;font-size:11px;font-weight:600;color:#d1d4cb;letter-spacing:0;margin-top:3px;text-transform:none}
+.bookingPriceDetails{display:grid;gap:7px;padding:12px 0 14px;font-size:10px;line-height:1.43;color:#d4d9d5}
+.bookingPriceDetails span{display:block}
+.bookingPriceRequest{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;width:100%;padding:10px 12px;background:rgba(218,166,83,.10);color:#e8c591;border:1px solid rgba(218,166,83,.54);border-radius:7px;font-size:10px;font-weight:800;letter-spacing:.13em;transition:background .2s ease,color .2s ease}
+.bookingPriceRequest:hover,.bookingPriceRequest:focus-visible{background:#daa653;color:#12191b}
+.bookingPriceFootnote{font-size:10px;line-height:1.5;letter-spacing:.015em;color:#b4bdbb;margin:13px 0 0}
+.bookingInquiryStage .bookingContactCard{width:100%;max-width:none;min-width:0;margin:0;padding:clamp(22px,2.1vw,32px);border-radius:18px;background:linear-gradient(180deg,rgba(12,20,41,.88),rgba(7,15,30,.91));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 22px 54px #0005}
+.bookingInquiryStage .bookingContactBadge{font-size:9px;min-height:22px;padding:5px 11px}
+.bookingInquiryStage .bookingContactTitle{font-size:clamp(26px,2.6vw,34px);margin:11px 0 6px}
+.bookingInquiryStage .bookingContactIntro{font-size:12px;line-height:1.5;margin:0 0 16px}
+.bookingInquiryStage .bookingContactForm.bookingForm{gap:12px 12px}
+.bookingInquiryStage .bookingContactForm.bookingForm label{gap:6px;font-size:9px}
+.bookingInquiryStage .bookingContactForm.bookingForm input:not([type=file]),.bookingInquiryStage .bookingContactForm.bookingForm textarea{padding:10px 12px;font-size:13px}
+.bookingInquiryStage .bookingContactForm.bookingForm textarea{min-height:87px}
+.bookingInquiryStage .bookingContactForm.bookingForm .bookingDropdownLabel{margin-bottom:6px;font-size:9px}
+.bookingInquiryStage .bookingContactForm.bookingForm .bookingDropdownTrigger{min-height:41px;padding:10px 12px;font-size:13px}
+.bookingInquiryStage .bookingContactForm.bookingForm .bookingDemoLabel input[type=file]{min-height:39px;padding:7px;font-size:11px}
+.bookingInquiryStage .bookingContactForm.bookingForm input[type=file]::file-selector-button{padding:6px 9px}
+.bookingInquiryStage .bookingContactForm.bookingForm .bookingUploadHint,.bookingInquiryStage .bookingContactForm.bookingForm .bookingUploadSelected,.bookingInquiryStage .bookingContactForm.bookingForm .bookingUploadError{font-size:10px}
+.bookingInquiryStage .bookingContactForm.bookingForm .formNotice{font-size:10px;line-height:1.5}
+.bookingInquiryStage .bookingContactForm.bookingForm .bookingContactSubmit{min-height:40px;padding:10px 17px;font-size:10px}
+@media(max-width:1080px){.bookingInquiryGrid{grid-template-columns:minmax(0,1fr);max-width:760px}.bookingInquiryStage .bookingContactCard{order:1}.bookingPriceRail{order:2;padding-top:8px}}
+@media(max-width:610px){.bookingInquiryStage.bookingContactShell{padding:38px 16px 54px}.bookingPriceCards{grid-template-columns:minmax(0,1fr)}.bookingInquiryStage .bookingContactCard{padding:23px 18px}.bookingInquiryStage .bookingContactForm.bookingForm{grid-template-columns:minmax(0,1fr)}.bookingInquiryStage .bookingContactForm.bookingForm .wideField,.bookingInquiryStage .bookingContactForm.bookingForm .formNotice,.bookingInquiryStage .bookingContactForm.bookingForm .formPrepared,.bookingInquiryStage .bookingContactForm.bookingForm .bookingContactSubmit{grid-column:1/-1}.bookingPriceCardTop>p{min-height:0}}
+@media(prefers-reduced-motion:reduce){.bookingInquiryVideo{display:none}}
