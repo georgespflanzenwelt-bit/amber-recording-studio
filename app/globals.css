@@ -560,7 +560,16 @@
 .darkIntro.bookingHero{padding-top:15px;padding-bottom:clamp(22px,3vh,36px);min-height:calc(100svh - 86px);display:flex;align-items:stretch}
 .darkIntro.bookingHero .wrap>small{display:block}
 .darkIntro.bookingHero .bookingHeroTitle{margin-top:7px}
-.darkIntro.bookingHero>.wrap{display:flex;flex-direction:column;min-width:0;margin-top:0;margin-bottom:0}
+.darkIntro.bookingHero>.wrap{display:flex;flex-direction:column;min-width:0;margin-top:0;margin-bottom:0;position:relative}
+/* Booking: discreet, translucent provisional streaming-reach card */
+.bookingStreamingStat{position:absolute;right:0;top:clamp(155px,22vh,225px);z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:7px;width:min(282px,27vw);padding:21px 22px 19px;background:rgba(9,17,21,.48);border:1px solid rgba(222,181,118,.51);border-radius:11px;color:#f9f6ef;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 35px rgba(0,0,0,.12)}
+.bookingStreamingStatEyebrow{font-size:10px;line-height:1.55;letter-spacing:.145em;color:#e3bf89;font-weight:800}
+.bookingStreamingStatValue{display:block;white-space:nowrap;margin:4px 0 0;font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.055em;font-size:clamp(27px,2.35vw,36px);line-height:1.15;color:#e7bc7e}
+.bookingStreamingStatValue span{font-size:.55em;letter-spacing:-.025em}
+.bookingStreamingStatLabel{font-size:11px;line-height:1.4;letter-spacing:.095em;font-weight:800;color:#f6f2ec}
+.bookingStreamingStatNote{display:block;margin-top:9px;padding-top:9px;border-top:1px solid rgba(242,238,230,.17);font-size:10px;line-height:1.45;color:#c5c8c6}
+@media(max-width:1299px){.bookingStreamingStat{position:relative;top:auto;right:auto;align-self:flex-end;width:min(282px,100%);margin:16px 0 0;padding:15px 18px;gap:5px}.bookingStreamingStatValue{font-size:29px}.bookingStreamingStatNote{margin-top:5px;padding-top:6px}}
+@media(max-width:700px){.bookingStreamingStat{align-self:flex-start;width:min(282px,100%);margin-top:18px;padding:13px 16px}.bookingStreamingStatEyebrow{font-size:9px}.bookingStreamingStatLabel{font-size:10px}.bookingStreamingStatNote{font-size:9px}}
 .bookingHeroServices{width:100%;min-width:0;margin-top:auto;padding-top:clamp(24px,4vh,52px)}
 .bookingHeroServicesHead{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:15px}
 .bookingHeroServicesHead h2{color:#f5f2eb;font-size:clamp(21px,2.2vw,32px);font-weight:800;line-height:1.12;letter-spacing:-.035em;margin:0}
