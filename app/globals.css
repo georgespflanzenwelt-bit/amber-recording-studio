@@ -759,3 +759,9 @@
   .teamShowcase .teamHero p{font-size:clamp(16px,4.5vw,22px)}
   .teamShowcase .teamShowcaseProfiles{padding-bottom:75px}
 }
+
+/* Studio & Team: George's name and fixed roles-line break only. */
+.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(47px,4.9vw,76px);letter-spacing:-.057em;word-spacing:.14em}
+.teamShowcase .teamGeorgeRoles .teamGeorgeRoleSecond{display:block}
+@media(max-width:900px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(43px,7vw,64px)}}
+@media(max-width:700px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(41px,10vw,56px)}}
