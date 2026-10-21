@@ -510,9 +510,9 @@
 .bookingServicesTop{margin-bottom:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:18px;align-items:end}
 .bookingServicesTop>small,.bookingServicesTop>h2,.bookingServicesTop>p{grid-column:1}
 .bookingServiceRailControls{grid-column:2;grid-row:1/4;display:flex;align-items:center;align-self:end;gap:8px;padding-bottom:3px}
-.bookingServiceRailControls button{display:grid;place-items:center;width:43px;height:43px;padding:0;border:1px solid #d1ad76;background:rgba(8,13,16,.7);color:#f5d09b;border-radius:50%;cursor:pointer;transition:background .2s,border-color .2s}
-.bookingServiceRailControls button:hover{background:#d1ad76;color:#101719}
-.bookingServiceRailControls button:focus-visible{outline:2px solid #f5d09b;outline-offset:3px}
+.bookingServiceRailControls button{display:grid;place-items:center;width:43px;height:43px;padding:0;border:1px solid rgba(255,255,255,.9);background:transparent;color:#fff;border-radius:50%;cursor:pointer;transition:background .2s,border-color .2s}
+.bookingServiceRailControls button:hover{background:rgba(255,255,255,.06);border-color:#fff;color:#fff}
+.bookingServiceRailControls button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .bookingServicesTop small,.bookingServiceDetail small{font-size:11px;font-weight:800;letter-spacing:.16em;color:#caab70}
 .bookingServicesTop h2{font-size:clamp(29px,3.4vw,48px);letter-spacing:-.04em;margin:12px 0 8px}
 .bookingServicesTop p{color:#c8cfca;font-size:15px}
