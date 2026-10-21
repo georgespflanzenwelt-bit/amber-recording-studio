@@ -151,7 +151,7 @@
 @media(min-width:1500px){
  .creditsShowcase{padding-top:25px}
  .creditsShowcaseTop{position:relative;min-height:390px;align-items:end;margin-bottom:10px}
- .creditsShowcaseEditorial{position:absolute;right:0;bottom:-320px;margin-top:0;transform:none}
+ .creditsShowcaseEditorial{position:absolute;right:0;bottom:-520px;margin-top:0;transform:none}
 }
 .creditsAwardsHeadline{font-family:Manrope,sans-serif;color:#f6f2ed;font-size:clamp(16px,1.23vw,21px);font-weight:800;line-height:1.15;letter-spacing:-.045em;white-space:nowrap;margin:0 0 22px}
 .creditsShowcaseCopy{max-width:390px;color:#bbb8b8;font-size:13px;line-height:1.75;margin:0 0 3px}
