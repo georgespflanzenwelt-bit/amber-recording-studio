@@ -705,9 +705,10 @@
 @media(max-width:850px){.historyEditorial{grid-template-columns:1fr;gap:32px}.historySectionIntro{position:static}.historyYearEntry{grid-template-columns:1fr;gap:17px}.historyTimeline{padding-top:65px;padding-bottom:70px}.historyHeroInner{padding-top:82px;padding-bottom:83px}}
 @media(max-width:700px){.historyHero h1{font-size:clamp(40px,10.4vw,67px);overflow-wrap:break-word}.historyHero small,.historyClosing small{font-size:9px}.historyProse p,.historyYearCopy p{font-size:16px;line-height:1.75}.historySectionIntro h2{font-size:clamp(30px,8vw,46px)}.historyYearEntry{padding:30px 0 35px}.historyHeroLine{margin-top:33px}}
 
-/* Studio & Team: lift the whole heading group and keep its subtitle close. */
+/* Studio & Team: headline and one-line tagline share an editorial width. */
 .darkIntro.teamHero{padding-top:75px;padding-bottom:115px}
-.darkIntro.teamHero h1{margin:22px 0 9px}
-.darkIntro.teamHero p{max-width:900px;margin:0}
-.teamHeroIntroSecond{display:block}
-@media(max-width:700px){.darkIntro.teamHero{padding-top:68px;padding-bottom:80px}.darkIntro.teamHero h1{margin:17px 0 9px}.darkIntro.teamHero p{max-width:100%}}
+.teamHeroCopy{display:block;width:max-content;max-width:100%}
+.darkIntro.teamHero h1{width:max-content;max-width:100%;white-space:nowrap;margin:0 0 15px;font-size:clamp(52px,9.4vw,150px);line-height:1;letter-spacing:-.09em}
+.darkIntro.teamHero p{display:block;width:100%;max-width:none;margin:0;font-size:clamp(16px,2vw,31px);line-height:1.35;letter-spacing:0;white-space:nowrap;text-align:justify;text-align-last:justify}
+@media(max-width:900px){.darkIntro.teamHero h1{white-space:normal;font-size:clamp(48px,9vw,83px)}.darkIntro.teamHero p{white-space:normal;text-align:left;font-size:clamp(17px,2.9vw,26px)}}
+@media(max-width:700px){.darkIntro.teamHero{padding-top:68px;padding-bottom:80px}.teamHeroCopy{width:100%}.darkIntro.teamHero h1{margin:0 0 15px;font-size:clamp(42px,10vw,65px)}.darkIntro.teamHero p{max-width:100%;font-size:clamp(16px,4.5vw,22px)}}
