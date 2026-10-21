@@ -763,5 +763,10 @@
 /* Studio & Team: George's name and fixed roles-line break only. */
 .teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(47px,4.9vw,76px);letter-spacing:-.057em;word-spacing:.14em}
 .teamShowcase .teamGeorgeRoles .teamGeorgeRoleSecond{display:block}
+.teamShowcase .teamMember .teamGeorgeCopy h2{margin-bottom:8px}
+.teamShowcase .teamGeorgeCopy .teamGeorgeRoles{margin-bottom:22px}
+.teamShowcase .teamGeorgeCopy h3{font-size:clamp(24px,2.1vw,34px);line-height:1.18;margin-bottom:14px}
+.teamShowcase .teamMember .teamGeorgeCopy .teamGeorgeHighlight{font-size:clamp(16px,1.28vw,21px);line-height:1.42}
+.teamShowcase .teamGeorgeCopy .teamGeorgeHighlightBreak{display:block}
 @media(max-width:900px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(43px,7vw,64px)}}
 @media(max-width:700px){.teamShowcase .teamMember .teamGeorgeCopy h2{font-size:clamp(41px,10vw,56px)}}
