@@ -181,7 +181,7 @@ function YouTubeDiscography({tracks,entry,lang}:{tracks:YouTubeTrack[];entry:Sel
   <div className="amberDiscTracks" aria-label={lang==="de"?"YouTube-Titelliste":"YouTube tracklist"}>{valid.map((track,i)=><button type="button" key={track.youtubeUrl} className={i===index?"is-active":""} onClick={()=>select(i)}><span className="amberDiscNumber">{String(track.number??i+1).padStart(2,"0")}</span><span className="amberDiscTrackName"><strong>{track.title}</strong>{track.artist&&<small>{track.artist}</small>}</span><Play size={13}/></button>)}</div>
  </div>;
 }
-export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedEntry[];lang:"de"|"en"}){
+export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entries:SelectedEntry[];lang:"de"|"en";awardDetails?:Record<string,{artist:string;release:string;chart:string;award:string}>}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
  const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string;albumKey?:string}[]>([]);
  const [audioLoad,setAudioLoad]=useState("idle");
@@ -200,10 +200,10 @@ export default function SelectedCreditsGallery({entries,lang}:{entries:SelectedE
  const localMatches=matchLocalSongs(active,localSongs);const localAudio=localMatches.find(x=>x.url===localChoice)?.url||localMatches[0]?.url;
  const compactNextPlaylist=!!active&&normalizeSong(active.artist)==="seeed"&&normalizeSong(active.title)==="next album"&&current.includes("/embed/playlist/");
  const isAlbum=!!active&&(youtubeCollection||youtubePlaylist||!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(spotifyUrl||""));
- return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map((e,i)=><button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
+ return <>{!entries.length&&<p className="amberCreditsEmpty">{lang==="de"?"Für diesen Filter sind noch keine zugeordneten Veröffentlichungen vorhanden.":"No releases have been assigned to this filter yet."}</p>}<div className="amberCoverGrid">{entries.map((e,i)=>{const award=awardDetails?.[normalizeSong(e.artist+" "+e.title)];const tile=<button className="amberCoverTile" type="button" key={e.name} onClick={()=>open(e)} aria-label={e.artist+" – "+e.title}>
   <img src={e.image} alt={e.artist+" – "+e.title} loading={i<10?"eager":"lazy"} fetchPriority={i<5?"high":"auto"}/>
   <span className="amberCoverOverlay"><span className="amberMetaLabel">ARTIST / BAND</span><strong>{e.artist}</strong><span className="amberMetaLabel">{lang==="de"?"TITEL":"TITLE"}</span><span className="amberCoverTitle">{e.title||"—"}</span>{e.label&&<><span className="amberMetaLabel">LABEL</span><span className="amberCoverTitle">{e.label}</span></>}<span className="amberMetaLabel">CREDIT:</span><span className="amberCoverRole"><CreditLines entry={e} lang={lang}/></span><span className="amberPlay"><Play size={22} fill="currentColor"/></span></span>
- </button>)}</div>
+ </button>;return awardDetails?<div className="amberChartsAwardCard" key={e.name}>{tile}{award&&<div className="amberChartsAwardCaption"><strong>{award.artist}</strong><span>{award.release}</span><span>{award.chart}</span><b>{award.award}</b></div>}</div>:tile})}</div>
  {active&&<div className="amberPreviewBackdrop" onMouseDown={ev=>{if(ev.target===ev.currentTarget)setActive(null)}}>
  <section className={"amberPreviewPanel"+(localAudio?" amberCompactModal":(youtubeCollection||youtubePlaylist)?" amberCompactModal amberYouTubeModal":(current||youtubeVideo)?" amberSpotifyModal":isAlbum?" amberPreviewAlbum":"")} role="dialog" aria-modal="true" aria-label={active.artist+" "+active.title}>
  <button className="amberPreviewClose" onClick={()=>setActive(null)} aria-label={lang==="de"?"Schließen":"Close"}><X/></button>
