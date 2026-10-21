@@ -763,6 +763,9 @@
 .teamShowcase .teamGeorgeCopy p{color:#d1d9d5}
 .teamShowcase .teamGeorgeCopy .teamGeorgeHighlight,.teamShowcase .teamGeorgeCopy .teamGeorgeBio strong{color:#fff}
 .teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
+.teamShowcase .teamGeorgeLinks{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:clamp(20px,2.5vw,44px);row-gap:14px;margin-top:26px}
+.teamShowcase .teamGeorgeLinks .textLink{margin-top:0;white-space:nowrap}
+
 @media(max-width:900px){
   .teamShowcase .darkIntro.teamHero{padding-top:68px}
   .teamShowcase .teamHero h1{display:flex;flex-wrap:wrap;white-space:normal;font-size:clamp(48px,9vw,83px);margin-bottom:15px}
