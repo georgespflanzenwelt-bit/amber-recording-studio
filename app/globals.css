@@ -737,7 +737,7 @@
   letter-spacing:-.075em;
   white-space:nowrap;
 }
-.teamShowcase .teamHero p{width:100%;max-width:100%;text-align:justify;text-align-last:justify}
+.teamShowcase .teamHero p{width:max-content;max-width:100%;font-size:clamp(14px,1.8vw,28px);letter-spacing:-.015em;word-spacing:normal;text-align:left;text-align-last:auto}
 .teamShowcase .teamShowcaseProfiles{padding-top:0;padding-bottom:105px}
 .teamShowcase .teamGeorge{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-bottom:0}
 .teamShowcase .teamGeorgeCopy{padding:0}
@@ -748,11 +748,12 @@
 .teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
 @media(max-width:900px){
   .teamShowcase .teamHero h1{display:flex;flex-wrap:wrap;white-space:normal;font-size:clamp(48px,9vw,83px)}
-  .teamShowcase .teamHero p{white-space:normal;text-align:left;text-align-last:left}
+  .teamShowcase .teamHero p{font-size:clamp(17px,2.9vw,26px);white-space:normal;text-align:left;text-align-last:left}
   .teamShowcase .teamGeorge{grid-template-columns:1fr;gap:30px}
   .teamShowcase .teamShowcaseProfiles{padding-bottom:85px}
 }
 @media(max-width:700px){
   .teamShowcase .teamHero h1{font-size:clamp(42px,10vw,65px)}
+  .teamShowcase .teamHero p{font-size:clamp(16px,4.5vw,22px)}
   .teamShowcase .teamShowcaseProfiles{padding-bottom:75px}
 }
