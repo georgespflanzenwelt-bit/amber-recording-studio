@@ -716,14 +716,30 @@
 
 /* Studio & Team only: studio-desk backdrop and profile on the same dark canvas. */
 .teamShowcase{
+  position:relative;
   isolation:isolate;
+  overflow:hidden;
   color:#f7f6f1;
   background-color:#101719;
-  background-image:linear-gradient(180deg,rgba(9,15,17,.97) 0%,rgba(9,15,17,.91) 26%,rgba(9,15,17,.78) 52%,rgba(9,15,17,.57) 100%),url('/images/studio2/26%20Desk%20Dark1.jpeg');
-  background-position:center center,center bottom;
-  background-size:cover;
-  background-repeat:no-repeat;
 }
+.teamShowcase::before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  background:url('/images/studio2/26%20Desk%20Dark1.jpeg') center bottom / cover no-repeat;
+  filter:blur(2px);
+  pointer-events:none;
+  z-index:0;
+}
+.teamShowcase::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(9,15,17,.97) 0%,rgba(9,15,17,.91) 26%,rgba(9,15,17,.78) 52%,rgba(9,15,17,.57) 100%);
+  pointer-events:none;
+  z-index:0;
+}
+.teamShowcase > section{position:relative;z-index:1}
 .teamShowcase .darkIntro.teamHero{background:transparent;padding-top:22px;padding-bottom:40px}
 .teamShowcase .teamHeroCopy{width:100%;max-width:100%}
 .teamShowcase .teamHero h1{
