@@ -69,7 +69,7 @@ function TapeVideo({className,label}:{className:string;label?:string}){
  },[]);
  return <video ref={ref} className={className} src="/studio-video/Tape.mp4" autoPlay muted loop playsInline preload="auto" poster={img.film} aria-hidden={label?undefined:true} aria-label={label}/>;
 }
-// Charts & Awards selects the nine existing release credits, in editorial order.
+// Charts & Awards selects the ten existing release credits, in editorial order.
 // Normalize metadata because several original cover filenames contain spelling variants.
 const chartAwardReleaseKeys=[
  "seeed next album",
@@ -80,11 +80,13 @@ const chartAwardReleaseKeys=[
  "saint etienne sound of water album",
  "tanya stephens it s a gangster blues",
  "rza the world according to rza",
- "azad leben album"
+ "azad leben album",
+ "bothers keeper am i my brother s keeper"
 ];
 const chartAwardReleaseKey=(entry:SelectedEntry)=>(entry.artist+" "+entry.title).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
 const chartAwardDetails={
- "tll bronner blue eyes soul album":{artist:"TILL BRÖNNER",release:"BLUE EYED SOUL",chart:"German Album Charts #34",award:"5× JAZZ GOLD"}
+ "tll bronner blue eyes soul album":{artist:"TILL BRÖNNER",release:"BLUE EYED SOUL",chart:"German Album Charts #34",award:"5× JAZZ GOLD"},
+ "bothers keeper am i my brother s keeper":{artist:"BROTHERS KEEPERS",release:"AM I MY BROTHER'S KEEPER?",chart:"German Album Charts #22",award:""}
 };
 
 const paths=["","mixing-mastering","production-songwriting","film-scoring","recording","credits","team","booking"];
