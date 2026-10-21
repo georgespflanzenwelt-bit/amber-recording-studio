@@ -218,7 +218,67 @@
       "spotifyUrl": "https://open.spotify.com/album/2wXVu5DXb8zKYIHKQK3W6m"
     },
     "maxim::rückwärts fallen (album)": {
-      "spotifyUrl": "https://open.spotify.com/album/0xyDPFEwMfF7AP8Vx4ZEUl"
+      "youtubePlaylist": {
+        "id": "OLAK5uy_lVjbDtc1zj_lAJ2yPCcNQ6qFseOLWXVL4",
+        "tracks": [
+          {
+            "number": 1,
+            "title": "Mosaik"
+          },
+          {
+            "number": 2,
+            "title": "Irgendwas mit A"
+          },
+          {
+            "number": 3,
+            "title": "Rückwärts fallen"
+          },
+          {
+            "number": 4,
+            "title": "Angst vor der Liebe"
+          },
+          {
+            "number": 5,
+            "title": "Woher sollt' ich wissen"
+          },
+          {
+            "number": 6,
+            "title": "Pizzamann"
+          },
+          {
+            "number": 7,
+            "title": "Lieber bluten als frieren"
+          },
+          {
+            "number": 8,
+            "title": "In einem künstlichen Koma"
+          },
+          {
+            "number": 9,
+            "title": "Was für 'ne Welt"
+          },
+          {
+            "number": 10,
+            "title": "Die beleidigte Leberwurst"
+          },
+          {
+            "number": 11,
+            "title": "Fass mich nicht an"
+          },
+          {
+            "number": 12,
+            "title": "Wenn einer stirbt"
+          },
+          {
+            "number": 13,
+            "title": "Nicht mein Style"
+          },
+          {
+            "number": 14,
+            "title": "Könnte ich"
+          }
+        ]
+      }
     },
     "till brönner::blue eyed soul (album)": {
       "spotifyUrl": "https://open.spotify.com/album/5awG5Zy9mQE1RlKf3stEPd"
