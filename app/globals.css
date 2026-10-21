@@ -505,7 +505,7 @@
 @media(max-width:750px){.bookingPolicy{padding:70px 0 60px}.bookingPolicyHead{grid-template-columns:1fr;gap:35px;padding-bottom:45px}.bookingPolicyHead h2{font-size:clamp(39px,9vw,60px)}.bookingPolicyHead>div>p{font-size:16px}.bookingPolicyDeposit strong{font-size:94px}.bookingPolicyGrid{grid-template-columns:1fr}.bookingPolicyGrid article,.bookingPolicyGrid article:nth-child(even){border-left:0;padding:28px 0 32px}.bookingPolicyGrid .bookingPolicyCancel{padding:30px 22px;margin:0 -22px}.bookingPolicyGrid .bookingPolicyDelivery{grid-column:auto}.bookingPolicyFoot{font-size:9px;flex-wrap:wrap}}
 
 /* Booking: image-led service selector and compact existing terms */
-.bookingServiceDetailSection{background:#0b1115;color:#f5f2eb;padding:26px 0 36px}
+.bookingServiceDetailSection{background:#0b1115;color:#f5f2eb;padding:26px 0 36px;scroll-margin-top:20px}
 .bookingServiceDetailSection .bookingServiceDetail{margin-top:0}
 .bookingServicesTop{margin-bottom:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:18px;align-items:end}
 .bookingServicesTop>small,.bookingServicesTop>h2,.bookingServicesTop>p{grid-column:1}
