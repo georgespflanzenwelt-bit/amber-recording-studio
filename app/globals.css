@@ -107,7 +107,7 @@
 /* Selected Credits: artwork-only tiles, editorial hover, Spotify-ready preview. */
 .amberCoverGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .amberCoverTile{appearance:none;position:relative;display:block;width:100%;aspect-ratio:1;padding:0;border:0;background:#151719;color:#fff;overflow:hidden;text-align:left}
-.amberCoverTile>img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .45s ease}
+.amberCoverTile>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .45s ease}
 .amberCoverOverlay{position:absolute;inset:0;padding:15px 13px;background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.82));opacity:0;transition:opacity .25s ease;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;overflow:auto}
 .amberCoverTile:hover .amberCoverOverlay,.amberCoverTile:focus-visible .amberCoverOverlay{opacity:1}
 .amberCoverTile:hover>img{transform:scale(1.035)}
