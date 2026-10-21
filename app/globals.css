@@ -765,6 +765,7 @@
 .teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
 .teamShowcase .teamGeorgeLinks{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:clamp(20px,2.5vw,44px);row-gap:14px;margin-top:26px}
 .teamShowcase .teamGeorgeLinks .textLink{margin-top:0;white-space:nowrap}
+.teamShowcase .teamGeorgeLinks .teamGeorgeLinkPending{opacity:.6;cursor:default}
 
 @media(max-width:900px){
   .teamShowcase .darkIntro.teamHero{padding-top:68px}
