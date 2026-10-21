@@ -152,7 +152,7 @@
 @media(min-width:1201px){
  .creditsShowcase{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.65fr);column-gap:35px;align-content:start}
  .creditsShowcaseTop{display:contents}
- .creditsShowcaseTop>div:first-child{grid-column:1;grid-row:1;align-self:end}
+ .creditsShowcaseTop>div:first-child{grid-column:1;grid-row:1;align-self:end;transform:translateY(-24px)}
  .creditsShowcaseEditorial{position:static;grid-column:2;grid-row:1 / 4;align-self:end;justify-self:end;margin:0 0 28px;transform:none;bottom:auto}
  .creditsFilterRow{grid-column:1;grid-row:2}
  .creditsGenreRow{grid-column:1;grid-row:3}
