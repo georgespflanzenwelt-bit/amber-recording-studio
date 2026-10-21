@@ -505,7 +505,8 @@
 @media(max-width:750px){.bookingPolicy{padding:70px 0 60px}.bookingPolicyHead{grid-template-columns:1fr;gap:35px;padding-bottom:45px}.bookingPolicyHead h2{font-size:clamp(39px,9vw,60px)}.bookingPolicyHead>div>p{font-size:16px}.bookingPolicyDeposit strong{font-size:94px}.bookingPolicyGrid{grid-template-columns:1fr}.bookingPolicyGrid article,.bookingPolicyGrid article:nth-child(even){border-left:0;padding:28px 0 32px}.bookingPolicyGrid .bookingPolicyCancel{padding:30px 22px;margin:0 -22px}.bookingPolicyGrid .bookingPolicyDelivery{grid-column:auto}.bookingPolicyFoot{font-size:9px;flex-wrap:wrap}}
 
 /* Booking: image-led service selector and compact existing terms */
-.bookingServices{background-size:cover;background-position:center;color:#f5f2eb;padding:56px 0 64px}
+.bookingServiceDetailSection{background:#0b1115;color:#f5f2eb;padding:26px 0 36px}
+.bookingServiceDetailSection .bookingServiceDetail{margin-top:0}
 .bookingServicesTop{margin-bottom:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:18px;align-items:end}
 .bookingServicesTop>small,.bookingServicesTop>h2,.bookingServicesTop>p{grid-column:1}
 .bookingServiceRailControls{grid-column:2;grid-row:1/4;display:flex;align-items:center;align-self:end;gap:8px;padding-bottom:3px}
@@ -556,13 +557,19 @@
 @media(max-width:700px){.bookingServicesDivider{grid-template-columns:1fr;gap:8px;padding:22px 20px;min-height:0}.bookingServicesDivider strong{text-align:left}.bookingServicesDivider>span:last-child{text-align:left}}
 
 /* Booking hero: lift the complete copy and align the headline endings */
-.darkIntro.bookingHero{padding-top:15px;padding-bottom:245px;min-height:calc(100svh - 86px)}
+.darkIntro.bookingHero{padding-top:15px;padding-bottom:clamp(22px,3vh,36px);min-height:calc(100svh - 86px);display:flex;align-items:stretch}
 .darkIntro.bookingHero .wrap>small{display:block}
 .darkIntro.bookingHero .bookingHeroTitle{margin-top:7px}
+.darkIntro.bookingHero>.wrap{display:flex;flex-direction:column;min-width:0;margin-top:0;margin-bottom:0}
+.bookingHeroServices{width:100%;min-width:0;margin-top:auto;padding-top:clamp(24px,4vh,52px)}
+.bookingHeroServicesHead{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:15px}
+.bookingHeroServicesHead h2{color:#f5f2eb;font-size:clamp(21px,2.2vw,32px);font-weight:800;line-height:1.12;letter-spacing:-.035em;margin:0}
+.bookingHeroServicesHead .bookingServiceRailControls{display:flex;align-items:center;align-self:center;grid-column:auto;grid-row:auto;gap:8px;margin:0;padding:0}
+@media(max-width:700px){.bookingHeroServices{padding-top:32px}.bookingHeroServicesHead{align-items:center;flex-wrap:wrap;gap:13px}.bookingHeroServicesHead h2{font-size:clamp(19px,5.2vw,25px)}.bookingHeroServicesHead .bookingServiceRailControls{margin-left:auto}}
 .bookingHeroTitle{display:flex;flex-direction:column;align-items:flex-start;width:max-content;max-width:100%}
 .bookingHeroTitle>span,.bookingHeroTitle>em{display:block;white-space:nowrap}
 .bookingHeroTitle>em{transform:scaleX(1.055);transform-origin:left center}
-@media(max-width:700px){.darkIntro.bookingHero{padding-top:22px;padding-bottom:174px;min-height:calc(100svh - 76px)}.bookingHeroTitle{font-size:clamp(43px,9vw,59px)!important}.bookingHeroTitle>em{transform:scaleX(1.055)}}
+@media(max-width:700px){.darkIntro.bookingHero{padding-top:22px;padding-bottom:22px;min-height:calc(100svh - 76px)}.bookingHeroTitle{font-size:clamp(43px,9vw,59px)!important}.bookingHeroTitle>em{transform:scaleX(1.055)}}
 @media(min-width:701px){
 .darkIntro.bookingHero .bookingHeroTitle{letter-spacing:-.047em}
 .darkIntro.bookingHero .bookingHeroTitle>span{word-spacing:.07em}
