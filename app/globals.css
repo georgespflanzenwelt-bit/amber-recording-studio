@@ -724,7 +724,7 @@
   background-size:cover;
   background-repeat:no-repeat;
 }
-.teamShowcase .darkIntro.teamHero{background:transparent;padding-bottom:40px}
+.teamShowcase .darkIntro.teamHero{background:transparent;padding-top:22px;padding-bottom:40px}
 .teamShowcase .teamHeroCopy{width:100%;max-width:100%}
 .teamShowcase .teamHero h1{
   display:flex;
@@ -732,12 +732,12 @@
   align-items:baseline;
   gap:.1em;
   width:max-content;
-  max-width:100%;
-  font-size:clamp(46px,8.7vw,151px);
+  max-width:none;
+  font-size:clamp(46px,10vw,175px);
   letter-spacing:-.075em;
   white-space:nowrap;
 }
-.teamShowcase .teamHero p{width:max-content;max-width:100%;font-size:clamp(14px,1.8vw,28px);letter-spacing:-.015em;word-spacing:normal;text-align:left;text-align-last:auto}
+.teamShowcase .teamHero p{width:max-content;max-width:100%;font-size:clamp(14px,1.65vw,28px);letter-spacing:-.015em;word-spacing:normal;text-align:left;text-align-last:auto}
 .teamShowcase .teamShowcaseProfiles{padding-top:0;padding-bottom:105px}
 .teamShowcase .teamGeorge{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-bottom:0}
 .teamShowcase .teamGeorgeCopy{padding:0}
@@ -747,6 +747,7 @@
 .teamShowcase .teamGeorgeCopy .teamGeorgeHighlight,.teamShowcase .teamGeorgeCopy .teamGeorgeBio strong{color:#fff}
 .teamShowcase .teamGeorgeCopy .textLink{color:#fff;border-color:#d1d9d5}
 @media(max-width:900px){
+  .teamShowcase .darkIntro.teamHero{padding-top:68px}
   .teamShowcase .teamHero h1{display:flex;flex-wrap:wrap;white-space:normal;font-size:clamp(48px,9vw,83px)}
   .teamShowcase .teamHero p{font-size:clamp(17px,2.9vw,26px);white-space:normal;text-align:left;text-align-last:left}
   .teamShowcase .teamGeorge{grid-template-columns:1fr;gap:30px}
