@@ -874,6 +874,8 @@
   .bookingInquiryStage .bookingContactForm.bookingForm .bookingContactSubmit{min-height:36px;padding:8px 14px;font-size:9px}
 }
 
-/* Booking: one-line Score & Brand Music tile only. */
-.bookingServiceTileScore>span:first-child{font-size:clamp(10px,.78vw,12px);letter-spacing:0;white-space:nowrap}
-@media(max-width:550px){.bookingServiceTileScore>span:first-child{font-size:10px}}
+/* Booking: uniform title size and plus signs aligned further right on every service tile. */
+.bookingServiceTiles .bookingServiceTile{padding-right:8px}
+.bookingServiceTiles .bookingServicePlus{flex-shrink:0;margin-left:auto}
+.bookingServiceTileScore>span:first-child{white-space:nowrap}
+@media(max-width:550px){.bookingServiceTileScore>span:first-child{white-space:normal}}
