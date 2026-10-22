@@ -857,6 +857,7 @@
   .bookingInquiryStage .bookingPriceRequest{min-height:34px;padding:6px 9px;font-size:9px}
   .bookingInquiryStage .bookingPriceFootnote{margin-top:8px;font-size:9px}
   .bookingInquiryStage .bookingContactCard{padding:19px 22px;border-radius:15px}
+  .bookingInquiryStage .bookingContactCard{align-self:stretch;margin-bottom:22px}
   .bookingInquiryStage .bookingContactBadge{font-size:8px;min-height:20px;padding:4px 9px}
   .bookingInquiryStage .bookingContactTitle{font-size:clamp(25px,2.1vw,29px);margin:8px 0 4px}
   .bookingInquiryStage .bookingContactIntro{font-size:11px;line-height:1.42;margin:0 0 12px}
