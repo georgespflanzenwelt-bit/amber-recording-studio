@@ -563,6 +563,16 @@
 .bookingServiceDetail h3{font-size:24px;margin:7px 0}
 .bookingServiceDetail p{font-size:15px;line-height:1.65;max-width:820px;color:#d0d4ce}
 .bookingGuestMixing{border-top:1px solid rgba(166,140,91,.55);margin-top:29px;padding-top:23px}
+.bookingAcousticsCopy{max-width:1120px;padding-top:4px}
+.bookingAcousticsCopy section{padding:24px 0 26px;border-top:1px solid rgba(166,140,91,.38)}
+.bookingAcousticsCopy section:first-child{border-top:0;padding-top:12px}
+.bookingAcousticsCopy h4{margin:0 0 15px;color:#d8aa62;font-family:Manrope,sans-serif;font-size:14px;line-height:1.35;letter-spacing:.11em;font-weight:800}
+.bookingServiceDetail .bookingAcousticsCopy p{max-width:1080px;margin-bottom:15px;font-size:15px;line-height:1.72;color:#d0d4ce}
+.bookingAcousticsCopy strong{color:#f6f2e9;font-weight:700}
+.bookingAcousticsCopy em{color:#f0d3a1;font-style:italic}
+.bookingAcousticsCopy blockquote{margin:23px 0;padding:13px 0 13px 20px;border-left:3px solid #d8aa62;color:#f3e4c8;font-family:Manrope,sans-serif;font-size:18px;line-height:1.45;letter-spacing:.035em;font-weight:700}
+.bookingServiceDetail .bookingAcousticsFinal{margin:24px 0 0;padding:18px 20px;border:1px solid rgba(216,170,98,.5);color:#fff;background:rgba(216,170,98,.07)}
+@media(max-width:750px){.bookingAcousticsCopy section{padding:20px 0 22px}.bookingAcousticsCopy h4{font-size:12px}.bookingServiceDetail .bookingAcousticsCopy p{font-size:14px;line-height:1.65}.bookingAcousticsCopy blockquote{font-size:16px;padding-left:15px}}
 .bookingGuestMixing h4{font-size:15px;line-height:1.4;letter-spacing:.075em;color:#d8aa62;margin:0 0 17px;font-weight:800}
 .bookingGuestMixing p:last-child{margin-bottom:0}
 .bookingServiceDetail button{background:transparent;color:#fff;border:1px solid #ffffff60;padding:8px;cursor:pointer}
