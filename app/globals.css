@@ -811,8 +811,8 @@
 .teamEgorShowcase .teamEgor .photobox{order:2;min-height:650px}
 .teamEgorShowcase .teamEgor .photo{inset:0;background-position:center center}
 .teamEgorShowcase .teamEgorCopy{order:1;align-self:center;min-width:0;padding:18px 0}
-.teamEgorShowcase .teamEgorCopy>small{display:block;color:#dbad67;font-size:clamp(10px,.9vw,12px);font-weight:800;letter-spacing:.12em;line-height:1.5}
-.teamEgorShowcase .teamMember .teamEgorCopy h2{color:#fff;font-size:clamp(46px,5vw,78px);line-height:1.04;letter-spacing:-.06em;margin:20px 0 27px}
+.teamEgorShowcase .teamEgorCopy>small{display:block;color:#dbad67;font-size:clamp(10px,.9vw,12px);font-weight:800;letter-spacing:.045em;line-height:1.5;margin:0 0 27px}
+.teamEgorShowcase .teamMember .teamEgorCopy h2{color:#fff;font-size:clamp(46px,5vw,78px);line-height:1.04;letter-spacing:-.06em;margin:0 0 8px}
 .teamEgorShowcase .teamMember .teamEgorBio p{color:#d3dcd8;font-size:clamp(15px,1.06vw,17px);line-height:1.76;margin:0 0 21px}
 .teamEgorShowcase .teamEgorBio p:last-child{margin-bottom:0}
 .teamEgorShowcase .teamEgorBio strong{color:#fff;font-weight:700}
@@ -822,7 +822,7 @@
  .teamEgorShowcase .teamEgorProfiles{padding-top:70px;padding-bottom:70px}
  .teamEgorShowcase .teamEgor .photobox{order:1;min-height:490px;height:490px}
  .teamEgorShowcase .teamEgorCopy{order:2;padding:0}
- .teamEgorShowcase .teamMember .teamEgorCopy h2{font-size:clamp(44px,7vw,65px);margin:14px 0 23px}
+ .teamEgorShowcase .teamMember .teamEgorCopy h2{font-size:clamp(44px,7vw,65px);margin:14px 0 8px}
 }
 @media(max-width:700px){
  .teamEgorShowcase .teamEgorProfiles{padding-top:50px;padding-bottom:65px}
