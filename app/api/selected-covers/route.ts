@@ -26,14 +26,14 @@ export async function GET(){
    const codes:Record<string,string>={C:"Composed",P:"Produced",R:"Remixed",RMX:"Remixed",M:"Mixed",Ma:"Mastered",CP:"Co-Produced",Rec:"Recorded",ap:"Additional Production",Ap:"Additional Production",AP:"Additional Production"};
    const groups=(value:string)=>value.replace(/\)\s+(?=(?:RMX|Rec|Ma|CP|ap|[CPRM])(?:\s|\(|\+|$))/gi,"), ").split(/,(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
    const roles=(value:string)=>value.split(/\+(?![^()]*\))/).map(x=>x.trim()).filter(Boolean);
-   const roleBase=(value:string)=>value.replace(/\s+by\s*$/i,"").replace(/\s*\((?:\d+(?:\s*[+,]\s*\d+)*|except\s+(?:T\s*)?[\d\s,+-]+)\)\s*$/i,"").trim();
+   const roleBase=(value:string)=>value.replace(/\s+by\s*$/i,"").replace(/\s*\((?:(?:T\s*)?\d+(?:\s*[+,]\s*\d+)*|except\s+(?:T\s*)?[\d\s,+-]+)\)\s*$/i,"").trim();
    const isOneRole=(value:string)=>/^(?:C|P|R|RMX|M|Ma|CP|Rec|ap)$/i.test(roleBase(value))||roleWords.test(roleBase(value));
    const isRole=(value:string)=>groups(value).every(group=>roles(group).every(isOneRole));
    const expandRole=(value:string)=>groups(value).map(group=>{
     const pieces=roles(group);
     const expanded=pieces.map(part=>{
      const trimmed=part.replace(/\s+by\s*$/i,"").trim();
-     const match=trimmed.match(/^(.*?)\s*\((\d+(?:\s*[+,]\s*\d+)*)\)$/);
+     const match=trimmed.match(/^(.*?)\s*\((?:T\s*)?(\d+(?:\s*[+,]\s*\d+)*)\)$/i);
      const except=trimmed.match(/^(.*?)\s*\(\s*except\s+(?:T\s*)?([\d\s,+-]+)\s*\)$/i);
      const role=roleBase(trimmed);
      return (codes[role]||codes[role.toUpperCase()]||role)+(except?" (except tracks "+except[2].trim().replace(/\s*[+,]\s*/g,", ")+")":match?" ("+match[2].replace(/\s*\+\s*/g," & ").replace(/\s*,\s*/g,", ")+")":"");
