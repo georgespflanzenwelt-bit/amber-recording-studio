@@ -68,7 +68,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
   // Keep on Believing album. The actual Replit folder is named "Donna Renne".
   const albumTrack=files.find(file=>file.order===7&&cleanName(file.name)==="donna renee follow"&&normalizeSong(decodeURIComponent(file.url)).includes("keep on believing"));
   const remixTrack=files.find(file=>file.albumFolder==="Donna Renee - Follow"&&cleanName(file.name)==="follow h bus gb house edit");
-  return [...(albumTrack?[{...albumTrack,name:"01 Follow (Original)",order:1}]:[]),...(remixTrack?[{...remixTrack,name:"02 Follow (H-Bus GB House Edit)",order:2}]:[])];
+  const fullRemixTrack=files.find(file=>file.albumFolder==="Donna Renee - Follow"&&cleanName(file.name)==="follow h bus gb house full rmx");
+  return [...(albumTrack?[{...albumTrack,name:"01 Follow (Original)",order:1}]:[]),...(remixTrack?[{...remixTrack,name:"02 Follow (H-Bus GB House Edit)",order:2}]:[]),...(fullRemixTrack?[{...fullRemixTrack,name:"03 Follow (H-Bus GB House Full RMX)",order:3}]:[])];
  }
  if(artist==="asher d"&&(title==="food for tought"||title==="food for thought"))return files.filter(file=>file.albumFolder==="Asher D__Food for Thought"&&file.order===8&&normalizeSong(file.name.replace(/^\s*\d+\s*/,""))==="food for thought");
  if(artist==="bektas"&&title==="was lousn")return files.filter(file=>file.albumFolder==="Bektas").sort((a,b)=>(a.order??999999)-(b.order??999999)||a.name.localeCompare(b.name,undefined,{numeric:true}));
@@ -131,6 +132,8 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
 
 function displayLocalTitle(name:string,artist:string){
  const stripped=name.replace(/^\s*\d+\s*/,"").split(/__+/);
+ // Mystikal's local filename also contains production credits; these are not part of its track title.
+ if(normalizeSong(artist)==="mystikal"&&normalizeSong(stripped[0])==="mystikal"&&normalizeSong(stripped[1]||"").startsWith("jump ft bektas"))return stripped[1].replace(/_/g," ").trim();
  return (stripped.length>1&&(normalizeSong(stripped[0])===normalizeSong(artist)||normalizeSong(artist)==="mistha bello"&&normalizeSong(stripped[0])==="bello")?stripped.slice(1).join(" "):stripped.join(" ")).replace(/_/g," ").trim();
 }
 
@@ -200,11 +203,15 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entr
  const brotherCredit=!!active&&/^(?:brothers?|bothers) keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
  const olympicDoOne=!!active&&normalizeSong(active.artist).endsWith("lifts")&&normalizeSong(active.title)==="do one album";
  const olympicAlbumUrl="https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr";
- const spotifyUrl=brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":olympicDoOne?olympicAlbumUrl:active?.spotifyUrl||"";
- const current=olympicDoOne?embed(olympicAlbumUrl):brotherCredit?embed(spotifyUrl):embed(chosen)||embed(spotifyUrl);
+ // The Elephant Man single may have variant cover filenames in Replit.
+ // Select the established YouTube video only for this specific artist and release.
+ const elephantShakeCredit=!!active&&/^elephant man{1,2}(?: seeed)?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).includes("shake baby shake")&&normalizeSong(active.title).includes("electric boogie");
+ const spotifyUrl=elephantShakeCredit?"":brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":olympicDoOne?olympicAlbumUrl:active?.spotifyUrl||"";
+ const current=elephantShakeCredit?"":olympicDoOne?embed(olympicAlbumUrl):brotherCredit?embed(spotifyUrl):embed(chosen)||embed(spotifyUrl);
  const youtubeCollection=!!active?.youtubeTracks?.some(track=>youtubeId(track.youtubeUrl));
  const youtubePlaylist=!!active?.youtubePlaylist?.id&&Array.isArray(active.youtubePlaylist.tracks)&&active.youtubePlaylist.tracks.length>0;
- const youtubeVideo=active?.youtubeUrl?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)?.[1]||"";
+ const youtubeUrl=elephantShakeCredit?"https://www.youtube.com/watch?v=1PUbgBWDFDA":active?.youtubeUrl||"";
+ const youtubeVideo=youtubeId(youtubeUrl);
  const localMatches=matchLocalSongs(active,localSongs);const localAudio=localMatches.find(x=>x.url===localChoice)?.url||localMatches[0]?.url;
  const compactNextPlaylist=!!active&&normalizeSong(active.artist)==="seeed"&&normalizeSong(active.title)==="next album"&&current.includes("/embed/playlist/");
  const isAlbum=!!active&&(youtubeCollection||youtubePlaylist||!!active.tracks?.length||/\balbum\b/i.test(active.title)||/\/album\//.test(spotifyUrl||""));
@@ -221,6 +228,6 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entr
  {active.artist.toLowerCase().includes("donna")&&active.title.toLowerCase().includes("keep on believing")&&!localAudio&&<p style={{padding:"0 24px",fontSize:12,color:"#d4ad7a"}}>AMBER Audio: {audioLoad} · Dateien: {localSongs.length} · Albumtreffer: {localMatches.length}</p>}
  {localAudio?<LocalDiscography songs={localMatches} selected={localAudio} onSelect={setLocalChoice} artist={active.artist} title={active.title} cover={active.image} entry={active} lang={lang}/>:youtubePlaylist?<YouTubePlaylistDiscography key={active.name} playlist={active.youtubePlaylist!} entry={active} credit={<CreditLines entry={active} lang={lang}/>} lang={lang}/>:youtubeCollection?<YouTubeDiscography tracks={active.youtubeTracks||[]} entry={active} lang={lang}/>:<div className="amberListeningCard">{current?<iframe key={current} title={"Spotify: "+active.artist+" "+active.title} src={current+"?utm_source=generator&theme=0"} width="100%" height={current.includes("/embed/track/")?232:compactNextPlaylist?300:isAlbum?590:232} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" />:youtubeVideo?<iframe key={youtubeVideo} title={"YouTube: "+active.artist+" "+active.title} src={"https://www.youtube-nocookie.com/embed/"+youtubeVideo} width="100%" height={275} loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}</div>}
  {!!active.tracks?.length&&!localAudio&&!youtubeCollection&&!youtubePlaylist&&<div className="amberTrackList"><small>{lang==="de"?"TITELLISTE":"TRACKLIST"}</small>{active.tracks?.length?active.tracks.map((t,i)=><button type="button" key={i} disabled={!embed(t.spotifyUrl)} className={t.spotifyUrl===chosen?"chosen":""} onClick={()=>setChosen(t.spotifyUrl||"")}><span>{String(i+1).padStart(2,"0")}</span><strong>{t.title}</strong>{embed(t.spotifyUrl)?<Play size={13}/>:<span className="amberTrackPending">—</span>}</button>):<p className="amberTrackNote">{lang==="de"?"Die Titelliste wird ergänzt, sobald die offiziellen Titel zugeordnet sind.":"Track selection will appear once official releases have been linked."}</p>}</div>}
- {(spotifyUrl||active.youtubeUrl)&&!youtubeCollection&&!youtubePlaylist&&<a className="amberSpotifyLink" href={spotifyUrl||active.youtubeUrl} target="_blank" rel="noopener noreferrer">{spotifyUrl?(lang==="de"?"AUF SPOTIFY ÖFFNEN":"OPEN ON SPOTIFY"):(lang==="de"?"VIDEO AUF YOUTUBE ÖFFNEN":"OPEN VIDEO ON YOUTUBE")} <ArrowUpRight size={16}/></a>}
+ {(spotifyUrl||youtubeUrl)&&!youtubeCollection&&!youtubePlaylist&&<a className="amberSpotifyLink" href={spotifyUrl||youtubeUrl} target="_blank" rel="noopener noreferrer">{spotifyUrl?(lang==="de"?"AUF SPOTIFY ÖFFNEN":"OPEN ON SPOTIFY"):(lang==="de"?"VIDEO AUF YOUTUBE ÖFFNEN":"OPEN VIDEO ON YOUTUBE")} <ArrowUpRight size={16}/></a>}
  </section></div>}</>
 }
