@@ -39,7 +39,7 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  // The cover is labelled "Rootsman come over", while the local song file in
  // public/songs is named "Abijah - Rootsman Take Over.m4a". Reuse the exact
  // URL returned by /api/local-songs instead of constructing a file path.
- if(artist==="abijah"&&title==="rootsman come over"){
+ if(artist==="abijah"&&(title==="rootsman come over"||title==="rootman come over")){
   const track=files.find(file=>!file.albumFolder&&normalizeSong(file.name)==="abijah rootsman take over");
   return track?[{...track,name:"Rootsman Take Over",order:1}]:[];
  }
