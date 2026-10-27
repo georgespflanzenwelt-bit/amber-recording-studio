@@ -78,7 +78,7 @@
       "spotifyUrl": "https://open.spotify.com/track/3nbtE3h4LPSNt5SnNJw93u"
     },
     "Elephant Mann:Seeed__Shake Baby Shake-Electric Boogie__Germaican Records__M__George Brasch.jpg": {
-      "spotifyUrl": "https://open.spotify.com/track/20PrnI6KD2bHgv337qLWgJ"
+      "youtubeUrl": "https://www.youtube.com/watch?v=1PUbgBWDFDA"
     },
     "Underdog Projekt__I cant handel its (Single)__ WEA__M__George Brasch__Pop.jpg": {
       "spotifyUrl": "https://open.spotify.com/track/7vHugZVhzbCPYwwrBVF5as"
@@ -208,6 +208,9 @@
     }
   },
   "releases": {
+    "elephant mann:seeed::shake baby shake-electric boogie": {
+      "youtubeUrl": "https://www.youtube.com/watch?v=1PUbgBWDFDA"
+    },
     "azad::leben (album)": {
       "spotifyUrl": "https://open.spotify.com/album/0rk3xvwzQSN2d7ctkxgMpD"
     },
