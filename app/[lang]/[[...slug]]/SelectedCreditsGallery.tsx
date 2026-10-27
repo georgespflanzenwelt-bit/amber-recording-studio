@@ -43,6 +43,14 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
   const track=files.find(file=>!file.albumFolder&&normalizeSong(file.name)==="abijah rootsman take over");
   return track?[{...track,name:"Rootsman Take Over",order:1}]:[];
  }
+ // The Amber EP cover is filed under Amber EP / Various. Both recordings already
+ // appear in Cool Struttin 1; use the discovered Replit files, not constructed paths.
+ if(artist==="amber ep"&&title==="various"){
+  const cleanName=(name:string)=>normalizeSong(name.replace(/^\s*\d+\s*/,""));
+  const stepThree=files.find(file=>file.albumFolder==="Cool Struttin 1"&&file.order===9&&cleanName(file.name)==="dream inst");
+  const quietAchievers=files.find(file=>file.albumFolder==="Cool Struttin 1"&&file.order===10&&cleanName(file.name)==="choices");
+  return [...(stepThree?[{...stepThree,name:"01 Step Three – Dream (Inst.)",order:1}]:[]),...(quietAchievers?[{...quietAchievers,name:"02 Quiet Achievers – Choices",order:2}]:[])];
+ }
  // Step Three's "Just a Dream" uses one track each from Cool Struttin 3 and Cool Struttin 1.
  // Resolve both URLs from the local songs API; never assume the media is in GitHub.
  if(artist==="step three"&&title==="just a dream"){
@@ -148,7 +156,7 @@ function displayLocalTitle(name:string,artist:string){
 const coolStruttinTrackCredits:Record<string,Record<number,{artist:string;title?:string}>>={
  "Cool Struttin 1":{
   9:{artist:"Step Three"},
-  10:{artist:"Quiet Archievers"}
+  10:{artist:"Quiet Achievers"}
  },
  "Cool Struttin 2":{
   1:{artist:"Mistah Bello with Step Three",title:"Daddy On The Run"},
