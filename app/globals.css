@@ -831,6 +831,12 @@
  .teamEgorShowcase .teamMember .teamEgorBio p{font-size:15px;line-height:1.7}
 }
 
+/* Egor's two profile tabs match George's links, scoped to Egor only. */
+.teamEgorShowcase .teamEgorCopy .textLink{color:#fff;border-color:#d1d9d5}
+.teamEgorShowcase .teamEgorLinks{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:clamp(20px,2.5vw,44px);row-gap:14px;margin-top:26px}
+.teamEgorShowcase .teamEgorLinks .textLink{margin-top:0;white-space:nowrap}
+.teamEgorShowcase .teamEgorLinks .teamEgorLinkPending{opacity:.6;cursor:default}
+
 /* Booking inquiry: price grid over LA2-New video; scoped to Booking only. */
 .bookingInquiryStage.bookingContactShell{position:relative;isolation:isolate;overflow:hidden;background:#071018;padding:clamp(32px,4vw,56px) clamp(18px,4vw,72px) clamp(46px,5vw,76px)}
 .bookingInquiryVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.52) saturate(.83);opacity:.82;pointer-events:none;z-index:0}
