@@ -160,7 +160,7 @@ type CoversResponse={covers:Record<string,string>;entries:SelectedEntry[]};
 const egorKnownCredits:SelectedEntry[]=[
  {name:"Autboy Shtein__PIZZA__Remix__Egor Kobzev__Electronic.jpg",artist:"Autboy Shtein",title:"PIZZA",label:"",work:"Remixed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Electronic"},
  {name:"Bbb.jpg",artist:"Bbb",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
- {name:"Metaline__Мир Проподает (Single)__C__Egor Kobzev__Metal.jpg",artist:"Metaline",title:"Мир Проподает (Single)",label:"",work:"Composed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Metal"},
+ {name:"Metaline__Мир Проподает (Single)__C__Egor Kobzev__Metal.jpg",artist:"Metaline",title:"Мир Проподает (Single)",label:"",work:"Composed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Metal",spotifyUrl:"https://open.spotify.com/track/5URomBQxbB1nyqzlgY93ES?si=023225a5fd194a2c"},
  {name:"Yyy.jpg",artist:"Yyy",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
  {name:"Zzzz.jpg",artist:"Zzzz",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""}
 ].map(entry=>({...entry,image:"/Pic%20GB%20%26%20Egor/Egor%20Credits/"+encodeURIComponent(entry.name)}));
