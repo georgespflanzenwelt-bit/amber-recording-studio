@@ -287,7 +287,7 @@
 .introStreamingStat .bookingStreamingStatLabel{color:#f7f2ea}
 .introStreamingStat .bookingStreamingStatNote{width:100%;color:#f2dfc4;border-top-color:rgba(230,182,118,.38);font-size:10px;letter-spacing:0}
 /* Desktop home intro: bring the complete headline, copy and streaming card higher, and expose the collaborations carousel sooner. */
-@media(min-width:701px){.introVideoSection{padding-top:55px;padding-bottom:30px}.artistStrip{padding-top:28px}.artistStripHeading{margin-bottom:20px}}
+@media(min-width:701px){.introVideoSection{padding-top:40px;padding-bottom:20px}.artistStrip{padding-top:20px}.artistStripHeading{margin-bottom:15px}}
 @media(max-width:700px){.introVideoSection{padding-bottom:65px}.introStreamingStat{margin-top:28px;padding:18px 18px 17px}.introStreamingStat .bookingStreamingStatValue{font-size:30px}.introStreamingStat .bookingStreamingStatNote{font-size:clamp(8px,2.6vw,10px)}}
 
 /* Film Scoring detail hero: moving Tape video, legible text above the film. */
