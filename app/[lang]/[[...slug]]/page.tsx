@@ -155,6 +155,16 @@ function ArtistStrip({lang}:{lang:Lang}){
 }
 
 type CoversResponse={covers:Record<string,string>;entries:SelectedEntry[]};
+// Egor's five existing Replit cover files remain visible even if the directory API
+// is unavailable. When the API responds, its parsed filenames and metadata take precedence.
+const egorKnownCredits:SelectedEntry[]=[
+ {name:"Autboy Shtein__PIZZA__Remix__Egor Kobzev__Electronic.jpg",artist:"Autboy Shtein",title:"PIZZA",label:"",work:"Remixed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Electronic"},
+ {name:"Bbb.jpg",artist:"Bbb",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
+ {name:"Metaline__Мир Проподает (Single)__C__Egor Kobzev__Metal.jpg",artist:"Metaline",title:"Мир Проподает (Single)",label:"",work:"Composed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Metal"},
+ {name:"Yyy.jpg",artist:"Yyy",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
+ {name:"Zzzz.jpg",artist:"Zzzz",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""}
+].map(entry=>({...entry,image:"/Pic%20GB%20%26%20Egor/Egor%20Credits/"+encodeURIComponent(entry.name)}));
+
 let sharedCovers:CoversResponse|null=null;
 let pendingCovers:Promise<CoversResponse>|null=null;
 let prewarmedCovers=false;
@@ -201,16 +211,16 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
  useEffect(()=>{if(current!=="")return;const id=window.setTimeout(()=>{getSharedCovers().then(data=>warmCoverImages(data.entries)).catch(()=>{})},1500);return()=>window.clearTimeout(id)},[current]);
  useEffect(()=>{if(current!=="")return;router.prefetch(url("credits"));},[current,lang,router]);
  const [egorCreditsOpen,setEgorCreditsOpen]=useState(true);
- const [egorCoverEntries,setEgorCoverEntries]=useState<SelectedEntry[]>([]);
- const [egorCoversLoading,setEgorCoversLoading]=useState(true);
+ const [egorCoverEntries,setEgorCoverEntries]=useState<SelectedEntry[]>(egorKnownCredits);
+ const [egorCoversLoading,setEgorCoversLoading]=useState(false);
  useEffect(()=>{
   if(current!=="egor-credits")return;
   let alive=true;
   setEgorCoversLoading(true);
   fetch("/api/selected-covers?scope=egor",{cache:"no-store"})
    .then(response=>{if(!response.ok)throw new Error("Egor covers unavailable");return response.json()})
-   .then((data:CoversResponse)=>{if(alive)setEgorCoverEntries(data.entries||[])})
-   .catch(()=>{if(alive)setEgorCoverEntries([])})
+   .then((data:CoversResponse)=>{if(alive&&data.entries?.length)setEgorCoverEntries(data.entries)})
+   .catch(()=>{if(alive)setEgorCoverEntries(egorKnownCredits)})
    .finally(()=>{if(alive)setEgorCoversLoading(false)});
   return()=>{alive=false};
  },[current]);
