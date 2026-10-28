@@ -562,6 +562,14 @@
 .bookingServiceDetail{margin-top:14px;padding:24px 27px;border:1px solid #a68c5b;background:rgba(11,18,21,.88);display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 .bookingServiceDetail h3{font-size:24px;margin:7px 0}
 .bookingServiceDetail p{font-size:15px;line-height:1.65;max-width:820px;color:#d0d4ce}
+/* Workshop only: readable spacing for the complete bilingual studio biography. */
+.bookingWorkshopCopy{max-width:1080px;padding-top:10px}
+.bookingServiceDetail .bookingWorkshopCopy p{max-width:1050px;margin:0 0 19px;font-size:clamp(15px,1.15vw,17px);line-height:1.73;color:#d0d4ce}
+.bookingServiceDetail .bookingWorkshopCopy p:first-child{margin-bottom:25px;color:#d8aa62;letter-spacing:.075em;font-size:clamp(14px,1.1vw,17px)}
+.bookingServiceDetail .bookingWorkshopCopy strong{color:#f7f4ef;font-weight:750}
+.bookingServiceDetail .bookingWorkshopCopy p:first-child strong{color:#d8aa62}
+.bookingServiceDetail .bookingWorkshopCopy p:last-child{margin-bottom:2px}
+
 .bookingGuestMixing{border-top:1px solid rgba(166,140,91,.55);margin-top:29px;padding-top:23px}
 .bookingAcousticsCopy{max-width:1120px;padding-top:4px}
 .bookingAcousticsCopy section{padding:24px 0 26px;border-top:1px solid rgba(166,140,91,.38)}
