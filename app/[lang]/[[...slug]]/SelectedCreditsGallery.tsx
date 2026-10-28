@@ -1,5 +1,6 @@
 "use client";
-import {useEffect,useRef,useState} from "react";
+import {useEffect,useRef,useState,type ReactNode} from "react";
+import {createPortal} from "react-dom";
 import {Play,Pause,SkipBack,SkipForward,X,ArrowUpRight} from "lucide-react";
 import YouTubePlaylistDiscography,{type YouTubePlaylist} from "./YouTubePlaylistDiscography";
 type YouTubeTrack={number?:number;title:string;artist?:string;youtubeUrl:string};
@@ -212,7 +213,10 @@ function YouTubeDiscography({tracks,entry,lang}:{tracks:YouTubeTrack[];entry:Sel
   <div className="amberDiscTracks" aria-label={lang==="de"?"YouTube-Titelliste":"YouTube tracklist"}>{valid.map((track,i)=><button type="button" key={track.youtubeUrl} className={i===index?"is-active":""} onClick={()=>select(i)}><span className="amberDiscNumber">{String(track.number??i+1).padStart(2,"0")}</span><span className="amberDiscTrackName"><strong>{track.title}</strong>{track.artist&&<small>{track.artist}</small>}</span><Play size={13}/></button>)}</div>
  </div>;
 }
-export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entries:SelectedEntry[];lang:"de"|"en";awardDetails?:Record<string,{chart:string;award:string}>}){
+function ModalLayer({children,portal}:{children:ReactNode;portal:boolean}){
+ return portal&&typeof document!=="undefined"?createPortal(children,document.body):<>{children}</>;
+}
+export default function SelectedCreditsGallery({entries,lang,awardDetails,portalPreview=false}:{entries:SelectedEntry[];lang:"de"|"en";awardDetails?:Record<string,{chart:string;award:string}>;portalPreview?:boolean}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [localChoice,setLocalChoice]=useState("");
  const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string;albumKey?:string}[]>([]);
  const [audioLoad,setAudioLoad]=useState("idle");
@@ -239,7 +243,7 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entr
   <img src={e.image} alt={e.artist+" – "+e.title} loading={i<10?"eager":"lazy"} fetchPriority={i<5?"high":"auto"}/>
   <span className="amberCoverOverlay"><span className="amberMetaLabel">ARTIST / BAND</span><strong>{e.artist}</strong><span className="amberMetaLabel">{lang==="de"?"TITEL":"TITLE"}</span><span className="amberCoverTitle">{e.title||"—"}</span>{e.label&&<><span className="amberMetaLabel">LABEL</span><span className="amberCoverTitle">{e.label}</span></>}<span className="amberMetaLabel">CREDIT:</span><span className="amberCoverRole"><CreditLines entry={e} lang={lang}/></span><span className="amberPlay"><Play size={22} fill="currentColor"/></span></span>
  </button>;return awardDetails?<div className="amberChartsAwardCard" key={e.name}>{tile}{award&&<div className="amberChartsAwardCaption"><span>{award.chart}</span>{award.award&&<b>· {award.award}</b>}</div>}</div>:tile})}</div>
- {active&&<div className="amberPreviewBackdrop" onMouseDown={ev=>{if(ev.target===ev.currentTarget)setActive(null)}}>
+ {active&&<ModalLayer portal={portalPreview}><div className="amberPreviewBackdrop" onMouseDown={ev=>{if(ev.target===ev.currentTarget)setActive(null)}}>
  <section className={"amberPreviewPanel"+(localAudio?" amberCompactModal":(youtubeCollection||youtubePlaylist)?" amberCompactModal amberYouTubeModal":(current||youtubeVideo)?" amberSpotifyModal":isAlbum?" amberPreviewAlbum":"")} role="dialog" aria-modal="true" aria-label={active.artist+" "+active.title}>
  <button className="amberPreviewClose" onClick={()=>setActive(null)} aria-label={lang==="de"?"Schließen":"Close"}><X/></button>
  {(current||youtubeVideo)&&!localAudio&&!youtubeCollection&&!youtubePlaylist&&<div className="amberSpotifyCreditBar"><div className="amberSpotifyCreditMain"><small>AMBER / {isAlbum?"ALBUM":"SINGLE"} CREDIT</small><strong>{active.artist} <span>— {active.title}</span></strong><div className="amberSpotifyCreditRole"><CreditLines entry={active} lang={lang}/></div>{active.label&&<p>LABEL: {active.label}</p>}</div><div className="amberSpotifyCreditBrand">AMBER<span>.</span></div></div>}
@@ -249,5 +253,5 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails}:{entr
  {localAudio?<LocalDiscography songs={localMatches} selected={localAudio} onSelect={setLocalChoice} artist={active.artist} title={active.title} cover={active.image} entry={active} lang={lang}/>:youtubePlaylist?<YouTubePlaylistDiscography key={active.name} playlist={active.youtubePlaylist!} entry={active} credit={<CreditLines entry={active} lang={lang}/>} lang={lang}/>:youtubeCollection?<YouTubeDiscography tracks={active.youtubeTracks||[]} entry={active} lang={lang}/>:<div className="amberListeningCard">{current?<iframe key={current} title={"Spotify: "+active.artist+" "+active.title} src={current+"?utm_source=generator&theme=0"} width="100%" height={current.includes("/embed/track/")?232:compactNextPlaylist?300:isAlbum?590:232} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" />:youtubeVideo?<iframe key={youtubeVideo} title={"YouTube: "+active.artist+" "+active.title} src={"https://www.youtube-nocookie.com/embed/"+youtubeVideo} width="100%" height={275} loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}</div>}
  {!!active.tracks?.length&&!localAudio&&!youtubeCollection&&!youtubePlaylist&&<div className="amberTrackList"><small>{lang==="de"?"TITELLISTE":"TRACKLIST"}</small>{active.tracks?.length?active.tracks.map((t,i)=><button type="button" key={i} disabled={!embed(t.spotifyUrl)} className={t.spotifyUrl===chosen?"chosen":""} onClick={()=>setChosen(t.spotifyUrl||"")}><span>{String(i+1).padStart(2,"0")}</span><strong>{t.title}</strong>{embed(t.spotifyUrl)?<Play size={13}/>:<span className="amberTrackPending">—</span>}</button>):<p className="amberTrackNote">{lang==="de"?"Die Titelliste wird ergänzt, sobald die offiziellen Titel zugeordnet sind.":"Track selection will appear once official releases have been linked."}</p>}</div>}
  {(spotifyUrl||youtubeUrl)&&!youtubeCollection&&!youtubePlaylist&&<a className="amberSpotifyLink" href={spotifyUrl||youtubeUrl} target="_blank" rel="noopener noreferrer">{spotifyUrl?(lang==="de"?"AUF SPOTIFY ÖFFNEN":"OPEN ON SPOTIFY"):(lang==="de"?"VIDEO AUF YOUTUBE ÖFFNEN":"OPEN VIDEO ON YOUTUBE")} <ArrowUpRight size={16}/></a>}
- </section></div>}</>
+ </section></div></ModalLayer>}</>
 }
