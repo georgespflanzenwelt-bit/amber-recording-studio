@@ -158,7 +158,7 @@ type CoversResponse={covers:Record<string,string>;entries:SelectedEntry[]};
 // Egor's five existing Replit cover files remain visible even if the directory API
 // is unavailable. When the API responds, its parsed filenames and metadata take precedence.
 const egorKnownCredits:SelectedEntry[]=[
- {name:"Autboy Shtein__PIZZA__Remix__Egor Kobzev__Electronic.jpg",artist:"Autboy Shtein",title:"PIZZA",label:"",work:"Remixed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Electronic"},
+ {name:"Autboy Shtein__PIZZA__Remix__Egor Kobzev__Electronic.jpg",artist:"Autboy Shtein",title:"PIZZA",label:"",work:"Remixed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Electronic",spotifyUrl:"https://open.spotify.com/track/2DplkxUqsOAeq5zyPPU0wz?si=9d5d99d4c6c64655"},
  {name:"Bbb.jpg",artist:"Bbb",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
  {name:"Metaline__Мир Проподает (Single)__C__Egor Kobzev__Metal.jpg",artist:"Metaline",title:"Мир Проподает (Single)",label:"",work:"Composed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Metal",spotifyUrl:"https://open.spotify.com/track/5URomBQxbB1nyqzlgY93ES?si=023225a5fd194a2c"},
  {name:"Yyy.jpg",artist:"Yyy",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
