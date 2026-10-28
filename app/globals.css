@@ -904,6 +904,15 @@
 .egorCreditsComingSoon{margin:0 0 23px;color:#cdd4d0;font-size:clamp(15px,1.25vw,19px);line-height:1.65}
 .egorCreditsTags{display:flex;flex-wrap:wrap;gap:9px}
 .egorCreditsTags span{border:1px solid #d8aa6260;color:#dfb77d;padding:8px 12px;border-radius:2px;font-size:10px;font-weight:800;letter-spacing:.12em}
+/* Egor Credits: identical five-column cover grid and hover treatment as Selected Credits. */
+.egorCreditsPage .amberCoverGrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.egorCreditsPage .amberCoverTile{border:0}
+.egorCreditsPage .amberCoverOverlay{background:linear-gradient(180deg,#050506b8,#050506e5)}
+.egorCreditsPage .amberMetaLabel{color:#d0a778}
+.egorCreditsPage .amberPlay{background:#d0a778;color:#111;border:0}
+@media(max-width:1100px){.egorCreditsPage .amberCoverGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.egorCreditsPage .amberCoverGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+
 @media(max-width:800px){
  .egorCreditsIntro{grid-template-columns:1fr;gap:32px}
  .egorCreditsIntro .photobox{width:100%;min-height:300px;height:410px}
