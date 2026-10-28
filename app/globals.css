@@ -837,6 +837,54 @@
 .teamEgorShowcase .teamEgorLinks .textLink{margin-top:0;white-space:nowrap}
 .teamEgorShowcase .teamEgorLinks .teamEgorLinkPending{opacity:.6;cursor:default}
 
+/* Egor Credits: dedicated expandable page, independent of George’s gallery. */
+.egorCreditsPage{position:relative;isolation:isolate;overflow:hidden;min-height:85vh;padding:clamp(55px,6vw,100px) 0 clamp(85px,9vw,150px);background:#101719;color:#f6f4ef}
+.egorCreditsPage::before{content:"";position:absolute;inset:-8px;background:url('/images/studio2/09%20Moog-Nord.jpeg') center/cover no-repeat;filter:blur(4px);z-index:-2}
+.egorCreditsPage::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(8,14,17,.94),rgba(8,14,17,.82) 60%,rgba(8,14,17,.69));z-index:-1}
+.egorCreditsLayout{max-width:1340px}
+.egorCreditsBack{display:inline-flex;gap:8px;align-items:center;color:#e2b574;text-decoration:none;font-size:11px;letter-spacing:.12em;font-weight:800;margin-bottom:27px}
+.egorCreditsBack:hover{color:#fff}
+.egorCreditsStage{border:1px solid rgba(216,170,98,.27);background:rgba(12,19,22,.91);box-shadow:0 28px 95px #0009;animation:egorCreditsUnfold .6s ease-out both}
+@keyframes egorCreditsUnfold{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.egorCreditsIntro{display:grid;grid-template-columns:minmax(220px,.65fr) minmax(0,1fr);gap:clamp(28px,5vw,82px);align-items:center;padding:clamp(22px,4vw,58px)}
+.egorCreditsIntro .photobox{height:clamp(320px,34vw,455px);min-height:320px}
+.egorCreditsIntro .photo{inset:0;background-position:center}
+.egorCreditsHeading{min-width:0}
+.egorCreditsHeading>small{font-size:11px;letter-spacing:.17em;color:#d8aa62;font-weight:800}
+.egorCreditsHeading h1{margin:16px 0 18px;font-size:clamp(43px,5.3vw,86px);line-height:1.05;letter-spacing:-.06em;color:#fff}
+.egorCreditsHeading h1 span{display:block;color:#d8aa62}
+.egorCreditsHeading>p{color:#e6c18a;font-size:clamp(12px,1.15vw,16px);line-height:1.55;margin:0}
+.egorCreditsHeading .egorCreditsIntroCopy{margin-top:22px;color:#c5cfca;font-size:clamp(15px,1.15vw,18px);line-height:1.65;max-width:650px}
+.egorCreditsAccordion{border-top:1px solid #ffffff2b}
+.egorCreditsToggle{appearance:none;border:0;background:rgba(15,25,28,.8);color:#f8f6f0;width:100%;padding:clamp(22px,3vw,37px) clamp(23px,4vw,58px);display:flex;align-items:center;justify-content:space-between;gap:22px;text-align:left;cursor:pointer}
+.egorCreditsToggle:hover{background:rgba(36,48,51,.85)}
+.egorCreditsToggle>span{display:flex;flex-direction:column;gap:8px}
+.egorCreditsToggle small{font-size:10px;color:#d8aa62;font-weight:800;letter-spacing:.15em}
+.egorCreditsToggle strong{font-size:clamp(21px,2.1vw,32px);letter-spacing:-.035em}
+.egorCreditsToggle>svg{flex-shrink:0;transition:transform .35s ease}
+.egorCreditsToggle>svg.isOpen{transform:rotate(180deg)}
+.egorCreditsDrawer{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .45s ease,opacity .3s ease}
+.egorCreditsDrawer.isOpen{grid-template-rows:1fr;opacity:1}
+.egorCreditsDrawerInner{overflow:hidden;min-height:0;padding:0 clamp(23px,4vw,58px);transition:padding .45s ease}
+.egorCreditsDrawer.isOpen .egorCreditsDrawerInner{padding:0 clamp(23px,4vw,58px) clamp(28px,4vw,55px)}
+.egorCreditsComingSoon{margin:0 0 23px;color:#cdd4d0;font-size:clamp(15px,1.25vw,19px);line-height:1.65}
+.egorCreditsTags{display:flex;flex-wrap:wrap;gap:9px}
+.egorCreditsTags span{border:1px solid #d8aa6260;color:#dfb77d;padding:8px 12px;border-radius:2px;font-size:10px;font-weight:800;letter-spacing:.12em}
+@media(max-width:800px){
+ .egorCreditsIntro{grid-template-columns:1fr;gap:32px}
+ .egorCreditsIntro .photobox{width:100%;min-height:300px;height:410px}
+ .egorCreditsHeading h1{font-size:clamp(43px,9vw,69px)}
+}
+@media(max-width:500px){
+ .egorCreditsPage{padding:55px 0 75px}
+ .egorCreditsIntro{padding:18px;gap:25px}
+ .egorCreditsIntro .photobox{min-height:260px;height:320px}
+ .egorCreditsToggle{padding:20px 18px}
+ .egorCreditsDrawerInner{padding:0 18px}
+ .egorCreditsDrawer.isOpen .egorCreditsDrawerInner{padding:0 18px 25px}
+}
+@media(prefers-reduced-motion:reduce){.egorCreditsStage{animation:none}.egorCreditsDrawer,.egorCreditsDrawerInner,.egorCreditsToggle>svg{transition:none}}
+
 /* Booking inquiry: price grid over LA2-New video; scoped to Booking only. */
 .bookingInquiryStage.bookingContactShell{position:relative;isolation:isolate;overflow:hidden;background:#071018;padding:clamp(32px,4vw,56px) clamp(18px,4vw,72px) clamp(46px,5vw,76px)}
 .bookingInquiryVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.52) saturate(.83);opacity:.82;pointer-events:none;z-index:0}
