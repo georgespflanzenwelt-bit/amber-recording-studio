@@ -54,7 +54,7 @@ export async function GET(request:Request){
    const olympicDoOne=/\blifts$/i.test(artist)&&/^do one\s*\(album\)$/i.test(title);
    const brotherAlbum=/^brothers?\s+keepers?$/i.test(artist)&&/^am\s+i\s+my\s+brother.?s\s+keeper/i.test(title);
    const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||(!egor&&brotherAlbum?{spotifyUrl:"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N"}:{});
-   const isRistretto=egor&&/ristretto|ember|raphael|coffee/i.test([name,artist,title].join(" "));
+   const isRistretto=egor&&/ristretto|ember|amber|beans?|raphael|coffee/i.test([name,artist,title].join(" "));
    const externalUrl=extra.externalUrl||(isRistretto?metadata.externalLinks?.ristretto||"":"");
    return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),externalUrl,spotifyUrl:olympicDoOne?"https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr":extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[],youtubePlaylist:extra.youtubePlaylist?.id&&Array.isArray(extra.youtubePlaylist.tracks)?extra.youtubePlaylist:undefined};
   });
