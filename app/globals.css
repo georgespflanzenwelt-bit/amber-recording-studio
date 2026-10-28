@@ -584,6 +584,27 @@
 .bookingGuestMixing h4{font-size:15px;line-height:1.4;letter-spacing:.075em;color:#d8aa62;margin:0 0 17px;font-weight:800}
 .bookingGuestMixing p:last-child{margin-bottom:0}
 .bookingServiceDetail button{background:transparent;color:#fff;border:1px solid #ffffff60;padding:8px;cursor:pointer}
+/* Contact CTA: same oval outline for every expanded booking-service box. */
+.bookingServiceDetail > div:first-child{flex:1;min-width:0}
+.bookingServiceContactRow{display:flex;justify-content:flex-end;align-items:center;padding:30px 0 4px}
+.bookingServiceDetail .bookingServiceContactButton{
+ display:inline-flex;justify-content:center;align-items:center;
+ min-width:158px;min-height:53px;padding:13px 27px;
+ border:1px solid rgba(246,245,241,.62);border-radius:999px;
+ background:transparent;color:#f8f6f2;font-size:11px;font-weight:800;
+ letter-spacing:.16em;text-align:center;cursor:pointer;
+ transition:background .2s ease,border-color .2s ease,color .2s ease
+}
+.bookingServiceDetail .bookingServiceContactButton:hover,
+.bookingServiceDetail .bookingServiceContactButton:focus-visible{
+ border-color:#d8aa62;background:#d8aa62;color:#101719
+}
+.bookingServiceDetail .bookingServiceContactButton:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:600px){
+ .bookingServiceContactRow{padding-top:24px}
+ .bookingServiceDetail .bookingServiceContactButton{min-width:144px;min-height:47px}
+}
+
 .bookingPolicyDisclosure{background:#ebe7df;color:#182224}
 .bookingPolicyDisclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px max(5vw,calc((100vw - 1200px)/2));border-bottom:1px solid #b9b7ac}
 .bookingPolicyDisclosure>summary::-webkit-details-marker{display:none}
