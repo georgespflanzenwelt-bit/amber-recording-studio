@@ -161,7 +161,7 @@ const egorKnownCredits:SelectedEntry[]=[
  {name:"Autboy Shtein__PIZZA__Remix__Egor Kobzev__Electronic.jpg",artist:"Autboy Shtein",title:"PIZZA",label:"",work:"Remixed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Electronic",spotifyUrl:"https://open.spotify.com/track/2DplkxUqsOAeq5zyPPU0wz?si=9d5d99d4c6c64655"},
  {name:"Bbb.jpg",artist:"Bbb",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"",spotifyUrl:"https://open.spotify.com/track/29Kbvxk0q86XmhdMlNic6G?si=622d998df095486d"},
  {name:"Metaline__Мир Проподает (Single)__C__Egor Kobzev__Metal.jpg",artist:"Metaline",title:"Мир Проподает (Single)",label:"",work:"Composed",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"Metal",spotifyUrl:"https://open.spotify.com/track/5URomBQxbB1nyqzlgY93ES?si=023225a5fd194a2c"},
- {name:"Yyy.jpg",artist:"Yyy",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""},
+ {name:"Yyy.jpg",artist:"Yyy",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:"",spotifyUrl:"https://open.spotify.com/track/1bhvi8id2JeSEGIp7Ms1gJ?si=16d69a1e18264120"},
  {name:"Zzzz.jpg",artist:"Zzzz",title:"",label:"",work:"",creditName:"Egor Kobzev",trackNumbers:"",key:null,genre:""}
 ].map(entry=>({...entry,image:"/Pic%20GB%20%26%20Egor/Egor%20Credits/"+encodeURIComponent(entry.name)}));
 
