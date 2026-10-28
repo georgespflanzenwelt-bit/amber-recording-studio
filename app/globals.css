@@ -893,7 +893,7 @@
 .egorCreditsToggle{appearance:none;border:0;background:rgba(15,25,28,.8);color:#f8f6f0;width:100%;padding:clamp(22px,3vw,37px) clamp(23px,4vw,58px);display:flex;align-items:center;justify-content:space-between;gap:22px;text-align:left;cursor:pointer}
 .egorCreditsToggle:hover{background:rgba(36,48,51,.85)}
 .egorCreditsToggle>span{display:flex;flex-direction:column;gap:8px}
-.egorCreditsToggle small{font-size:10px;color:#d8aa62;font-weight:800;letter-spacing:.15em}
+.egorCreditsToggle small{display:none;font-size:10px;color:#d8aa62;font-weight:800;letter-spacing:.15em}
 .egorCreditsToggle strong{font-size:clamp(21px,2.1vw,32px);letter-spacing:-.035em}
 .egorCreditsToggle>svg{flex-shrink:0;transition:transform .35s ease}
 .egorCreditsToggle>svg.isOpen{transform:rotate(180deg)}
