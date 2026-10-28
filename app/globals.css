@@ -3,7 +3,8 @@
 /* Studio & Team: George Brasch profile, scoped to this member only. */
 .teamMember.teamGeorge{align-items:stretch}
 .teamGeorge .photobox{min-height:690px}
-.teamGeorge .photo{inset:0;background-position:center center}
+.teamGeorge .photo{inset:0;background-position:center center;filter:none;transform:none;transition:none}
+.teamGeorge .photobox:hover .photo{transform:none}
 .teamGeorgeCopy{align-self:center;min-width:0;padding:18px 0}
 .teamMember .teamGeorgeCopy h2{font-size:clamp(43px,4.4vw,69px);line-height:1.02;letter-spacing:-.065em;margin:0 0 17px}
 .teamGeorgeCopy .teamGeorgeRoles{display:block;margin:0 0 27px;font-size:11px;line-height:1.65;letter-spacing:.045em;font-weight:800;text-transform:none;color:#8c673a}
