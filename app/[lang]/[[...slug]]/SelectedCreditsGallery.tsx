@@ -30,6 +30,12 @@ function matchLocalSongs(entry:SelectedEntry|null,files:{name:string;url:string;
  const artist=normalizeSong(entry.artist);
  const title=songTitle(entry.title);
  if(!artist||!title)return [];
+ // Link the Coober Pedy credit to track 08 from the existing Loophole folder.
+ // Resolve its URL from /api/local-songs; do not rename or move the audio file.
+ if(artist==="elektronik sampler 1990"&&title==="coober pedy falling giants"){
+  const track=files.find(file=>file.albumFolder==="songs/Loophole"&&file.order===8&&normalizeSong(file.name.replace(/^\\s*0?8\\s*/,""))==="coober pedy falling giants");
+  return track?[{...track,name:"08 Coober Pedy – Falling Giants"}]:[];
+ }
  // The seven local mixes belong to public/songs/Loophole. Use only the file
  // URLs discovered by /api/local-songs and keep their original track numbers.
  if(artist==="loophole"&&title==="closer to reality"){
