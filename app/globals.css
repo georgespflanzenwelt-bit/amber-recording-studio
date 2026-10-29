@@ -289,6 +289,10 @@
 .introVideoSection .columns h2,.introVideoSection .columns p,.introVideoSection .textLink{color:#fff}
 .introVideoSection .columns p{color:#f1f1ef;text-shadow:0 1px 10px #0008}
 .introVideoSection .textLink{border-color:#fff}
+/* Prominent double-outline Our Team button beneath the home introduction headline. */
+.introVideoSection .introTeamButton{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:15px;min-height:66px;margin-top:22px;padding:16px 37px;border:3px solid #e68a32;border-radius:999px;color:#ffb565;background:rgba(12,12,13,.45);box-shadow:0 0 24px rgba(230,138,50,.23),inset 0 0 0 5px rgba(12,12,13,.9),inset 0 0 0 6px #e68a32;font-size:16px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.introVideoSection .introTeamButton:hover,.introVideoSection .introTeamButton:focus-visible{background:rgba(230,138,50,.18);box-shadow:0 0 33px rgba(230,138,50,.43),inset 0 0 0 5px rgba(12,12,13,.8),inset 0 0 0 6px #ffb565;transform:translateY(-2px)}
+@media(max-width:700px){.introVideoSection .introTeamButton{min-height:58px;padding:14px 27px;font-size:14px}}
 /* Home intro: warm-gold streaming audit card beneath Studio & Team. */
 .introVideoSection{padding-bottom:65px}
 .introStreamingStat{display:flex;flex-direction:column;align-items:flex-start;gap:7px;width:min(445px,100%);margin-top:35px;padding:21px 24px 20px;background:linear-gradient(125deg,rgba(36,29,21,.76),rgba(8,10,11,.68));border:1px solid rgba(219,165,88,.53);border-radius:11px;box-shadow:0 12px 34px rgba(0,0,0,.21);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#f8f4ed}
