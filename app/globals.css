@@ -199,9 +199,9 @@
 .creditsShowcaseCopy{max-width:390px;color:#bbb8b8;font-size:13px;line-height:1.75;margin:0 0 3px}
 .creditsShowcaseCopy strong{display:block;color:#e9c29a;font-size:14px;line-height:1.55;font-weight:800;margin-bottom:12px}
 .creditsShowcaseCopy span{display:block}
-.creditsChartsButton{display:inline-flex;align-items:center;justify-content:center;min-height:53px;padding:15px 27px;margin-top:24px;border:1px solid #cda47f;border-radius:999px;background:transparent;color:#f2d2b0;font:800 14px 'DM Sans',sans-serif;letter-spacing:.14em;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
-.creditsChartsButton:hover,.creditsChartsButton.is-active{background:#cda47f;border-color:#cda47f;color:#171411}
-.creditsChartsButton:focus-visible{outline:2px solid #f2d2b0;outline-offset:4px}
+.creditsChartsButton{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:66px;padding:16px 37px;margin-top:24px;border:3px solid #e68a32;border-radius:999px;background:rgba(12,12,13,.45);color:#ffb565;box-shadow:0 0 24px rgba(230,138,50,.23),inset 0 0 0 5px rgba(12,12,13,.9),inset 0 0 0 6px #e68a32;font:800 16px 'DM Sans',sans-serif;letter-spacing:.15em;text-align:center;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .2s}
+.creditsChartsButton:hover,.creditsChartsButton.is-active{background:rgba(230,138,50,.18);color:#ffb565;box-shadow:0 0 33px rgba(230,138,50,.43),inset 0 0 0 5px rgba(12,12,13,.8),inset 0 0 0 6px #ffb565;transform:translateY(-2px)}
+.creditsChartsButton:focus-visible{outline:2px solid #ffb565;outline-offset:4px}
 /* Optional chart/award annotations appear only for highlighted credits. */
 .creditsShowcase .amberChartsAwardCard{min-width:0;display:flex;flex-direction:column;align-items:stretch}
 .creditsShowcase .amberChartsAwardCard .amberCoverTile{flex:none}
