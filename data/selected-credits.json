@@ -208,6 +208,9 @@
     }
   },
   "releases": {
+    "fantastic plastic machine::laventure fantastique": {
+      "youtubeUrl": "https://www.youtube.com/watch?v=tQYYB32-3Ac&list=RDtQYYB32-3Ac&start_radio=1"
+    },
     "iao::touch of love (album)": {
       "youtubeTracks": [
         {"number":1,"title":"Love","artist":"IAO","youtubeUrl":"https://www.youtube.com/watch?v=_YpfNOFV6DQ&list=RD_YpfNOFV6DQ&start_radio=1"},
