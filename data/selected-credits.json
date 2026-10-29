@@ -208,6 +208,15 @@
     }
   },
   "releases": {
+    "mojo club::the remix album": {
+      "youtubeUrl": "https://www.youtube.com/watch?v=nCpZ1XYfVH8&list=RDnCpZ1XYfVH8&start_radio=1"
+    },
+    "mojo club::the remix album (album)": {
+      "youtubeUrl": "https://www.youtube.com/watch?v=nCpZ1XYfVH8&list=RDnCpZ1XYfVH8&start_radio=1"
+    },
+    "mojo club::some essential pieces": {
+      "youtubeUrl": "https://www.youtube.com/watch?v=nCpZ1XYfVH8&list=RDnCpZ1XYfVH8&start_radio=1"
+    },
     "fantastic plastic machine::laventure fantastique": {
       "youtubeUrl": "https://www.youtube.com/watch?v=tQYYB32-3Ac&list=RDtQYYB32-3Ac&start_radio=1"
     },
