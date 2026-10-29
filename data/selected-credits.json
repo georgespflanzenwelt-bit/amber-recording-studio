@@ -208,6 +208,13 @@
     }
   },
   "releases": {
+    "iao::touch of love (album)": {
+      "youtubeTracks": [
+        {"number": 1, "title": "Track 01", "artist": "IAO", "youtubeUrl": "https://www.youtube.com/watch?v=_YpfNOFV6DQ&list=RD_YpfNOFV6DQ&start_radio=1"},
+        {"number": 2, "title": "Track 02", "artist": "IAO", "youtubeUrl": "https://www.youtube.com/watch?v=azqVF7po9a0&list=RDazqVF7po9a0&start_radio=1"},
+        {"number": 6, "title": "Track 06", "artist": "IAO", "youtubeUrl": "https://www.youtube.com/watch?v=_YpfNOFV6DQ&list=RD_YpfNOFV6DQ&start_radio=1"}
+      ]
+    },
     "the fantastic plastic machine::album": {
       "youtubeUrl": "https://www.youtube.com/watch?v=hLMuXbn2WXg&list=PLwqwo6RkvB873RpMsypIo7AR1tpeWQ6h9&index=6"
     },
