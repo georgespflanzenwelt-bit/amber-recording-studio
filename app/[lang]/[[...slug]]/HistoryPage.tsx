@@ -10,6 +10,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
  useEffect(()=>{let mounted=true;fetch("/api/history-studio-photo").then(r=>r.json()).then(d=>{if(mounted&&d.url)setUpperStudioPhoto(d.url)}).catch(()=>{});return()=>{mounted=false}},[]);
  useEffect(()=>{let active=true;fetch("/api/selected-covers").then(r=>r.json()).then(data=>{const item=(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" "))&&/(vol(?:ume)?\s*1|vol(?:ume)?\s*i\b)/i.test([e.name,e.title].join(" ")))||(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" ")));if(active&&item?.image)setCoolStruttinCover(item.image)}).catch(()=>{});return()=>{active=false}},[]);
  return <div className="amberHistory">
+  <video className="historyTapeBackground" src="/studio-video/Tape%20New.mp4" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"/>
   <header className="historyHero">
    <div className="wrap historyHeroInner">
     <small>AMBER / {de?"HISTORIE":"HISTORY"} · BERLIN · 1991—TODAY</small>
