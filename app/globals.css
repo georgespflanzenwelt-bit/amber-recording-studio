@@ -1344,3 +1344,16 @@
  100%{opacity:1;transform:translate3d(0,0,0)}
 }
 @media(prefers-reduced-motion:reduce){.homeBackBlockDivider span,.homeBackBlockDivider.is-visible span{animation:none!important;opacity:1;transform:none}}
+
+/* BACK ON THE BLOCK: mirrored original services bounce, right-to-left to left edge. */
+.homeBackBlockDivider{justify-content:flex-start}
+.homeBackBlockDivider span{transform-origin:left center;transform:translate3d(110vw,0,0)}
+.homeBackBlockDivider.is-visible span{animation:backBlockRightToLeft 1.3s both cubic-bezier(.18,.72,.2,1)!important}
+@keyframes backBlockRightToLeft{
+ 0%{opacity:0;transform:translate3d(110vw,0,0) scaleX(1.04)}
+ 65%{opacity:1;transform:translate3d(-10px,0,0) scaleX(.94) scaleY(1.045)}
+ 79%{transform:translate3d(5px,0,0) scaleX(1.035) scaleY(.98)}
+ 91%{transform:translate3d(-2px,0,0) scaleX(.992) scaleY(1.005)}
+ 100%{opacity:1;transform:none}
+}
+@media(prefers-reduced-motion:reduce){.homeBackBlockDivider span,.homeBackBlockDivider.is-visible span{animation:none!important;opacity:1;transform:none}}
