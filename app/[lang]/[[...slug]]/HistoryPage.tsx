@@ -25,12 +25,13 @@ export default function HistoryPage({lang}:{lang:Lang}){
     </div>
    </div>
    <div className="historyYearEntry">
-    <span className="historyYear">1993</span>
+    <div className="historyYearWithCover"><span className="historyYear">1993</span>
+     {coolStruttinCover&&<img src={coolStruttinCover} alt="Cool Struttin’ Volume 1 – Amber Records" className="historyCoolStruttinCover"/>}
+    </div>
     <div className="historyYearCopy">
      <h2>{de?"Der nächste Schritt: Amber Records.":"The next step: Amber Records."}</h2>
      <p>{de?<>Mit der ersten <strong>Amber EP</strong> und einer Compilation mit unveröffentlichter Musik zwischen <strong>Soul, Jazz und Acid Jazz</strong> begann die eigene Labelgeschichte. Amber Records arbeitete bewusst unabhängig und baute sich eigene Strukturen für Produktion, Vertrieb und Promotion auf.</>:<>The first <strong>Amber EP</strong> and a compilation of previously unreleased music spanning <strong>Soul, Jazz and Acid Jazz</strong> marked the beginning of the label. Amber Records deliberately remained independent, building its own production, distribution and promotion structures.</>}</p>
      <p>{de?<>Der Erfolg ließ nicht lange auf sich warten: Die erste Compilation <strong>Cool Struttin’ Volume 1</strong> mit bis dahin unveröffentlichten Tracks aus aller Welt – zwischen Soul und Acid Jazz – verkaufte sich <strong>über 20.000 Mal</strong> und erschien sogar in <strong>Kanada und Japan</strong>, alles in Eigenregie. Für ein unabhängiges Berliner Label war das zu einer Zeit, in der Techno und Eurodance die Musikszene dominierten, ein bemerkenswerter Erfolg und legte den Grundstein für die weitere Entwicklung von Amber.</>:<>Success followed quickly: the first compilation, <strong>Cool Struttin’ Volume 1</strong>, brought together previously unreleased tracks from around the world, spanning soul and acid jazz. It sold <strong>more than 20,000 copies</strong> and was released in <strong>Canada and Japan</strong> – all independently. For an independent Berlin label, this was a remarkable achievement at a time when techno and Eurodance dominated the music scene, and it laid the foundation for Amber’s continued growth.</>}</p>
-     {coolStruttinCover&&<img src={coolStruttinCover} alt="Cool Struttin’ Volume 1 – Amber Records" className="historyCoolStruttinCover"/>}
     </div>
    </div>
    <div className="historyYearEntry">
