@@ -1371,3 +1371,12 @@
 
 /* Show the clickable service keywords sooner, independent of the delayed CTA. */
 .heroText>p.heroServiceLinks{animation:amberTextArrival .65s .65s ease both}
+
+/* Compact 15-link navigation; no arrows, slimmer sidebar. */
+.mobileMenu{width:min(365px,86vw)!important}
+.mobileMenu .menuInner{padding:20px 25px 25px!important;max-height:calc(100dvh - 98px);overflow-y:auto;scrollbar-width:thin}
+.mobileMenu .menuInner a{font-size:12px!important;line-height:1.25!important;letter-spacing:.075em!important;min-height:0!important;padding:8px 0!important;gap:0!important}
+.mobileMenu .menuInner a::after,.mobileMenu .menuInner a:after{content:none!important;display:none!important}
+.mobileMenu .menuKicker{padding-bottom:10px}
+@media(max-width:700px){.mobileMenu{width:min(345px,88vw)!important}.mobileMenu .menuInner{padding:17px 21px 22px!important}}
+#veroeffentlichungen,#lets-work-together,#back-on-the-block{scroll-margin-top:85px}
