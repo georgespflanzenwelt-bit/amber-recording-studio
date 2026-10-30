@@ -46,7 +46,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
     <h4>{f.title}</h4><p>{f.director}</p>
     <div className="scoreFilmActions">
      <button type="button" onClick={()=>setPanel({id:f.id,mode:"description"})}>{lang==="de"?"Beschreibung":"Description"}</button>
-     <button type="button" onClick={()=>f.id==="silvester"?window.open("https://www.youtube.com/watch?v=3W2VerKuj38","_blank","noopener,noreferrer"):setPanel({id:f.id,mode:"tracks"})}>Tracks – Score</button>
+     <button type="button" onClick={()=>setPanel({id:f.id,mode:"tracks"})}>Tracks – Score</button>
     </div>
    </article>})}</div>
    <EgorFilmGallery lang={lang}/>
@@ -55,6 +55,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
     <h3>{selected.title}</h3>
     {panel.mode==="description"?<><p>{selected.description[lang]}</p><small>{lang==="de"?"Regie":"Director"}: {selected.director} · {lang==="de"?"Filmmusik":"Film music"}: George Brasch</small></>:
     panel.mode==="image"?(()=>{const item=findArt(selected.id);return item?(/\.pdf$/i.test(item.name)?<div className="scorePdfLargeCrop"><iframe title={selected.title} src={item.url+"#page=1&toolbar=0&navpanes=0&scrollbar=0&view=Fit"} className="scoreFilmPDF"/></div>:<img className="scoreFilmLargeImage" src={item.url} alt={selected.title}/>):null})():
+    selected.id==="silvester"?<div className="scoreEmbeddedVideo"><iframe src="https://www.youtube-nocookie.com/embed/3W2VerKuj38?rel=0" title="Silvester Countdown – Score" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen/></div>:
     <ScoreTrackPlayer title={selected.title} lang={lang} filmId={selected.id} cover={findArt(selected.id)} tracks={(groups[selected.folder]||[]).filter(x=>/\.(mp3|m4a|wav|ogg|flac)$/i.test(x.name)).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}))}/>}
    </section></div>}
  </div>;
