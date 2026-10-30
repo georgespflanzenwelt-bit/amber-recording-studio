@@ -6,6 +6,8 @@ export default function HistoryPage({lang}:{lang:Lang}){
  const de=lang==="de";
  const [joyVideoOpen,setJoyVideoOpen]=useState(false);
  const [coolStruttinCover,setCoolStruttinCover]=useState("");
+ const [upperStudioPhoto,setUpperStudioPhoto]=useState("");
+ useEffect(()=>{let mounted=true;fetch("/api/history-studio-photo").then(r=>r.json()).then(d=>{if(mounted&&d.url)setUpperStudioPhoto(d.url)}).catch(()=>{});return()=>{mounted=false}},[]);
  useEffect(()=>{let active=true;fetch("/api/selected-covers").then(r=>r.json()).then(data=>{const item=(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" "))&&/(vol(?:ume)?\s*1|vol(?:ume)?\s*i\b)/i.test([e.name,e.title].join(" ")))||(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" ")));if(active&&item?.image)setCoolStruttinCover(item.image)}).catch(()=>{});return()=>{active=false}},[]);
  return <div className="amberHistory">
   <header className="historyHero">
@@ -52,7 +54,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
     <div className="historyYearWithCover">
      <span className="historyYear historyYearRange">1997–2003</span>
      <div className="historyMediaStack">
-      <figure className="historyMediaFigure"><img src="/images/Amber%20old/Amber%20Upper%20Studio-S%C3%A9kou%2C%20Afrob%2C%20Desue.jpg" alt="Afrob, Sékou und DJ Desue im Amber Studio"/><figcaption>Afrob, Sékou &amp; DJ Desue im Amber Studio</figcaption></figure>
+      <figure className="historyMediaFigure">{upperStudioPhoto?<img src={upperStudioPhoto} alt="Afrob, Sékou und DJ Desue im Amber Studio"/>:null}<figcaption>Afrob, Sékou &amp; DJ Desue im Amber Studio</figcaption></figure>
       <figure className="historyMediaFigure"><img src="/images/Amber%20old/Joy%20Denalane-Was%20auch%20immer%20(Upper%20Amber%20Studio).png" alt="Joy Denalane – Was auch immer, Upper Amber Studio"/><figcaption>Joy Denalane – Upper Amber Studio</figcaption></figure>
       <button type="button" className="historyVideoButton" onClick={()=>setJoyVideoOpen(v=>!v)}>{joyVideoOpen?(de?"Video schließen":"Close video"):(de?"Joy Denalane – Video ansehen":"Joy Denalane – Watch video")}</button>
       {joyVideoOpen&&<div className="historyInlineVideo"><iframe src="https://www.youtube-nocookie.com/embed/dikRhb6sCUk?rel=0" title="Joy Denalane – Was auch immer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy"/></div>}
