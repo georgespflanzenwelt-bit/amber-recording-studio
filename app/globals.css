@@ -1197,3 +1197,6 @@
 .egorFilmExternalEmbed iframe{display:block;width:100%;aspect-ratio:16/9;min-height:310px;border:0;background:#080808;border-radius:8px}
 .egorFilmExternalEmbed p{font-size:12px;color:#aaa;margin:10px 0 0}
 .egorFilmExternalEmbed a{color:#e3b477}
+
+/* Four Egor commercial film tiles in one desktop row. */
+@media(min-width:1101px){.bookingServiceDetail:has(.scoreFilms) .egorFilmGrid{grid-template-columns:repeat(4,minmax(0,260px));justify-content:center;gap:14px}}
