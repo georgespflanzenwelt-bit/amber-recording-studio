@@ -102,6 +102,19 @@ export default function HistoryPage({lang}:{lang:Lang}){
    </div>
   </div></section>
 
+  <section className="wrap historyTimeline history2025Timeline" aria-label={de?"Amber Neustart 2025":"Amber return 2025"}>
+   <div className="historyYearEntry">
+    <div className="historyYearWithCover">
+     <span className="historyYear">2025</span>
+     <img src="/Pic%20GB%20%26%20Egor/GB%20Hoodie.png" alt={de?"George Brasch – AMBER Recording Studio":"George Brasch – AMBER Recording Studio"} className="history2025Photo"/>
+    </div>
+    <div className="historyYearCopy">
+     <h2>{de?"AMBER IS BACK.":"AMBER IS BACK."}</h2>
+     {de?<><p><strong>Mixen ist wie Fahrradfahren: Man verlernt es nicht.</strong> Wenn Gehör, Erfahrung und musikalisches Gespür über Jahrzehnte miteinander gewachsen sind, bleiben die Verbindungen bestehen. Einmal verinnerlichte Klangvorstellungen, das Gefühl für Dynamik, Balance und Groove – all das lässt sich jederzeit wieder abrufen.</p><p>Nach einer längeren Familien- und Kinderpause ist <strong>AMBER Recording Studio zurück – back on the block!</strong> Mit frischer Energie, neuen Ideen und der Erfahrung aus über 30 Jahren Musikproduktion sind wir wieder voll am Start, um die Musikszene mitzugestalten und neue Sounds auf den Weg zu bringen.</p><p>Ob ihr einen Track <strong>mischen oder mastern</strong>, Songs <strong>produzieren</strong> oder ein ganzes Projekt musikalisch weiterentwickeln möchtet: <strong>Wir sind als Team wieder für euch da.</strong> Mit offenen Ohren, Leidenschaft für Musik und dem Anspruch, aus jeder Produktion das Beste herauszuholen.</p></>:<><p><strong>Mixing is like riding a bike: once you know how, you never forget.</strong> Decades of listening, experience and musical instinct create lasting connections. That sense of dynamics, balance and groove is always there, ready to be put to work again.</p><p>After an extended break to focus on family, <strong>AMBER Recording Studio is back on the block!</strong> With fresh energy, new ideas and more than 30 years of music production experience, we're back to help shape the scene and bring new sounds to life.</p><p>Whether you need a track <strong>mixed or mastered</strong>, a song <strong>produced</strong> or creative support for an entire project, <strong>our team is ready to work with you.</strong> Open ears, passion for music and a commitment to making every production sound its best.</p></>}
+    </div>
+   </div>
+  </section>
+
   <footer className="historyClosing"><div className="wrap"><small>AMBER / FROM THE FIRST NOTE TO THE FINAL MASTER</small><h2>{de?<>AMBER WAR NIE NUR<br/><em>EIN STUDIO ODER EIN LABEL.</em></>:<>AMBER WAS NEVER JUST<br/><em>A STUDIO OR A LABEL.</em></>}</h2><p>{de?"Es war ein Ort, an dem Musik entstanden ist – vom ersten Ton bis zum fertigen Master.":"It was a place where music came to life – from the very first note to the finished master."}</p></div></footer>
  </div>;
 }
