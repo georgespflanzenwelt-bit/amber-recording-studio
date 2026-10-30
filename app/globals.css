@@ -1315,3 +1315,8 @@
 .homeCreditsCurtainInner{min-height:0;overflow:hidden}
 .artistCreditsLink{background:transparent;border:0;font:inherit;cursor:pointer}
 @media(prefers-reduced-motion:reduce){.homeCreditsCurtain{transition:none}}
+
+/* Bottom close control for expanded home credits curtain. */
+.homeCreditsCurtainFooter{display:flex;justify-content:center;padding:34px 20px 52px;background:#050505}
+.homeCreditsCurtainClose{appearance:none;background:transparent;border:1px solid #dba95d;color:#fff;padding:12px 18px;font:inherit;font-size:16px;letter-spacing:.16em;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.homeCreditsCurtainClose:hover,.homeCreditsCurtainClose:focus-visible{background:#dba95d;color:#080808;box-shadow:0 0 16px rgba(219,169,93,.4)}
