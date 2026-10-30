@@ -74,9 +74,9 @@ export default function HistoryPage({lang}:{lang:Lang}){
    </div>
   </div></section>
 
-  <section className="wrap historyEditorial historyLightSection">
-   <div className="historySectionIntro"><span className="historySectionNumber">04 / NEW SPACES</span><h2>{de?<>VOM AMBER STUDIO<br/><em>ZU NEUEN RÄUMEN.</em></>:<>FROM AMBER STUDIO<br/><em>TO NEW SPACES.</em></>}</h2></div>
-   <div className="historyProse">
+  <section className="wrap historyTimeline history2004Timeline"><div className="historyYearEntry">
+   <div className="historyYearWithCover"><span className="historyYear">2004</span><figure className="history2004Figure"><img src="/images/Amber%20old/Amber-Freudenhaus%20Studio.png" alt="Freudenhaus Studio – vorher Amber Studio"/><figcaption>Freudenhaus Studio – vorher Amber Studio</figcaption></figure></div>
+   <div className="historyYearCopy"><h2>{de?"Vom Amber Studio zu neuen Räumen.":"From Amber Studio to new spaces."}</h2>
     <p>{de?<>Das große Amber Studio in der Reichenberger Straße ging später in die Hände des Produzenten <strong>Patrik Majer</strong> über, bekannt durch seine Arbeit mit <strong>Wir sind Helden</strong>.</>:<>The large Amber studio on Reichenberger Straße later passed into the hands of producer <strong>Patrik Majer</strong>, known for his work with <strong>Wir sind Helden</strong>.</>}</p>
     <p>{de?<>Damit lebte ein Teil der ursprünglichen Studiophilosophie weiter: Räume, in denen nicht einfach nur aufgenommen, sondern <strong>Musik entwickelt</strong> werden konnte.</>:<>Part of the original studio philosophy lived on: rooms in which music could be <strong>developed</strong>, rather than simply recorded.</>}</p>
     <p>{de?<>Auch nach Amber plante George Brasch weitere Produktionsräume und Studios. Dazu gehörten unter anderem Projekte für den Musiker <strong>Dejan Jovanović</strong> sowie die akustische Konzeption und Studioplanung für die Berliner DJs und Produzenten <strong>Chopstick &amp; Johnjon</strong>, Gründer des renommierten House-Labels <strong>SUOL</strong>.</>:<>After Amber, George Brasch continued to plan production rooms and studios. His projects included spaces for musician <strong>Dejan Jovanović</strong> and acoustic concepts and studio planning for Berlin DJs and producers <strong>Chopstick &amp; Johnjon</strong>, founders of the acclaimed House label <strong>SUOL</strong>.</>}</p>
@@ -85,7 +85,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
     <p>{de?"Wer ein Gespür für Musik hat und aus jahrelanger Erfahrung als Engineer weiß, wie sich Schallwellen im Raum verhalten, hat gegenüber reiner Theorie und Mathematik einen entscheidenden Vorteil: Man hört nicht nur den Raum – man versteht, was Musik in ihm braucht.":"Someone with a feel for music and years of engineering experience in how sound waves behave in a room brings something beyond theory and mathematics: they do not merely hear the room – they understand what music needs from it."}</p>
     <p>{de?<>Nach mehr als drei Jahrzehnten im Studio ist genau diese Verbindung aus <strong>musikalischem Gehör, technischer Erfahrung und Raumverständnis</strong> zu einem der wichtigsten Bestandteile von George Braschs Arbeit geworden.</>:<>After more than three decades in the studio, the combination of <strong>musical hearing, technical experience and an understanding of space</strong> has become one of the defining elements of George Brasch's work.</>}</p>
    </div>
-  </section>
+  </div></section>
 
   <footer className="historyClosing"><div className="wrap"><small>AMBER / FROM THE FIRST NOTE TO THE FINAL MASTER</small><h2>{de?<>AMBER WAR NIE NUR<br/><em>EIN STUDIO ODER EIN LABEL.</em></>:<>AMBER WAS NEVER JUST<br/><em>A STUDIO OR A LABEL.</em></>}</h2><p>{de?"Es war ein Ort, an dem Musik entstanden ist – vom ersten Ton bis zum fertigen Master.":"It was a place where music came to life – from the very first note to the finished master."}</p></div></footer>
  </div>;
