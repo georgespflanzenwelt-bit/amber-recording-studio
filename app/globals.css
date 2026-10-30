@@ -1126,3 +1126,11 @@
 
 /* Film credits and distinction in the custom score player. */
 .scorePlayerIdentity .scorePlayerAward{display:block;margin-top:5px;color:#e2ad63;font-size:12px;font-weight:800;letter-spacing:.055em;line-height:1.4;text-transform:uppercase}
+
+
+/* Film artwork in score player header; the native PDF chrome stays hidden. */
+.scorePlayerCover{position:relative;flex:0 0 100px;width:100px;height:125px;overflow:hidden;border-radius:9px;background:#fff;border:1px solid rgba(255,255,255,.08)}
+.scorePlayerCover>img{display:block;width:100%;height:100%;object-fit:contain}
+.scorePlayerCover .scorePdfCrop{width:100%;height:100%;overflow:hidden}
+.scorePlayerCover .scorePdfCrop object{position:absolute;left:-40%;top:-35px;width:180%;height:calc(100% + 35px);pointer-events:none}
+@media(max-width:700px){.scorePlayerCover{flex-basis:75px;width:75px;height:95px}}
