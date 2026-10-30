@@ -1276,3 +1276,6 @@
 /* Original Amber Upper Studio as the history page hero backdrop. */
 .amberHistory .historyHero{background:linear-gradient(90deg,rgba(7,13,15,.84) 0%,rgba(7,13,15,.55) 49%,rgba(7,13,15,.18) 100%),url('/images/Amber%20old/Amber%20Upper%20Studio.png') center center / cover no-repeat,#0a1113}
 .amberHistory .historyHeroInner{transform:translateY(-48px)}
+
+/* George Brasch constructing the Upper Studio, below the acoustics heading. */
+.amberHistory .historyAcousticsPhoto{display:block;width:min(100%,420px);height:auto;margin-top:28px;border-radius:3px;object-fit:contain}
