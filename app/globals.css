@@ -1082,3 +1082,22 @@
 .scorePdfLargeCrop{position:relative;overflow:hidden;background:#fff;height:min(70vh,750px);border-radius:5px}
 .scorePdfLargeCrop .scoreFilmPDF{position:absolute;top:-48px;left:0;width:100%;height:calc(100% + 48px);background:#fff}
 @media(max-width:700px){.scorePlayerMark{flex-basis:74px;height:74px;font-size:15px}.scorePlayerIdentity strong{font-size:19px}}
+
+
+/* Compact desktop film showcase: keep all three cards and actions in the first viewport. */
+@media(min-width:701px){
+ .bookingServiceDetail:has(.scoreFilms){padding:15px 22px;gap:12px}
+ .bookingServiceDetail:has(.scoreFilms) h3{font-size:22px;margin:3px 0 7px}
+ .bookingServiceDetail:has(.scoreFilms)>div>p{font-size:14px;line-height:1.45;margin-bottom:8px}
+ .bookingServiceDetail:has(.scoreFilms) .bookingServiceContactRow{padding:12px 0 0}
+ .bookingServiceDetail:has(.scoreFilms) .bookingServiceContactButton{min-height:43px;padding:9px 22px}
+ .scoreFilms{margin:17px 0 4px}
+ .scoreFilmsGrid{gap:15px}
+ .scoreFilmCard{display:flex;flex-direction:column;padding:11px}
+ .scoreFilmArtwork{aspect-ratio:auto;height:clamp(185px,27vh,280px)}
+ .scoreFilmCard h4{font-size:17px;margin:10px 0 3px;line-height:1.22}
+ .scoreFilmCard p{font-size:12px;line-height:1.3;margin-bottom:10px}
+ .scoreFilmActions{gap:7px}
+ .scoreFilmActions button{font-size:11px;padding:8px 12px}
+ .scoreFilmPlaceholder{font-size:clamp(16px,1.65vw,23px)}
+}
