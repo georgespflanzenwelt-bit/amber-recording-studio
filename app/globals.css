@@ -1268,3 +1268,7 @@
  .amberHistory .historyYearEntry{padding-top:22px;padding-bottom:26px}
  .amberHistory .historyClosing{padding-top:48px;padding-bottom:55px}
 }
+
+/* Avoid double separators between the 2003/2004 entries and above the closing panel. */
+.amberHistory .history2003Timeline .historyYearEntry:last-child{border-bottom:0}
+.amberHistory .history2004Timeline .historyYearEntry:last-child{border-bottom:0}
