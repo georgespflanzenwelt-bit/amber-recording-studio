@@ -1119,3 +1119,7 @@
  .scoreFilmPlaceholder{font-size:19px}
  .bookingServiceDetail:has(.scoreFilms) .bookingServiceContactRow{padding:8px 0 0}
 }
+
+/* Film-specific award and broadcaster line directly beneath each poster. */
+.scoreFilmHighlight{min-height:27px;display:flex;align-items:center;color:#dfa95c;font-size:10px;font-weight:800;letter-spacing:.075em;line-height:1.25;text-transform:uppercase;margin:8px 0 0}
+@media(max-width:700px){.scoreFilmHighlight{font-size:10px;min-height:24px}}
