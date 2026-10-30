@@ -4,6 +4,7 @@ type Lang="de"|"en";
 
 export default function HistoryPage({lang}:{lang:Lang}){
  const de=lang==="de";
+ const [joyVideoOpen,setJoyVideoOpen]=useState(false);
  const [coolStruttinCover,setCoolStruttinCover]=useState("");
  useEffect(()=>{let active=true;fetch("/api/selected-covers").then(r=>r.json()).then(data=>{const item=(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" "))&&/(vol(?:ume)?\s*1|vol(?:ume)?\s*i\b)/i.test([e.name,e.title].join(" ")))||(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" ")));if(active&&item?.image)setCoolStruttinCover(item.image)}).catch(()=>{});return()=>{active=false}},[]);
  return <div className="amberHistory">
@@ -48,7 +49,15 @@ export default function HistoryPage({lang}:{lang:Lang}){
     </div>
    </div>
    <div className="historyYearEntry">
-    <span className="historyYear historyYearRange">1997–2003</span>
+    <div className="historyYearWithCover">
+     <span className="historyYear historyYearRange">1997–2003</span>
+     <div className="historyMediaStack">
+      <figure className="historyMediaFigure"><img src="/images/Amber%20old/Amber%20Upper%20Studio-S%C3%A9kou%2C%20Afrob%2C%20Desue.jpg" alt="Afrob, Sékou und DJ Desue im Amber Studio"/><figcaption>Afrob, Sékou &amp; DJ Desue im Amber Studio</figcaption></figure>
+      <figure className="historyMediaFigure"><img src="/images/Amber%20old/Joy%20Denalane-Was%20auch%20immer%20(Upper%20Amber%20Studio).png" alt="Joy Denalane – Was auch immer, Upper Amber Studio"/><figcaption>Joy Denalane – Upper Amber Studio</figcaption></figure>
+      <button type="button" className="historyVideoButton" onClick={()=>setJoyVideoOpen(v=>!v)}>{joyVideoOpen?(de?"Video schließen":"Close video"):(de?"Joy Denalane – Video ansehen":"Joy Denalane – Watch video")}</button>
+      {joyVideoOpen&&<div className="historyInlineVideo"><iframe src="https://www.youtube-nocookie.com/embed/dikRhb6sCUk?rel=0" title="Joy Denalane – Was auch immer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy"/></div>}
+     </div>
+    </div>
     <div className="historyYearCopy">
      <h2>{de?"Ein Ort. Viele musikalische Welten.":"One place. Many musical worlds."}</h2>
      <p>{de?<>Hier gaben sich <strong>internationale Künstler, Produzenten und Musiker buchstäblich die Klinke in die Hand.</strong> Namen wie <strong>RZA vom Wu-Tang Clan, Xavier Naidoo, Barrington Levy, Gentleman, Till Brönner, Kool Savas, Azad, M.O.R., Curse, Afrob, Sékou, Beenie Man, Anthony B, Ja Rule, Christina Milian, R. Kelly, Seeed, Katja Riemann und Saint Etienne</strong> stehen nur beispielhaft für die enorme Bandbreite der Künstler, die im Laufe der Jahre mit Amber in Berührung kamen.</>:<>International artists, producers and musicians were <strong>constantly coming through Amber's doors.</strong> Names including <strong>RZA of the Wu-Tang Clan, Xavier Naidoo, Barrington Levy, Gentleman, Till Brönner, Kool Savas, Azad, M.O.R., Curse, Afrob, Sékou, Beenie Man, Anthony B, Ja Rule, Christina Milian, R. Kelly, Seeed, Katja Riemann and Saint Etienne</strong> are only a few examples of the extraordinary range of artists who crossed paths with Amber over the years.</>}</p>
