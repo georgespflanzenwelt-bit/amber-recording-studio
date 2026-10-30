@@ -53,28 +53,26 @@ export default function HistoryPage({lang}:{lang:Lang}){
   </section>
 
   <section className="wrap historyEditorial historyLightSection">
-   <div className="historySectionIntro"><span className="historySectionNumber">02 / GEORGE BRASCH</span><h2>{de?<>SOUND, MIXING<br/><em>&amp; RAUMAKUSTIK.</em></>:<>SOUND, MIXING<br/><em>&amp; ROOM ACOUSTICS.</em></>}</h2></div>
+   <div className="historySectionIntro"><h2>{de?<>RAUMAKUSTIK,<br/><em>SOUND UND MIXING.</em></>:<>ROOM ACOUSTICS,<br/><em>SOUND AND MIXING.</em></>}</h2></div>
    <div className="historyProse">
     <p>{de?<>George Brasch war dabei nicht nur als <strong>Producer, Recording- und Mixing Engineer</strong> tätig, sondern entwickelte zunehmend auch eine zweite große Stärke: die <strong>akustische Planung von Studios</strong>.</>:<>George Brasch was not only active as a <strong>producer, recording and mixing engineer</strong>. He also developed a second major strength: <strong>the acoustic design of studios.</strong></>}</p>
     <p>{de?"Denn wer über Jahrzehnte täglich hört, wie sich Schall in einem Raum verhält, entwickelt ein anderes Verständnis für Akustik als jemand, der nur mit Formeln arbeitet.":"Anyone who listens to the way sound behaves in a room every day for decades develops a different understanding of acoustics from someone working with formulas alone."}</p>
-    <blockquote>{de?"Theorie und Mathematik sind wichtig – aber Erfahrung hört Dinge, bevor sie sich messen lassen.":"Theory and mathematics matter – but experience hears things before they can be measured."}</blockquote>
+    <blockquote>{de?"Erfahrung hört Dinge, bevor sie sich messen lassen.":"Experience hears things before they can be measured."}</blockquote>
     <p>{de?"Genau dieses Verständnis floss in die Planung und den Bau der Amber Studios ein und später auch in weitere Studios in Berlin.":"That understanding informed the planning and construction of the Amber Studios and, later, other studios in Berlin."}</p>
-    <p>{de?<>Dabei ging es nie nur darum, Absorber an Wände zu hängen. Entscheidend war immer die Frage: <strong>Wie muss ein Raum gebaut sein, damit Musik darin funktioniert?</strong></>:<>It was never simply about hanging absorbers on walls. The essential question was always: <strong>How must a room be built so music works in it?</strong></>}</p>
+    <p>{de?<>Dabei ging es nie nur darum, Absorber an Wände zu hängen. Entscheidend war immer die Frage: <strong>Wie muss ein Raum gebaut sein, damit Musik darin zu leben beginnt?</strong></>:<>It was never simply about hanging absorbers on walls. The essential question was always: <strong>How should a room be built so music can come alive within it?</strong></>}</p>
     <p>{de?"Kontrolle im Bassbereich, präzise Mitten, ein verlässliches Stereobild und gleichzeitig ein Raum, in dem Musiker sich wohlfühlen – für George Brasch gehörten technische Präzision und musikalisches Gefühl immer zusammen.":"Controlled bass, precise midrange, a reliable stereo image – and a space in which musicians feel at ease. For George Brasch, technical precision and musical instinct have always gone hand in hand."}</p>
    </div>
   </section>
 
-  <section className="historyDarkSection historyTwoThousands">
-   <div className="wrap historyEditorial">
-    <div className="historySectionIntro"><span className="historySectionNumber">03 / 2000s</span><h2>{de?<>NEUE STRUKTUREN.<br/><em>NEUE PRODUKTIONEN.</em></>:<>NEW STRUCTURES.<br/><em>NEW PRODUCTIONS.</em></>}</h2></div>
-    <div className="historyProse">
+  <section className="wrap historyTimeline history2003Timeline"><div className="historyYearEntry">
+   <div className="historyYearWithCover"><span className="historyYear">2003</span><img src="/images/studio/03_Studio2_4K.webp" alt="AMBER Recording Studio" className="history2003Hero"/></div>
+   <div className="historyYearCopy"><h2>{de?"Neue Strukturen. Neue Produktionen.":"New structures. New productions."}</h2>
      <p>{de?<>Um <strong>2003</strong> veränderte sich die internationale Musikbranche radikal. Tonträgerverkäufe brachen ein, Budgets wurden kleiner und viele Studios mussten ihre Strukturen neu denken. Auch Amber wurde kompakter – die Arbeit ging jedoch weiter.</>:<>Around <strong>2003</strong>, the international music industry changed radically. Physical sales fell, budgets shrank and many studios had to rethink their structures. Amber became more compact, but the work continued.</>}</p>
      <p>{de?<>In dieser Zeit entstanden zahlreiche Produktionen und Mixe von George Brasch, unter anderem im Umfeld von <strong>Seeed</strong>. Dazu gehörten Titel wie <strong>„She Got Me Twisted“, „Pressure“, „Shake Baby Shake“ und „What You Deserve Is What You Get“</strong>.</>:<>During this period George Brasch created numerous productions and mixes, including work associated with <strong>Seeed</strong>, such as <strong>“She Got Me Twisted”, “Pressure”, “Shake Baby Shake” and “What You Deserve Is What You Get”.</strong></>}</p>
      <p>{de?<>Parallel entstand eine enge Verbindung zur deutschen Reggae- und Dancehall-Szene, insbesondere zum Umfeld von <strong>Rootdown Records</strong>. Künstler wie <strong>Nosliw, Jaqee, Maxim und Koalas Desperados</strong> gehörten zu jener Generation, die den deutschen Reggae-Sound der 2000er prägte.</>:<>At the same time, close ties developed with the German Reggae and Dancehall scenes, particularly around <strong>Rootdown Records</strong>. Artists such as <strong>Nosliw, Jaqee, Maxim and Koalas Desperados</strong> belonged to the generation that shaped German Reggae in the 2000s.</>}</p>
      <p>{de?"Auch in dieser Phase blieb Amber ein Ort, an dem nicht nur technisch gearbeitet wurde, sondern an dem Musik ihren eigenen Charakter bekommen sollte.":"Through this period, Amber remained a place where the goal was not simply technical work, but helping music find its own character."}</p>
-    </div>
    </div>
-  </section>
+  </div></section>
 
   <section className="wrap historyEditorial historyLightSection">
    <div className="historySectionIntro"><span className="historySectionNumber">04 / NEW SPACES</span><h2>{de?<>VOM AMBER STUDIO<br/><em>ZU NEUEN RÄUMEN.</em></>:<>FROM AMBER STUDIO<br/><em>TO NEW SPACES.</em></>}</h2></div>
