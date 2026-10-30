@@ -1248,3 +1248,7 @@
 .historyJoyVideoCover img{display:block;width:100%;height:auto}
 .historyJoyPlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.66);border:2px solid #fff;color:#fff;font-size:24px;padding-left:3px;transition:background .2s}
 .historyJoyVideoCover:hover .historyJoyPlay,.historyJoyVideoCover:focus-visible .historyJoyPlay{background:#b5874e}
+
+/* Replace Joy Denalane cover with the video player in the same footprint. */
+.historyJoyInlinePlayer{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:3px;overflow:hidden}
+.historyJoyInlinePlayer iframe{display:block;width:100%;height:100%;border:0}
