@@ -1285,3 +1285,10 @@
 
 /* 2025 comeback refrain below the history text. */
 .amberHistory .historyBackOnBlock{color:#b5874e;font-weight:800;font-size:clamp(18px,1.55vw,25px);line-height:1.45;letter-spacing:-.02em;margin-top:22px}
+
+/* Historic Tape New footage behind the beige history page at 20% visibility. */
+.amberHistory{position:relative;isolation:isolate}
+.amberHistory .historyTapeBackground{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:.2;z-index:0}
+.amberHistory>header,.amberHistory>section,.amberHistory>footer{position:relative;z-index:1}
+.amberHistory .historyLightSection{background:transparent}
+@media(prefers-reduced-motion:reduce){.amberHistory .historyTapeBackground{display:none}}
