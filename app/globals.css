@@ -1252,3 +1252,19 @@
 /* Replace Joy Denalane cover with the video player in the same footprint. */
 .historyJoyInlinePlayer{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:3px;overflow:hidden}
 .historyJoyInlinePlayer iframe{display:block;width:100%;height:100%;border:0}
+
+
+/* Compact history chronology: remove oversized gaps between editorial and year entries. */
+.amberHistory .historyTimeline{padding-top:24px;padding-bottom:28px}
+.amberHistory .historyYearEntry{padding-top:28px;padding-bottom:32px}
+.amberHistory .historyLightSection{padding-top:42px;padding-bottom:42px}
+.amberHistory .historyClosing{padding-top:62px;padding-bottom:68px}
+.amberHistory .historyYearCopy h2{margin-bottom:18px}
+.amberHistory .historyYearCopy p,.amberHistory .historyProse p{margin-bottom:17px}
+.amberHistory .historyProse blockquote{margin-top:23px;margin-bottom:25px}
+@media(max-width:850px){
+ .amberHistory .historyTimeline{padding-top:20px;padding-bottom:22px}
+ .amberHistory .historyLightSection{padding-top:32px;padding-bottom:32px}
+ .amberHistory .historyYearEntry{padding-top:22px;padding-bottom:26px}
+ .amberHistory .historyClosing{padding-top:48px;padding-bottom:55px}
+}
