@@ -32,7 +32,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
  useEffect(()=>{let active=true;fetch("/api/score-films",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(active)setGroups(data.groups||{})}).catch(()=>{});return()=>{active=false}},[]);
  useEffect(()=>{if(!panel)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setPanel(null)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[panel]);
  const artwork=groups["selected credits/Score"]||[];
- const findArt=(id:string)=>artwork.find(file=>id==="shadow"?/shadow|schattenwelt/i.test(file.name):id==="silvester"?/silvester/i.test(file.name):false);
+ const findArt=(id:string)=>artwork.find(file=>id==="shadow"?/shadow|schattenwelt/i.test(file.name):id==="silvester"?/silvester/i.test(file.name):id==="vietnam"?/mein vietnam|vietnam/i.test(file.name):false);
  const selected=panel?films.find(f=>f.id===panel.id):undefined;
  return <div className="scoreFilms">
   <div className="scoreFilmsGrid">{films.map(f=>{
