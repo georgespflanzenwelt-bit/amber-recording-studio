@@ -1329,3 +1329,18 @@
 .homeBackBlockDivider span{opacity:0;transform:translateX(-110px);animation:none;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
 .homeBackBlockDivider.is-visible span{opacity:1;transform:translateX(0)}
 @media(prefers-reduced-motion:reduce){.homeBackBlockDivider span{transition:none;opacity:1;transform:none}}
+
+/* Restore the original right-aligned WAS WIR MACHEN entrance after removing 01 / SERVICES. */
+.serviceList>.sectionTitle .collabEnterLeft{margin-left:auto;text-align:right}
+/* BACK ON THE BLOCK: travel across the bar, settle at its right edge with the same squash-and-bounce. */
+.homeBackBlockDivider{justify-content:flex-end}
+.homeBackBlockDivider span{animation:none!important;transition:none;opacity:0;transform:translate3d(-110vw,0,0);transform-origin:right center}
+.homeBackBlockDivider.is-visible span{animation:backBlockFullBounce 1.75s both cubic-bezier(.18,.72,.2,1)!important}
+@keyframes backBlockFullBounce{
+ 0%{opacity:1;transform:translate3d(-110vw,0,0) scaleX(1.04)}
+ 68%{opacity:1;transform:translate3d(12px,0,0) scaleX(.94) scaleY(1.045)}
+ 82%{transform:translate3d(-6px,0,0) scaleX(1.035) scaleY(.98)}
+ 92%{transform:translate3d(3px,0,0) scaleX(.992) scaleY(1.005)}
+ 100%{opacity:1;transform:translate3d(0,0,0)}
+}
+@media(prefers-reduced-motion:reduce){.homeBackBlockDivider span,.homeBackBlockDivider.is-visible span{animation:none!important;opacity:1;transform:none}}
