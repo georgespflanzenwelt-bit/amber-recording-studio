@@ -1282,3 +1282,6 @@
 
 /* 2025 AMBER comeback: photo beneath the year in the existing history timeline. */
 .amberHistory .history2025Photo{display:block;width:min(100%,290px);height:auto;object-fit:contain;margin-top:26px;border-radius:3px}
+
+/* 2025 comeback refrain below the history text. */
+.amberHistory .historyBackOnBlock{color:#b5874e;font-weight:800;font-size:clamp(18px,1.55vw,25px);line-height:1.45;letter-spacing:-.02em;margin-top:22px}
