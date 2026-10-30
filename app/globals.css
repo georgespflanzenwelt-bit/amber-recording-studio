@@ -1166,3 +1166,9 @@
 .scoreBrandMore[open] summary svg{transform:rotate(180deg)}
 .scoreBrandMoreText{margin:13px 0 6px;color:#dedede}
 .scoreBrandMoreText p{font-size:14px;line-height:1.55;margin:0 0 11px}
+
+/* Egor's concise commercial intro with expandable biography. */
+.egorFilmIntro{max-width:1060px;font-size:14px;line-height:1.55;color:#e2e2e2;margin:0 0 8px}
+.egorFilmMore{margin:4px 0 22px}
+.egorFilmMore summary span{font-size:20px;line-height:9px;display:inline-block;transition:transform .2s}
+.egorFilmMore[open] summary span{transform:rotate(180deg)}
