@@ -1223,3 +1223,6 @@
 .history2004Figure{width:min(100%,290px);margin:26px 0 0}
 .history2004Figure img{display:block;width:100%;height:auto;border-radius:3px}
 .history2004Figure figcaption{margin-top:8px;color:#666;font-size:12px;line-height:1.4}
+
+/* Yorckstrasse original Amber Studio photograph under 1991. */
+.history1991Photo{display:block;width:min(100%,290px);height:auto;margin-top:26px;border-radius:3px}
