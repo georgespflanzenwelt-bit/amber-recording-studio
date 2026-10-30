@@ -68,7 +68,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
   </section>
 
   <section className="wrap historyEditorial historyLightSection">
-   <div className="historySectionIntro"><h2>{de?<>RAUMAKUSTIK,<br/><em>SOUND UND MIXING.</em></>:<>ROOM ACOUSTICS,<br/><em>SOUND AND MIXING.</em></>}</h2></div>
+   <div className="historySectionIntro"><h2>{de?<>RAUMAKUSTIK,<br/><em>SOUND UND MIXING.</em></>:<>ROOM ACOUSTICS,<br/><em>SOUND AND MIXING.</em></>}</h2><img className="historyAcousticsPhoto" src="/images/Amber%20old/GB%20Upper%20Studio%20Building.png" alt={de?"George Brasch beim Bau des Upper Amber Studio":"George Brasch building the Upper Amber Studio"}/></div>
    <div className="historyProse">
     <p>{de?<>George Brasch war dabei nicht nur als <strong>Producer, Recording- und Mixing Engineer</strong> tätig, sondern entwickelte zunehmend auch eine zweite große Stärke: die <strong>akustische Planung von Studios</strong>.</>:<>George Brasch was not only active as a <strong>producer, recording and mixing engineer</strong>. He also developed a second major strength: <strong>the acoustic design of studios.</strong></>}</p>
     <p>{de?"Denn wer über Jahrzehnte täglich hört, wie sich Schall in einem Raum verhält, entwickelt ein anderes Verständnis für Akustik als jemand, der nur mit Formeln arbeitet.":"Anyone who listens to the way sound behaves in a room every day for decades develops a different understanding of acoustics from someone working with formulas alone."}</p>
