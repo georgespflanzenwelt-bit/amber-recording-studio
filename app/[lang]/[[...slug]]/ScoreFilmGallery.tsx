@@ -46,7 +46,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
     <h4>{f.title}</h4><p>{f.director}</p>
     <div className="scoreFilmActions">
      <button type="button" onClick={()=>setPanel({id:f.id,mode:"description"})}>{lang==="de"?"Beschreibung":"Description"}</button>
-     <button type="button" onClick={()=>setPanel({id:f.id,mode:"tracks"})}>Tracks – Score</button>
+     <button type="button" onClick={()=>f.id==="silvester"?window.open("https://www.youtube.com/watch?v=3W2VerKuj38","_blank","noopener,noreferrer"):setPanel({id:f.id,mode:"tracks"})}>Tracks – Score</button>
     </div>
    </article>})}</div>
    <EgorFilmGallery lang={lang}/>
