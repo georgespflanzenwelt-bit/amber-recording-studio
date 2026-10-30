@@ -1134,3 +1134,23 @@
 .scorePlayerCover .scorePdfCrop{width:100%;height:100%;overflow:hidden}
 .scorePlayerCover .scorePdfCrop object{position:absolute;left:-40%;top:-35px;width:180%;height:calc(100% + 35px);pointer-events:none}
 @media(max-width:700px){.scorePlayerCover{flex-basis:75px;width:75px;height:95px}}
+
+
+/* Egor film and commercial credits below George's score projects. */
+.egorFilmSection{margin:26px 0 5px;padding-top:20px;border-top:1px solid rgba(218,166,83,.35);width:100%}
+.egorFilmSection>h3{font-size:20px!important;letter-spacing:.03em;margin:0 0 19px!important;color:#f5f2ec}
+.egorFilmGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.egorFilmCard{display:flex;flex-direction:column;min-width:0;padding:10px;border:1px solid rgba(218,166,83,.35);border-radius:10px;background:rgba(255,255,255,.035)}
+.egorFilmArtwork{display:flex;align-items:center;justify-content:center;width:100%;height:200px;border:1px solid #61666a;border-radius:6px;background:#151b1e;overflow:hidden;padding:0;cursor:zoom-in}
+.egorFilmArtwork img{height:100%;width:100%;object-fit:contain}
+.egorFilmArtwork>span{display:flex;flex-direction:column;gap:8px;padding:14px;text-align:center;color:#e3b47b;font-size:18px;font-weight:750}
+.egorFilmArtwork small{font-size:12px;color:#c9c1b7}
+.egorFilmCard h4{font-size:15px;margin:10px 0 3px;line-height:1.25}
+.egorFilmCard p{font-size:12px;margin:0 0 6px;color:#e4bd8b}
+.egorFilmCredit{font-size:11px;line-height:1.4;color:#a9aba9;display:block;margin-bottom:12px}
+.egorFilmCard .scoreFilmActions{margin-top:auto}
+.egorFilmVideo{width:100%;aspect-ratio:16/9;background:#000}
+.egorFilmVideo iframe{width:100%;height:100%;border:0}
+.egorFilmModal a{color:#e9b677;text-decoration:underline}
+@media(max-width:1100px){.egorFilmGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.egorFilmGrid{grid-template-columns:1fr}.egorFilmArtwork{height:220px}}
