@@ -1200,3 +1200,7 @@
 
 /* Four Egor commercial film tiles in one desktop row. */
 @media(min-width:1101px){.bookingServiceDetail:has(.scoreFilms) .egorFilmGrid{grid-template-columns:repeat(4,minmax(0,260px));justify-content:center;gap:14px}}
+
+/* Four George production credits in one desktop row, matching existing film-card design. */
+@media(min-width:1101px){.bookingServiceDetail:has(.scoreFilms) .scoreFilmsGrid{grid-template-columns:repeat(4,minmax(0,260px));justify-content:center;gap:14px}}
+@media(min-width:701px) and (max-width:1100px){.bookingServiceDetail:has(.scoreFilms) .scoreFilmsGrid{grid-template-columns:repeat(2,minmax(0,260px));justify-content:center}}
