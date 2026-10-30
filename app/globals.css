@@ -1101,3 +1101,21 @@
  .scoreFilmActions button{font-size:11px;padding:8px 12px}
  .scoreFilmPlaceholder{font-size:clamp(16px,1.65vw,23px)}
 }
+
+
+/* Smaller, image-proportioned film tiles aligned higher in the Score & Brand Music detail. */
+@media(min-width:701px){
+ .bookingServiceDetail:has(.scoreFilms){padding:12px 19px;gap:8px}
+ .bookingServiceDetail:has(.scoreFilms)>div>p{font-size:13px;line-height:1.35;margin-bottom:5px}
+ .bookingServiceDetail:has(.scoreFilms) h3{font-size:21px;margin:2px 0 5px}
+ .scoreFilms{margin:10px 0 0}
+ .scoreFilmsGrid{grid-template-columns:repeat(3,minmax(0,260px));justify-content:center;gap:14px}
+ .scoreFilmCard{padding:9px;border-radius:10px}
+ .scoreFilmArtwork{height:205px;border-radius:5px}
+ .scoreFilmCard h4{font-size:14px;line-height:1.2;margin:8px 0 3px}
+ .scoreFilmCard p{font-size:11px;line-height:1.3;margin-bottom:8px}
+ .scoreFilmActions{gap:5px}
+ .scoreFilmActions button{font-size:10px;padding:7px 9px}
+ .scoreFilmPlaceholder{font-size:19px}
+ .bookingServiceDetail:has(.scoreFilms) .bookingServiceContactRow{padding:8px 0 0}
+}
