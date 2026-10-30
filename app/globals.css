@@ -1207,3 +1207,7 @@
 
 /* Cool Struttin' Volume 1 cover in the 1993 Amber Records timeline entry. */
 .historyCoolStruttinCover{display:block;width:min(100%,270px);height:auto;object-fit:contain;margin:24px 0 0;border-radius:3px}
+
+/* Align the 1993 Cool Struttin cover beneath its year, in the left timeline column. */
+.historyYearWithCover{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.historyYearWithCover .historyCoolStruttinCover{margin-top:26px;width:min(100%,270px)}
