@@ -1214,3 +1214,7 @@
 
 /* Keep the 1997–2003 date within the same timeline column as the preceding years. */
 .historyYearRange{font-size:clamp(26px,3vw,48px);letter-spacing:-.055em;white-space:nowrap}
+
+/* 2003 matches the preceding light history timeline; original homepage hero below year. */
+.history2003Timeline{margin-top:0;margin-bottom:0}
+.history2003Hero{display:block;width:min(100%,290px);height:auto;aspect-ratio:16/10;object-fit:cover;margin-top:26px;border-radius:3px}
