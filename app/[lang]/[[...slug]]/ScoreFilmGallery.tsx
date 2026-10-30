@@ -41,6 +41,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
     <button className="scoreFilmArtwork" type="button" onClick={()=>cover&&setPanel({id:f.id,mode:"image"})} aria-label={lang==="de"?"Bild vergrößern":"Enlarge artwork"}>
      {cover?(/\.pdf$/i.test(cover.name)?<div className="scorePdfCrop"><object data={cover.url+"#page=1&toolbar=0&navpanes=0&scrollbar=0&view=Fit"} type="application/pdf" tabIndex={-1} aria-label={f.title}><span>{f.title}</span></object></div>:<img src={cover.url} alt={f.title}/>):<span className="scoreFilmPlaceholder">{f.title}</span>}
     </button>
+    <div className="scoreFilmHighlight">{f.id==="shadow"?(lang==="de"?"STUDENTEN-OSCAR · FINALIST 2002":"STUDENT ACADEMY AWARDS · FINALIST 2002"):f.id==="silvester"?(lang==="de"?"FILMFEST MÜNCHEN · FÖRDERPREIS 1997":"MUNICH FILM FESTIVAL · DIRECTING AWARD 1997"):(lang==="de"?"ZDF-DOKUMENTARPRODUKTION":"ZDF DOCUMENTARY PRODUCTION")}</div>
     <h4>{f.title}</h4><p>{f.director}</p>
     <div className="scoreFilmActions">
      <button type="button" onClick={()=>setPanel({id:f.id,mode:"description"})}>{lang==="de"?"Beschreibung":"Description"}</button>
