@@ -1,5 +1,6 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
+import EgorFilmGallery from "./EgorFilmGallery";
 type Asset={name:string;url:string};
 const films=[
  {id:"silvester",title:"Silvester Countdown",director:"Oskar Roehler",description:{de:"George Brasch war gemeinsam mit Dieter Webel an der Filmmusik beteiligt. Der Film wurde 1997 beim Filmfest München mit dem Förderpreis Deutscher Film für die Regie von Oskar Roehler ausgezeichnet.",en:"George Brasch contributed to the film score alongside Dieter Webel. Oskar Roehler received the Förderpreis Deutscher Film for directing at the 1997 Munich Film Festival."},folder:"selected credits/Score Audio/Silvester Countdown"},
@@ -48,6 +49,7 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
      <button type="button" onClick={()=>setPanel({id:f.id,mode:"tracks"})}>Tracks – Score</button>
     </div>
    </article>})}</div>
+   <EgorFilmGallery lang={lang}/>
    {panel&&selected&&<div className="scoreFilmBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setPanel(null)}}><section className="scoreFilmModal" role="dialog" aria-modal="true" aria-label={selected.title}>
     <button type="button" className="scoreFilmClose" onClick={()=>setPanel(null)} aria-label="Close">×</button>
     <h3>{selected.title}</h3>
