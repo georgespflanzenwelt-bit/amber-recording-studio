@@ -5,7 +5,7 @@ const adverts=[
  {id:"roho",artist:"ROHO Filmproduction",title:"Trailer Movie",video:"VKOSl2BSIc0",match:/roho/i},
  {id:"gabriel",artist:"Gabriel & Co.",title:"Jessica Alba Campaign",video:"379cyDbuQz4",match:/gabriel/i},
  {id:"hertha",artist:"Hertha BSC",title:"Trailer",video:"3Crh1vJV_VU",match:/hertha/i},
- {id:"ristretto",artist:"AMBER BEATS",title:"Ristretto",video:"",external:"https://raphael.ad/films/ristretto",match:/ristretto|amber beats|raphael/i}
+ {id:"ristretto",artist:"EMBER BEATS",title:"Ristretto",video:"",external:"https://raphael.ad/films/ristretto",match:/ristretto|amber beats|raphael/i}
 ] as const;
 export default function EgorFilmGallery({lang}:{lang:"de"|"en"}){
  const [entries,setEntries]=useState<Entry[]>([]);
