@@ -38,8 +38,8 @@ export default function HistoryPage({lang}:{lang:Lang}){
     <div className="historyYearWithCover">
      <span className="historyYear">1997</span>
      <div className="history1997PhotoGrid">
-      <figure className="history1997Figure"><img src="/images/Amber%20old/Doris-building%20Upper%20Studio.jpg" alt="Doris Dischner beim Bau des Upper Studio"/><figcaption>Doris – Upper Studio</figcaption></figure>
-      <figure className="history1997Figure"><img src="/images/Amber%20old/George%20building%20upper%20Studio.jpg" alt="George Brasch beim Bau des Upper Studio"/><figcaption>George – Upper Studio</figcaption></figure>
+      <figure className="history1997Figure"><img src="/images/Amber%20old/Doris-building%20Upper%20Studio.jpg" alt="Doris Dischner beim Bau des Upper Studio"/><figcaption>Doris – Building Amber Studio</figcaption></figure>
+      <figure className="history1997Figure"><img src="/images/Amber%20old/George%20building%20upper%20Studio.jpg" alt="George Brasch beim Bau des Upper Studio"/><figcaption>George – Building Amber Studio</figcaption></figure>
      </div>
     </div>
     <div className="historyYearCopy">
