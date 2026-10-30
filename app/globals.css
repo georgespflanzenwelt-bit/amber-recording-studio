@@ -1305,5 +1305,6 @@
 /* Home-only transition from the booking service rail into the full Studio & Team section. */
 .homeBackBlockDivider{display:flex;align-items:center;justify-content:center;min-height:125px;background:#c58b43;color:#11191a;overflow:hidden;padding:22px 28px}
 .homeBackBlockDivider span{display:block;font-family:Manrope,sans-serif;font-size:clamp(30px,5vw,76px);font-weight:900;line-height:1.05;letter-spacing:-.065em;text-transform:uppercase;animation:backBlockEnter 1s cubic-bezier(.2,.8,.2,1) both}
+@supports (animation-timeline:view()){.homeBackBlockDivider span{animation-timeline:view();animation-range:entry 0% entry 100%}}
 @keyframes backBlockEnter{from{transform:translateX(-90px);opacity:0}to{transform:translateX(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){.homeBackBlockDivider span{animation:none}}
