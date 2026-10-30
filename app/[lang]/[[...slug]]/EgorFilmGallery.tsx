@@ -32,7 +32,7 @@ export default function EgorFilmGallery({lang}:{lang:"de"|"en"}){
     {active.mode==="description"?<p>{lang==="de"?"Werbefilm / Medienproduktion. Musik und Sound: Egor Kobzev.":"Commercial / media production. Music and sound: Egor Kobzev."}</p>:
      active.mode==="image"&&imageFor(selected.id)?<img className="scoreFilmLargeImage" src={imageFor(selected.id)} alt={selected.title}/>:
      selected.video?<div className="egorFilmVideo"><iframe src={"https://www.youtube-nocookie.com/embed/"+selected.video+"?rel=0"} title={selected.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy"/></div>:
-     <p><a href={selected.external} target="_blank" rel="noopener noreferrer">{lang==="de"?"Ristretto-Film auf raphael.ad ansehen":"Watch Ristretto on raphael.ad"}</a></p>}
+     <p><a href={"external" in selected?selected.external:"https://raphael.ad/films/ristretto"} target="_blank" rel="noopener noreferrer">{lang==="de"?"Ristretto-Film auf raphael.ad ansehen":"Watch Ristretto on raphael.ad"}</a></p>}
    </section>
   </div>}
  </section>;
