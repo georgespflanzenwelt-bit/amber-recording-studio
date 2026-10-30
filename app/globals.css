@@ -1226,3 +1226,9 @@
 
 /* Yorckstrasse original Amber Studio photograph under 1991. */
 .history1991Photo{display:block;width:min(100%,290px);height:auto;margin-top:26px;border-radius:3px}
+
+/* Two original Upper Studio construction photos below the 1997 timeline date. */
+.history1997PhotoGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(100%,290px);margin-top:26px}
+.history1997Figure{margin:0;min-width:0}
+.history1997Figure img{display:block;width:100%;height:155px;object-fit:cover;border-radius:3px}
+.history1997Figure figcaption{margin-top:6px;color:#666;font-size:11px;line-height:1.35}
