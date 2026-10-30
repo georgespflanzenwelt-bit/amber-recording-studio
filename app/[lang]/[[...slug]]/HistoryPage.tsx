@@ -42,7 +42,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
     </div>
    </div>
    <div className="historyYearEntry">
-    <span className="historyYear">1997–2003</span>
+    <span className="historyYear historyYearRange">1997–2003</span>
     <div className="historyYearCopy">
      <h2>{de?"Ein Ort. Viele musikalische Welten.":"One place. Many musical worlds."}</h2>
      <p>{de?<>Hier gaben sich <strong>internationale Künstler, Produzenten und Musiker buchstäblich die Klinke in die Hand.</strong> Namen wie <strong>RZA vom Wu-Tang Clan, Xavier Naidoo, Barrington Levy, Gentleman, Till Brönner, Kool Savas, Azad, M.O.R., Curse, Afrob, Sékou, Beenie Man, Anthony B, Ja Rule, Christina Milian, R. Kelly, Seeed, Katja Riemann und Saint Etienne</strong> stehen nur beispielhaft für die enorme Bandbreite der Künstler, die im Laufe der Jahre mit Amber in Berührung kamen.</>:<>International artists, producers and musicians were <strong>constantly coming through Amber's doors.</strong> Names including <strong>RZA of the Wu-Tang Clan, Xavier Naidoo, Barrington Levy, Gentleman, Till Brönner, Kool Savas, Azad, M.O.R., Curse, Afrob, Sékou, Beenie Man, Anthony B, Ja Rule, Christina Milian, R. Kelly, Seeed, Katja Riemann and Saint Etienne</strong> are only a few examples of the extraordinary range of artists who crossed paths with Amber over the years.</>}</p>
