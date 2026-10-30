@@ -24,7 +24,7 @@ export default function EgorFilmGallery({lang}:{lang:"de"|"en"}){
    <span className="egorFilmCredit">{lang==="de"?"Musikproduktion / Film Score":"Music Production / Film Score"} · Egor Kobzev</span>
    <div className="scoreFilmActions">
     <button type="button" onClick={()=>setActive({id:a.id,mode:"description"})}>{lang==="de"?"Beschreibung":"Description"}</button>
-    <button type="button" onClick={()=>setActive({id:a.id,mode:"video"})}>{a.video?(lang==="de"?"Film ansehen":"Watch video"):(lang==="de"?"Film öffnen":"Open film")}</button>
+    <button type="button" onClick={()=>setActive({id:a.id,mode:"video"})}>{a.video?(lang==="de"?"Film ansehen":"Watch video"):(lang==="de"?"Film ansehen":"Watch film")}</button>
    </div>
   </article>)}</div>
   {selected&&active&&<div className="scoreFilmBackdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setActive(null)}}>
@@ -34,7 +34,7 @@ export default function EgorFilmGallery({lang}:{lang:"de"|"en"}){
     {active.mode==="description"?<p>{lang==="de"?"Werbefilm / Medienproduktion. Musik und Sound: Egor Kobzev.":"Commercial / media production. Music and sound: Egor Kobzev."}</p>:
      active.mode==="image"&&imageFor(selected.id)?<img className="scoreFilmLargeImage" src={imageFor(selected.id)} alt={selected.title}/>:
      selected.video?<div className="egorFilmVideo"><iframe src={"https://www.youtube-nocookie.com/embed/"+selected.video+"?rel=0"} title={selected.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy"/></div>:
-     <p><a href={"external" in selected?selected.external:"https://raphael.ad/films/ristretto"} target="_blank" rel="noopener noreferrer">{lang==="de"?"Ristretto-Film auf raphael.ad ansehen":"Watch Ristretto on raphael.ad"}</a></p>}
+     <div className="egorFilmExternalEmbed"><iframe src={"external" in selected?selected.external:"https://raphael.ad/films/ristretto"} title={selected.title+" – Film"} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen loading="lazy"/><p>{lang==="de"?"Falls die Filmseite das Einbetten verhindert:":"If the film provider blocks embedding:"} <a href={"external" in selected?selected.external:"https://raphael.ad/films/ristretto"} target="_blank" rel="noopener noreferrer">{lang==="de"?"Film beim Anbieter öffnen":"Open film at source"}</a></p></div>}
    </section>
   </div>}
  </section>;
