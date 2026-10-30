@@ -1322,5 +1322,5 @@
 .homeCreditsCurtainClose:hover,.homeCreditsCurtainClose:focus-visible{background:#dba95d;color:#080808;box-shadow:0 0 16px rgba(219,169,93,.4)}
 
 /* Smaller glowing double-outline CTA on the homepage hero. */
-.heroText .homeDiscoverButton{min-height:49px;margin-top:0;padding:11px 25px;border-width:2px;font-size:12px;letter-spacing:.12em;box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32}
+.heroText .homeDiscoverButton{display:inline-flex;width:max-content;max-width:100%;align-items:center;justify-content:center;border-radius:999px;min-height:49px;margin-top:0;padding:11px 25px;border-width:2px;font-size:12px;letter-spacing:.12em;box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32}
 .heroText .homeDiscoverButton:hover,.heroText .homeDiscoverButton:focus-visible{background:rgba(230,138,50,.18);box-shadow:0 0 29px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565;transform:translateY(-2px)}
