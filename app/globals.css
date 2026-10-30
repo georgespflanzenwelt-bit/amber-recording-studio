@@ -1218,3 +1218,8 @@
 /* 2003 matches the preceding light history timeline; original homepage hero below year. */
 .history2003Timeline{margin-top:0;margin-bottom:0}
 .history2003Hero{display:block;width:min(100%,290px);height:auto;aspect-ratio:16/10;object-fit:cover;margin-top:26px;border-radius:3px}
+
+/* 2004 history image and caption under the year, matching previous chronology. */
+.history2004Figure{width:min(100%,290px);margin:26px 0 0}
+.history2004Figure img{display:block;width:100%;height:auto;border-radius:3px}
+.history2004Figure figcaption{margin-top:8px;color:#666;font-size:12px;line-height:1.4}
