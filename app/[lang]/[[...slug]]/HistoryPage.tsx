@@ -35,7 +35,13 @@ export default function HistoryPage({lang}:{lang:Lang}){
     </div>
    </div>
    <div className="historyYearEntry">
-    <span className="historyYear">1997</span>
+    <div className="historyYearWithCover">
+     <span className="historyYear">1997</span>
+     <div className="history1997PhotoGrid">
+      <figure className="history1997Figure"><img src="/images/Amber%20old/Doris-building%20Upper%20Studio.jpg" alt="Doris Dischner beim Bau des Upper Studio"/><figcaption>Doris – Upper Studio</figcaption></figure>
+      <figure className="history1997Figure"><img src="/images/Amber%20old/George%20building%20upper%20Studio.jpg" alt="George Brasch beim Bau des Upper Studio"/><figcaption>George – Upper Studio</figcaption></figure>
+     </div>
+    </div>
     <div className="historyYearCopy">
      <h2>{de?"Polydor. Reichenberger Straße. Zwei neue Studios.":"Polydor. Reichenberger Straße. Two new studios."}</h2>
      <p>{de?<>Die Zusammenarbeit mit <strong>Polydor</strong> begann. Gleichzeitig entstanden zwei neue Amber Studios in der <strong>Reichenberger Straße</strong>. George Brasch plante und baute die Räume und richtete sie akustisch konsequent auf professionelle Musikproduktion aus. Damit wurde Amber zu einer festen Adresse in Berlin – auch für die internationale Musikindustrie.</>:<>Amber began collaborating with <strong>Polydor</strong>. At the same time, two new Amber studios took shape on <strong>Reichenberger Straße</strong>. George Brasch planned and built the spaces, designing their acoustics for professional music production. Amber soon became an established destination in Berlin, including for the international music industry. </>}</p>
