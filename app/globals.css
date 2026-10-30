@@ -1123,3 +1123,6 @@
 /* Film-specific award and broadcaster line directly beneath each poster. */
 .scoreFilmHighlight{min-height:27px;display:flex;align-items:center;color:#dfa95c;font-size:10px;font-weight:800;letter-spacing:.075em;line-height:1.25;text-transform:uppercase;margin:8px 0 0}
 @media(max-width:700px){.scoreFilmHighlight{font-size:10px;min-height:24px}}
+
+/* Film credits and distinction in the custom score player. */
+.scorePlayerIdentity .scorePlayerAward{display:block;margin-top:5px;color:#e2ad63;font-size:12px;font-weight:800;letter-spacing:.055em;line-height:1.4;text-transform:uppercase}
