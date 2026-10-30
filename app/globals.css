@@ -1292,3 +1292,12 @@
 .amberHistory>header,.amberHistory>section,.amberHistory>footer{position:relative;z-index:1}
 .amberHistory .historyLightSection{background:transparent}
 @media(prefers-reduced-motion:reduce){.amberHistory .historyTapeBackground{display:none}}
+
+/* Home hero service links: gold glow and gentle scale on hover, like the awards CTA. */
+.heroText .heroServiceLinks{display:flex;flex-wrap:wrap;align-items:center;gap:0;font-size:12px;letter-spacing:.08em;line-height:1.8;margin-bottom:45px;color:var(--gold)}
+.heroServiceLinkPart{display:inline-flex;align-items:center;white-space:nowrap}
+.heroServiceSeparator{white-space:pre;color:var(--gold);opacity:.8}
+.heroServiceLinkPart a{display:inline-block;color:inherit;text-decoration:none;transform-origin:center;transition:transform .22s ease,color .22s ease,text-shadow .22s ease,filter .22s ease;cursor:pointer}
+.heroServiceLinkPart a:hover,.heroServiceLinkPart a:focus-visible{transform:scale(1.085);color:#ffe0a2;text-shadow:0 0 8px rgba(238,179,86,.9),0 0 19px rgba(238,179,86,.55);filter:brightness(1.2)}
+.heroServiceLinkPart a:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.heroServiceLinkPart a{transition:none}.heroServiceLinkPart a:hover,.heroServiceLinkPart a:focus-visible{transform:none}}
