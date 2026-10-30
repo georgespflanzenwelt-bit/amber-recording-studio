@@ -1308,3 +1308,10 @@
 @supports (animation-timeline:view()){.homeBackBlockDivider span{animation-timeline:view();animation-range:entry 0% entry 100%}}
 @keyframes backBlockEnter{from{transform:translateX(-90px);opacity:0}to{transform:translateX(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){.homeBackBlockDivider span{animation:none}}
+
+/* Expand the full Credits page below the artist ribbon like a downward-opening curtain. */
+.homeCreditsCurtain{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .75s cubic-bezier(.22,.85,.28,1),opacity .5s ease,visibility .75s;background:#0c1113}
+.homeCreditsCurtain.is-open{grid-template-rows:1fr;opacity:1;visibility:visible}
+.homeCreditsCurtainInner{min-height:0;overflow:hidden}
+.artistCreditsLink{background:transparent;border:0;font:inherit;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.homeCreditsCurtain{transition:none}}
