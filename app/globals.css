@@ -1279,3 +1279,6 @@
 
 /* George Brasch constructing the Upper Studio, below the acoustics heading. */
 .amberHistory .historyAcousticsPhoto{display:block;width:min(100%,420px);height:auto;margin-top:28px;border-radius:3px;object-fit:contain}
+
+/* 2025 AMBER comeback: photo beneath the year in the existing history timeline. */
+.amberHistory .history2025Photo{display:block;width:min(100%,290px);height:auto;object-fit:contain;margin-top:26px;border-radius:3px}
