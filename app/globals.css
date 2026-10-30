@@ -1272,3 +1272,6 @@
 /* Avoid double separators between the 2003/2004 entries and above the closing panel. */
 .amberHistory .history2003Timeline .historyYearEntry:last-child{border-bottom:0}
 .amberHistory .history2004Timeline .historyYearEntry:last-child{border-bottom:0}
+
+/* Original Amber Upper Studio as the history page hero backdrop. */
+.amberHistory .historyHero{background:linear-gradient(90deg,rgba(7,13,15,.93) 0%,rgba(7,13,15,.77) 49%,rgba(7,13,15,.51) 100%),url('/images/Amber%20old/Amber%20Upper%20Studio.png') center center / cover no-repeat,#0a1113}
