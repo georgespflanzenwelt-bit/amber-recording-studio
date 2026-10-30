@@ -1204,3 +1204,6 @@
 /* Four George production credits in one desktop row, matching existing film-card design. */
 @media(min-width:1101px){.bookingServiceDetail:has(.scoreFilms) .scoreFilmsGrid{grid-template-columns:repeat(4,minmax(0,260px));justify-content:center;gap:14px}}
 @media(min-width:701px) and (max-width:1100px){.bookingServiceDetail:has(.scoreFilms) .scoreFilmsGrid{grid-template-columns:repeat(2,minmax(0,260px));justify-content:center}}
+
+/* Cool Struttin' Volume 1 cover in the 1993 Amber Records timeline entry. */
+.historyCoolStruttinCover{display:block;width:min(100%,270px);height:auto;object-fit:contain;margin:24px 0 0;border-radius:3px}
