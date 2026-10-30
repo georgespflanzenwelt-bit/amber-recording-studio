@@ -1324,3 +1324,8 @@
 /* Smaller glowing double-outline CTA on the homepage hero. */
 .heroText .homeDiscoverButton{display:inline-flex;width:max-content;max-width:100%;align-items:center;justify-content:center;border-radius:999px;min-height:49px;margin-top:0;padding:11px 25px;border-width:2px;font-size:12px;letter-spacing:.12em;box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32}
 .heroText .homeDiscoverButton:hover,.heroText .homeDiscoverButton:focus-visible{background:rgba(230,138,50,.18);box-shadow:0 0 29px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565;transform:translateY(-2px)}
+
+/* Trigger Back on the Block slide-in reliably when it enters the viewport. */
+.homeBackBlockDivider span{opacity:0;transform:translateX(-110px);animation:none;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
+.homeBackBlockDivider.is-visible span{opacity:1;transform:translateX(0)}
+@media(prefers-reduced-motion:reduce){.homeBackBlockDivider span{transition:none;opacity:1;transform:none}}
