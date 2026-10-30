@@ -1211,3 +1211,6 @@
 /* Align the 1993 Cool Struttin cover beneath its year, in the left timeline column. */
 .historyYearWithCover{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
 .historyYearWithCover .historyCoolStruttinCover{margin-top:26px;width:min(100%,270px)}
+
+/* Keep the 1997–2003 date within the same timeline column as the preceding years. */
+.historyYearRange{font-size:clamp(26px,3vw,48px);letter-spacing:-.055em;white-space:nowrap}
