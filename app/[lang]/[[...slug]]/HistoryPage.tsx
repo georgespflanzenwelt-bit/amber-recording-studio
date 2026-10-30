@@ -18,7 +18,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
 
   <section className="wrap historyTimeline" aria-label={de?"Die Anfänge":"The early years"}>
    <div className="historyYearEntry">
-    <span className="historyYear">1991</span>
+    <div className="historyYearWithCover"><span className="historyYear">1991</span><img src="/images/Amber%20old/Amber-Yorkstrasse.jpg" alt="Amber Studio in der Yorckstraße, 1991" className="history1991Photo"/></div>
     <div className="historyYearCopy">
      <h2>{de?"Alles begann in der Yorckstraße.":"It all began on Yorckstraße."}</h2>
      <p>{de?<>Gemeinsam mit Doris Dischner gründete George Brasch dort das erste <strong>Amber Studio</strong> – zu einer Zeit, als analoge Bandmaschinen, große Mischpulte und live eingespielte Instrumente den Studioalltag prägten. Stundenlang wurde an Sounds, Arrangements und Aufnahmen gefeilt, bis wirklich alles saß. Schon früh entstanden dort Produktionen mit eigenen Künstlern ebenso wie mit bekannten Namen aus der Berliner und internationalen Musikszene.</>:<>Together with Doris Dischner, George Brasch founded the first <strong>Amber Studio</strong> there – in an era shaped by analogue tape machines, large mixing consoles and live musicians. Hours were spent refining sounds, arrangements and recordings until every detail was right. From the beginning, the studio worked with its own artists as well as established names from Berlin and the international music scene.</>}</p>
