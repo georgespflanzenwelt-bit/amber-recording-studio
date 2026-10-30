@@ -4,7 +4,7 @@ import path from "node:path";
 export const dynamic="force-dynamic";
 export async function GET(){
  const root=path.join(process.cwd(),"public");
- const directories=["selected credits/Score","selected credits/Score Audio/Schattenwelt","selected credits/Score Audio/Vietnam","selected credits/Score Audio/Silvester Countdown"];
+ const directories=["selected credits/Score","selected credits/Score Audio/Schattenwelt","selected credits/Score Audio/Vietnam","selected credits/Score Audio/Silvester Countdown","Score Audio/Rieman Orchester","selected credits/Score Audio/Rieman Orchester"];
  const groups:Record<string,{name:string;url:string}[]>={};
  for(const folder of directories){
   try{
