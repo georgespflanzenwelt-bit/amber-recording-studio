@@ -1472,3 +1472,7 @@
 
 /* Orange headline for the Mixing introduction, in both languages. */
 .bookingMixingLead strong{color:#e3a64b}
+
+/* Gentle shadow behind white Mixing copy over moving video. */
+.bookingMixingCopy{ text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25); }
+.bookingMixingLead{ text-shadow:none; }
