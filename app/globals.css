@@ -1428,10 +1428,10 @@
 /* Unified precision close controls: round gold outline, centered X and warm hover glow. */
 :is(.artistModalClose,.amberPreviewClose,.scoreFilmClose,.egorCreditsClose,.bookingServiceDetail>button[aria-label="Close"],.bookingServiceDetail>button[aria-label="Schließen"],.creditsShowcase>button[aria-label="Close and return home"],.creditsShowcase>button[aria-label="Schließen und zur Startseite"]){
  box-sizing:border-box;
- width:44px;
- height:44px;
- min-width:44px;
- min-height:44px;
+ width:34px;
+ height:34px;
+ min-width:34px;
+ min-height:34px;
  padding:0;
  border:1px solid #dca653;
  border-radius:50%;
@@ -1441,12 +1441,12 @@
  align-items:center;
  justify-content:center;
  line-height:1;
- font-size:26px;
+ font-size:21px;
  font-weight:300;
  text-align:center;
  color:#fff;
  background:rgba(8,14,16,.78);
- box-shadow:0 0 0 3px rgba(220,166,83,.08);
+ box-shadow:none;
  cursor:pointer;
  transition:border-color .2s ease,background-color .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
 }
@@ -1454,7 +1454,7 @@
  border-color:#f2bd67;
  background:rgba(64,39,13,.9);
  color:#fff;
- box-shadow:0 0 0 3px rgba(231,168,75,.18),0 0 18px rgba(231,152,49,.5),inset 0 0 10px rgba(231,152,49,.12);
+ box-shadow:0 0 12px rgba(231,152,49,.35);
 }
 :is(.artistModalClose,.amberPreviewClose,.scoreFilmClose,.egorCreditsClose,.bookingServiceDetail>button[aria-label="Close"],.bookingServiceDetail>button[aria-label="Schließen"],.creditsShowcase>button[aria-label="Close and return home"],.creditsShowcase>button[aria-label="Schließen und zur Startseite"]) svg{display:block;margin:0;flex-shrink:0;stroke-width:1.8}
 @media(prefers-reduced-motion:reduce){:is(.artistModalClose,.amberPreviewClose,.scoreFilmClose,.egorCreditsClose,.bookingServiceDetail>button[aria-label="Close"],.bookingServiceDetail>button[aria-label="Schließen"],.creditsShowcase>button[aria-label="Close and return home"],.creditsShowcase>button[aria-label="Schließen und zur Startseite"]){transition:none}}
