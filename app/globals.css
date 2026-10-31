@@ -1503,3 +1503,8 @@
 
 /* Transparent close icon surfaces, including inline-styled close controls. */
 :is(.artistModalClose,.amberPreviewClose,.scoreFilmClose,.egorCreditsClose,.bookingServiceDetail>button[aria-label="Close"],.bookingServiceDetail>button[aria-label="Schließen"],.creditsShowcase>button[aria-label="Close and return home"],.creditsShowcase>button[aria-label="Schließen und zur Startseite"]){background:transparent!important}
+
+/* Information toggles: centered label, calm by default, glowing when expanded. */
+.bookingMixingMoreButton{gap:0;text-align:center;justify-content:center;box-shadow:none;background:rgba(9,12,14,.48);color:#f5c47d}
+.bookingMixingMoreButton[aria-expanded="true"]{background:rgba(67,37,12,.86);border-color:#ffc66e;box-shadow:0 0 0 3px rgba(234,163,60,.16),0 0 18px rgba(237,145,30,.48)}
+.bookingMixingMoreButton[aria-expanded="false"]:not(:hover):not(:focus-visible){box-shadow:none}
