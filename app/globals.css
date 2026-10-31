@@ -852,7 +852,7 @@
 .teamEgorShowcase{position:relative;isolation:isolate;overflow:hidden;background:#11191a;color:#f7f6f1}
 .teamEgorShowcase::before{content:"";position:absolute;inset:-8px;background:url('/images/studio2/09%20Moog-Nord.jpeg') center center / cover no-repeat;filter:blur(3px);pointer-events:none;z-index:0}
 .teamEgorShowcase::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,15,17,.91) 0%,rgba(9,15,17,.84) 39%,rgba(9,15,17,.64) 66%,rgba(9,15,17,.46) 100%);pointer-events:none;z-index:0}
-.teamEgorShowcase .teamEgorProfiles{position:relative;z-index:1;padding-top:clamp(28px,3vw,48px);padding-bottom:clamp(76px,8vw,122px)}
+.teamEgorShowcase .teamEgorProfiles{position:relative;z-index:1;padding-top:clamp(8px,1.2vw,20px);padding-bottom:clamp(76px,8vw,122px)}
 .teamEgorShowcase .teamEgor{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,4vw,66px);align-items:stretch;margin-bottom:0}
 .teamEgorShowcase .teamEgor .photobox{order:2;min-height:650px}
 .teamEgorShowcase .teamEgor .photo{inset:0;background-position:center center}
