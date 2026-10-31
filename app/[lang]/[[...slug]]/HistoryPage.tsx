@@ -116,6 +116,6 @@ export default function HistoryPage({lang,onClose}:{lang:Lang;onClose:()=>void})
    </div>
   </section>
 
-  <footer className="historyClosing"><div className="wrap"><small>AMBER / FROM THE FIRST NOTE TO THE FINAL MASTER</small><h2>{de?<>AMBER WAR NIE NUR<br/><em>EIN STUDIO ODER EIN LABEL.</em></>:<>AMBER WAS NEVER JUST<br/><em>A STUDIO OR A LABEL.</em></>}</h2><p>{de?"Es war ein Ort, an dem Musik entstanden ist – vom ersten Ton bis zum fertigen Master.":"It was a place where music came to life – from the very first note to the finished master."}</p></div></footer>
+
  </div>;
 }
