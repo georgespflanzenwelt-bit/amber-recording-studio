@@ -1394,3 +1394,9 @@
 .mobileMenu .navPanelVideoOverlay{position:absolute;inset:0;background:rgba(8,17,20,.68)}
 .mobileMenu .menuInner{position:relative;z-index:2}
 @media(prefers-reduced-motion:reduce){.mobileMenu .navPanelVideo{display:none}}
+
+/* Booking pricing + inquiry: stack the contact form directly below all four price cards. */
+.bookingInquiryStage .bookingInquiryGrid{display:grid;grid-template-columns:minmax(0,1fr);width:min(760px,100%);gap:24px}
+.bookingInquiryStage .bookingPriceRail{order:1;width:100%}
+.bookingInquiryStage .bookingContactCard{order:2;width:100%;margin-bottom:0}
+@media(max-width:850px){.bookingInquiryStage .bookingPriceRail{order:1}.bookingInquiryStage .bookingContactCard{order:2}}
