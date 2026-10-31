@@ -1536,3 +1536,12 @@
 .bookingServiceDetailSection:has(.bookingEngineerBackground) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.28)}
 .bookingEngineerBackground{position:absolute;inset:0;background-image:url("/images/Amber%20old/Amber%20Upper%20Studio.png");background-size:cover;background-position:center;z-index:-2;pointer-events:none}
 .bookingEngineerShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.92) 0%,rgba(4,9,12,.78) 34%,rgba(4,9,12,.46) 68%,rgba(4,9,12,.18) 100%);z-index:-1;pointer-events:none}
+
+/* Production with Nordlead photo, matched to the other studio service cards. */
+.bookingServiceDetailSection:has(.bookingProductionBackground){background:#0b1115}
+.bookingServiceDetailSection:has(.bookingProductionBackground) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.28)}
+.bookingProductionBackground{position:absolute;inset:0;background-image:url("/images/studio2/13%20Nordlead1.jpeg");background-size:cover;background-position:center;z-index:-2;pointer-events:none}
+.bookingProductionShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.90) 0%,rgba(4,9,12,.76) 34%,rgba(4,9,12,.44) 68%,rgba(4,9,12,.18) 100%);z-index:-1;pointer-events:none}
+.bookingProductionCopy{max-width:1000px;text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25)}
+.bookingProductionLead{color:#fff;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.8),0 3px 14px rgba(0,0,0,.5)}
+.bookingProductionExpanded[hidden]{display:none}
