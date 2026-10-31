@@ -1552,3 +1552,6 @@
 /* History hero close control, matching the studio's round outlined close buttons. */
 .historyCloseButton{position:absolute;top:24px;right:clamp(20px,4vw,64px);z-index:8;display:grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid #d8a84e;border-radius:50%;background:transparent!important;color:#fff;font-size:25px;font-weight:300;line-height:1;cursor:pointer;transition:box-shadow .2s ease}
 .historyCloseButton:hover,.historyCloseButton:focus-visible{box-shadow:0 0 13px rgba(216,168,78,.65);outline:none}
+
+/* Place the Streaming Reach Audit lower beneath the intro text on desktop. */
+@media (min-width:701px){.introVideoSection .introStreamingStat{margin-top:60px}}
