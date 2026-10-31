@@ -1555,3 +1555,6 @@
 
 /* Place the Streaming Reach Audit lower beneath the intro text on desktop. */
 @media (min-width:701px){.introVideoSection .introStreamingStat{margin-top:60px}}
+
+/* Compact the cream WHAT WE DO heading strip without changing its typography. */
+.serviceList>.sectionTitle{padding-top:12px;padding-bottom:18px}
