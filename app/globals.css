@@ -1518,3 +1518,12 @@
 .bookingWorkshopLead{text-shadow:none}
 .bookingWorkshopLead strong{color:#e3a64b}
 .bookingWorkshopExpanded[hidden]{display:none}
+
+/* Acoustics: Amber Upper Studio photo, restrained overlay and expandable text. */
+.bookingServiceDetailSection:has(.bookingAcousticsBackground){background:#0b1115}
+.bookingServiceDetailSection:has(.bookingAcousticsBackground) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.28)}
+.bookingAcousticsBackground{position:absolute;inset:0;background-image:url("/Amber%20old/Amber%20Upper%20Studio.png");background-size:cover;background-position:center;z-index:-2;pointer-events:none}
+.bookingAcousticsShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.92) 0%,rgba(4,9,12,.78) 34%,rgba(4,9,12,.46) 68%,rgba(4,9,12,.18) 100%);z-index:-1;pointer-events:none}
+.bookingAcousticsCopy{max-width:1000px;text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25)}
+.bookingAcousticsLead{color:#e3a64b;text-shadow:none}
+.bookingAcousticsExpanded[hidden]{display:none}
