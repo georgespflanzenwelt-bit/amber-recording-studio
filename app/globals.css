@@ -812,7 +812,7 @@
 }
 .teamShowcase .teamHero p{width:max-content;max-width:100%;font-size:clamp(15px,1.79vw,30.4px);letter-spacing:-.015em;word-spacing:normal;text-align:left;text-align-last:auto;transform:translateY(-10px)}
 .teamShowcase .teamShowcaseProfiles{padding-top:0;padding-bottom:105px}
-.teamShowcase .teamGeorge{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);margin-bottom:0}
+.teamShowcase .teamGeorge{grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(28px,4vw,64px);margin-bottom:0}
 .teamShowcase .teamGeorgeCopy{padding:0}
 .teamShowcase .teamGeorgeCopy h2,.teamShowcase .teamGeorgeCopy h3{color:#f7f6f1}
 .teamShowcase .teamGeorgeCopy .teamGeorgeRoles{color:#d8aa62}
