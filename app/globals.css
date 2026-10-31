@@ -1380,3 +1380,9 @@
 .mobileMenu .menuKicker{padding-bottom:10px}
 @media(max-width:700px){.mobileMenu{width:min(345px,88vw)!important}.mobileMenu .menuInner{padding:17px 21px 22px!important}}
 #veroeffentlichungen,#lets-work-together,#back-on-the-block{scroll-margin-top:85px}
+
+/* Menu-only service popup: stay at the current scroll position. */
+.bookingServiceDetailSection.bookingServiceMenuPopup{position:fixed!important;inset:0!important;z-index:130!important;overflow-y:auto!important;overscroll-behavior:contain;background:rgba(4,9,11,.91)!important;padding:35px 20px!important;display:flex;align-items:flex-start;justify-content:center}
+.bookingServiceMenuPopup>.wrap{width:min(1120px,100%);margin:auto;position:relative}
+.bookingServiceMenuPopup .bookingServiceDetail{max-height:none}
+@media(max-width:700px){.bookingServiceDetailSection.bookingServiceMenuPopup{padding:14px 8px!important}}
