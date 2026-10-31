@@ -1508,3 +1508,13 @@
 .bookingMixingMoreButton{gap:0;text-align:center;justify-content:center;box-shadow:none;background:rgba(9,12,14,.48);color:#f5c47d}
 .bookingMixingMoreButton[aria-expanded="true"]{background:rgba(67,37,12,.86);border-color:#ffc66e;box-shadow:0 0 0 3px rgba(234,163,60,.16),0 0 18px rgba(237,145,30,.48)}
 .bookingMixingMoreButton[aria-expanded="false"]:not(:hover):not(:focus-visible){box-shadow:none}
+
+/* Workshop: guitar-style backdrop with Desk Dark photo, exclusively inside card. */
+.bookingServiceDetailSection:has(.bookingWorkshopBackground){background:#0b1115}
+.bookingServiceDetailSection:has(.bookingWorkshopBackground) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.28)}
+.bookingWorkshopBackground{position:absolute;inset:0;background-image:url("/images/studio2/26%20Desk%20Dark1.jpeg");background-size:cover;background-position:center;z-index:-2;pointer-events:none}
+.bookingWorkshopShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.90) 0%,rgba(4,9,12,.76) 34%,rgba(4,9,12,.44) 68%,rgba(4,9,12,.18) 100%);z-index:-1;pointer-events:none}
+.bookingWorkshopCopy{text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25);max-width:1000px}
+.bookingWorkshopLead{text-shadow:none}
+.bookingWorkshopLead strong{color:#e3a64b}
+.bookingWorkshopExpanded[hidden]{display:none}
