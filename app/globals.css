@@ -1416,11 +1416,11 @@
 
 /* Compact home introduction so the collaborations and credits control sit higher. */
 @media(min-width:701px){
- .intro.introVideoSection{padding-top:35px;padding-bottom:18px}
- .introVideoSection .introVolumeContent>.eyebrow{display:block;margin:0 0 5px}
- .introVideoSection .introVolumeContent>.columns{padding-top:8px}
- .introVideoSection .introTeamButton{margin-top:12px}
- .introVideoSection .introStreamingStat{margin-top:17px}
- .introVideoSection .columns p{margin-bottom:13px}
- .artistStripHeading{margin-bottom:14px}
+ .intro.introVideoSection{padding-top:22px;padding-bottom:8px}
+ .introVideoSection .introVolumeContent>.eyebrow{display:block;margin:0 0 2px}
+ .introVideoSection .introVolumeContent>.columns{padding-top:3px}
+ .introVideoSection .introTeamButton{margin-top:8px}
+ .introVideoSection .introStreamingStat{margin-top:10px}
+ .introVideoSection .columns p{margin-bottom:9px}
+ .artistStripHeading{margin-bottom:9px}
 }
