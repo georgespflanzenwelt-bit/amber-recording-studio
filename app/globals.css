@@ -1476,3 +1476,13 @@
 /* Gentle shadow behind white Mixing copy over moving video. */
 .bookingMixingCopy{ text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25); }
 .bookingMixingLead{ text-shadow:none; }
+
+/* Mastering uses the same cinematic card treatment as Mixing. */
+.bookingServiceDetailSection:has(.bookingMasteringBackgroundVideo){background:#0b1115}
+.bookingServiceDetailSection:has(.bookingMasteringBackgroundVideo) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.32)}
+.bookingMasteringBackgroundVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+.bookingMasteringVideoShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.88) 0%,rgba(4,9,12,.72) 34%,rgba(4,9,12,.42) 68%,rgba(4,9,12,.16) 100%);z-index:-1;pointer-events:none}
+.bookingMasteringCopy{max-width:1000px;text-shadow:0 1px 5px rgba(0,0,0,.55),0 2px 12px rgba(0,0,0,.25)}
+.bookingMasteringLead{text-shadow:none}
+.bookingMasteringLead strong{color:#e3a64b}
+.bookingMasteringExpanded[hidden]{display:none}
