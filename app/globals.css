@@ -1486,3 +1486,7 @@
 .bookingMasteringLead{text-shadow:none}
 .bookingMasteringLead strong{color:#e3a64b}
 .bookingMasteringExpanded[hidden]{display:none}
+
+/* Equal spacing between Mastering prices and contact actions. */
+.bookingServiceContactRow{gap:14px;flex-wrap:wrap}
+#booking-prices{scroll-margin-top:20px}
