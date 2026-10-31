@@ -1530,3 +1530,9 @@
 
 /* Strong, legible opening paragraph over Acoustics studio photography. */
 .bookingAcousticsCopy .bookingAcousticsIntroBold{color:#fff;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.8),0 3px 14px rgba(0,0,0,.5)}
+
+/* Engineer shares the Acoustics studio background and overlay. */
+.bookingServiceDetailSection:has(.bookingEngineerBackground){background:#0b1115}
+.bookingServiceDetailSection:has(.bookingEngineerBackground) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.28)}
+.bookingEngineerBackground{position:absolute;inset:0;background-image:url("/images/Amber%20old/Amber%20Upper%20Studio.png");background-size:cover;background-position:center;z-index:-2;pointer-events:none}
+.bookingEngineerShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.92) 0%,rgba(4,9,12,.78) 34%,rgba(4,9,12,.46) 68%,rgba(4,9,12,.18) 100%);z-index:-1;pointer-events:none}
