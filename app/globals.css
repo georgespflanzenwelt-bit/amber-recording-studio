@@ -1568,3 +1568,7 @@
 /* Engineer: match Production heading scale and emphasize the first introduction. */
 .bookingServiceDetail:has(.bookingEngineerBackground) h3{font-size:24px;line-height:1.2;font-weight:800}
 .bookingServiceDetail .bookingEngineeringCopy>p:first-child{font-weight:700;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7)}
+
+/* Compact side-by-side genre and team selectors in Credits. */
+@media(min-width:701px){.creditsShowcase .creditsGenreRow{flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 16px}.creditsShowcase .creditsGenreDropdown{width:auto;min-width:0}.creditsShowcase .creditsGenreTrigger{width:auto;min-width:165px;padding:12px 17px;justify-content:center;gap:0}.creditsShowcase .creditsTeamDropdown .creditsGenreTrigger{min-width:155px}}
+@media(max-width:700px){.creditsShowcase .creditsGenreDropdown{max-width:240px}.creditsShowcase .creditsGenreTrigger{justify-content:center}}
