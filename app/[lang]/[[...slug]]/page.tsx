@@ -185,6 +185,33 @@ function warmCoverImages(entries:SelectedEntry[]){
 
 export default function Page(){
 const params=useParams();const router=useRouter();const lang:Lang=params.lang==="de"?"de":"en";const t=dictionary[lang];const raw=params.slug;const slug=Array.isArray(raw)?raw[0]||"":"";const current=paths.includes(slug)||slug==="egor-credits"?slug:"";const url=(s:string,l:Lang=lang)=>"/"+l+(s?"/"+s:"");
+ // Warm the score and commercial cover images on the first site visit,
+ // before the visitor opens the booking / score gallery.
+ useEffect(()=>{
+  let cancelled=false;
+  const warm=(url:string)=>{if(cancelled)return;const image=new Image();image.decoding="async";image.src=url;};
+  const loadScore=fetch("/api/score-films").then(r=>r.ok?r.json():null).then(data=>{
+   if(cancelled||!data)return;
+   const files:{name:string;url:string}[]=data.groups?.["selected credits/Score"]||[];
+   const patterns=[/silvester/i,/shadow|schattenwelt/i,/mein vietnam|vietnam/i,/katja|riemann|rieman|nachtblende/i];
+   patterns.forEach(pattern=>{const match=files.find(file=>pattern.test(file.name)&&/\\.(png|jpe?g|webp|avif)$/i.test(file.name));if(match)warm(match.url)});
+  }).catch(()=>{});
+  const loadEgor=fetch("/api/selected-covers?scope=egor").then(r=>r.ok?r.json():null).then(data=>{
+   if(cancelled||!data)return;
+   const entries:{name:string;artist:string;title:string;image:string}[]=data.entries||[];
+   [/roho/i,/gabriel/i,/hertha/i,/ristretto|amber beats|raphael/i].forEach(pattern=>{
+    const entry=entries.find(item=>pattern.test([item.name,item.artist,item.title].join(" ")));
+    if(entry?.image)warm(entry.image);
+   });
+  }).catch(()=>{});
+  const loadKatja=fetch("/api/selected-covers").then(r=>r.ok?r.json():null).then(data=>{
+   if(cancelled||!data)return;
+   const entry=(data.entries||[]).find((item:{artist?:string;title?:string;image?:string})=>/katja riemann/i.test((item.artist||"")+" "+(item.title||""))&&/nachtblende|ich flieg|album/i.test((item.title||"")+" "+(item.image||"")));
+   if(entry?.image)warm(entry.image);
+  }).catch(()=>{});
+  void Promise.all([loadScore,loadEgor,loadKatja]);
+  return()=>{cancelled=true};
+ },[]);
  const [activeBookingService,setActiveBookingService]=useState("");
  const [serviceMenuPopup,setServiceMenuPopup]=useState(false);
  useEffect(()=>{
