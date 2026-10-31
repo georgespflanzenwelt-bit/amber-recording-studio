@@ -187,9 +187,9 @@ export default function Page(){
 const params=useParams();const router=useRouter();const lang:Lang=params.lang==="de"?"de":"en";const t=dictionary[lang];const raw=params.slug;const slug=Array.isArray(raw)?raw[0]||"":"";const current=paths.includes(slug)||slug==="egor-credits"?slug:"";const url=(s:string,l:Lang=lang)=>"/"+l+(s?"/"+s:"");
  const [activeBookingService,setActiveBookingService]=useState("");
  useEffect(()=>{
-  if(current!=="booking")return;
+  if(current!==""&&current!=="booking")return;
   const service=new URLSearchParams(window.location.search).get("service");
-  if(service&&["mixing","mastering","production","songwriting","score-brand","workshop","acoustics"].includes(service))setActiveBookingService(service);
+  if(service&&["mixing","mastering","recording","production","songwriting","score-brand","workshop","acoustics"].includes(service))setActiveBookingService(service);
  },[current]);const bookingTilesRef=useRef<HTMLDivElement|null>(null);const bookingDetailRef=useRef<HTMLElement|null>(null);const bookingReturnScroll=useRef<number|null>(null);
  const closeBookingService=()=>{
   const previousY=bookingReturnScroll.current;
@@ -244,10 +244,10 @@ const navigationItems=[
  {de:"VERÖFFENTLICHUNGEN",en:"RELEASES",href:url("")+"#veroeffentlichungen"},
  {de:"LET'S WORK TOGETHER",en:"LET'S WORK TOGETHER",href:url("")+"#lets-work-together"},
  {de:"BACK ON THE BLOCK – STUDIO & TEAM",en:"BACK ON THE BLOCK – STUDIO & TEAM",href:url("")+"#back-on-the-block"},
- ...([["MIXING","MIXING","mixing"],["MASTERING","MASTERING","mastering"],["RECORDING","RECORDING","recording"],["SONGWRITING","SONGWRITING","songwriting"],["PRODUKTION","PRODUCTION","production"],["FILM & WERBEMUSIK","FILM & BRAND MUSIC","score-brand"],["WORKSHOP","WORKSHOP","workshop"],["AKUSTIK & STUDIOPLANUNG","ACOUSTICS & STUDIO PLANNING","acoustics"]] as const).map(([de,en,id])=>({de,en,href:url("booking")+"?service="+id})),
+ ...([["MIXING","MIXING","mixing"],["MASTERING","MASTERING","mastering"],["RECORDING","RECORDING","recording"],["SONGWRITING","SONGWRITING","songwriting"],["PRODUKTION","PRODUCTION","production"],["FILM & WERBEMUSIK","FILM & BRAND MUSIC","score-brand"],["WORKSHOP","WORKSHOP","workshop"],["AKUSTIK & STUDIOPLANUNG","ACOUSTICS & STUDIO PLANNING","acoustics"]] as const).map(([de,en,id])=>({de,en,href:url("")+"?service="+id})),
  {de:"HISTORIE",en:"HISTORY",href:url("historie")}
 ];
-const navigateMenu=(href:string)=>{setMenu(false);if(href.includes("#")&&current===""){const id=href.split("#")[1];const el=document.getElementById(id);if(!el)return;if(id==="lets-work-together"){const top=el.getBoundingClientRect().top+window.scrollY-Math.min(150,window.innerHeight*.17);window.scrollTo({top:Math.max(0,top),behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}else{el.scrollIntoView({behavior:"smooth",block:"start"});}}else{router.push(href)}};
+const navigateMenu=(href:string)=>{setMenu(false);const service=new URL(href,window.location.origin).searchParams.get("service");if(service&&current===""){setActiveBookingService(service);bookingReturnScroll.current=window.scrollY;return;}if(href.includes("#")&&current===""){const id=href.split("#")[1];const el=document.getElementById(id);if(!el)return;if(id==="lets-work-together"){const top=el.getBoundingClientRect().top+window.scrollY-Math.min(150,window.innerHeight*.17);window.scrollTo({top:Math.max(0,top),behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}else{el.scrollIntoView({behavior:"smooth",block:"start"});}}else{router.push(href)}};
 const link=(s:string,label:string,cls="textLink")=><a className={cls} href={url(s)} onClick={e=>{e.preventDefault();go(s)}}>{label}<ArrowUpRight size={18}/></a>;
 const [formService,setFormService]=useState("Mixing"),[formProducer,setFormProducer]=useState("No preference"),[formName,setFormName]=useState(""),[formEmail,setFormEmail]=useState(""),[formDetails,setFormDetails]=useState(""),[prepared,setPrepared]=useState(false),[demoFileName,setDemoFileName]=useState(""),[demoFileError,setDemoFileError]=useState("");
 const query=new URLSearchParams({service:formService,producer:formProducer,name:formName,email:formEmail,project:formDetails}).toString();
