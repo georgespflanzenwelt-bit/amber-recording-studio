@@ -1386,3 +1386,11 @@
 .bookingServiceMenuPopup>.wrap{width:min(1120px,100%);margin:auto;position:relative}
 .bookingServiceMenuPopup .bookingServiceDetail{max-height:none}
 @media(max-width:700px){.bookingServiceDetailSection.bookingServiceMenuPopup{padding:14px 8px!important}}
+
+/* Navigation sidebar: Volume.mp4 rotated left into a portrait background. */
+.mobileMenu{overflow:hidden;isolation:isolate}
+.mobileMenu .navPanelVideoWrap{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.mobileMenu .navPanelVideo{position:absolute;top:50%;left:50%;width:100dvh;height:100%;min-height:100%;object-fit:cover;transform:translate(-50%,-50%) rotate(-90deg);opacity:.65;pointer-events:none}
+.mobileMenu .navPanelVideoOverlay{position:absolute;inset:0;background:rgba(8,17,20,.68)}
+.mobileMenu .menuInner{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.mobileMenu .navPanelVideo{display:none}}
