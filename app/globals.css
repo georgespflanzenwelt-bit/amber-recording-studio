@@ -1463,9 +1463,12 @@
 .bookingServiceDetailSection:has(.bookingMixingBackgroundVideo){background:#0b1115}
 .bookingServiceDetailSection:has(.bookingMixingBackgroundVideo) .bookingServiceDetail{position:relative;isolation:isolate;overflow:hidden;background:rgba(8,14,17,.32)}
 .bookingMixingBackgroundVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
-.bookingMixingVideoShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.94) 0%,rgba(4,9,12,.80) 59%,rgba(4,9,12,.72) 100%);z-index:-1;pointer-events:none}
+.bookingMixingVideoShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,9,12,.88) 0%,rgba(4,9,12,.72) 34%,rgba(4,9,12,.42) 68%,rgba(4,9,12,.16) 100%);z-index:-1;pointer-events:none}
 .bookingMixingCopy{max-width:1000px}
 .bookingMixingMoreButton{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:45px;padding:10px 25px;margin:18px 0 12px;border:1px solid #e3a64b;border-radius:999px;background:rgba(9,12,14,.66);color:#f5c47d;font-weight:700;font-size:14px;letter-spacing:.02em;cursor:pointer;box-shadow:0 0 0 3px rgba(221,158,64,.1);transition:box-shadow .2s,background-color .2s,border-color .2s}
 .bookingMixingMoreButton:hover,.bookingMixingMoreButton:focus-visible{background:rgba(67,37,12,.86);border-color:#ffc66e;box-shadow:0 0 0 3px rgba(234,163,60,.16),0 0 18px rgba(237,145,30,.48)}
 .bookingMixingMoreButton span{font-size:20px;line-height:1}
 .bookingMixingExpanded[hidden]{display:none}
+
+/* Orange headline for the Mixing introduction, in both languages. */
+.bookingMixingLead strong{color:#e3a64b}
