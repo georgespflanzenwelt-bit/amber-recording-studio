@@ -1424,3 +1424,6 @@
  .introVideoSection .columns p{margin-bottom:9px}
  .artistStripHeading{margin-bottom:9px}
 }
+
+/* Consistent circular icon-only close buttons across the site. */
+.artistModalClose,.amberPreviewClose,.scoreFilmClose,.bookingServiceDetail>button[aria-label="Close"],.bookingServiceDetail>button[aria-label="Schließen"],.creditsShowcase>button[aria-label]{border-radius:50%;aspect-ratio:1;flex-shrink:0}
