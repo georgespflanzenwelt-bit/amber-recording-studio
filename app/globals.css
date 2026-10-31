@@ -1413,3 +1413,14 @@
 .bookingOnlineIntro strong{color:#fff}
 .bookingOnlineMixing .bookingInquiryGrid{position:relative;z-index:2}
 @media(max-width:700px){.bookingOnlineMixing .bookingOnlineIntro{width:calc(100% - 32px);margin-bottom:28px}.bookingOnlineIntro h2{font-size:clamp(31px,8vw,46px)}}
+
+/* Compact home introduction so the collaborations and credits control sit higher. */
+@media(min-width:701px){
+ .intro.introVideoSection{padding-top:35px;padding-bottom:18px}
+ .introVideoSection .introVolumeContent>.eyebrow{display:block;margin:0 0 5px}
+ .introVideoSection .introVolumeContent>.columns{padding-top:8px}
+ .introVideoSection .introTeamButton{margin-top:12px}
+ .introVideoSection .introStreamingStat{margin-top:17px}
+ .introVideoSection .columns p{margin-bottom:13px}
+ .artistStripHeading{margin-bottom:14px}
+}
