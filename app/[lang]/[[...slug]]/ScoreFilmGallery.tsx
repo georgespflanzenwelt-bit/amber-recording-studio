@@ -8,6 +8,20 @@ const films=[
  {id:"vietnam",title:"Mein Vietnam – Land und kein Krieg",director:"Minh-Khai Phan-Thi & Richard Ladkani",description:{de:"Eine eindrucksvolle Reise zwischen zwei Kulturen: Minh-Khai Phan-Thi und Richard Ladkani erzählen in dieser persönlichen Dokumentation von Herkunft, Identität und einem Vietnam jenseits der Kriegsgeschichte. George Brasch komponierte die Filmmusik für die renommierte ZDF-Produktion, die 2004 beim Film Festival Cologne (damals Cologne Conference) präsentiert und 2005 im ZDF ausgestrahlt wurde.",en:"A compelling journey between two cultures: Minh-Khai Phan-Thi and Richard Ladkani explore heritage, identity and a Vietnam beyond the history of war. George Brasch composed the score for this ZDF documentary, presented at the 2004 Cologne Conference (now Film Festival Cologne) and broadcast by ZDF in 2005."},folder:"selected credits/Score Audio/Vietnam"} ,{id:"katja",title:"Katja Riemann – Ich flieg’ davon",director:"Nachtblende (2000) · Deutsches Filmorchester Babelsberg",description:{de:"Wenn Popproduktion auf große Orchesterkunst trifft: Für Katja Riemanns Album Nachtblende (2000) arrangierte und produzierte George Brasch den Titel Ich flieg’ davon – gemeinsam mit dem Deutschen Filmorchester Babelsberg. Die Aufnahmen in den traditionsreichen Studios in Berlin-Adlershof vereinten die emotionale Ausdruckskraft einer außergewöhnlichen Stimme mit der Größe und Wärme eines Filmorchesters. Dieses Projekt steht beispielhaft für Braschs stilistische Bandbreite: von urbanen Beats und elektronischen Klangwelten bis hin zu aufwendig gestalteten Orchesterarrangements.",en:"Where pop production meets the grandeur of an orchestra: George Brasch arranged and produced Ich flieg’ davon for Katja Riemann’s 2000 album Nachtblende, working with the German Film Orchestra Babelsberg. Recorded at the historic studios in Berlin-Adlershof, the production brought together an expressive voice and the rich warmth of orchestral sound. A striking example of Brasch’s versatility, from urban beats and electronic soundscapes to richly arranged orchestral productions."},folder:"Score Audio/Rieman Orchester"}
 ] as const;
 
+// Start loading score metadata and artwork as soon as this module is requested,
+// rather than waiting for the gallery to mount in the opened panel.
+const scoreDataPromise: Promise<{groups:Record<string,Asset[]>}>|null = typeof window!=="undefined"
+ ? fetch("/api/score-films").then(r=>{if(!r.ok)throw new Error("Score assets unavailable");return r.json()}).then(data=>{
+   Object.values(data.groups||{}).flat().filter((file:Asset)=>/\\.(png|jpe?g|webp|avif)$/i.test(file.name)).forEach((file:Asset)=>{const image=new Image();image.src=file.url});
+   return data;
+ }).catch(()=>({groups:{}})) : null;
+const katjaDataPromise: Promise<{entries:{artist?:string;title?:string;image?:string}[]}>|null = typeof window!=="undefined"
+ ? fetch("/api/selected-covers").then(r=>{if(!r.ok)throw new Error("Covers unavailable");return r.json()}).then(data=>{
+   const entry=(data.entries||[]).find((e:{artist?:string;title?:string;image?:string})=>/katja riemann/i.test((e.artist||"")+" "+(e.title||""))&&/nachtblende|ich flieg|album/i.test((e.title||"")+" "+(e.image||"")));
+   if(entry?.image){const image=new Image();image.src=entry.image}
+   return data;
+ }).catch(()=>({entries:[]})) : null;
+
 function ScoreTrackPlayer({tracks,title,lang,filmId,cover}:{tracks:Asset[];title:string;lang:"de"|"en";filmId:string;cover?:Asset}){
  const player=useRef<HTMLAudioElement>(null);
  const [index,setIndex]=useState(0),[playing,setPlaying]=useState(false),[time,setTime]=useState(0),[duration,setDuration]=useState(0);
@@ -31,10 +45,10 @@ export default function ScoreFilmGallery({lang}:{lang:"de"|"en"}){
  const [groups,setGroups]=useState<Record<string,Asset[]>>({});
  const [katjaCover,setKatjaCover]=useState<Asset|undefined>(undefined);
  const [panel,setPanel]=useState<{id:string;mode:"description"|"tracks"|"image"}|null>(null);
- useEffect(()=>{let active=true;fetch("/api/score-films",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(active)setGroups(data.groups||{})}).catch(()=>{});return()=>{active=false}},[]);
+ useEffect(()=>{let active=true;(scoreDataPromise||fetch("/api/score-films").then(r=>r.json())).then(data=>{if(active)setGroups(data.groups||{})}).catch(()=>{});return()=>{active=false}},[]);
  useEffect(()=>{if(!panel)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setPanel(null)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[panel]);
  const artwork=groups["selected credits/Score"]||[];
- useEffect(()=>{let active=true;fetch("/api/selected-covers",{cache:"no-store"}).then(r=>r.json()).then(data=>{const entry=(data.entries||[]).find((e:{artist?:string;title?:string;image?:string})=>/katja riemann/i.test((e.artist||"")+" "+(e.title||""))&&/nachtblende|ich flieg|album/i.test((e.title||"")+" "+(e.image||"")));if(active&&entry?.image)setKatjaCover({name:"Nachtblende",url:entry.image})}).catch(()=>{});return()=>{active=false}},[]);
+ useEffect(()=>{let active=true;(katjaDataPromise||fetch("/api/selected-covers").then(r=>r.json())).then(data=>{const entry=(data.entries||[]).find((e:{artist?:string;title?:string;image?:string})=>/katja riemann/i.test((e.artist||"")+" "+(e.title||""))&&/nachtblende|ich flieg|album/i.test((e.title||"")+" "+(e.image||"")));if(active&&entry?.image)setKatjaCover({name:"Nachtblende",url:entry.image})}).catch(()=>{});return()=>{active=false}},[]);
  const katjaTracks=[...(groups["Score Audio/Rieman Orchester"]||[]),...(groups["selected credits/Score Audio/Rieman Orchester"]||[])].filter(x=>/\.(mp3|m4a|wav|ogg|flac)$/i.test(x.name));
  const findArt=(id:string)=>artwork.find(file=>id==="katja"?/katja|riemann|rieman|nachtblende/i.test(file.name):id==="shadow"?/shadow|schattenwelt/i.test(file.name):id==="silvester"?/silvester/i.test(file.name):id==="vietnam"?/mein vietnam|vietnam/i.test(file.name):false);
  const selected=panel?films.find(f=>f.id===panel.id):undefined;
