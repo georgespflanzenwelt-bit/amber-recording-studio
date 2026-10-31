@@ -2,7 +2,7 @@
 import {useEffect,useState} from "react";
 type Lang="de"|"en";
 
-export default function HistoryPage({lang}:{lang:Lang}){
+export default function HistoryPage({lang,onClose}:{lang:Lang;onClose:()=>void}){
  const de=lang==="de";
  const [joyVideoOpen,setJoyVideoOpen]=useState(false);
  const [coolStruttinCover,setCoolStruttinCover]=useState("");
@@ -11,7 +11,7 @@ export default function HistoryPage({lang}:{lang:Lang}){
  useEffect(()=>{let active=true;fetch("/api/selected-covers").then(r=>r.json()).then(data=>{const item=(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" "))&&/(vol(?:ume)?\s*1|vol(?:ume)?\s*i\b)/i.test([e.name,e.title].join(" ")))||(data.entries||[]).find((e:{name?:string;artist?:string;title?:string;image?:string})=>/cool\s*strutt?in/i.test([e.name,e.artist,e.title].join(" ")));if(active&&item?.image)setCoolStruttinCover(item.image)}).catch(()=>{});return()=>{active=false}},[]);
  return <div className="amberHistory">
   <video className="historyTapeBackground" src="/studio-video/Tape%20New.mp4" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"/>
-  <header className="historyHero">
+  <header className="historyHero"><button type="button" className="historyCloseButton" onClick={onClose} aria-label={de?"Historie schließen":"Close history"} title={de?"Schließen":"Close"}>×</button>
    <div className="wrap historyHeroInner">
     <small>AMBER / {de?"HISTORIE":"HISTORY"} · BERLIN · 1991—TODAY</small>
     <h1>{de?<>AMBER.<br/><em>EINE BERLINER</em><br/>STUDIOGESCHICHTE.</>:<>AMBER.<br/><em>A BERLIN</em><br/>STUDIO STORY.</>}</h1>
