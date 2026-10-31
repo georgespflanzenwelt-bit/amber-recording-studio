@@ -1,6 +1,12 @@
 "use client";
 import {useEffect,useState} from "react";
 type Entry={name:string;artist:string;title:string;image:string;work:string;youtubeUrl?:string;externalUrl?:string};
+// Prefetch commercial covers while the parent page bundle is loading.
+const egorCoversPromise: Promise<{entries:Entry[]}>|null = typeof window!=="undefined"
+ ? fetch("/api/selected-covers?scope=egor").then(r=>{if(!r.ok)throw new Error("Commercial covers unavailable");return r.json()}).then(data=>{
+   (data.entries||[]).forEach((entry:Entry)=>{if(entry.image){const image=new Image();image.src=entry.image}});
+   return data;
+ }).catch(()=>({entries:[]})) : null;
 const adverts=[
  {id:"roho",artist:"ROHO Filmproduction",title:"Trailer Movie",video:"VKOSl2BSIc0",match:/roho/i},
  {id:"gabriel",artist:"Gabriel & Co.",title:"Jessica Alba Campaign",video:"379cyDbuQz4",match:/gabriel/i},
@@ -10,7 +16,7 @@ const adverts=[
 export default function EgorFilmGallery({lang}:{lang:"de"|"en"}){
  const [entries,setEntries]=useState<Entry[]>([]);
  const [active,setActive]=useState<{id:string;mode:"video"|"image"|"description"}|null>(null);
- useEffect(()=>{let ok=true;fetch("/api/selected-covers?scope=egor",{cache:"no-store"}).then(r=>r.json()).then(d=>{if(ok)setEntries(d.entries||[])}).catch(()=>{});return()=>{ok=false}},[]);
+ useEffect(()=>{let ok=true;(egorCoversPromise||fetch("/api/selected-covers?scope=egor").then(r=>r.json())).then(d=>{if(ok)setEntries(d.entries||[])}).catch(()=>{});return()=>{ok=false}},[]);
  useEffect(()=>{if(!active)return;const fn=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};document.addEventListener("keydown",fn);return()=>document.removeEventListener("keydown",fn)},[active]);
  const selected=adverts.find(a=>a.id===active?.id);
  const imageFor=(id:string)=>{const a=adverts.find(x=>x.id===id);return a?entries.find(e=>a.match.test([e.name,e.artist,e.title].join(" ")))?.image:""};
