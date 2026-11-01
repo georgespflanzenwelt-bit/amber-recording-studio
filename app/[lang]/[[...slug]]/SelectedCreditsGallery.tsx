@@ -236,7 +236,8 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails,portal
  // The Elephant Man single may have variant cover filenames in Replit.
  // Select the established YouTube video only for this specific artist and release.
  const elephantShakeCredit=!!active&&/^elephant man{1,2}(?: seeed)?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).includes("shake baby shake")&&normalizeSong(active.title).includes("electric boogie");
- const spotifyUrl=elephantShakeCredit?"":brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":olympicDoOne?olympicAlbumUrl:active?.spotifyUrl||"";
+ const fwfeyiLuva=!!active&&normalizeSong(active.artist)==="fwfeyi"&&normalizeSong(active.title)==="1luva";
+ const spotifyUrl=elephantShakeCredit?"":brotherCredit?"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N":olympicDoOne?olympicAlbumUrl:active?.spotifyUrl||(fwfeyiLuva?"https://open.spotify.com/track/0HM6tz9cOZKcwAAktCv8W2?si=21152b943f514530":"");
  const current=elephantShakeCredit?"":olympicDoOne?embed(olympicAlbumUrl):brotherCredit?embed(spotifyUrl):embed(chosen)||embed(spotifyUrl);
  const youtubeCollection=!!active?.youtubeTracks?.some(track=>youtubeId(track.youtubeUrl));
  const youtubePlaylist=!!active?.youtubePlaylist?.id&&Array.isArray(active.youtubePlaylist.tracks)&&active.youtubePlaylist.tracks.length>0;
