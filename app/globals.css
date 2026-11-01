@@ -1754,7 +1754,7 @@
 .bookingOnlineMixing.bookingContactShell{overflow:hidden;isolation:isolate}
 .bookingOnlineMixing .bookingInquiryPhoto{
  position:absolute;inset:0;z-index:0;pointer-events:none;
- background-image:url('/images/studio2/26%20Desk%20Dark1.jpeg');
+ background-image:url('/images/studio/03_Studio2_4K1.webp');
  background-position:center;background-size:cover;background-repeat:no-repeat;background-color:#101719;
  animation:bookingPhotoSlowZoom 20s ease-in-out infinite alternate;
  transform-origin:center center;filter:none;opacity:1;
@@ -1805,15 +1805,8 @@
 /* Booking prices finish with a clean full-width studio photo; form lives on Contact. */
 .bookingOnlineMixing .bookingInquiryGrid.bookingPricesOnly{display:block;max-width:1050px;margin-inline:auto}
 .bookingOnlineMixing .bookingPricesOnly .bookingPriceRail{width:100%}
-.bookingOnlineMixing.bookingContactShell{padding-bottom:0}
-.bookingOnlineMixing.bookingContactShell::after{
- content:"";display:block;position:relative;z-index:2;
- height:clamp(260px,38vw,570px);margin:0 -20px;
- background-image:linear-gradient(to bottom,rgba(10,16,18,1) 0%,rgba(10,16,18,.75) 10%,rgba(10,16,18,0) 35%),url('/images/studio/03_Studio2_4K.webp');
- background-position:center,center 49%;
- background-size:cover; background-repeat:no-repeat;
-}
+.bookingOnlineMixing.bookingContactShell{padding-bottom:clamp(46px,5vw,76px)}
 .bookingDedicatedContact{min-height:calc(100vh - 86px);padding:clamp(65px,8vw,115px) 20px}
 .bookingContactSingle{width:min(780px,100%);margin:auto}
 .bookingDedicatedContact .bookingContactCard{width:100%;max-width:none}
-@media(max-width:700px){.bookingOnlineMixing.bookingContactShell::after{height:300px;margin-top:38px}}
+
