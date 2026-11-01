@@ -1683,4 +1683,4 @@
 @media(min-width:701px){.artistStrip{padding-top:8px}.artistStripHeading{margin-left:clamp(260px,34vw,560px);margin-bottom:2px}}
 
 /* Slightly tighten line spacing of the homepage introduction paragraph. */
-@media(min-width:701px){.introVideoSection .columns p{line-height:1.56}}
+@media(min-width:701px){.introVideoSection .columns p{line-height:1.46}.introVideoSection .introStreamingStat{margin-top:40px}}
