@@ -1847,3 +1847,17 @@
   width:auto;white-space:normal;text-align:left;text-align-last:auto;top:4px;
  }
 }
+
+/* Pricing refinements: warm yellow subtitle, compact cards and linked topic tabs. */
+.bookingInquiryStage .bookingPriceIntro p{color:#f2bc59;margin-top:-5px;margin-bottom:0}
+.bookingInquiryStage .bookingPriceCards{max-width:960px;margin:0 auto}
+.bookingInquiryStage .bookingPriceCard{padding:13px}
+.bookingInquiryStage .bookingPriceIntro{margin-bottom:0}
+.bookingServiceTopics{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:9px;margin:22px auto 34px;width:min(100%,1150px)}
+.bookingServiceTopic{appearance:none;flex:0 1 auto;border:1.5px solid #e5a34c;border-radius:999px;background:rgba(8,13,16,.76);color:#fff;font-weight:750;font-size:clamp(10px,.69vw,12px);letter-spacing:.045em;line-height:1.2;white-space:nowrap;padding:11px 15px;cursor:pointer;box-shadow:inset 0 0 0 3px rgba(8,13,16,.95),inset 0 0 0 4px #e5a34c;transition:box-shadow .25s,background .25s,transform .25s}
+.bookingServiceTopic:hover,.bookingServiceTopic:focus-visible,.bookingServiceTopic.is-selected{background:rgba(229,163,76,.18);box-shadow:0 0 18px rgba(245,175,68,.48),inset 0 0 0 3px rgba(8,13,16,.9),inset 0 0 0 4px #e5a34c;transform:translateY(-1px)}
+.bookingServiceTopicPanel{position:relative;width:min(100%,960px);margin:0 auto 24px;padding:16px 48px 16px 22px;border:1px solid rgba(229,163,76,.6);border-radius:16px;background:rgba(9,15,19,.9);color:#fff}
+.bookingServiceTopicPanel p{margin:0;line-height:1.55}
+.bookingServiceTopicPanel a{color:#f2bc59;text-decoration:underline}
+.bookingServiceTopicPanel>button{position:absolute;right:14px;top:9px;background:none;border:0;color:#f2bc59;cursor:pointer;font-size:24px}
+@media(max-width:900px){.bookingServiceTopics{margin:18px auto 24px;gap:8px}.bookingInquiryStage .bookingPriceCards{max-width:100%}}
