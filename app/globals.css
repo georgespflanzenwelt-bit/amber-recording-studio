@@ -1660,3 +1660,12 @@
 /* Match the Explore Our Work entrance, delayed by exactly one second. */
 .heroText .homeHeroButtonRow .homeTeamButton{animation:homeDiscoverArrive 1.8s cubic-bezier(.18,.72,.2,1) 1.6s both}
 @media(prefers-reduced-motion:reduce){.heroText .homeHeroButtonRow .homeTeamButton{animation:none}}
+
+/* Homepage introduction: move the team CTA and collaborations ribbon up together on desktop. */
+@media(min-width:701px){
+ .introVideoSection .introTeamButton{margin-top:-18px}
+ .intro.introVideoSection{padding-bottom:0}
+ .introVideoSection .introVolumeContent>.columns{margin-bottom:-26px}
+ .artistStrip{padding-top:0}
+ .artistStripHeading{margin-bottom:5px}
+}
