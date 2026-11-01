@@ -1586,13 +1586,16 @@
 .teamMidBannerInner{width:max-content;max-width:100%;margin:0 auto}
 .teamMidBannerTitle{display:flex;align-items:baseline;gap:0;width:max-content;max-width:100%;margin:0;font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(34px,6.4vw,96px);line-height:1;letter-spacing:-.085em;white-space:nowrap}
 .teamMidBannerTitle span,.teamMidBannerTitle em{display:inline-block;font-style:normal}
-.teamMidBannerTitle span{color:#fff;animation:teamMidSlideIn .95s cubic-bezier(.18,.75,.24,1) both}
-.teamMidBannerTitle em{color:#d8a84e;animation:teamMidSlideIn 1.05s cubic-bezier(.18,.75,.24,1) .22s both}
-.teamMidBannerSubtitle{width:100%;margin:6px 0 0;color:#d0d5d1;font-size:clamp(10px,1vw,16px);font-weight:500;white-space:nowrap;text-align:justify;text-align-last:justify;animation:teamMidFadeIn .9s ease .95s both}
+.teamMidBannerTitle span{color:#fff;opacity:0;transform:translateX(140px)}
+.teamMidBannerTitle em{color:#d8a84e;opacity:0;transform:translateX(140px)}
+.teamMidBannerSubtitle{width:100%;margin:6px 0 0;color:#d0d5d1;font-size:clamp(10px,1vw,16px);font-weight:500;white-space:nowrap;text-align:justify;text-align-last:justify;opacity:0;transform:translateY(12px)}
+.teamMidBanner.is-visible .teamMidBannerTitle span{animation:teamMidSlideIn 1.65s cubic-bezier(.18,.75,.24,1) both}
+.teamMidBanner.is-visible .teamMidBannerTitle em{animation:teamMidSlideIn 1.85s cubic-bezier(.18,.75,.24,1) .3s both}
+.teamMidBanner.is-visible .teamMidBannerSubtitle{animation:teamMidFadeIn 1.5s ease 1.15s both}
 @keyframes teamMidSlideIn{from{opacity:0;transform:translateX(140px)}to{opacity:1;transform:translateX(0)}}
 @keyframes teamMidFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){ .teamMidBanner{padding:20px 16px}.teamMidBannerTitle{font-size:clamp(28px,9vw,52px)}.teamMidBannerSubtitle{font-size:clamp(9px,2.2vw,13px);white-space:normal;text-align:left;text-align-last:auto;line-height:1.45}}
-@media(prefers-reduced-motion:reduce){.teamMidBannerTitle span,.teamMidBannerTitle em,.teamMidBannerSubtitle{animation:none}}
+@media(prefers-reduced-motion:reduce){.teamMidBannerTitle span,.teamMidBannerTitle em,.teamMidBannerSubtitle{animation:none!important;opacity:1;transform:none}}
 
 /* George Team portrait: visibly smaller in both width and height on desktop. */
 @media(min-width:901px){
