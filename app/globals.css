@@ -1577,3 +1577,6 @@
 .teamGeorgeExtra[hidden]{display:none}
 .teamGeorgeMoreButton{display:inline-flex;align-items:center;justify-content:center;margin-top:15px;padding:11px 23px;border:1px solid rgba(216,170,98,.75);border-radius:999px;background:transparent;color:#e2b26d;font-size:12px;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:box-shadow .2s ease}
 .teamGeorgeMoreButton:hover,.teamGeorgeMoreButton:focus-visible{box-shadow:0 0 14px rgba(216,170,98,.38)}
+
+/* Keep George Brasch on one line in the desktop Studio Team profile. */
+@media(min-width:901px){.teamShowcase .teamGeorgeCopy h2{white-space:nowrap;font-size:clamp(43px,4vw,66px);word-spacing:0}}
