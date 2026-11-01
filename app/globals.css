@@ -1640,3 +1640,11 @@
 /* Homepage: stack OUR TEAM directly beneath Discover Work, left aligned. */
 .site > main > .hero .heroText .homeHeroButtonRow{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:max-content;max-width:100%;gap:16px}
 .homeHeroButtonRow .homeTeamButton{align-self:flex-start}
+
+/* Use one identical thin double-outline treatment for both homepage hero buttons. */
+.site > main > .hero .heroText .homeHeroButtonRow .homeDiscoverButton,
+.site > main > .hero .heroText .homeHeroButtonRow .homeTeamButton{border:1px solid #e68a32;outline:none;background:rgba(12,12,13,.45);color:#fff;box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32}
+.site > main > .hero .heroText .homeHeroButtonRow .homeDiscoverButton:hover,
+.site > main > .hero .heroText .homeHeroButtonRow .homeTeamButton:hover,
+.site > main > .hero .heroText .homeHeroButtonRow .homeDiscoverButton:focus-visible,
+.site > main > .hero .heroText .homeHeroButtonRow .homeTeamButton:focus-visible{background:rgba(230,138,50,.18);box-shadow:0 0 29px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565}
