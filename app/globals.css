@@ -1599,3 +1599,6 @@
  .teamShowcase .teamGeorge{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:stretch}
  .teamShowcase .teamGeorge .photobox{height:100%;min-height:0;align-self:stretch}
 }
+
+/* Center the complete George profile (portrait and biography) vertically within its section. */
+@media(min-width:901px){.teamShowcase .teamShowcaseProfiles{padding-top:clamp(42px,5vw,76px);padding-bottom:clamp(42px,5vw,76px)}}
