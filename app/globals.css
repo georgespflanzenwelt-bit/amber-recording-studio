@@ -1658,5 +1658,5 @@
 @media(max-width:700px){.homePricesModalBackdrop{padding:8px}.homePricesModal{max-height:calc(100dvh - 16px);padding:18px}.homePricesModalClose{margin:0}}
 
 /* Match the Explore Our Work entrance, delayed by exactly one second. */
-.heroText .homeHeroButtonRow .homeTeamButton{animation:homeDiscoverArrive 1.8s cubic-bezier(.18,.72,.2,1) 2.1s both}
+.heroText .homeHeroButtonRow .homeTeamButton{animation:homeDiscoverArrive 1.8s cubic-bezier(.18,.72,.2,1) 1.6s both}
 @media(prefers-reduced-motion:reduce){.heroText .homeHeroButtonRow .homeTeamButton{animation:none}}
