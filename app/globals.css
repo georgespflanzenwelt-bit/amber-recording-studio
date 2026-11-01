@@ -1610,3 +1610,8 @@
 .teamScrollEnter{opacity:0;transform:translateX(45px);transition:opacity 1.45s ease,transform 1.45s cubic-bezier(.19,1,.22,1);will-change:opacity,transform}
 .teamScrollEnter.teamScrollVisible{opacity:1;transform:translateX(0)}
 @media(prefers-reduced-motion:reduce){.teamScrollEnter{opacity:1;transform:none;transition:none}}
+
+/* George profile: one row of refined slim pill links, including expandable biography. */
+.teamShowcase .teamGeorgeLinks{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:25px}
+.teamShowcase .teamGeorgeLinks .teamGeorgeOval{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:38px;margin:0;padding:9px 17px;border:1px solid rgba(216,170,98,.65);border-radius:999px;background:transparent;color:#e2b26d;font-size:11px;font-weight:700;letter-spacing:.07em;line-height:1.25;text-decoration:none;white-space:nowrap;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
+.teamShowcase .teamGeorgeLinks .teamGeorgeOval:hover,.teamShowcase .teamGeorgeLinks .teamGeorgeOval:focus-visible{border-color:#e2b26d;box-shadow:0 0 12px rgba(216,170,98,.38)}
