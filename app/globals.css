@@ -1749,3 +1749,16 @@
 /* Show the Tape New background video clearly outside opaque price and inquiry cards. */
 .bookingOnlineMixing .bookingInquiryShade{background:transparent;pointer-events:none}
 .bookingOnlineMixing .bookingInquiryVideo{filter:none;opacity:1}
+
+/* Booking: full-visibility studio photo with a gentle continuous zoom instead of video. */
+.bookingOnlineMixing.bookingContactShell{overflow:hidden;isolation:isolate}
+.bookingOnlineMixing .bookingInquiryPhoto{
+ position:absolute;inset:0;z-index:0;pointer-events:none;
+ background-image:url('/images/studio2/05%20Headphone.jpeg');
+ background-position:center;background-size:cover;background-repeat:no-repeat;
+ animation:bookingPhotoSlowZoom 24s ease-in-out infinite alternate;
+ transform-origin:center center;filter:none;opacity:1;
+}
+.bookingOnlineMixing .bookingInquiryShade{background:transparent;pointer-events:none}
+@keyframes bookingPhotoSlowZoom{from{transform:scale(1)}to{transform:scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.bookingOnlineMixing .bookingInquiryPhoto{animation:none}}
