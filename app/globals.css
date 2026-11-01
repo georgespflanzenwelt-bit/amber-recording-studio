@@ -1712,4 +1712,4 @@
 .heroText:not(.heroTextDE)>.warm{position:relative;top:10px}
 
 /* Stretch the English eyebrow across the same width as the word YOUR, keeping its font size. */
-.heroText:not(.heroTextDE)>.warm{width:var(--your-word-width,auto);max-width:calc(100vw - 14vw);text-align:justify;text-align-last:justify;white-space:nowrap}
+.heroText:not(.heroTextDE)>.warm{width:max-content;max-width:calc(100vw - 14vw);text-align:left;white-space:nowrap;font-size:clamp(18px,1.8vw,26px);letter-spacing:.16em}
