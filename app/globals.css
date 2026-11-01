@@ -1628,3 +1628,6 @@
 .bottomCTA small{color:#d8a84e}
 .bottomCTA .bottomOvalButton{display:inline-flex;align-items:center;justify-content:center;gap:0;padding:10px 19px;min-height:38px;border:1px solid #de9845;border-radius:999px;background:transparent;color:#de9845;font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.07em;text-decoration:none;transition:box-shadow .2s ease,border-color .2s ease}
 .bottomCTA .bottomOvalButton:hover,.bottomCTA .bottomOvalButton:focus-visible{border-color:#eea855;box-shadow:0 0 13px rgba(222,152,69,.38)}
+
+/* Homepage hero: place Discover Work opposite the left-aligned content, under the end of the headline. */
+@media(min-width:901px){.site > main > .hero .heroText .homeDiscoverButton{align-self:flex-end;margin-right:7vw;margin-top:0}}
