@@ -1735,9 +1735,9 @@
 /* Unified glowing oval purchase buttons in all price cards. */
 .bookingPriceCard .bookingPriceRequest{
  display:inline-flex;align-items:center;justify-content:center;align-self:center;
- width:min(100%,210px);min-height:44px;margin-top:auto;padding:11px 22px;
+ width:min(100%,150px);min-height:38px;margin-top:auto;padding:8px 16px;
  border:2px solid #e68a32;border-radius:999px;background:rgba(12,12,13,.65);
- color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;text-align:center;
+ color:#fff;font-size:11px;font-weight:800;letter-spacing:.11em;text-align:center;
  box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32;
  transition:background .25s ease,box-shadow .25s ease,transform .25s ease;
 }
