@@ -1697,4 +1697,4 @@
 }
 
 /* Allow the raised collaboration heading to remain fully visible above the carousel. */
-@media(min-width:701px){.artistStrip{overflow:visible}.artistStripHeading{position:relative;z-index:2}.artistTrack{overflow-x:auto;overflow-y:hidden}}
+@media(min-width:701px){.artistStrip{overflow:visible;z-index:4}.artistStripHeading{position:relative;z-index:5}.artistTrack{overflow-x:auto;overflow-y:hidden}}
