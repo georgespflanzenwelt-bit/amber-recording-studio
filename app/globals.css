@@ -1755,7 +1755,7 @@
 .bookingOnlineMixing .bookingInquiryPhoto{
  position:absolute;inset:0;z-index:0;pointer-events:none;
  background-image:url('/images/studio2/05%20Headphone.jpeg');
- background-position:center;background-size:100% auto;background-repeat:no-repeat;background-color:#101719;
+ background-position:center;background-size:cover;background-repeat:no-repeat;background-color:#101719;
  animation:bookingPhotoSlowZoom 24s ease-in-out infinite alternate;
  transform-origin:center center;filter:none;opacity:1;
 }
