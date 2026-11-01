@@ -1648,3 +1648,11 @@
 .site > main > .hero .heroText .homeHeroButtonRow .homeTeamButton:hover,
 .site > main > .hero .heroText .homeHeroButtonRow .homeDiscoverButton:focus-visible,
 .site > main > .hero .heroText .homeHeroButtonRow .homeTeamButton:focus-visible{background:rgba(230,138,50,.18);box-shadow:0 0 29px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565}
+
+/* Price list opens as a centered overlay from the homepage service navigation. */
+.homePricesModalBackdrop{position:fixed;inset:0;z-index:2500;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:clamp(14px,4vw,52px)}
+.homePricesModal{position:relative;width:min(1100px,100%);max-height:calc(100dvh - 40px);overflow-y:auto;background:#11191b;border:1px solid #c7964c;box-shadow:0 25px 85px #000b;padding:clamp(26px,4vw,55px)}
+.homePricesModal .bookingPriceRail{width:100%;max-width:none;min-width:0}
+.homePricesModalClose{position:sticky;top:0;float:right;z-index:3;display:grid;place-items:center;width:46px;height:46px;margin:-12px -12px 0 0;border:1px solid #dba95d;border-radius:50%;background:rgba(18,22,24,.85);color:#fff;cursor:pointer}
+.homePricesModalClose:hover,.homePricesModalClose:focus-visible{background:#ae792f}
+@media(max-width:700px){.homePricesModalBackdrop{padding:8px}.homePricesModal{max-height:calc(100dvh - 16px);padding:18px}.homePricesModalClose{margin:0}}
