@@ -292,15 +292,19 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
   if(current!==""||lang!=="en")return;
   const hero=document.querySelector<HTMLElement>(".heroText:not(.heroTextDE)");
   const word=hero?.querySelector<HTMLElement>("h1 span:first-child");
-  if(!hero||!word)return;
+  const tagline=hero?.querySelector<HTMLElement>(".warm");
+  if(!word||!tagline)return;
   const measure=()=>{
+   const node=word.firstChild;
+   if(!node||node.nodeType!==Node.TEXT_NODE||!node.textContent?.startsWith("YOUR"))return;
    const range=document.createRange();
-   range.selectNodeContents(word);
-   const previousTransform=word.style.transform;
-   word.style.transform="none";
-   const width=range.getBoundingClientRect().width;
-   word.style.transform=previousTransform;
-   if(width>0)hero.style.setProperty("--your-word-width",width+"px");
+   range.setStart(node,0);
+   range.setEnd(node,4);
+   const targetWidth=range.getBoundingClientRect().width;
+   tagline.style.fontSize="";
+   const baseFont=parseFloat(window.getComputedStyle(tagline).fontSize);
+   const naturalWidth=tagline.getBoundingClientRect().width;
+   if(targetWidth>0&&naturalWidth>0)tagline.style.fontSize=(baseFont*targetWidth/naturalWidth).toFixed(2)+"px";
   };
   measure();
   const observer=new ResizeObserver(measure);
@@ -308,7 +312,7 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
   document.fonts.ready.then(measure).catch(()=>{});
   window.addEventListener("resize",measure);
   return()=>{observer.disconnect();window.removeEventListener("resize",measure)};
- },[current,lang]);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
+ },[current,lang]););const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
  useEffect(()=>{const image=heroImage.current;setHeroImageLoaded(!!image?.complete&&image.naturalWidth>0)},[current,lang]);
 useEffect(()=>{setMenu(false);const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("shown");obs.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll(".reveal, .collabEnterLeft").forEach(e=>obs.observe(e));return()=>obs.disconnect()},[slug,lang]);
 useEffect(()=>{if(!audio.current)return;audio.current.pause();setPlaying(false);if(selected?.audio){audio.current.src=selected.audio;audio.current.play().then(()=>setPlaying(true)).catch(()=>setPlaying(false))}},[selected]);
