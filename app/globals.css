@@ -1687,3 +1687,11 @@
 
 /* Lift the collaboration heading and artist carousel together, without moving intro content. */
 @media(min-width:701px){.artistStrip{margin-top:-16px;position:relative;z-index:0}}
+
+/* Keep the introduction CTA fully visible without changing its layout position. */
+@media(min-width:701px){
+ .intro.introVideoSection{overflow:visible;z-index:2}
+ .introVideoSection .introVolumeContent{position:relative;z-index:3}
+ .introVideoSection .introTeamButton{position:relative;z-index:5}
+ .artistStrip{position:relative;z-index:1}
+}
