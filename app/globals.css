@@ -1582,13 +1582,13 @@
 @media(min-width:901px){.teamShowcase .teamGeorgeCopy h2{white-space:nowrap;font-size:clamp(32px,3.35vw,55px);letter-spacing:-.065em;word-spacing:0}}
 
 /* Studio Team interlude between George and Egor, with independent right-entry motion. */
-.teamMidBanner{position:relative;isolation:isolate;overflow:hidden;background:#e3e0d9;color:#171b1c;padding:clamp(18px,2.4vw,34px) 20px}
+.teamMidBanner{position:relative;isolation:isolate;overflow:hidden;background:#0b1214;color:#fff;padding:clamp(18px,2.4vw,34px) 20px}
 .teamMidBannerInner{width:max-content;max-width:100%;margin:0 auto}
 .teamMidBannerTitle{display:flex;align-items:baseline;gap:0;width:max-content;max-width:100%;margin:0;font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(38px,7vw,104px);line-height:1;letter-spacing:-.085em;white-space:nowrap}
 .teamMidBannerTitle span,.teamMidBannerTitle em{display:inline-block;font-style:normal}
-.teamMidBannerTitle span{color:#171b1c;opacity:0;transform:translateX(-100vw)}
+.teamMidBannerTitle span{color:#fff;opacity:0;transform:translateX(-100vw)}
 .teamMidBannerTitle em{color:#d8a84e;opacity:0;transform:translateX(100vw)}
-.teamMidBannerSubtitle{width:100%;margin:6px 0 0;color:#41474a;font-size:clamp(10px,1vw,16px);font-weight:500;white-space:nowrap;text-align:justify;text-align-last:justify;opacity:0;transform:translateY(12px)}
+.teamMidBannerSubtitle{width:100%;margin:6px 0 0;color:#d0d5d1;font-size:clamp(10px,1vw,16px);font-weight:500;white-space:nowrap;text-align:justify;text-align-last:justify;opacity:0;transform:translateY(12px)}
 .teamMidBanner.is-visible .teamMidBannerTitle span{animation:teamMidSlideLeft 1.85s cubic-bezier(.18,.75,.24,1) both}
 .teamMidBanner.is-visible .teamMidBannerTitle em{animation:teamMidSlideRight 1.85s cubic-bezier(.18,.75,.24,1) .15s both}
 .teamMidBanner.is-visible .teamMidBannerSubtitle{animation:teamMidFadeIn 1.5s ease 1.15s both}
