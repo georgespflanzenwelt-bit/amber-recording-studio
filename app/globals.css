@@ -1782,3 +1782,22 @@
   width:calc(100vw - 10vw);max-width:none;
  }
 }
+
+/* Refine the rates heading only; leave all price cards untouched. */
+.bookingInquiryStage .bookingPriceIntro{margin-top:-42px}
+.bookingInquiryStage .bookingPriceIntro .bookingPriceTagline{
+ margin-bottom:4px;color:#e3a33c;text-shadow:0 2px 10px rgba(0,0,0,.3);
+}
+.bookingInquiryStage .bookingPriceIntro h2{
+ margin:2px 0 10px;line-height:.96;letter-spacing:-.05em;
+ text-shadow:0 5px 18px rgba(0,0,0,.3);
+ -webkit-text-stroke:.5px rgba(255,255,255,.13);
+}
+.bookingInquiryStage .bookingPriceIntro h2 em{
+ color:#e3a33c;font-style:normal;
+ text-shadow:0 5px 18px rgba(0,0,0,.3);
+ -webkit-text-stroke:.5px rgba(255,255,255,.10);
+}
+.bookingInquiryStage .bookingPriceIntro p{
+ margin-top:2px;color:#e3a33c;text-shadow:0 2px 10px rgba(0,0,0,.35);
+}
