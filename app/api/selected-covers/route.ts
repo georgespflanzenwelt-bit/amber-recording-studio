@@ -8,6 +8,7 @@ export async function GET(request:Request){
   const imageDirectory=egor?path.join(process.cwd(),"public","Pic GB & Egor","Egor Credits"):path.join(process.cwd(),"public","selected credits");
   const names=(await readdir(imageDirectory)).filter(x=>/\.(jpe?g|png|webp|avif)$/i.test(x)).sort();
   const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data",egor?"egor-credits.json":"selected-credits.json"),"utf8").catch(()=>"{}")) as {externalLinks?:Record<string,string>;covers?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>;releases?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>};
+  const egorMetadata=egor?null:JSON.parse(await readFile(path.join(process.cwd(),"data","egor-credits.json"),"utf8").catch(()=>"{}")) as {covers?:Record<string,{spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string}>};
   const entries=names.map(name=>{
    const parts=name.replace(/\.[^.]+$/,"").split(/__+/).map(s=>s.replace(/_/g," ").replace(/\s+/g," ").trim());
    const first=parts[0]||"";
@@ -46,14 +47,14 @@ export async function GET(request:Request){
    const label=hasLabel?parts[workStart]:"";
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
    const work=workParts.filter(x=>!/^by\s+/i.test(x)&&!/^(?:George Brasch|Egor Kobzev)\s*\.?$/i.test(x)).map(expandRole).join(" · ").trim();
-   const creditName=egor?"Egor Kobzev":parts.find(x=>/George Brasch/i.test(x))?.match(/George Brasch/i)?.[0]||"George Brasch";
+   const creditName=parts.find(x=>/Egor Kobzev|George Brasch/i.test(x))?.match(/Egor Kobzev|George Brasch/i)?.[0]||(egor?"Egor Kobzev":"George Brasch");
    const image=(egor?"/Pic%20GB%20%26%20Egor/Egor%20Credits/":"/selected%20credits/")+encodeURIComponent(name);
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
    const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/[’´`]/g,"\x27").replace(/\s+/g," ").trim();
    const olympicDoOne=/\blifts$/i.test(artist)&&/^do one\s*\(album\)$/i.test(title);
    const brotherAlbum=/^brothers?\s+keepers?$/i.test(artist)&&/^am\s+i\s+my\s+brother.?s\s+keeper/i.test(title);
-   const extra=metadata.covers?.[name]||metadata.releases?.[releaseKey]||(!egor&&brotherAlbum?{spotifyUrl:"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N"}:{});
+   const extra=metadata.covers?.[name]||egorMetadata?.covers?.[name]||metadata.releases?.[releaseKey]||(!egor&&brotherAlbum?{spotifyUrl:"https://open.spotify.com/track/2YhD29djlTeNcHGN5MtD8N"}:{});
    const isRistretto=egor&&/ristretto|ember|amber|beans?|raphael|coffee/i.test([name,artist,title].join(" "));
    const externalUrl=extra.externalUrl||(isRistretto?metadata.externalLinks?.ristretto||"":"");
    return {name,artist,title,label,work,creditName,trackNumbers,image,key,genre:extra.genre||(hasFilenameGenre?parsedGenres.join(", "):""),externalUrl,spotifyUrl:olympicDoOne?"https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr":extra.spotifyUrl||"",youtubeUrl:extra.youtubeUrl||"",tracks:Array.isArray(extra.tracks)?extra.tracks:[],youtubeTracks:Array.isArray(extra.youtubeTracks)?extra.youtubeTracks:[],youtubePlaylist:extra.youtubePlaylist?.id&&Array.isArray(extra.youtubePlaylist.tracks)?extra.youtubePlaylist:undefined};
