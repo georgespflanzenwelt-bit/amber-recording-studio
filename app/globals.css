@@ -1572,3 +1572,8 @@
 /* Compact side-by-side genre and team selectors in Credits. */
 @media(min-width:701px){.creditsShowcase .creditsGenreRow{flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 16px}.creditsShowcase .creditsGenreDropdown{width:auto;min-width:0}.creditsShowcase .creditsGenreTrigger{width:auto;min-width:165px;padding:12px 17px;justify-content:center;gap:0}.creditsShowcase .creditsTeamDropdown .creditsGenreTrigger{min-width:155px}}
 @media(max-width:700px){.creditsShowcase .creditsGenreDropdown{max-width:240px}.creditsShowcase .creditsGenreTrigger{justify-content:center}}
+
+/* George biography expandable section */
+.teamGeorgeExtra[hidden]{display:none}
+.teamGeorgeMoreButton{display:inline-flex;align-items:center;justify-content:center;margin-top:15px;padding:11px 23px;border:1px solid rgba(216,170,98,.75);border-radius:999px;background:transparent;color:#e2b26d;font-size:12px;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:box-shadow .2s ease}
+.teamGeorgeMoreButton:hover,.teamGeorgeMoreButton:focus-visible{box-shadow:0 0 14px rgba(216,170,98,.38)}
