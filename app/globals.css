@@ -1630,4 +1630,9 @@
 .bottomCTA .bottomOvalButton:hover,.bottomCTA .bottomOvalButton:focus-visible{border-color:#eea855;box-shadow:0 0 13px rgba(222,152,69,.38)}
 
 /* Homepage hero: place Discover Work opposite the left-aligned content, under the end of the headline. */
-@media(min-width:901px){.site > main > .hero .heroText .homeDiscoverButton{align-self:flex-end;margin-right:7vw;margin-top:0}}
+.homeHeroButtonRow{display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px;flex-wrap:wrap}
+.homeHeroButtonRow .homeDiscoverButton{align-self:auto;margin-right:0}
+.homeHeroButtonRow .homeTeamButton{display:inline-flex;align-items:center;justify-content:center;min-height:49px;margin:0;padding:11px 25px;border:2px solid #e68a32;border-radius:999px;color:#ffb565;background:rgba(12,12,13,.45);font-size:12px;letter-spacing:.12em;font-weight:700;text-decoration:none;box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32}
+.homeHeroButtonRow .homeTeamButton:hover{background:rgba(230,138,50,.18);box-shadow:0 0 29px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565}
+@media(min-width:901px){.site > main > .hero .heroText .homeHeroButtonRow{width:calc(100vw - 14vw)}}
+@media(max-width:700px){.homeHeroButtonRow{justify-content:flex-start}}
