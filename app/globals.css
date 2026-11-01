@@ -1701,3 +1701,6 @@
 
 /* Match the homepage English hero heading reach to the extended service row ending in HISTORY. */
 @media(min-width:901px){.heroText:not(.heroTextDE) h1{font-size:clamp(56px,9.05vw,154px)}}
+
+/* Slightly tighten line spacing between the two English homepage hero headline lines. */
+.heroText:not(.heroTextDE) h1{line-height:.91}
