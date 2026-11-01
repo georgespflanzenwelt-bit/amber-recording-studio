@@ -1716,3 +1716,15 @@
 
 /* Compact only the rates popup contents to 50%; preserve outer modal frame and close button. */
 @media(min-width:701px){.homePricesModal .bookingPriceRail{zoom:1;width:min(100%,650px);max-width:650px;margin-inline:auto}.homePricesModal .bookingPriceCards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.homePricesModal .bookingPriceCard{padding:14px;border-radius:12px}}
+
+/* Booking experience divider: repeatable opposing entrance, no expandable policy. */
+.bookingExperienceBanner{background:#ebe7df;color:#172123;overflow:hidden;padding:clamp(24px,3.2vw,44px) 5vw}
+.bookingExperienceBannerText{display:flex;justify-content:center;align-items:baseline;gap:.35em;flex-wrap:wrap;font-family:Manrope,sans-serif;font-size:clamp(18px,1.75vw,30px);font-weight:800;line-height:1.28;letter-spacing:-.045em;text-align:center}
+.bookingExperienceBannerText span,.bookingExperienceBannerText em{display:inline-block;font-style:normal;opacity:0}
+.bookingExperienceBannerText span{transform:translateX(-100vw)}
+.bookingExperienceBannerText em{transform:translateX(100vw)}
+.bookingExperienceBanner.is-visible .bookingExperienceBannerText span{animation:bookingExperienceLeft 3.1s cubic-bezier(.14,.68,.2,1) both}
+.bookingExperienceBanner.is-visible .bookingExperienceBannerText em{animation:bookingExperienceRight 3.1s cubic-bezier(.14,.68,.2,1) both}
+@keyframes bookingExperienceLeft{to{opacity:1;transform:translateX(0)}}
+@keyframes bookingExperienceRight{to{opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.bookingExperienceBannerText span,.bookingExperienceBannerText em{opacity:1;transform:none}.bookingExperienceBanner.is-visible .bookingExperienceBannerText span,.bookingExperienceBanner.is-visible .bookingExperienceBannerText em{animation:none}}
