@@ -1695,3 +1695,6 @@
  .introVideoSection .introTeamButton{position:relative;z-index:5}
  .artistStrip{position:relative;z-index:1}
 }
+
+/* Allow the raised collaboration heading to remain fully visible above the carousel. */
+@media(min-width:701px){.artistStrip{overflow:visible}.artistStripHeading{position:relative;z-index:2}.artistTrack{overflow-x:auto;overflow-y:hidden}}
