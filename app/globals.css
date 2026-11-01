@@ -1820,3 +1820,6 @@
  background:linear-gradient(90deg,rgba(4,7,12,.64),rgba(4,7,12,.14) 72%);
  pointer-events:none;
 }
+
+/* Rates main heading fully white; retain smaller orange tagline. */
+.bookingPriceIntro h2 em,.bookingInquiryStage .bookingPriceIntro h2 em{color:#fff}
