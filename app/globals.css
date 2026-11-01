@@ -1713,3 +1713,6 @@
 
 /* Stretch the English eyebrow across the same width as the word YOUR, keeping its font size. */
 .heroText:not(.heroTextDE)>.warm{width:max-content;max-width:calc(100vw - 14vw);text-align:left;white-space:nowrap;font-size:clamp(18px,1.8vw,26px);letter-spacing:.16em}
+
+/* Compact only the rates popup contents to 50%; preserve outer modal frame and close button. */
+@media(min-width:701px){.homePricesModal .bookingPriceRail{zoom:.5;width:200%;max-width:none}}
