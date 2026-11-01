@@ -1710,3 +1710,6 @@
 
 /* Bring SOUND IS EVERYTHING visually closer to the main English hero headline without moving the title. */
 .heroText:not(.heroTextDE)>.warm{position:relative;top:10px}
+
+/* Stretch the English eyebrow across the same width as the word YOUR, keeping its font size. */
+.heroText:not(.heroTextDE)>.warm{width:var(--your-word-width,auto);max-width:calc(100vw - 14vw);text-align:justify;text-align-last:justify;white-space:nowrap}
