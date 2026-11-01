@@ -1801,3 +1801,17 @@
 .bookingInquiryStage .bookingPriceIntro p{
  margin-top:2px;color:#e3a33c;text-shadow:0 2px 10px rgba(0,0,0,.35);
 }
+
+/* Booking prices finish with a clean full-width studio photo; form lives on Contact. */
+.bookingOnlineMixing .bookingInquiryGrid.bookingPricesOnly{display:block;max-width:1050px;margin-inline:auto}
+.bookingOnlineMixing .bookingPricesOnly .bookingPriceRail{width:100%}
+.bookingOnlineMixing.bookingContactShell{padding-bottom:0}
+.bookingOnlineMixing.bookingContactShell::after{
+ content:"";display:block;position:relative;z-index:2;
+ height:clamp(260px,42vw,620px);margin:68px -20px 0;
+ background:url('/images/studio/03_Studio2_4K.webp') center 48% / cover no-repeat;
+}
+.bookingDedicatedContact{min-height:calc(100vh - 86px);padding:clamp(65px,8vw,115px) 20px}
+.bookingContactSingle{width:min(780px,100%);margin:auto}
+.bookingDedicatedContact .bookingContactCard{width:100%;max-width:none}
+@media(max-width:700px){.bookingOnlineMixing.bookingContactShell::after{height:300px;margin-top:38px}}
