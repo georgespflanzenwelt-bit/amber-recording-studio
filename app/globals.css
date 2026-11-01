@@ -1745,3 +1745,7 @@
  background:rgba(230,138,50,.18);color:#fff;transform:translateY(-2px);
  box-shadow:0 0 30px rgba(230,138,50,.5),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565;
 }
+
+/* Show the Tape New background video clearly outside opaque price and inquiry cards. */
+.bookingOnlineMixing .bookingInquiryShade{background:transparent;pointer-events:none}
+.bookingOnlineMixing .bookingInquiryVideo{filter:none;opacity:1}
