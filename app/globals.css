@@ -1665,7 +1665,7 @@
 @media(min-width:701px){
  .introVideoSection .introTeamButton{margin-top:-18px}
  .intro.introVideoSection{padding-bottom:0}
- .introVideoSection .introVolumeContent>.columns{margin-bottom:-26px}
+ .introVideoSection .introVolumeContent>.columns{margin-bottom:0}
  .artistStrip{padding-top:0}
  .artistStripHeading{margin-bottom:5px}
 }
