@@ -1823,3 +1823,8 @@
 
 /* Rates main heading fully white; retain smaller orange tagline. */
 .bookingPriceIntro h2 em,.bookingInquiryStage .bookingPriceIntro h2 em{color:#fff}
+
+/* Single-line white description below the prices title on desktop. */
+.bookingInquiryStage .bookingPriceIntro p{color:#fff;max-width:none}
+@media(min-width:901px){.bookingInquiryStage .bookingPriceIntro p{white-space:nowrap;width:max-content;max-width:100%}}
+@media(max-width:900px){.bookingInquiryStage .bookingPriceIntro p{white-space:normal}}
