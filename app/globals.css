@@ -1593,3 +1593,9 @@
 @keyframes teamMidFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){ .teamMidBanner{padding:20px 16px}.teamMidBannerTitle{font-size:clamp(28px,9vw,52px)}.teamMidBannerSubtitle{font-size:clamp(9px,2.2vw,13px);white-space:normal;text-align:left;text-align-last:auto;line-height:1.45}}
 @media(prefers-reduced-motion:reduce){.teamMidBannerTitle span,.teamMidBannerTitle em,.teamMidBannerSubtitle{animation:none}}
+
+/* George Team portrait: visibly smaller in both width and height on desktop. */
+@media(min-width:901px){
+ .teamShowcase .teamGeorge{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:start}
+ .teamShowcase .teamGeorge .photobox{height:clamp(440px,37vw,580px);min-height:0;align-self:start}
+}
