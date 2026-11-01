@@ -1830,3 +1830,20 @@
 .bookingInquiryStage .bookingPriceIntro p{color:#fff;max-width:none}
 @media(min-width:901px){.bookingInquiryStage .bookingPriceIntro p{white-space:nowrap;width:max-content;max-width:100%}}
 @media(max-width:900px){.bookingInquiryStage .bookingPriceIntro p{white-space:normal}}
+
+/* Pricing header: larger supporting text and precisely aligned overline. */
+.bookingInquiryStage .bookingPriceIntro .bookingPriceTagline{
+ width:var(--rates-title-width,max-content);max-width:100%;
+ font-size:clamp(15px,1.3vw,20px);letter-spacing:.10em;
+ text-align:justify;text-align-last:justify;white-space:nowrap;
+ position:relative;top:9px;margin-bottom:0;
+}
+.bookingInquiryStage .bookingPriceIntro p{
+ font-size:clamp(15px,1.24vw,19px);line-height:1.4;
+ text-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+@media(max-width:700px){
+ .bookingInquiryStage .bookingPriceIntro .bookingPriceTagline{
+  width:auto;white-space:normal;text-align:left;text-align-last:auto;top:4px;
+ }
+}
