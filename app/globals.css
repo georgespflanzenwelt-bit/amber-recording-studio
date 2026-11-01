@@ -1731,3 +1731,17 @@
 
 /* Six-rate layout: three mastering cards in the first row, three mixing cards below. */
 @media(min-width:901px){.homePricesModal .bookingPriceRail{width:min(100%,1050px);max-width:1050px}.homePricesModal .bookingPriceCards,.bookingInquiryStage .bookingPriceCards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Unified glowing oval purchase buttons in all price cards. */
+.bookingPriceCard .bookingPriceRequest{
+ display:inline-flex;align-items:center;justify-content:center;align-self:center;
+ width:min(100%,210px);min-height:44px;margin-top:auto;padding:11px 22px;
+ border:2px solid #e68a32;border-radius:999px;background:rgba(12,12,13,.65);
+ color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;text-align:center;
+ box-shadow:0 0 19px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32;
+ transition:background .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.bookingPriceCard .bookingPriceRequest:hover,.bookingPriceCard .bookingPriceRequest:focus-visible{
+ background:rgba(230,138,50,.18);color:#fff;transform:translateY(-2px);
+ box-shadow:0 0 30px rgba(230,138,50,.5),inset 0 0 0 4px rgba(12,12,13,.8),inset 0 0 0 5px #ffb565;
+}
