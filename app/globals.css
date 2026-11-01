@@ -1698,3 +1698,6 @@
 
 /* Allow the raised collaboration heading to remain fully visible above the carousel. */
 @media(min-width:701px){.artistStrip{overflow:visible;z-index:4}.artistStripHeading{position:relative;z-index:5}.artistTrack{overflow-x:auto;overflow-y:hidden}}
+
+/* Match the homepage English hero heading reach to the extended service row ending in HISTORY. */
+@media(min-width:901px){.heroText:not(.heroTextDE) h1{font-size:clamp(56px,9.05vw,154px)}}
