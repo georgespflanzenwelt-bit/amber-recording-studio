@@ -1615,3 +1615,9 @@
 .teamShowcase .teamGeorgeLinks{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:25px}
 .teamShowcase .teamGeorgeLinks .teamGeorgeOval{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:38px;margin:0;padding:9px 17px;border:1px solid rgba(216,170,98,.65);border-radius:999px;background:transparent;color:#e2b26d;font-size:11px;font-weight:700;letter-spacing:.07em;line-height:1.25;text-decoration:none;white-space:nowrap;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
 .teamShowcase .teamGeorgeLinks .teamGeorgeOval:hover,.teamShowcase .teamGeorgeLinks .teamGeorgeOval:focus-visible{border-color:#e2b26d;box-shadow:0 0 12px rgba(216,170,98,.38)}
+
+/* Egor: matching slim oval buttons and expandable longer biography. */
+.teamEgorBio:not(.is-expanded)>p:not(:first-child){display:none}
+.teamEgorShowcase .teamEgorLinks{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:25px}
+.teamEgorShowcase .teamEgorLinks .teamGeorgeOval{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:38px;margin:0;padding:9px 17px;border:1px solid rgba(216,170,98,.65);border-radius:999px;background:transparent;color:#e2b26d;font-size:11px;font-weight:700;letter-spacing:.07em;line-height:1.25;text-decoration:none;white-space:nowrap;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
+.teamEgorShowcase .teamEgorLinks .teamGeorgeOval:hover,.teamEgorShowcase .teamEgorLinks .teamGeorgeOval:focus-visible{border-color:#e2b26d;box-shadow:0 0 12px rgba(216,170,98,.38)}
