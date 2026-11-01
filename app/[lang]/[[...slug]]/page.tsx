@@ -275,7 +275,19 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
    .finally(()=>{if(alive)setEgorCoversLoading(false)});
   return()=>{alive=false};
  },[current]);
- const [creditFilter,setCreditFilter]=useState("ALL");const [chartAwardsOnly,setChartAwardsOnly]=useState(false);const [creditGenre,setCreditGenre]=useState("ALL");const [creditTeam,setCreditTeam]=useState("ALL");const [teamFilterOpen,setTeamFilterOpen]=useState(false);const [genreOpen,setGenreOpen]=useState(false);const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
+ const [creditFilter,setCreditFilter]=useState("ALL");const [chartAwardsOnly,setChartAwardsOnly]=useState(false);const [creditGenre,setCreditGenre]=useState("ALL");const [creditTeam,setCreditTeam]=useState("ALL");const [teamFilterOpen,setTeamFilterOpen]=useState(false);const [genreOpen,setGenreOpen]=useState(false);
+ useEffect(()=>{
+  if(!genreOpen&&!teamFilterOpen)return;
+  const closeOutside=(event:PointerEvent)=>{
+   const target=event.target;
+   if(target instanceof Element&&!target.closest(".creditsGenreDropdown")){
+    setGenreOpen(false);
+    setTeamFilterOpen(false);
+   }
+  };
+  document.addEventListener("pointerdown",closeOutside);
+  return()=>document.removeEventListener("pointerdown",closeOutside);
+ },[genreOpen,teamFilterOpen]);const [menu,setMenu]=useState(false);const [heroImageLoaded,setHeroImageLoaded]=useState(false);const heroImage=useRef<HTMLImageElement|null>(null);const [genre,setGenre]=useState("all");const [role,setRole]=useState("all");const [producer,setProducer]=useState("all");const [search,setSearch]=useState("");const [selected,setSelected]=useState<Credit|null>(null);const [isPlaying,setPlaying]=useState(false);const audio=useRef<HTMLAudioElement|null>(null);
  useEffect(()=>{const image=heroImage.current;setHeroImageLoaded(!!image?.complete&&image.naturalWidth>0)},[current,lang]);
 useEffect(()=>{setMenu(false);const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("shown");obs.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll(".reveal, .collabEnterLeft").forEach(e=>obs.observe(e));return()=>obs.disconnect()},[slug,lang]);
 useEffect(()=>{if(!audio.current)return;audio.current.pause();setPlaying(false);if(selected?.audio){audio.current.src=selected.audio;audio.current.play().then(()=>setPlaying(true)).catch(()=>setPlaying(false))}},[selected]);
