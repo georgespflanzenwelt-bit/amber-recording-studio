@@ -1669,3 +1669,6 @@
  .artistStrip{padding-top:0}
  .artistStripHeading{margin-bottom:5px}
 }
+
+/* Keep the streaming reach card fully above the collaborations strip on desktop. */
+@media(min-width:701px){.introVideoSection .introStreamingStat{margin-top:18px;transform:translateY(-18px)}}
