@@ -1771,3 +1771,14 @@
 /* Keep the original compact animated experience bar, enlarge only the prices section heading. */
 .bookingInquiryStage .bookingPriceIntro h2{font-size:clamp(48px,5.5vw,86px);line-height:1.02;letter-spacing:-.065em;margin:10px 0 12px}
 @media(max-width:700px){.bookingInquiryStage .bookingPriceIntro h2{font-size:clamp(32px,8vw,52px)}}
+
+/* The second animated experience claim is gold; keep its original layout and motion. */
+.bookingExperienceBannerText em{color:#dda13c}
+/* Align only the rates title block to the left like the team profile heading. */
+.bookingPriceIntro h2 em{color:#dda13c;font-style:normal}
+@media(min-width:901px){
+ .bookingInquiryStage .bookingPriceIntro{
+  position:relative;left:50%;transform:translateX(-50%);
+  width:calc(100vw - 10vw);max-width:none;
+ }
+}
