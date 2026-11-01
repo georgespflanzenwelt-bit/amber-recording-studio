@@ -1707,3 +1707,6 @@
 
 /* Match the tighter headline spacing on the German homepage hero. */
 @media(min-width:701px){.heroTextDE h1{line-height:.91}}
+
+/* Bring SOUND IS EVERYTHING visually closer to the main English hero headline without moving the title. */
+.heroText:not(.heroTextDE)>.warm{position:relative;top:10px}
