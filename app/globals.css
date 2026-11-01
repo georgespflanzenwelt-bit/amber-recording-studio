@@ -1678,3 +1678,6 @@
 
 /* Lower only the homepage artist scrolling strip to leave the streaming card's last line visible. */
 @media(min-width:701px){.artistStrip{margin-top:0;padding-top:30px;background:#050505}.artistStrip::before{content:none}}
+
+/* Align collaboration heading near the end of “Master.” and lift heading + artist carousel. */
+@media(min-width:701px){.artistStrip{padding-top:8px}.artistStripHeading{margin-left:clamp(260px,34vw,560px);margin-bottom:2px}}
