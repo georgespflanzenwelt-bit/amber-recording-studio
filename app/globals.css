@@ -1817,7 +1817,9 @@
  background-size:cover;
 }
 .bookingOnlineMixing .bookingInquiryShade{
- background:linear-gradient(90deg,rgba(4,7,12,.64),rgba(4,7,12,.14) 72%);
+ background:
+  linear-gradient(180deg,rgba(4,7,12,.32) 0%,rgba(4,7,12,.14) 42%,rgba(4,7,12,.04) 100%),
+  linear-gradient(90deg,rgba(4,7,12,.64),rgba(4,7,12,.14) 72%);
  pointer-events:none;
 }
 
