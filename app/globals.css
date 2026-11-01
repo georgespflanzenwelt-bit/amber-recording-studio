@@ -1810,3 +1810,13 @@
 .bookingContactSingle{width:min(780px,100%);margin:auto}
 .bookingDedicatedContact .bookingContactCard{width:100%;max-width:none}
 
+
+/* Prices: match the homepage studio photograph framing and dark cinematic overlay. */
+.bookingOnlineMixing .bookingInquiryPhoto{
+ background-position:center center;
+ background-size:cover;
+}
+.bookingOnlineMixing .bookingInquiryShade{
+ background:linear-gradient(90deg,rgba(4,7,12,.64),rgba(4,7,12,.14) 72%);
+ pointer-events:none;
+}
