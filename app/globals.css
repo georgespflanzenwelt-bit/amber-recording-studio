@@ -1704,3 +1704,6 @@
 
 /* Slightly tighten line spacing between the two English homepage hero headline lines. */
 .heroText:not(.heroTextDE) h1{line-height:.91}
+
+/* Match the tighter headline spacing on the German homepage hero. */
+@media(min-width:701px){.heroTextDE h1{line-height:.91}}
