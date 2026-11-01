@@ -1675,3 +1675,6 @@
 
 /* Slightly reduce the homepage introduction headline so the team button and artist ribbon rise naturally. */
 @media(min-width:701px){.introVideoSection .introVolumeContent .columns h2{font-size:clamp(40px,5.15vw,82px);line-height:1.04}}
+
+/* Lower only the homepage artist scrolling strip to leave the streaming card's last line visible. */
+@media(min-width:701px){.artistStrip{margin-top:30px}}
