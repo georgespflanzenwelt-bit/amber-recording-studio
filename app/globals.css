@@ -1672,3 +1672,6 @@
 
 /* Keep the streaming reach card fully above the collaborations strip on desktop. */
 @media(min-width:701px){.introVideoSection .introStreamingStat{margin-top:18px;transform:translateY(-18px)}}
+
+/* Slightly reduce the homepage introduction headline so the team button and artist ribbon rise naturally. */
+@media(min-width:701px){.introVideoSection .introVolumeContent .columns h2{font-size:clamp(40px,5.15vw,82px);line-height:1.04}}
