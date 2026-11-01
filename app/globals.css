@@ -1579,7 +1579,7 @@
 .teamGeorgeMoreButton:hover,.teamGeorgeMoreButton:focus-visible{box-shadow:0 0 14px rgba(216,170,98,.38)}
 
 /* Keep George Brasch on one line in the desktop Studio Team profile. */
-@media(min-width:901px){.teamShowcase .teamGeorgeCopy h2{white-space:nowrap;font-size:clamp(43px,4vw,66px);word-spacing:0}}
+@media(min-width:901px){.teamShowcase .teamGeorgeCopy h2{white-space:nowrap;font-size:clamp(32px,3.35vw,55px);letter-spacing:-.065em;word-spacing:0}}
 
 /* Studio Team interlude between George and Egor, with independent right-entry motion. */
 .teamMidBanner{position:relative;isolation:isolate;overflow:hidden;background:#0b1214;color:#fff;padding:clamp(44px,5vw,80px) 20px}
