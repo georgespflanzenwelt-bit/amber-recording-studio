@@ -1754,7 +1754,7 @@
 .bookingOnlineMixing.bookingContactShell{overflow:hidden;isolation:isolate}
 .bookingOnlineMixing .bookingInquiryPhoto{
  position:absolute;inset:0;z-index:0;pointer-events:none;
- background-image:url('/images/studio2/26%20Desk%20Dark1.jpeg');
+ background-image:url('/images/studio/03_Studio2_4K.webp');
  background-position:center;background-size:cover;background-repeat:no-repeat;background-color:#101719;
  animation:bookingPhotoSlowZoom 20s ease-in-out infinite alternate;
  transform-origin:center center;filter:none;opacity:1;
