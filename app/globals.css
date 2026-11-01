@@ -1684,3 +1684,6 @@
 
 /* Slightly tighten line spacing of the homepage introduction paragraph. */
 @media(min-width:701px){.introVideoSection .columns p{line-height:1.46}.introVideoSection .introStreamingStat{margin-top:40px}}
+
+/* Lift the collaboration heading and artist carousel together, without moving intro content. */
+@media(min-width:701px){.artistStrip{margin-top:-16px;position:relative;z-index:0}}
