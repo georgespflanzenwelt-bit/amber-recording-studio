@@ -333,7 +333,7 @@ const closeBookingPage=()=>{try{sessionStorage.removeItem("amberBookingOpenedFro
 const go=(s:string)=>{if(s==="booking"&&current!=="booking"){saveReturnOrigin();try{sessionStorage.setItem("amberBookingOpenedFromMenu","yes")}catch{}}if(s==="credits"&&current!=="credits")saveCreditsOrigin();if((s==="historie"||s==="egor-credits")&&current!==s)saveReturnOrigin();router.push(url(s))};
 const navigationItems=[
  {de:"STARTSEITE",en:"HOME",href:url("")},
- {de:"BOOKING",en:"BOOKING",href:url("booking")},
+ {de:"PREISE",en:"PRICES",href:url("booking")},
  {de:"CREDITS",en:"CREDITS",href:url("")+"#credits-uebersicht"},
  {de:"VERÖFFENTLICHUNGEN",en:"RELEASES",href:url("")+"#veroeffentlichungen"},
  {de:"WAS WIR ANBIETEN",en:"WHAT WE OFFER",href:url("")+"#lets-work-together"},
