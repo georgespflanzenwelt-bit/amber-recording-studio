@@ -1867,3 +1867,11 @@
  .bookingServiceTopics{width:min(100%,1280px);max-width:calc(100vw - 60px);flex-wrap:nowrap;gap:7px}
  .bookingServiceTopic{flex:0 1 auto;min-width:0;padding:10px 11px;font-size:clamp(9px,.62vw,11px);letter-spacing:.015em}
 }
+
+/* Project inquiry directly after rates: looping Tape New background behind the form. */
+.bookingVideoContact{position:relative;isolation:isolate;overflow:hidden;background:#0a1116}
+.bookingVideoContact .bookingContactBackgroundVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none}
+.bookingVideoContact .bookingContactVideoShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,7,12,.55),rgba(3,7,12,.28)),linear-gradient(180deg,rgba(3,7,12,.25),rgba(3,7,12,.5));z-index:1;pointer-events:none}
+.bookingVideoContact .bookingContactSingle{position:relative;z-index:2}
+.bookingVideoContact .bookingContactCard{background:rgba(6,14,34,.89);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@media(prefers-reduced-motion:reduce){.bookingVideoContact .bookingContactBackgroundVideo{display:none}}
