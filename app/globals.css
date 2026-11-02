@@ -1938,3 +1938,26 @@
  .bookingOnlineMixing .bookingServiceTopicPanel{width:min(100%,880px);margin:0 auto 20px}
  .bookingOnlineMixing .bookingPriceFootnote{width:min(100%,880px);margin-left:auto;margin-right:auto}
 }
+
+/* Unified orange-outlined pricing area; dark fill is 80% opaque / 20% transparent. */
+.bookingPriceRail .bookingRatesFrame{
+ position:relative;box-sizing:border-box;
+ width:min(100%,1140px);margin:18px auto 0;
+ padding:18px 24px 20px;
+ border:1px solid rgba(230,158,48,.95);border-radius:17px;
+ background:rgba(5,10,15,.80);
+ box-shadow:0 0 16px rgba(0,0,0,.12);
+}
+.bookingPriceRail .bookingRatesFrame .bookingServiceTopics{
+ margin:0 auto 26px;
+}
+.bookingPriceRail .bookingRatesFrame .bookingPriceCards{
+ width:min(100%,880px);max-width:880px;margin:0 auto;
+}
+.bookingPriceRail .bookingRatesFrame .bookingPriceFootnote{
+ width:min(100%,880px);margin:10px auto 0;
+}
+@media(max-width:1099px){
+ .bookingPriceRail .bookingRatesFrame{padding:16px 12px 18px}
+ .bookingPriceRail .bookingRatesFrame .bookingServiceTopics{margin-bottom:18px}
+}
