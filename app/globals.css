@@ -1966,3 +1966,11 @@
 .bookingOnlineMixing .bookingPriceIntro{margin-top:-58px}
 .bookingOnlineMixing .bookingPriceIntro h2{margin-top:0}
 @media(max-width:700px){.bookingOnlineMixing .bookingPriceIntro{margin-top:-20px}}
+
+/* Slightly larger service topic buttons inside the rates frame. */
+@media(min-width:1100px){
+ .bookingOnlineMixing .bookingRatesFrame .bookingServiceTopics{gap:7px}
+ .bookingOnlineMixing .bookingRatesFrame .bookingServiceTopic{
+  min-height:49px;padding:12px 14px;font-size:clamp(10px,.76vw,13px);
+ }
+}
