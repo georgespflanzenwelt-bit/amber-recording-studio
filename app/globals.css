@@ -1961,3 +1961,8 @@
  .bookingPriceRail .bookingRatesFrame{padding:16px 12px 18px}
  .bookingPriceRail .bookingRatesFrame .bookingServiceTopics{margin-bottom:18px}
 }
+
+/* Without the overline, move the pricing title and framed cards closer to the top edge. */
+.bookingOnlineMixing .bookingPriceIntro{margin-top:-58px}
+.bookingOnlineMixing .bookingPriceIntro h2{margin-top:0}
+@media(max-width:700px){.bookingOnlineMixing .bookingPriceIntro{margin-top:-20px}}
