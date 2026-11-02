@@ -1913,3 +1913,6 @@
  .bookingOnlineMixing .bookingPriceCard{min-width:0}
  .bookingOnlineMixing .bookingPriceCardTop h3{font-size:clamp(17px,1.22vw,20px);letter-spacing:-.045em}
 }
+
+/* Natural word spacing in the orange pricing overline. */
+.bookingInquiryStage .bookingPriceIntro .bookingPriceTagline{text-align:left;text-align-last:left;word-spacing:normal}
