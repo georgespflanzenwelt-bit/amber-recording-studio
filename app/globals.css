@@ -1875,3 +1875,7 @@
 .bookingVideoContact .bookingContactSingle{position:relative;z-index:2}
 .bookingVideoContact .bookingContactCard{background:rgba(6,14,34,.89);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 @media(prefers-reduced-motion:reduce){.bookingVideoContact .bookingContactBackgroundVideo{display:none}}
+
+/* More writing space in the project details field, including compact form layouts. */
+.bookingVideoContact .bookingContactForm.bookingForm textarea:not([readonly]),
+.bookingDedicatedContact .bookingContactForm.bookingForm textarea:not([readonly]){height:190px;min-height:190px;resize:vertical}
