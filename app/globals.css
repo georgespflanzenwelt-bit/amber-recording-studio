@@ -1974,3 +1974,9 @@
   min-height:54px;padding:14px 15px;font-size:clamp(11px,.80vw,13.5px);
  }
 }
+
+/* Readable expanded service information beneath the pricing navigation. */
+.bookingPriceRail .bookingServiceTopicPanel{line-height:1.6;padding:25px 48px 24px 28px}
+.bookingPriceRail .bookingServiceTopicPanel h3{margin:0 0 18px;color:#e5a34c;font-size:clamp(17px,1.35vw,23px);letter-spacing:.025em}
+.bookingPriceRail .bookingServiceTopicPanel p{margin:0 0 16px;line-height:1.65;white-space:pre-line}
+.bookingPriceRail .bookingServiceTopicPanel p:last-child{margin-bottom:0}
