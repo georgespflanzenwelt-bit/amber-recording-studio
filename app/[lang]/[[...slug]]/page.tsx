@@ -328,6 +328,7 @@ useEffect(()=>{if(current==="historie"||current==="egor-credits")return;try{cons
 const saveReturnOrigin=()=>{try{sessionStorage.setItem(returnOriginKey,JSON.stringify({url:window.location.pathname+window.location.search+window.location.hash,scroll:window.scrollY}))}catch{}};
 const [bookingCloseVisible,setBookingCloseVisible]=useState(false);
 useEffect(()=>{try{setBookingCloseVisible(current==="booking"&&sessionStorage.getItem("amberBookingOpenedFromMenu")==="yes")}catch{setBookingCloseVisible(false)}},[current]);
+useEffect(()=>{if(current!=="booking")return;const frame=window.requestAnimationFrame(()=>{window.requestAnimationFrame(()=>{if(window.location.hash==="#booking-project-start")return;window.scrollTo({top:0,left:0,behavior:"instant"});});});return()=>window.cancelAnimationFrame(frame)},[current]);
 const closeBookingPage=()=>{try{sessionStorage.removeItem("amberBookingOpenedFromMenu")}catch{};setBookingCloseVisible(false);restoreOrigin()};
 const go=(s:string)=>{if(s==="booking"&&current!=="booking"){saveReturnOrigin();try{sessionStorage.setItem("amberBookingOpenedFromMenu","yes")}catch{}}if(s==="credits"&&current!=="credits")saveCreditsOrigin();if((s==="historie"||s==="egor-credits")&&current!==s)saveReturnOrigin();router.push(url(s))};
 const navigationItems=[
