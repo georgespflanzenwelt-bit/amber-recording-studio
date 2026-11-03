@@ -1980,3 +1980,26 @@
 .bookingPriceRail .bookingServiceTopicPanel h3{margin:0 0 18px;color:#e5a34c;font-size:clamp(17px,1.35vw,23px);letter-spacing:.025em}
 .bookingPriceRail .bookingServiceTopicPanel p{margin:0 0 16px;line-height:1.65;white-space:pre-line}
 .bookingPriceRail .bookingServiceTopicPanel p:last-child{margin-bottom:0}
+
+
+/* AMBER legal pages and extended footer */
+.amberLegalPage{background:#0e1518;color:#f1f1ed;min-height:65vh;padding:clamp(70px,8vw,130px) 0 110px}
+.amberLegalWrap{width:min(940px,calc(100% - 9vw));margin:auto}
+.amberLegalEyebrow{display:block;color:#e5ab55;font-size:12px;font-weight:800;letter-spacing:.22em;margin-bottom:18px}
+.amberLegalPage h1{font-size:clamp(40px,6vw,78px);letter-spacing:-.055em;line-height:1.05;margin:0 0 32px}
+.amberLegalIntro{font-size:clamp(17px,1.5vw,21px);line-height:1.6;color:#c6c7c3;margin-bottom:44px}
+.amberLegalSection{border-top:1px solid rgba(221,166,81,.38);padding:27px 0 18px}
+.amberLegalSection h2{font-size:clamp(20px,2.1vw,28px);color:#e7ab55;letter-spacing:-.035em;margin-bottom:17px}
+.amberLegalSection p{font-size:clamp(15px,1.2vw,18px);line-height:1.85;color:#e1e3df;margin-bottom:20px;overflow-wrap:anywhere}
+.amberLegalSection a{color:#f3b864;text-decoration:underline;text-underline-offset:4px}
+.amberFooter{padding:72px 0 46px}
+.amberFooter .footerGrid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.35fr);gap:clamp(24px,4vw,65px)}
+.amberFooter .amberFooterNavigation{display:flex;flex-direction:column;gap:13px;font-size:13px;letter-spacing:.04em}
+.amberFooter .amberFooterNavigation a:hover{color:#e5ad5b}
+.amberFooter .amberFooterRight{text-align:right}
+.amberFooter .amberFooterSocial{display:flex;justify-content:flex-end;gap:13px;margin-bottom:32px}
+.amberFooter .amberFooterSocial span{width:39px;height:39px;border:1px solid rgba(225,172,93,.55);border-radius:50%;display:grid;place-items:center;color:#eee9e0;opacity:.85}
+.amberFooter .amberFooterSocial svg{width:19px;height:19px}
+.amberFooter .amberFooterRight p{line-height:1.6;margin-bottom:10px}
+.amberFooter .amberFooterDesign{color:#e4ae65;letter-spacing:.04em}
+@media(max-width:720px){.amberFooter .footerGrid{grid-template-columns:1fr;gap:28px}.amberFooter .amberFooterRight{text-align:left}.amberFooter .amberFooterSocial{justify-content:flex-start}.amberLegalPage{padding:58px 0 76px}}
