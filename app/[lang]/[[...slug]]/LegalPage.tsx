@@ -8,7 +8,7 @@ function LegalSection({title,children,id}:{title:string;children:ReactNode;id?:s
 
 export default function LegalPage({lang,kind}:{lang:Lang;kind:"impressum"|"datenschutz"}){
  const de=lang==="de";
- if(kind==="impressum")return <section className="amberLegalPage"><div className="wrap amberLegalWrap">
+ if(kind==="impressum")return <section className="amberLegalPage amberLegalImpressum"><div className="wrap amberLegalWrap">
  <span className="amberLegalEyebrow">AMBER / {de?"RECHTLICHES":"LEGAL"}</span><h1>{de?"IMPRESSUM":"LEGAL NOTICE"}</h1>
  <LegalSection title={de?"Angaben gemäß § 5 DDG":"Information pursuant to Section 5 DDG"}><p>{owner}</p><p>{de?"Inhaber:":"Proprietor:"} Georg Brasch<br/>{de?"Einzelunternehmen (nicht im Handelsregister eingetragen)":"Sole proprietor (not registered in the commercial register)"}</p></LegalSection>
  <LegalSection title={de?"Kontakt":"Contact"}><p>{de?"E-Mail:":"Email:"} {contact}</p></LegalSection>
