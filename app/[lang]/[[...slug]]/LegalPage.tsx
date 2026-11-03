@@ -3,7 +3,7 @@ import type {ReactNode} from "react";
 
 type Lang="de"|"en";
 const owner=<><strong>AMBER Recording Studio</strong><br/>Georg Brasch<br/>Altenbraker Straße 24<br/>12051 Berlin<br/>Deutschland</>;
-const contact=<a href="mailto:studio@amber-recording.com">studio@amber-recording.com</a>;
+const contact=<a href="mailto:amberrecords@web.de">amberrecords@web.de</a>;
 function LegalSection({title,children,id}:{title:string;children:ReactNode;id?:string}){return <section id={id} className="amberLegalSection"><h2>{title}</h2>{children}</section>;}
 
 export default function LegalPage({lang,kind}:{lang:Lang;kind:"impressum"|"datenschutz"}){
