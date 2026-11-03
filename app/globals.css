@@ -2044,8 +2044,9 @@
 @media(max-width:520px){.amberFooter .amberFooterNavigation{font-size:15px}.amberFooter .amberFooterNavColumn{gap:9px}}
 
 
-/* Return directly to the exact footer position when closing a page opened from there. */
-.amberFooterReturnClose{position:fixed;top:clamp(14px,3vw,32px);right:clamp(14px,3vw,32px);z-index:1250;width:46px;height:46px;display:grid;place-items:center;background:#10181b;color:#fff;border:1px solid #d9a44d;border-radius:50%;cursor:pointer;transition:box-shadow .2s ease,border-color .2s ease}
+/* Return directly to the footer without covering the navigation button in the header. */
+.amberFooterReturnClose{position:fixed;top:calc(86px + 16px);right:clamp(14px,3vw,32px);z-index:1250;width:46px;height:46px;display:grid;place-items:center;background:#10181b;color:#fff;border:1px solid #d9a44d;border-radius:50%;cursor:pointer;transition:box-shadow .2s ease,border-color .2s ease}
+@media(max-width:700px){.amberFooterReturnClose{top:calc(76px + 12px);width:42px;height:42px}}
 .amberFooterReturnClose:hover{border-color:#f2b359;box-shadow:0 0 16px rgba(237,151,37,.45)}
 .amberFooterReturnClose svg{width:20px;height:20px}
 
