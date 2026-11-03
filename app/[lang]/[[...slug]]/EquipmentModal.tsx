@@ -14,16 +14,16 @@ const equipment={
  "Hört euch einfach einmal durch unsere Liste."
  ]},
  {title:"AMBER STUDIO BERLIN",paragraphs:[
- "Seit 2004 befindet sich das AMBER Studio in Berlin-Neukölln, ganz in der Nähe des S- und U-Bahnhofs Hermannstraße.",
+ "Seit 2004 befindet sich das AMBER Studio in Berlin-Neukölln, in der Nähe des S- und U-Bahnhofs Hermannstraße. Hier wurden zahlreiche Alben und Tracks gemischt – darunter für Seeeds Album „Next!“ die Titel „End of Days“, „She Got Me Twisted“ und „Can’t Hold Me“, für „Seeed Live“ der Track „Pressure“ sowie Produktionen von Nosliw, Koalas Desperados, Jaqee und vielen weiteren Künstlern.",
  "Das Studio hat Tageslicht und bietet einen Blick über die Dächer Neuköllns. Auf unserer Terrasse kann man im Sommer bei einer Tasse Tee oder Kaffee eine Pause machen – und vor allem den Ohren etwas Ruhe gönnen.",
  "Besonders wichtig ist mir seit jeher eine präzise und verlässliche Abhörsituation. Die außergewöhnlich gute Raumakustik ermöglicht eine genaue Beurteilung von Aufnahmen, Mixen und Masterings."
  ]},
  {title:"MONITORING",items:["Genelec 1032A","Genelec 1031A","Yamaha NS-10 mit QSC-Endstufe"]},
  {title:"INSTRUMENTE",paragraphs:["Für Live-Recordings steht ein Rippen-Piano bereit, außerdem verschiedene E-Gitarren und Akustikgitarren."]},
  {title:"KEYBOARDS & SYNTHESIZER",items:["KORG Minilogue XD","Clavia Nord Lead 4","2× Behringer Model D / Minimoog","Behringer MS-1 / SH-101","Behringer TD-3-BK / TB-303 Clone","Arturia Masterkeyboard"]},
- {title:"OUTBOARD",items:["Lexicon PCM 90","Roland SRV-2000","Warm Audio WA76","JDK Audio R24 EQ","Focusrite ISA Two – Dual Mono Mic Preamp"]},
+ {title:"OUTBOARD",items:["Lexicon PCM 90","Roland SRV-2000","Warm Audio WA76","JDK Audio R24 EQ","Focusrite ISA 2 Dual Mono Mic Pre"]},
  {title:"MIKROFONE",items:["Warm Audio WA-87 R2","Shure SM58"],paragraphs:["Weitere Mikrofone wie Neumann U47, U89, AKG C12 oder AKG C414 können wir für Produktionen sowie Vocal- und Instrumenten-Recordings bei Bedarf gesondert zur Verfügung stellen."]},
- {title:"VINYL & TURNTABLES",items:["2× Technics SL-1200 Plattenspieler","Numark DJ-Mischpult"]}
+ {title:"VINYL & TURNTABLES",items:["1× Technics SL-1200 Plattenspieler","Numark DJ-Mischpult"]}
  ]},
  en:{
  title:"STUDIO & EQUIPMENT",
@@ -35,16 +35,16 @@ const equipment={
  "Take a listen through our credits and hear for yourself."
  ]},
  {title:"AMBER STUDIO BERLIN",paragraphs:[
- "AMBER Studio has been based in Berlin-Neukölln since 2004, close to the Hermannstraße S-Bahn and U-Bahn station.",
+ "AMBER Studio has been based in Berlin-Neukölln since 2004, close to the Hermannstraße S-Bahn and U-Bahn station. Many albums and tracks have been mixed here, including Seeed’s “Next!” tracks “End of Days”, “She Got Me Twisted” and “Can’t Hold Me”, the “Seeed Live” track “Pressure”, and productions for Nosliw, Koalas Desperados, Jaqee and many other artists.",
  "The studio has natural daylight and views across the rooftops of Neukölln. In summer, our terrace is a wonderful place to take a break over tea or coffee – and, just as importantly, give your ears some rest.",
  "An accurate and dependable monitoring environment has always been essential to me. The room's exceptional acoustics allow us to assess recordings, mixes and masters with real precision."
  ]},
  {title:"MONITORING",items:["Genelec 1032A","Genelec 1031A","Yamaha NS-10 with QSC power amplifier"]},
  {title:"INSTRUMENTS",paragraphs:["A Rippen upright piano is available for live recordings, alongside a selection of electric and acoustic guitars."]},
  {title:"KEYBOARDS & SYNTHESIZERS",items:["KORG Minilogue XD","Clavia Nord Lead 4","2× Behringer Model D / Minimoog","Behringer MS-1 / SH-101","Behringer TD-3-BK / TB-303 Clone","Arturia master keyboard"]},
- {title:"OUTBOARD",items:["Lexicon PCM 90","Roland SRV-2000","Warm Audio WA76","JDK Audio R24 EQ","Focusrite ISA Two – Dual Mono Mic Preamp"]},
+ {title:"OUTBOARD",items:["Lexicon PCM 90","Roland SRV-2000","Warm Audio WA76","JDK Audio R24 EQ","Focusrite ISA 2 Dual Mono Mic Pre"]},
  {title:"MICROPHONES",items:["Warm Audio WA-87 R2","Shure SM58"],paragraphs:["Additional microphones such as the Neumann U47, U89, AKG C12 or AKG C414 can be arranged separately when needed for productions and vocal or instrument recordings."]},
- {title:"VINYL & TURNTABLES",items:["2× Technics SL-1200 turntables","Numark DJ mixer"]}
+ {title:"VINYL & TURNTABLES",items:["1× Technics SL-1200 turntable","Numark DJ mixer"]}
  ]}
 } as const;
 
