@@ -2008,3 +2008,10 @@
 .amberFooterBrand .logo{display:inline-flex;width:min(100%,285px);max-width:100%;color:#fff}
 .amberFooterBrand .amberWordmark{display:block;width:100%;height:auto}
 .amberFooterBrand p{margin:16px 0 0;letter-spacing:.08em}
+
+/* Legal links sit directly beneath the social icons, separated by a dot. */
+.amberFooter .amberFooterSocial{margin-bottom:16px}
+.amberFooter .amberFooterLegalLinks{display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 26px;font-size:12px;font-weight:700;letter-spacing:.08em}
+.amberFooter .amberFooterLegalLinks a:hover{color:#e5ad5b}
+.amberFooter .amberFooterLegalLinks span{color:#e5ad5b}
+@media(max-width:720px){.amberFooter .amberFooterLegalLinks{justify-content:flex-start}}
