@@ -231,6 +231,7 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
   if(service&&["mixing","mastering","recording","production","songwriting","score-brand","workshop","acoustics"].includes(service))setActiveBookingService(service);
  },[current]);const bookingTilesRef=useRef<HTMLDivElement|null>(null);const bookingDetailRef=useRef<HTMLElement|null>(null);const bookingReturnScroll=useRef<number|null>(null);
  const closeBookingService=()=>{
+  if(serviceMenuPopup&&current==="booking"){try{if(sessionStorage.getItem("amberFooterReturn")==="yes"){closeBookingPage();return}}catch{}}
   const previousY=bookingReturnScroll.current;
   bookingReturnScroll.current=null;
   setActiveBookingService("");
