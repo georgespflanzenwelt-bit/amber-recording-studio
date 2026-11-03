@@ -8,7 +8,7 @@ const equipment={
  title:"STUDIO & EQUIPMENT",
  sections:[
  {title:"STUDIO",paragraphs:[
- "Mit über 30 Jahren Studioerfahrung als Producer, Recording- und Mixing Engineer und mehr als 400 veröffentlichten, von uns gemischten Tracks sprechen unsere Credits und Referenzen für sich allein. Einfach mal durch die Trackliste scrollen.",
+ "Mit über 30 Jahren Studioerfahrung als Producer, Recording- und Mixing Engineer und mehr als 400 veröffentlichten sprechen unsere Credits und Referenzen für sich allein. Einfach mal durch die Trackliste scrollen.",
  "Heute wird in fast allen professionellen Studios und von Engineers und Produzenten auf der ganzen Welt mit ähnlichem Equipment und vor allem mit den gleichen Plug-ins gearbeitet.",
  "Was macht dann aber einen herausragend guten Mix aus, wenn nicht das Equipment entscheidend ist?",
  "Natürlich jahrelange Studioerfahrung, ein geschultes Ohr und die Fähigkeit, eine klangliche Vorstellung wirklich gut umzusetzen. Dazu kommt noch die Erfahrung, jahrzehntelang an analogen Konsolen wie Neve und mit dem Outboard-Equipment gearbeitet zu haben, das heute alle als Plug-ins benutzen. Auch wenn sich die Technik in den vergangenen Jahrzehnten stark verändert hat, ist eines für mich gleich geblieben: Am Ende zählt, wie sich Musik anfühlt und wie sie klingt. Diese Erfahrung prägt meine Arbeit bis heute – auch wenn wir inzwischen überwiegend mit UAD-Systemen direkt im Rechner mischen und mastern.",
