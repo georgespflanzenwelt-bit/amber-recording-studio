@@ -1,6 +1,6 @@
 "use client";
 import {useParams,useRouter} from "next/navigation";
-import {useEffect,useMemo,useRef,useState,type KeyboardEvent} from "react";
+import {useEffect,useLayoutEffect,useMemo,useRef,useState,type KeyboardEvent} from "react";
 import {ArrowUpRight,ArrowDown,Menu,X,Play,Pause,Volume2,Headphones,Mail,ChevronRight,ChevronDown,ChevronLeft,Youtube,Instagram,Facebook} from "lucide-react";
 import SelectedCreditsGallery,{type SelectedEntry} from "./SelectedCreditsGallery";
 import HistoryPage from "./HistoryPage";
@@ -324,10 +324,10 @@ const listed=useMemo(()=>allCredits.filter(c=>(genre==="all"||c.genre===genre)&&
 const creditsOriginKey="amberCreditsOrigin";
 const saveCreditsOrigin=()=>{try{sessionStorage.setItem(creditsOriginKey,JSON.stringify({url:window.location.pathname+window.location.search+window.location.hash,scroll:window.scrollY}))}catch{}};
 const returnFromCredits=()=>{if(current===""){closeHomeCredits();return;}try{sessionStorage.removeItem("amberFooterReturn")}catch{};let origin:{url:string;scroll:number}|null=null;try{const raw=sessionStorage.getItem(creditsOriginKey);if(raw)origin=JSON.parse(raw);sessionStorage.removeItem(creditsOriginKey)}catch{};if(origin?.url&&origin.url!==window.location.pathname+window.location.search+window.location.hash){try{sessionStorage.setItem("amberCreditsReturnScroll",String(origin.scroll))}catch{};router.push(origin.url,{scroll:false})}else{router.push(url(""),{scroll:true})}};
-useEffect(()=>{if(current==="credits")return;try{const pending=sessionStorage.getItem("amberCreditsReturnScroll");if(pending===null)return;sessionStorage.removeItem("amberCreditsReturnScroll");const y=Number(pending);if(Number.isFinite(y)){window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>window.scrollTo({top:y,behavior:"instant"})))}}catch{}},[current]);
+useLayoutEffect(()=>{if(current==="credits")return;try{const pending=sessionStorage.getItem("amberCreditsReturnScroll");if(pending===null)return;sessionStorage.removeItem("amberCreditsReturnScroll");const y=Number(pending);if(Number.isFinite(y))window.scrollTo({top:y,behavior:"instant"})}catch{}},[current]);
 const returnOriginKey="amberReturnOrigin";
 const restoreOrigin=()=>{let origin:{url:string;scroll:number}|null=null;try{const raw=sessionStorage.getItem(returnOriginKey);if(raw)origin=JSON.parse(raw);sessionStorage.removeItem(returnOriginKey)}catch{};if(origin?.url&&origin.url!==window.location.pathname+window.location.search+window.location.hash){try{sessionStorage.setItem("amberPendingOriginScroll",String(origin.scroll))}catch{};router.push(origin.url,{scroll:false})}else{router.push(url(""),{scroll:false})}};
-useEffect(()=>{if(current==="historie"||current==="egor-credits")return;try{const raw=sessionStorage.getItem("amberPendingOriginScroll");if(raw===null)return;sessionStorage.removeItem("amberPendingOriginScroll");const y=Number(raw);if(Number.isFinite(y)){window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>window.scrollTo({top:y,behavior:"instant"})))}}catch{}},[current]);
+useLayoutEffect(()=>{if(current==="historie"||current==="egor-credits")return;try{const raw=sessionStorage.getItem("amberPendingOriginScroll");if(raw===null)return;sessionStorage.removeItem("amberPendingOriginScroll");const y=Number(raw);if(Number.isFinite(y))window.scrollTo({top:y,behavior:"instant"})}catch{}},[current]);
 const saveReturnOrigin=()=>{try{sessionStorage.setItem(returnOriginKey,JSON.stringify({url:window.location.pathname+window.location.search+window.location.hash,scroll:window.scrollY}))}catch{}};
 const [openedFromFooter,setOpenedFromFooter]=useState(false);
 const saveFooterOrigin=()=>{saveReturnOrigin();try{sessionStorage.setItem("amberFooterReturn","yes")}catch{}};
