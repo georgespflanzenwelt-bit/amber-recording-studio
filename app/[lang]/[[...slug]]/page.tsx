@@ -342,7 +342,7 @@ const navigationItems=[
  {de:"VERÖFFENTLICHUNGEN",en:"RELEASES",href:url("")+"#veroeffentlichungen"},
  {de:"STUDIO",en:"STUDIO",href:url("")+"?equipment=1"},
  {de:"WAS WIR ANBIETEN",en:"WHAT WE OFFER",href:url("")+"#lets-work-together"},
- {de:"STUDIO & TEAM – BACK ON THE BLOCK",en:"STUDIO & TEAM – BACK ON THE BLOCK",href:url("")+"#back-on-the-block"},
+ {de:"STUDIO-TEAM",en:"STUDIO-TEAM",href:url("")+"#back-on-the-block"},
  ...([["MIXING","MIXING","mixing"],["MASTERING","MASTERING","mastering"],["RECORDING","RECORDING","recording"],["SONGWRITING","SONGWRITING","songwriting"],["PRODUKTION","PRODUCTION","production"],["FILM & WERBEMUSIK","FILM & BRAND MUSIC","score-brand"],["WORKSHOP","WORKSHOP","workshop"],["AKUSTIK & STUDIOPLANUNG","ACOUSTICS & STUDIO PLANNING","acoustics"]] as const).map(([de,en,id])=>({de,en,href:url("")+"?service="+id})),
  {de:"HISTORIE",en:"HISTORY",href:url("historie")}
 ];
