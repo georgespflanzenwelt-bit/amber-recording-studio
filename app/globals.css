@@ -2026,3 +2026,12 @@
 .amberLegalImpressum .amberLegalSection h2{font-family:Arial,Helvetica,sans-serif;font-size:clamp(19px,2.0vw,23px);font-weight:700;letter-spacing:-.018em;line-height:1.35;margin-bottom:13px}
 .amberLegalImpressum .amberLegalSection p{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:400;line-height:1.7;margin-bottom:17px}
 @media(max-width:700px){.amberLegalImpressum .amberLegalSection p{font-size:15px;line-height:1.65}}
+
+
+/* Footer navigation: two balanced columns with five destinations each. */
+.amberFooter .footerGrid{grid-template-columns:minmax(0,1.05fr) minmax(0,1.6fr) minmax(0,1.45fr);column-gap:clamp(24px,3vw,56px)}
+.amberFooter .amberFooterNavigation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,38px);align-content:start;font-size:clamp(13px,1.1vw,17px);letter-spacing:0}
+.amberFooter .amberFooterNavColumn{display:flex;flex-direction:column;gap:clamp(13px,1.7vw,22px);align-items:flex-start}
+.amberFooter .amberFooterNavColumn a{display:inline-block;line-height:1.4}
+@media(max-width:850px){.amberFooter .footerGrid{grid-template-columns:1fr 1fr}.amberFooter .amberFooterRight{grid-column:1/-1;text-align:left}.amberFooter .amberFooterSocial,.amberFooter .amberFooterLegalLinks{justify-content:flex-start}}
+@media(max-width:520px){.amberFooter .footerGrid{grid-template-columns:1fr}.amberFooter .amberFooterNavigation{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.amberFooter .amberFooterRight{grid-column:auto}}
