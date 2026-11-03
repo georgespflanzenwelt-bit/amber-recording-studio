@@ -2088,3 +2088,43 @@
 .bookingSelectedOfferClear svg{width:14px;height:14px}
 .bookingSelectedOfferClear:hover,.bookingSelectedOfferClear:focus-visible{color:#fff;background:transparent}
 .bookingSelectedOfferClear:focus-visible{outline:1px solid #fff;outline-offset:2px}
+
+/* Extra breathing room below the six rates, for tailored projects outside the price list. */
+.bookingPriceRail .bookingRatesFrame{padding-bottom:clamp(28px,3vw,44px)}
+.bookingOnlineMixing.bookingContactShell{padding-bottom:clamp(72px,8vw,120px)}
+.bookingPriceRail .bookingCustomInquiry{
+ width:min(100%,880px);margin:clamp(36px,4vw,56px) auto 0;
+ padding:clamp(28px,3.2vw,42px) 22px 0;
+ border-top:1px solid rgba(233,181,101,.44);
+ text-align:center;color:#f6f2eb;
+}
+.bookingCustomInquiry h3{
+ margin:0 0 17px;color:#e5a34c;
+ font-size:clamp(23px,2.15vw,34px);font-weight:800;line-height:1.17;letter-spacing:-.025em;
+}
+.bookingCustomInquiry p{
+ max-width:740px;margin:0 auto 25px;color:#e7e7e5;
+ font-size:clamp(14px,1.15vw,17px);line-height:1.72;font-weight:400;
+}
+.bookingCustomInquiry p strong{color:#fff;font-weight:700}
+.bookingCustomInquiryButton{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:210px;min-height:48px;padding:11px 30px;
+ border:2px solid #e68a32;border-radius:999px;
+ background:rgba(12,12,13,.7);color:#fff;
+ font-size:12px;letter-spacing:.09em;font-weight:800;cursor:pointer;
+ box-shadow:0 0 17px rgba(230,138,50,.22),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32;
+ transition:background .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.bookingCustomInquiryButton:hover,.bookingCustomInquiryButton:focus-visible{
+ background:#a75c17;box-shadow:0 0 24px rgba(230,138,50,.45),inset 0 0 0 4px rgba(12,12,13,.9),inset 0 0 0 5px #e68a32;
+ transform:translateY(-2px);
+}
+.bookingCustomInquiryButton:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:700px){
+ .bookingPriceRail .bookingRatesFrame{padding-bottom:28px}
+ .bookingPriceRail .bookingCustomInquiry{margin-top:32px;padding:25px 8px 0}
+ .bookingCustomInquiry p{line-height:1.6}
+ .bookingCustomInquiryButton{width:min(100%,300px);min-height:46px}
+}
+@media(prefers-reduced-motion:reduce){.bookingCustomInquiryButton{transition:none}.bookingCustomInquiryButton:hover{transform:none}}
