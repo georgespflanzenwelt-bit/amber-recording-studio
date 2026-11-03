@@ -2035,3 +2035,10 @@
 .amberFooter .amberFooterNavColumn a{display:inline-block;line-height:1.4}
 @media(max-width:850px){.amberFooter .footerGrid{grid-template-columns:1fr 1fr}.amberFooter .amberFooterRight{grid-column:1/-1;text-align:left}.amberFooter .amberFooterSocial,.amberFooter .amberFooterLegalLinks{justify-content:flex-start}}
 @media(max-width:520px){.amberFooter .footerGrid{grid-template-columns:1fr}.amberFooter .amberFooterNavigation{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.amberFooter .amberFooterRight{grid-column:auto}}
+
+
+/* Compact and light footer navigation (two columns preserved). */
+.amberFooter .amberFooterNavigation{font-family:Georgia,"Times New Roman",serif;font-size:clamp(15px,1.13vw,18px);font-weight:400;letter-spacing:0;line-height:1.25}
+.amberFooter .amberFooterNavColumn{gap:9px}
+.amberFooter .amberFooterNavColumn a{font-family:inherit;font-size:inherit;font-weight:400;line-height:1.25;text-transform:none}
+@media(max-width:520px){.amberFooter .amberFooterNavigation{font-size:15px}.amberFooter .amberFooterNavColumn{gap:9px}}
