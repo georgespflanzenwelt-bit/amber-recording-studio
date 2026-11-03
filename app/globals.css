@@ -2003,3 +2003,8 @@
 .amberFooter .amberFooterRight p{line-height:1.6;margin-bottom:10px}
 .amberFooter .amberFooterDesign{color:#e4ae65;letter-spacing:.04em}
 @media(max-width:720px){.amberFooter .footerGrid{grid-template-columns:1fr;gap:28px}.amberFooter .amberFooterRight{text-align:left}.amberFooter .amberFooterSocial{justify-content:flex-start}.amberLegalPage{padding:58px 0 76px}}
+
+/* Reuse the exact header wordmark in the footer; keep its original proportions. */
+.amberFooterBrand .logo{display:inline-flex;width:min(100%,285px);max-width:100%;color:#fff}
+.amberFooterBrand .amberWordmark{display:block;width:100%;height:auto}
+.amberFooterBrand p{margin:16px 0 0;letter-spacing:.08em}
