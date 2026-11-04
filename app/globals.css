@@ -2256,9 +2256,15 @@
     padding-top:calc(76px + 10px);
     padding-bottom:0;
   }
-  .site > main > .hero > .heroText > .warm{position:relative;top:0;margin-top:0}
-  .site > main > .hero > .heroText h1{margin-top:9px}
-  .site > main > .hero > .heroText:not(.heroTextDE) h1{
-    font-size:clamp(29px,7vw,49px);
+  .site > main > .hero > .heroText > .warm{
+    position:relative;top:0;margin-top:0;
+    font-size:clamp(15.6px,1.344vw,19.2px);
+  }
+  .site > main > .hero > .heroText:not(.heroTextDE) > .warm{
+    font-size:clamp(21.6px,2.16vw,31.2px);
+  }
+  .site > main > .hero > .heroText h1{
+    margin-top:9px;
+    font-size:clamp(34.8px,8.4vw,58.8px);
   }
 }
