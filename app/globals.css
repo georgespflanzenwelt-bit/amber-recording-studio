@@ -2707,3 +2707,26 @@
 .amberSpotifyControlledMount{display:block;width:100%;max-width:100%;overflow:hidden;border-radius:11px;background:#121212}
 .amberSpotifyControlledMount iframe{display:block;width:100%!important;max-width:100%;border:0;border-radius:11px;background:#121212}
 @media(max-width:600px){.amberSpotifyControlledMount,.amberSpotifyControlledMount iframe{border-radius:7px}}
+
+/* Credits dropdown layering and scroll: active genres must cover AMBER TEAM and scroll back to ALL. */
+.creditsShowcase .creditsGenreDropdown.is-open{
+  z-index:80;
+}
+.creditsShowcase .creditsGenreDropdown:not(.is-open){
+  z-index:20;
+}
+.creditsShowcase .creditsGenreMenu{
+  z-index:81;
+  box-sizing:border-box;
+  max-height:min(360px,calc(100dvh - 125px));
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior-y:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+  scrollbar-width:thin;
+  scrollbar-color:#a7804e #202123;
+}
+.creditsShowcase .creditsGenreMenu button:first-child{
+  scroll-margin-top:8px;
+}
