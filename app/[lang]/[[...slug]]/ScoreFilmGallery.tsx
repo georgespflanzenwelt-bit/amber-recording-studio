@@ -11,7 +11,7 @@ const films=[
 // Start loading score metadata and artwork as soon as this module is requested,
 // rather than waiting for the gallery to mount in the opened panel.
 const scoreDataPromise: Promise<{groups:Record<string,Asset[]>}>|null = typeof window!=="undefined"
- ? fetch("/api/score-films").then(r=>{if(!r.ok)throw new Error("Score assets unavailable");return r.json()}).then(data=>{
+ ? fetch("/api/score-films").then(r=>{if(!r.ok)throw new Error("Score assets unavailable");return r.json()}).then((data:{groups:Record<string,Asset[]>})=>{
    Object.values(data.groups||{}).flat().filter((file:Asset)=>/\\.(png|jpe?g|webp|avif)$/i.test(file.name)).forEach((file:Asset)=>{const image=new Image();image.src=file.url});
    return data;
  }).catch(()=>({groups:{}})) : null;
