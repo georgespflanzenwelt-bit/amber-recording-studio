@@ -2169,7 +2169,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:center;
+    object-position:center calc(50% + 12px);
     opacity:.82;
     pointer-events:none;
   }
@@ -2235,4 +2235,15 @@
 }
 @media(max-width:700px) and (prefers-reduced-motion:reduce){
   .mobileHeroBottomVideo{display:none}
+}
+
+/* Mobile-only: drag the studio hero photograph horizontally with a finger.
+   Keep native vertical scrolling; never change the desktop photo position. */
+@media(max-width:700px){
+  .site > main > .hero{touch-action:pan-y}
+  .site > main > .hero > .homeHeroImage{
+    object-position:var(--mobile-hero-pan-x,50%) center;
+    animation:none;
+    transform:none;
+  }
 }
