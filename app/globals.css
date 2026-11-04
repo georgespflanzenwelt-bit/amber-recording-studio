@@ -2293,3 +2293,29 @@
     text-shadow:0 0 12px rgba(238,179,86,.85);
   }
 }
+
+/* Mobile only: show the existing collaborations carousel immediately after the
+   home hero. Preserve the desktop's original hero -> intro -> credits order. */
+@media(max-width:700px){
+  .site > main.mobileCollaborationsHome{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .site > main.mobileCollaborationsHome > .hero{order:-3}
+  .site > main.mobileCollaborationsHome > #veroeffentlichungen{order:-2}
+  .site > main.mobileCollaborationsHome > #homeCreditsCurtain{order:-1}
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistStrip{
+    padding-top:24px;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistStripHeading{
+    margin-bottom:16px;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistTrack{
+    overflow-x:auto;
+    overflow-y:hidden;
+    touch-action:pan-x pan-y;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+  }
+}
