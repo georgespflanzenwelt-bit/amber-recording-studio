@@ -2497,3 +2497,41 @@
     transform:none;
   }
 }
+
+/* Mobile reliability: experience banner must remain readable before/after its entrance animation. */
+@keyframes amberMobileExperienceLeft{
+  from{opacity:0;transform:translate3d(-75vw,0,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes amberMobileExperienceRight{
+  from{opacity:0;transform:translate3d(75vw,0,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@media(max-width:700px){
+  .site .mobileBackBlockExperience.bookingExperienceBanner{
+    display:block;
+    min-height:112px;
+    background:#ebe7df;
+    color:#172123;
+    padding:23px 5vw;
+  }
+  .site .mobileBackBlockExperience .bookingExperienceBannerText > span,
+  .site .mobileBackBlockExperience .bookingExperienceBannerText > em{
+    opacity:1;
+    transform:none;
+  }
+  .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > span{
+    animation:amberMobileExperienceLeft 3.1s cubic-bezier(.14,.68,.2,1) both;
+  }
+  .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > em{
+    animation:amberMobileExperienceRight 3.1s cubic-bezier(.14,.68,.2,1) both;
+  }
+}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){
+  .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > span,
+  .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > em{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+}
