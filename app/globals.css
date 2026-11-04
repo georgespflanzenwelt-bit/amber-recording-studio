@@ -2402,3 +2402,11 @@
     word-spacing:.12em;
   }
 }
+
+/* Mobile profile portraits: bring George and Egor name captions closer to image bottom. */
+@media(max-width:700px){
+  .teamShowcase .teamGeorge .photobox > .photoCaption,
+  .teamEgorShowcase .teamEgor .photobox > .photoCaption{
+    bottom:12px;
+  }
+}
