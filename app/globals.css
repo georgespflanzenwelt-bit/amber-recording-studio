@@ -2338,3 +2338,51 @@
     opacity:1;
   }
 }
+
+/* Mobile: softly pulse the references link and place WHAT WE OFFER directly below collaborations. */
+@keyframes amberMobileReferencesGlow{
+  0%,100%{color:#d5b17c;text-shadow:0 0 3px rgba(230,138,50,.2),0 0 8px rgba(230,138,50,.1)}
+  50%{color:#ffe9bb;text-shadow:0 0 9px rgba(255,181,101,.8),0 0 20px rgba(230,138,50,.5)}
+}
+@media(max-width:700px){
+  .site > main.mobileCollaborationsHome > .hero{order:-4}
+  .site > main.mobileCollaborationsHome > #veroeffentlichungen{order:-3}
+  .site > main.mobileCollaborationsHome > #homeCreditsCurtain{order:-2}
+  .site > main.mobileCollaborationsHome > .serviceList{order:-1}
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistStrip{padding-bottom:18px}
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistCreditsLink > span{
+    display:inline-block;
+    animation:amberMobileReferencesGlow 2.7s ease-in-out infinite;
+  }
+  .site > main.mobileCollaborationsHome > .serviceList > .sectionTitle{
+    box-sizing:border-box;
+    display:flex;
+    width:100%;
+    max-width:none;
+    min-height:88px;
+    margin:0;
+    padding:18px 16px;
+    align-items:center;
+    justify-content:center;
+    background:#c58b43;
+  }
+  .site > main.mobileCollaborationsHome > .serviceList > .sectionTitle .collabEnterLeft{
+    display:block;
+    margin:0;
+    color:#11191a;
+    text-align:center;
+    font-size:clamp(26px,7.3vw,43px);
+    font-weight:900;
+    line-height:1.08;
+    letter-spacing:-.055em;
+    transform:none!important;
+    opacity:1!important;
+    animation:none!important;
+  }
+}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistCreditsLink > span{
+    animation:none;
+    color:#ffe9bb;
+  }
+}
