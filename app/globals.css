@@ -2247,3 +2247,15 @@
     transform:none;
   }
 }
+
+/* MOBILE HOME ONLY: align the hero headline just below the 76px header.
+   Desktop hero positioning and typography remain unchanged. */
+@media(max-width:700px){
+  .site > main > .hero{align-items:flex-start}
+  .site > main > .hero > .heroText{
+    padding-top:calc(76px + 12px);
+    padding-bottom:0;
+  }
+  .site > main > .hero > .heroText > .warm{margin-top:0}
+  .site > main > .hero > .heroText h1{margin-top:10px}
+}
