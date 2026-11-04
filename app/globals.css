@@ -2806,3 +2806,16 @@
     justify-self:center;
   }
 }
+
+/* Mobile Price & Service: keep the close X in the frame's top-right corner, clear of topic buttons. */
+@media(max-width:700px){
+  .bookingOnlineMixing .bookingPriceRail .bookingRatesFrame:has(> .homePricesModalClose){
+    padding-top:62px;
+  }
+  .bookingOnlineMixing .bookingPriceRail .bookingRatesFrame > .homePricesModalClose{
+    top:8px !important;
+    right:8px !important;
+    margin:0;
+    z-index:35;
+  }
+}
