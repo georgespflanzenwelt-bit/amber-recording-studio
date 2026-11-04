@@ -6,6 +6,18 @@ export async function GET(request:Request){
  try{
   const egor=new URL(request.url).searchParams.get("scope")==="egor";
   const imageDirectory=egor?path.join(process.cwd(),"public","Pic GB & Egor","Egor Credits"):path.join(process.cwd(),"public","selected credits");
+  const requestedFile=new URL(request.url).searchParams.get("file");
+  if(requestedFile!==null){
+   const extension=path.extname(requestedFile).toLowerCase();
+   const mimeTypes:Record<string,string>={".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".webp":"image/webp",".avif":"image/avif"};
+   if(!requestedFile||requestedFile==="."||requestedFile===".."||requestedFile.includes("/")||requestedFile.includes("\\")||!mimeTypes[extension]){
+    return new NextResponse("Invalid image filename",{status:400});
+   }
+   try{
+    const bytes=await readFile(path.join(imageDirectory,requestedFile));
+    return new NextResponse(new Uint8Array(bytes),{headers:{"Content-Type":mimeTypes[extension],"Cache-Control":"public, max-age=86400, s-maxage=604800","X-Content-Type-Options":"nosniff"}});
+   }catch{return new NextResponse("Cover not found",{status:404})}
+  }
   const names=(await readdir(imageDirectory)).filter(x=>/\.(jpe?g|png|webp|avif)$/i.test(x)).sort();
   const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data",egor?"egor-credits.json":"selected-credits.json"),"utf8").catch(()=>"{}")) as {externalLinks?:Record<string,string>;covers?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>;releases?:Record<string,{genre?:string;spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string;tracks?:{title:string;spotifyUrl?:string}[];youtubeTracks?:{number?:number;title:string;artist?:string;youtubeUrl:string}[];youtubePlaylist?:{id:string;firstVideoId?:string;tracks:{number:number;title:string}[]}}>};
   const egorMetadata=egor?null:JSON.parse(await readFile(path.join(process.cwd(),"data","egor-credits.json"),"utf8").catch(()=>"{}")) as {covers?:Record<string,{spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string}>;releases?:Record<string,{spotifyUrl?:string;youtubeUrl?:string;externalUrl?:string}>};
@@ -48,7 +60,7 @@ export async function GET(request:Request){
    const workParts=parts.slice(workStart+(hasLabel?1:0),workEnd);
    const work=workParts.filter(x=>!/^by\s+/i.test(x)&&!/^(?:George Brasch|Egor Kobzev)\s*\.?$/i.test(x)).map(expandRole).join(" · ").trim();
    const creditName=parts.find(x=>/Egor Kobzev|George Brasch/i.test(x))?.match(/Egor Kobzev|George Brasch/i)?.[0]||(egor?"Egor Kobzev":"George Brasch");
-   const image=(egor?"/Pic%20GB%20%26%20Egor/Egor%20Credits/":"/selected%20credits/")+encodeURIComponent(name);
+   const image="/api/selected-covers?file="+encodeURIComponent(name)+(egor?"&scope=egor":"");
    const lower=(artist+" "+title).toLowerCase();
    const key=/^azad\b/.test(lower)?"azad":/till|tll br/.test(lower)&&/blue eye/.test(lower)?"till":/deborah cox/.test(lower)?"deborah":/kool savas/.test(lower)&&/haus|boot|aus.*bot/.test(lower)?"kool":null;
    const releaseKey=(artist+"::"+title).normalize("NFC").toLowerCase().replace(/[’´`]/g,"\x27").replace(/\s+/g," ").trim();
