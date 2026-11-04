@@ -2426,7 +2426,7 @@
 @media(max-width:700px){
   /* The existing experience ribbon remains in the booking page, but on
      the mobile home page it appears immediately after BACK ON THE BLOCK. */
-  .site > main.mobileCollaborationsHome .serviceList .bookingExperienceBanner:not(.mobileBackBlockExperience){
+  .site > main.mobileCollaborationsHome .serviceList .bookingExperienceBanner{
     display:none;
   }
   .site .mobileBackBlockExperience{
@@ -2533,38 +2533,5 @@
     animation:none;
     opacity:1;
     transform:none;
-  }
-}
-
-/* Mobile home: reorder the shared booking-section children without duplicating content.
-   WHAT WE OFFER / LET'S WORK / pricing / contact -> 30 YEARS ->
-   A BERLIN STUDIO -> BACK ON THE BLOCK -> the team.
-   display:contents promotes the nested serviceList sections into flex items.
-   No desktop styles or JSX markup are changed. */
-@media(max-width:700px){
-  .site > main.mobileCollaborationsHome > .serviceList{
-    display:contents;
-  }
-  .site > main.mobileCollaborationsHome > .hero{order:-13}
-  .site > main.mobileCollaborationsHome > #veroeffentlichungen{order:-12}
-  .site > main.mobileCollaborationsHome > #homeCreditsCurtain{order:-11}
-  .site > main.mobileCollaborationsHome > .serviceList > .sectionTitle{order:-10}
-  .site > main.mobileCollaborationsHome > .serviceList > #lets-work-together{order:-9}
-  .site > main.mobileCollaborationsHome > .serviceList > .bookingOnlineMixing{order:-8}
-  .site > main.mobileCollaborationsHome > .serviceList > #booking-project-start{order:-7}
-  .site > main.mobileCollaborationsHome > .serviceList > .mobileBackBlockExperience.bookingExperienceBanner{
-    order:-6;
-    display:block;
-    width:100%;
-    align-self:stretch;
-  }
-  .site > main.mobileCollaborationsHome > #credits-uebersicht{order:-5}
-  .site > main.mobileCollaborationsHome > .serviceList > #back-on-the-block{order:-4}
-  .site > main.mobileCollaborationsHome > .serviceList > .teamShowcase{order:-3}
-  .site > main.mobileCollaborationsHome > .serviceList > .teamMidBanner{order:-2}
-  .site > main.mobileCollaborationsHome > .serviceList > .teamEgorShowcase{order:-1}
-  .site > main.mobileCollaborationsHome > .serviceList > .mobileBackBlockExperience .bookingExperienceBannerText > span,
-  .site > main.mobileCollaborationsHome > .serviceList > .mobileBackBlockExperience .bookingExperienceBannerText > em{
-    opacity:1;
   }
 }
