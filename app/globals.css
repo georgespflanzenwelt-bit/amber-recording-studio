@@ -2258,13 +2258,13 @@
   }
   .site > main > .hero > .heroText > .warm{
     position:relative;top:0;margin-top:0;
-    font-size:clamp(15.6px,1.344vw,19.2px);
+    font-size:clamp(18.72px,1.6128vw,23.04px);
   }
   .site > main > .hero > .heroText:not(.heroTextDE) > .warm{
-    font-size:clamp(21.6px,2.16vw,31.2px);
+    font-size:clamp(25.92px,2.592vw,37.44px);
   }
   .site > main > .hero > .heroText h1{
     margin-top:9px;
-    font-size:clamp(34.8px,8.4vw,58.8px);
+    font-size:clamp(41.76px,10.08vw,70.56px);
   }
 }
