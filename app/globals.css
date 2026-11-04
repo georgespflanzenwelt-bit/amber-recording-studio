@@ -2410,3 +2410,90 @@
     bottom:12px;
   }
 }
+
+/* Mobile studio sequence: experience bar after BACK ON THE BLOCK, animated collaborations heading and compact awards pill. */
+.mobileBackBlockExperience{display:none}
+.mobileChartsAwardsButton{display:none}
+@keyframes amberMobileCollaborationsSlideIn{
+  0%{opacity:0;transform:translate3d(75vw,0,0)}
+  75%{opacity:1;transform:translate3d(-7px,0,0)}
+  100%{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes amberMobileAwardsFadeIn{
+  from{opacity:0;transform:translate3d(20px,0,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@media(max-width:700px){
+  /* The existing experience ribbon remains in the booking page, but on
+     the mobile home page it appears immediately after BACK ON THE BLOCK. */
+  .site > main.mobileCollaborationsHome .serviceList .bookingExperienceBanner{
+    display:none;
+  }
+  .site .mobileBackBlockExperience{
+    display:block;
+    padding:21px 5vw;
+  }
+  .site .mobileBackBlockExperience .bookingExperienceBannerText{
+    font-size:clamp(16px,4.2vw,21px);
+    gap:3px 7px;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading{
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:0 0 16px;
+    padding:13px 14px;
+    background:#141516;
+    border-top:1px solid rgba(218,166,83,.16);
+    border-bottom:1px solid rgba(218,166,83,.16);
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading > small{
+    flex:0 1 auto;
+    min-width:0;
+    margin:0;
+    font-size:clamp(9px,2.9vw,13px);
+    letter-spacing:.065em;
+    white-space:nowrap;
+    color:#f5dfbe;
+    opacity:0;
+    transform:translate3d(75vw,0,0);
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading.is-in-view > small{
+    animation:amberMobileCollaborationsSlideIn 1.45s cubic-bezier(.18,.7,.2,1) both;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileChartsAwardsButton{
+    box-sizing:border-box;
+    display:inline-flex;
+    flex:0 0 auto;
+    min-height:35px;
+    margin:0;
+    padding:7px 10px;
+    border:2px solid #e68a32;
+    border-radius:999px;
+    color:#ffb565;
+    font-size:clamp(8px,2.2vw,10px);
+    font-weight:800;
+    line-height:1;
+    letter-spacing:.055em;
+    white-space:nowrap;
+    box-shadow:0 0 15px rgba(230,138,50,.3),inset 0 0 0 3px rgba(12,12,13,.85);
+    opacity:0;
+    transform:translate3d(20px,0,0);
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading.is-in-view .mobileChartsAwardsButton{
+    animation:amberMobileAwardsFadeIn .75s ease-out .85s both;
+  }
+}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading > small,
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .mobileArtistStripHeading .mobileChartsAwardsButton{
+    animation:none!important;
+    opacity:1;
+    transform:none;
+  }
+}
