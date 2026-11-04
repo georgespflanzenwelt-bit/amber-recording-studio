@@ -2138,3 +2138,46 @@
     top:clamp(55px,8svh,100px);
   }
 }
+
+/* MOBILE HERO IMAGE TEST — START: reversible, affects only homepage ≤700px */
+@media(max-width:700px){
+  /* Uncropped, full-width studio image at the top; the remaining hero is a dark visual band. */
+  .site > main > .hero{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    min-height:100svh;
+    background-color:#10191e;
+    background-image:linear-gradient(180deg,#151d22 0%,#10181d 58%,#0a1116 100%) !important;
+  }
+  .site > main > .hero > .homeHeroImage{
+    inset:auto;
+    top:0;
+    left:0;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+    object-position:center top;
+    animation:none !important;
+    transform:none !important;
+    will-change:auto;
+  }
+  /* Gently blend the lower edge of the image into the solid dark strip. */
+  .site > main > .hero > .homeHeroShade{
+    top:0;
+    bottom:auto;
+    height:calc(56.25vw + 60px);
+    background:linear-gradient(180deg,rgba(4,7,12,.3) 0%,rgba(4,7,12,.12) 54%,rgba(16,24,29,.76) 78%,#10181d 100%);
+    pointer-events:none;
+  }
+  /* Keep title and controls readable within the dark strip, with room for the bottom arrow. */
+  .site > main > .hero > .heroText{
+    margin-top:56.25vw;
+    padding-bottom:155px;
+  }
+}
+/* MOBILE HERO IMAGE TEST — END */
