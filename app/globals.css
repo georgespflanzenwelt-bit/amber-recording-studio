@@ -2560,3 +2560,11 @@
     transform:none;
   }
 }
+
+/* Mobile studio intro: hide only the Our Team control without collapsing its space. */
+@media(max-width:700px){
+  .site > main.mobileCollaborationsHome .serviceList > .studioIntroMobile .introTeamButton{
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
