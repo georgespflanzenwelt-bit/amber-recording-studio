@@ -2684,3 +2684,21 @@
   }
   .site .mobileChartsAwardsPage .amberChartsAwardCaption b{color:#d6aa73}
 }
+
+/* Mobile Charts & Awards: slightly smaller cover-triggered listening modal only. */
+@media(max-width:700px){
+  .site .mobileChartsAwardsPage .amberPreviewPanel{
+    box-sizing:border-box;
+    width:min(490px,calc(100vw - 48px));
+    max-height:min(85dvh,740px);
+  }
+  .site .mobileChartsAwardsPage .amberPreviewPanel.amberSpotifyModal{
+    width:min(505px,calc(100vw - 48px));
+  }
+  .site .mobileChartsAwardsPage .amberPreviewPanel.amberPreviewAlbum{
+    width:min(700px,calc(100vw - 48px));
+  }
+  .site .mobileChartsAwardsPage .amberPreviewPanel.amberCompactModal{
+    width:min(365px,calc(100vw - 48px));
+  }
+}
