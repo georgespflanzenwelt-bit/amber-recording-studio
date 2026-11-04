@@ -2741,3 +2741,49 @@
 .creditsShowcase.creditsCoverHoverSuspended .amberCoverTile:hover:not(:focus-visible)>img.amberRistrettoImage{
   transform:scale(1.10);
 }
+
+/* Credits: smaller side-by-side genre and AMBER TEAM pills with more legible labels. */
+@media(min-width:701px){
+  .creditsShowcase .creditsGenreRow{gap:10px}
+  .creditsShowcase .creditsGenreTrigger{
+    min-width:0;
+    padding:10px 14px;
+    font-size:14px;
+    letter-spacing:.025em;
+  }
+  .creditsShowcase .creditsTeamDropdown .creditsGenreTrigger{min-width:0}
+}
+@media(max-width:700px){
+  .creditsShowcase .creditsGenreRow{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    flex-wrap:nowrap;
+    gap:8px;
+    margin:0 0 21px;
+  }
+  .creditsShowcase .creditsGenreDropdown{
+    box-sizing:border-box;
+    flex:0 1 175px;
+    width:calc((100% - 8px)/2);
+    min-width:0;
+    max-width:175px;
+  }
+  .creditsShowcase .creditsGenreTrigger,
+  .creditsShowcase .creditsTeamDropdown .creditsGenreTrigger{
+    box-sizing:border-box;
+    display:block;
+    width:100%;
+    min-width:0;
+    min-height:41px;
+    padding:10px 6px;
+    font-size:clamp(11.5px,3.35vw,14px);
+    font-weight:750;
+    letter-spacing:.01em;
+    line-height:1.2;
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
