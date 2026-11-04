@@ -2702,3 +2702,8 @@
     width:min(365px,calc(100vw - 48px));
   }
 }
+
+/* Spotify iframe API mount: keep the official embed's original size and rounded frame. */
+.amberSpotifyControlledMount{display:block;width:100%;max-width:100%;overflow:hidden;border-radius:11px;background:#121212}
+.amberSpotifyControlledMount iframe{display:block;width:100%!important;max-width:100%;border:0;border-radius:11px;background:#121212}
+@media(max-width:600px){.amberSpotifyControlledMount,.amberSpotifyControlledMount iframe{border-radius:7px}}
