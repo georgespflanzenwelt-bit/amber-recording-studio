@@ -2319,3 +2319,22 @@
     overscroll-behavior-x:contain;
   }
 }
+
+/* Mobile artist ribbon: one tap pins the existing credit overlay without
+   opening the full artist modal; finger swipes stay native and smooth. */
+@media(max-width:700px){
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistTrack{
+    touch-action:pan-x pan-y;
+    -webkit-overflow-scrolling:touch;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistTile{
+    touch-action:pan-x pan-y;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistTile:hover:not(.mobileCreditsVisible) .artistOverlay{
+    opacity:0;
+  }
+  .site > main.mobileCollaborationsHome #veroeffentlichungen .artistTile.mobileCreditsVisible .artistOverlay{
+    opacity:1;
+  }
+}
