@@ -2257,7 +2257,7 @@
     padding-bottom:0;
   }
   .site > main > .hero > .heroText > .warm{position:relative;top:0;margin-top:0}
-  .site > main > .hero > .heroText h1{margin-top:14px}
+  .site > main > .hero > .heroText h1{margin-top:9px}
   .site > main > .hero > .heroText:not(.heroTextDE) h1{
     font-size:clamp(29px,7vw,49px);
   }
