@@ -2730,3 +2730,14 @@
 .creditsShowcase .creditsGenreMenu button:first-child{
   scroll-margin-top:8px;
 }
+
+/* After a Credits filter closes, don't activate the cover formerly hidden beneath the menu. */
+.creditsShowcase.creditsCoverHoverSuspended .amberCoverTile:hover:not(:focus-visible) .amberCoverOverlay{
+  opacity:0;
+}
+.creditsShowcase.creditsCoverHoverSuspended .amberCoverTile:hover:not(:focus-visible)>img:not(.amberRistrettoImage){
+  transform:none;
+}
+.creditsShowcase.creditsCoverHoverSuspended .amberCoverTile:hover:not(:focus-visible)>img.amberRistrettoImage{
+  transform:scale(1.10);
+}
