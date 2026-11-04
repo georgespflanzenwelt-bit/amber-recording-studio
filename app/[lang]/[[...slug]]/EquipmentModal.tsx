@@ -58,8 +58,8 @@ export default function EquipmentModal({lang,onClose}:{lang:Lang;onClose:()=>voi
   return()=>{document.removeEventListener("keydown",handleKey);document.body.style.overflow=oldOverflow};
  },[onClose]);
  const data=equipment[lang];
- return <div role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}} style={{position:"fixed",inset:0,zIndex:1500,background:"rgba(0,0,0,.8)",display:"flex",alignItems:"center",justifyContent:"center",padding:"min(3vw,24px)"}}>
-  <section role="dialog" aria-modal="true" aria-label={data.title} style={{position:"relative",width:"min(1080px,100%)",maxHeight:"min(90vh,1000px)",overflowY:"auto",background:"rgba(12,20,23,.98)",border:"1px solid #c58c3d",borderRadius:22,color:"#f5f4ef",padding:"clamp(26px,4vw,58px)",boxShadow:"0 24px 80px rgba(0,0,0,.65)"}}>
+ return <div className="amberStudioEquipmentOverlay" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)onClose()}} style={{position:"fixed",inset:0,zIndex:1500,background:"rgba(0,0,0,.8)",display:"flex",alignItems:"center",justifyContent:"center",padding:"min(3vw,24px)"}}>
+  <section className="amberStudioEquipmentPanel" role="dialog" aria-modal="true" aria-label={data.title} style={{position:"relative",width:"min(1080px,100%)",maxHeight:"min(90vh,1000px)",overflowY:"auto",background:"rgba(12,20,23,.98)",border:"1px solid #c58c3d",borderRadius:22,color:"#f5f4ef",padding:"clamp(26px,4vw,58px)",boxShadow:"0 24px 80px rgba(0,0,0,.65)"}}>
    <button type="button" onClick={onClose} aria-label={lang==="de"?"Schließen":"Close"} style={{position:"sticky",top:0,float:"right",zIndex:2,width:44,height:44,borderRadius:"50%",border:"1px solid #d99e49",background:"#10181b",color:"#fff",display:"grid",placeItems:"center",cursor:"pointer"}}><X size={22}/></button>
    <h2 style={{fontSize:"clamp(27px,3.2vw,42px)",color:"#e9a747",margin:"0 58px 30px 0",lineHeight:1.15}}>{data.title}</h2>
    {data.sections.map((section,index)=><section key={section.title} style={{marginBottom:32,borderTop:index?"1px solid rgba(223,169,93,.28)":undefined,paddingTop:index?25:0}}>
