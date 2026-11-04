@@ -2257,7 +2257,7 @@
     padding-bottom:0;
   }
   .site > main > .hero > .heroText > .warm{
-    position:relative;top:4px;margin-top:0;
+    position:relative;top:7px;margin-top:0;
     font-size:clamp(18.72px,1.6128vw,23.04px);
   }
   .site > main > .hero > .heroText:not(.heroTextDE) > .warm{
