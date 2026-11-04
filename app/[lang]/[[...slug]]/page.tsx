@@ -128,6 +128,7 @@ function ArtistStrip({lang,expanded,onToggle}:{lang:Lang;expanded:boolean;onTogg
  const [selected,setSelected]=useState<Artist|null>(null);
  const [mobileCredit,setMobileCredit]=useState<string|null>(null);
  const track=useRef<HTMLDivElement|null>(null);
+ const mobileStripInView=useRef(false);
  const paused=useRef(false);const hovering=useRef(false);const dragging=useRef(false);const moved=useRef(false);
  const dragStart=useRef({x:0,scroll:0});
  const touchStartPoint=useRef({x:0,y:0,scroll:0,active:false,moved:false});
@@ -182,9 +183,22 @@ function ArtistStrip({lang,expanded,onToggle}:{lang:Lang;expanded:boolean;onTogg
   paused.current=next!==null;
  };
  useEffect(()=>{let alive=true;fetch("/api/artists",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive&&Array.isArray(data.artists))setArtists(data.artists)}).catch(()=>{});return()=>{alive=false}},[]);
+ // On mobile, start the automatic carousel only while its image ribbon is in view.
+ useEffect(()=>{
+  const el=track.current;
+  mobileStripInView.current=false;
+  if(!el||artists.length===0)return;
+  const observer=new IntersectionObserver(entries=>{
+   const item=entries[0];
+   mobileStripInView.current=!!item&&item.isIntersecting&&item.intersectionRatio>=.2;
+  },{threshold:[0,.2]});
+  observer.observe(el);
+  return()=>{observer.disconnect();mobileStripInView.current=false};
+ },[artists]);
  useEffect(()=>{const el=track.current;if(!el||artists.length===0)return;let raf=0;let prev=0;
+ const mobileView=window.matchMedia("(max-width:700px)");
  const tick=(time:number)=>{if(prev===0)prev=time;const delta=Math.min(48,time-prev);prev=time;
- if(!paused.current&&!dragging.current){el.scrollLeft+=delta*.045;const half=el.scrollWidth/2;if(half>0&&el.scrollLeft>=half)el.scrollLeft-=half}
+ if(!paused.current&&!dragging.current&&(!mobileView.matches||mobileStripInView.current)){el.scrollLeft+=delta*.045;const half=el.scrollWidth/2;if(half>0&&el.scrollLeft>=half)el.scrollLeft-=half}
  raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick);return()=>cancelAnimationFrame(raf)},[artists]);
  useEffect(()=>{if(!artists.length)return;const el=document.querySelector(".artistCreditsCallout.collabEnterRight");if(!el)return;const obs=new IntersectionObserver(entries=>{if(entries[0]?.isIntersecting){el.classList.add("shown");obs.disconnect()}},{threshold:.1});obs.observe(el);return()=>obs.disconnect()},[artists]);
  useEffect(()=>{if(!selected)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setSelected(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[selected]);
