@@ -2341,8 +2341,8 @@
 
 /* Mobile: softly pulse the references link and place WHAT WE OFFER directly below collaborations. */
 @keyframes amberMobileReferencesGlow{
-  0%,100%{color:#d5b17c;text-shadow:0 0 3px rgba(230,138,50,.2),0 0 8px rgba(230,138,50,.1)}
-  50%{color:#ffe9bb;text-shadow:0 0 9px rgba(255,181,101,.8),0 0 20px rgba(230,138,50,.5)}
+  0%,100%{color:#e68a32;text-shadow:0 0 5px rgba(230,138,50,.5),0 0 12px rgba(230,138,50,.25)}
+  50%{color:#ffb565;text-shadow:0 0 8px rgba(255,181,101,.95),0 0 18px rgba(230,138,50,.85),0 0 30px rgba(230,138,50,.45)}
 }
 @media(max-width:700px){
   .site > main.mobileCollaborationsHome > .hero{order:-4}
@@ -2383,6 +2383,11 @@
 @media(max-width:700px) and (prefers-reduced-motion:reduce){
   .site > main.mobileCollaborationsHome #veroeffentlichungen .artistCreditsLink > span{
     animation:none;
-    color:#ffe9bb;
+    color:#e68a32;
   }
+}
+
+/* Mobile only: separate booking introduction sentences at 'Together'. */
+@media(max-width:700px){
+  .bookingHero .bookingHeroIntroSplit > span{display:block}
 }
