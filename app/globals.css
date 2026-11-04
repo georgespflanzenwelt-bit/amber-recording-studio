@@ -2604,7 +2604,7 @@
 
 /* Dedicated mobile Charts & Awards page: no filter controls, only cover artwork and chart placements. */
 @media(max-width:700px){
-  .header.mobileAwardsHeader{display:none}
+  .header.mobileAwardsHeader, .amberFooter.mobileAwardsFooter{display:none}
   .site .mobileChartsAwardsPage{
     position:relative;
     isolation:isolate;
