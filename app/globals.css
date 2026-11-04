@@ -2128,3 +2128,13 @@
  .bookingCustomInquiryButton{width:min(100%,300px);min-height:46px}
 }
 @media(prefers-reduced-motion:reduce){.bookingCustomInquiryButton{transition:none}.bookingCustomInquiryButton:hover{transform:none}}
+
+/* Mobile homepage only: keep the bottom scroll arrow, and lower both hero CTAs. */
+@media(max-width:700px){
+  .site > main > .hero .scroll .scrollLabel{display:none}
+  .site > main > .hero .scroll{gap:0}
+  .site > main > .hero .heroText .homeHeroButtonRow{
+    position:relative;
+    top:clamp(55px,8svh,100px);
+  }
+}
