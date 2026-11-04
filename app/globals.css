@@ -2426,7 +2426,7 @@
 @media(max-width:700px){
   /* The existing experience ribbon remains in the booking page, but on
      the mobile home page it appears immediately after BACK ON THE BLOCK. */
-  .site > main.mobileCollaborationsHome .serviceList .bookingExperienceBanner{
+  .site > main.mobileCollaborationsHome .serviceList .bookingExperienceBanner:not(.mobileBackBlockExperience){
     display:none;
   }
   .site .mobileBackBlockExperience{
@@ -2531,6 +2531,31 @@
   .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > span,
   .site .mobileBackBlockExperience.bookingExperienceBanner.is-visible .bookingExperienceBannerText > em{
     animation:none;
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* Mobile home studio sequence: experience + introduction directly after LET'S WORK, with prices untouched. */
+.studioIntroMobile{display:none}
+@media(max-width:700px){
+  .site > main.mobileCollaborationsHome > .studioIntroDesktop{
+    display:none;
+  }
+  .site > main.mobileCollaborationsHome .serviceList > .studioIntroMobile{
+    display:block;
+    width:100%;
+  }
+  .site > main.mobileCollaborationsHome .serviceList > .mobileBackBlockExperience.bookingExperienceBanner{
+    display:block;
+    width:100%;
+    min-height:112px;
+    padding:23px 5vw;
+    background:#ebe7df;
+    color:#172123;
+  }
+  .site > main.mobileCollaborationsHome .serviceList > .mobileBackBlockExperience .bookingExperienceBannerText > span,
+  .site > main.mobileCollaborationsHome .serviceList > .mobileBackBlockExperience .bookingExperienceBannerText > em{
     opacity:1;
     transform:none;
   }
