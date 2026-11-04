@@ -222,14 +222,131 @@ function YouTubeDiscography({tracks,entry,lang}:{tracks:YouTubeTrack[];entry:Sel
 function ModalLayer({children,portal}:{children:ReactNode;portal:boolean}){
  return portal&&typeof document!=="undefined"?createPortal(children,document.body):<>{children}</>;
 }
+
+/* Keep a Spotify Embed controller alive while visitors choose tracks.
+   Recreating the iframe loses its playback state; the official iframe API
+   lets a user-initiated selection reuse the player and resume if it was playing. */
+type SpotifyEmbedEvent={data?:{isPaused?:boolean;playingURI?:string}};
+type SpotifyEmbedController={
+ loadEntity:(uriOrUrl:string)=>void;
+ play:()=>void;
+ addListener:(event:string,callback:(event:SpotifyEmbedEvent)=>void)=>void;
+ destroy:()=>void;
+};
+type SpotifyIframeAPI={
+ createController:(mount:HTMLElement,options:{url:string;width:string;height:number},callback:(controller:SpotifyEmbedController)=>void)=>void;
+};
+type SpotifyIframeWindow=Window&{onSpotifyIframeApiReady?:(api:SpotifyIframeAPI)=>void};
+let spotifyIframeAPIPromise:Promise<SpotifyIframeAPI>|null=null;
+function spotifyIframeAPI():Promise<SpotifyIframeAPI>{
+ if(spotifyIframeAPIPromise)return spotifyIframeAPIPromise;
+ spotifyIframeAPIPromise=new Promise<SpotifyIframeAPI>((resolve,reject)=>{
+  const win=window as SpotifyIframeWindow;
+  const prior=win.onSpotifyIframeApiReady;
+  win.onSpotifyIframeApiReady=(api)=>{prior?.(api);resolve(api)};
+  if(document.querySelector('script[data-amber-spotify-iframe-api]'))return;
+  const script=document.createElement("script");
+  script.src="https://open.spotify.com/embed/iframe-api/v1";
+  script.async=true;
+  script.setAttribute("data-amber-spotify-iframe-api","");
+  script.onerror=()=>{
+   script.remove();
+   spotifyIframeAPIPromise=null;
+   reject(new Error("Spotify iFrame API could not be loaded"));
+  };
+  document.head.appendChild(script);
+ });
+ return spotifyIframeAPIPromise;
+}
+function spotifyPlayableUrl(embedUrl:string){
+ const match=embedUrl.match(/^https:\/\/open\.spotify\.com\/embed\/(track|album|playlist)\/([A-Za-z0-9]{22})/);
+ return match?"https://open.spotify.com/"+match[1]+"/"+match[2]:embedUrl;
+}
+function SpotifyControlledEmbed({embedUrl,height,controllerRef,playingRef,loadedRef,resumeRef}:{
+ embedUrl:string;
+ height:number;
+ controllerRef:{current:SpotifyEmbedController|null};
+ playingRef:{current:boolean};
+ loadedRef:{current:string};
+ resumeRef:{current:boolean};
+}){
+ const mount=useRef<HTMLDivElement>(null);
+ const latestUrl=useRef(embedUrl);
+ latestUrl.current=embedUrl;
+ const [apiFailed,setApiFailed]=useState(false);
+ useEffect(()=>{
+  let disposed=false;
+  let instance:SpotifyEmbedController|null=null;
+  void spotifyIframeAPI().then(api=>{
+   if(disposed||!mount.current)return;
+   const firstUrl=latestUrl.current;
+   api.createController(mount.current,{url:spotifyPlayableUrl(firstUrl),width:"100%",height},controller=>{
+    if(disposed){controller.destroy();return}
+    instance=controller;
+    controllerRef.current=controller;
+    loadedRef.current=firstUrl;
+    controller.addListener("playback_started",()=>{
+     playingRef.current=true;
+     resumeRef.current=false;
+    });
+    controller.addListener("playback_update",event=>{
+     if(typeof event.data?.isPaused!=="boolean")return;
+     if(!event.data.isPaused){
+      playingRef.current=true;
+      resumeRef.current=false;
+     }else if(!resumeRef.current){
+      playingRef.current=false;
+     }
+    });
+    const newestUrl=latestUrl.current;
+    if(newestUrl!==firstUrl){
+     loadedRef.current=newestUrl;
+     controller.loadEntity(spotifyPlayableUrl(newestUrl));
+     if(resumeRef.current)controller.play();
+    }
+   });
+  }).catch(()=>{if(!disposed)setApiFailed(true)});
+  return ()=>{
+   disposed=true;
+   if(controllerRef.current===instance)controllerRef.current=null;
+   if(instance)instance.destroy();
+   loadedRef.current="";
+  };
+ },[height,controllerRef,playingRef,loadedRef,resumeRef]);
+ useEffect(()=>{
+  const controller=controllerRef.current;
+  if(!controller||loadedRef.current===embedUrl)return;
+  loadedRef.current=embedUrl;
+  controller.loadEntity(spotifyPlayableUrl(embedUrl));
+  if(resumeRef.current)controller.play();
+ },[embedUrl,controllerRef,loadedRef,resumeRef]);
+ return <div className="amberSpotifyControlledMount" ref={mount} style={{width:"100%",height}}>
+  {apiFailed&&<iframe title="Spotify" src={embedUrl+"?utm_source=generator&theme=0"} width="100%" height={height} loading="eager" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"/>}
+ </div>;
+}
+
 export default function SelectedCreditsGallery({entries,lang,awardDetails,portalPreview=false}:{entries:SelectedEntry[];lang:"de"|"en";awardDetails?:Record<string,{chart:string;award:string}>;portalPreview?:boolean}){
  const [active,setActive]=useState<SelectedEntry|null>(null);const [chosen,setChosen]=useState("");const [spotifyReload,setSpotifyReload]=useState(0);const [localChoice,setLocalChoice]=useState("");
+ const spotifyController=useRef<SpotifyEmbedController|null>(null);
+ const spotifyPlaying=useRef(false),spotifyLoaded=useRef(""),spotifyResume=useRef(false);
  const [localSongs,setLocalSongs]=useState<{name:string;url:string;order?:number;albumFolder?:string;albumKey?:string}[]>([]);
  const [audioLoad,setAudioLoad]=useState("idle");
  useEffect(()=>{setActive(previous=>previous?entries.find(entry=>entry.name===previous.name)||previous:null)},[entries]);
  useEffect(()=>{if(!active)return;let alive=true;setAudioLoad("loading");fetch("/api/local-songs",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.json()}).then(data=>{if(alive){setLocalSongs(data.files||[]);setAudioLoad("loaded")}}).catch(()=>{if(alive)setAudioLoad("error")});return()=>{alive=false}},[active?.name]);
  useEffect(()=>{if(!active)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setActive(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[active]);
- const open=(entry:SelectedEntry)=>{setSpotifyReload(0);setActive(entry);setChosen(entry.tracks?.[0]?.spotifyUrl||entry.spotifyUrl||"");setLocalChoice("")};
+ const open=(entry:SelectedEntry)=>{spotifyPlaying.current=false;spotifyResume.current=false;spotifyLoaded.current="";setSpotifyReload(0);setActive(entry);setChosen(entry.tracks?.[0]?.spotifyUrl||entry.spotifyUrl||"");setLocalChoice("")};
+ const chooseSpotifyTrack=(nextUrl:string)=>{
+  const nextEmbed=embed(nextUrl);
+  const stillPlaying=spotifyPlaying.current;
+  spotifyResume.current=stillPlaying;
+  if(nextEmbed&&spotifyController.current&&spotifyLoaded.current!==nextEmbed){
+   spotifyLoaded.current=nextEmbed;
+   spotifyController.current.loadEntity(spotifyPlayableUrl(nextEmbed));
+   // Run play in the user click event so browsers can allow continuing playback.
+   if(stillPlaying)spotifyController.current.play();
+  }
+  setChosen(nextUrl);
+ };
  const brotherCredit=!!active&&/^(?:brothers?|bothers) keepers?$/.test(normalizeSong(active.artist))&&normalizeSong(active.title).startsWith("am i my brother s keeper");
  const olympicDoOne=!!active&&normalizeSong(active.artist).endsWith("lifts")&&normalizeSong(active.title)==="do one album";
  const olympicAlbumUrl="https://open.spotify.com/album/0mvgSTs6RbtzWBW4Ys5gOr";
@@ -258,8 +375,8 @@ export default function SelectedCreditsGallery({entries,lang,awardDetails,portal
  {!localAudio&&!current&&!youtubeVideo&&!youtubeCollection&&!youtubePlaylist&&<div className="amberPreviewHead"><img src={active.image} className={externalFilmUrl?"amberRistrettoImage":undefined} alt=""/><div className="amberPreviewIdentity"><small>{externalFilmUrl?(lang==="de"?"FILM / REFERENZ":"FILM / CREDIT"):isAlbum?(lang==="de"?"ALBUM / DISKOGRAFIE":"ALBUM / DISCOGRAPHY"):(lang==="de"?"SINGLE / REFERENZ":"SINGLE / CREDIT")}</small><h2>{active.artist}</h2><p>{active.title}</p>{active.label&&<p className="amberPreviewLabel"><b>LABEL:</b> {active.label}</p>}<span className="amberPreviewCredit"><CreditLines entry={active} lang={lang}/></span></div><div className="amberPreviewBrand">AMBER<span>.</span></div></div>}
  {!localAudio&&!current&&!youtubeVideo&&!youtubeCollection&&!youtubePlaylist&&<div className="amberAlbumControls amberListenHeading"><span><b>{externalFilmUrl?(lang==="de"?"FILM ANSEHEN":"WATCH FILM"):(lang==="de"?"ANHÖREN":"LISTEN")}</b><small>{externalFilmUrl?(lang==="de"?"EXTERNER FILM":"EXTERNAL FILM"):(lang==="de"?"Offizieller Spotify-Player":"Official Spotify player")}</small></span><span className="amberReleaseType">{externalFilmUrl?"FILM":isAlbum?"ALBUM":/\bEP\b/i.test(active.title)?"EP":"SINGLE"}</span></div>}
  {active.artist.toLowerCase().includes("donna")&&active.title.toLowerCase().includes("keep on believing")&&!localAudio&&<p style={{padding:"0 24px",fontSize:12,color:"#d4ad7a"}}>AMBER Audio: {audioLoad} · Dateien: {localSongs.length} · Albumtreffer: {localMatches.length}</p>}
- {localAudio?<LocalDiscography songs={localMatches} selected={localAudio} onSelect={setLocalChoice} artist={active.artist} title={active.title} cover={active.image} entry={active} lang={lang}/>:youtubePlaylist?<YouTubePlaylistDiscography key={active.name} playlist={active.youtubePlaylist!} entry={active} credit={<CreditLines entry={active} lang={lang}/>} lang={lang}/>:youtubeCollection?<YouTubeDiscography tracks={active.youtubeTracks||[]} entry={active} lang={lang}/>:<div className="amberListeningCard">{current?<div><iframe key={current+"-"+spotifyReload} title={"Spotify: "+active.artist+" "+active.title} src={current+"?utm_source=generator&theme=0"} width="100%" height={current.includes("/embed/track/")?232:compactNextPlaylist?300:isAlbum?590:232} loading="eager" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><button type="button" onClick={()=>setSpotifyReload(n=>n+1)} style={{marginTop:10,padding:"7px 13px",background:"transparent",color:"#dca85b",border:"1px solid #8b6b42",borderRadius:20,cursor:"pointer"}}>{lang==="de"?"Spotify-Player neu laden":"Reload Spotify player"}</button></div>:youtubeVideo?<iframe key={youtubeVideo} title={"YouTube: "+active.artist+" "+active.title} src={"https://www.youtube-nocookie.com/embed/"+youtubeVideo} width="100%" height={275} loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />:externalFilmUrl?<div className="amberExternalFilmPreview"><iframe title={active.artist+" – "+active.title} src={externalFilmUrl} style={{width:"100%",height:310,border:0,borderRadius:8,background:"#111"}} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen/><p style={{fontSize:12}}>{lang==="de"?"Falls der Anbieter die Einbettung blockiert:":"If the provider blocks embedding:"} <a href={externalFilmUrl} target="_blank" rel="noopener noreferrer">{lang==="de"?"Film beim Anbieter ansehen":"Watch on original site"}</a></p></div>:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}</div>}
- {!!active.tracks?.length&&!localAudio&&!youtubeCollection&&!youtubePlaylist&&<div className="amberTrackList"><small>{lang==="de"?"TITELLISTE":"TRACKLIST"}</small>{active.tracks?.length?active.tracks.map((t,i)=>t.spotifyUrl?.startsWith("https://open.spotify.com/search/")?<a key={i} href={t.spotifyUrl} target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",gap:16,padding:"16px 12px",color:"inherit",textDecoration:"none",borderBottom:"1px solid rgba(255,255,255,.12)"}} aria-label={lang==="de"?t.title+" bei Spotify suchen": "Search Spotify for "+t.title}><span>{String(i+1).padStart(2,"0")}</span><strong style={{flex:1}}>{t.title}</strong><ArrowUpRight size={16}/></a>:<button type="button" key={i} disabled={!embed(t.spotifyUrl)} className={t.spotifyUrl===chosen?"chosen":""} onClick={()=>setChosen(t.spotifyUrl||"")}><span>{String(i+1).padStart(2,"0")}</span><strong>{t.title}</strong>{embed(t.spotifyUrl)?<Play size={13}/>:<span className="amberTrackPending">—</span>}</button>):<p className="amberTrackNote">{lang==="de"?"Die Titelliste wird ergänzt, sobald die offiziellen Titel zugeordnet sind.":"Track selection will appear once official releases have been linked."}</p>}</div>}
+ {localAudio?<LocalDiscography songs={localMatches} selected={localAudio} onSelect={setLocalChoice} artist={active.artist} title={active.title} cover={active.image} entry={active} lang={lang}/>:youtubePlaylist?<YouTubePlaylistDiscography key={active.name} playlist={active.youtubePlaylist!} entry={active} credit={<CreditLines entry={active} lang={lang}/>} lang={lang}/>:youtubeCollection?<YouTubeDiscography tracks={active.youtubeTracks||[]} entry={active} lang={lang}/>:<div className="amberListeningCard">{current?<div><SpotifyControlledEmbed key={active.name+"-"+spotifyReload} embedUrl={current} height={current.includes("/embed/track/")?232:compactNextPlaylist?300:isAlbum?590:232} controllerRef={spotifyController} playingRef={spotifyPlaying} loadedRef={spotifyLoaded} resumeRef={spotifyResume}/><button type="button" onClick={()=>{spotifyPlaying.current=false;spotifyResume.current=false;setSpotifyReload(n=>n+1)}} style={{marginTop:10,padding:"7px 13px",background:"transparent",color:"#dca85b",border:"1px solid #8b6b42",borderRadius:20,cursor:"pointer"}}>{lang==="de"?"Spotify-Player neu laden":"Reload Spotify player"}</button></div>:youtubeVideo?<iframe key={youtubeVideo} title={"YouTube: "+active.artist+" "+active.title} src={"https://www.youtube-nocookie.com/embed/"+youtubeVideo} width="100%" height={275} loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen />:externalFilmUrl?<div className="amberExternalFilmPreview"><iframe title={active.artist+" – "+active.title} src={externalFilmUrl} style={{width:"100%",height:310,border:0,borderRadius:8,background:"#111"}} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen/><p style={{fontSize:12}}>{lang==="de"?"Falls der Anbieter die Einbettung blockiert:":"If the provider blocks embedding:"} <a href={externalFilmUrl} target="_blank" rel="noopener noreferrer">{lang==="de"?"Film beim Anbieter ansehen":"Watch on original site"}</a></p></div>:<div className="amberPreviewPending"><Play size={22}/><p>{lang==="de"?"Spotify-Verknüpfung wird vorbereitet. Noch keine Hörprobe hinterlegt.":"Spotify link is being prepared. No preview linked yet."}</p></div>}</div>}
+ {!!active.tracks?.length&&!localAudio&&!youtubeCollection&&!youtubePlaylist&&<div className="amberTrackList"><small>{lang==="de"?"TITELLISTE":"TRACKLIST"}</small>{active.tracks?.length?active.tracks.map((t,i)=>t.spotifyUrl?.startsWith("https://open.spotify.com/search/")?<a key={i} href={t.spotifyUrl} target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",gap:16,padding:"16px 12px",color:"inherit",textDecoration:"none",borderBottom:"1px solid rgba(255,255,255,.12)"}} aria-label={lang==="de"?t.title+" bei Spotify suchen": "Search Spotify for "+t.title}><span>{String(i+1).padStart(2,"0")}</span><strong style={{flex:1}}>{t.title}</strong><ArrowUpRight size={16}/></a>:<button type="button" key={i} disabled={!embed(t.spotifyUrl)} className={t.spotifyUrl===chosen?"chosen":""} onClick={()=>chooseSpotifyTrack(t.spotifyUrl||"")}><span>{String(i+1).padStart(2,"0")}</span><strong>{t.title}</strong>{embed(t.spotifyUrl)?<Play size={13}/>:<span className="amberTrackPending">—</span>}</button>):<p className="amberTrackNote">{lang==="de"?"Die Titelliste wird ergänzt, sobald die offiziellen Titel zugeordnet sind.":"Track selection will appear once official releases have been linked."}</p>}</div>}
  {(spotifyUrl||youtubeUrl)&&!youtubeCollection&&!youtubePlaylist&&<a className="amberSpotifyLink" href={active&&normalizeSong(active.artist)==="seeed"&&normalizeSong(active.title)==="next album"&&/^https:\/\/open\.spotify\.com\/(?:intl-[a-z]+\/)?track\/[A-Za-z0-9]{22}(?:[?#].*)?$/.test(chosen)?chosen:(spotifyUrl||youtubeUrl)} target="_blank" rel="noopener noreferrer">{spotifyUrl?(lang==="de"?"AUF SPOTIFY ÖFFNEN":"OPEN ON SPOTIFY"):(lang==="de"?"VIDEO AUF YOUTUBE ÖFFNEN":"OPEN VIDEO ON YOUTUBE")} <ArrowUpRight size={16}/></a>}
  </section></div></ModalLayer>}</>
 }
