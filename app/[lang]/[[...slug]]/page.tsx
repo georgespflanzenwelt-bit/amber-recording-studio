@@ -323,7 +323,7 @@ const params=useParams();const router=useRouter();const lang:Lang=params.lang===
    tagline.style.fontSize="";
    const baseFont=parseFloat(window.getComputedStyle(tagline).fontSize);
    const naturalWidth=tagline.getBoundingClientRect().width;
-   if(targetWidth>0&&naturalWidth>0)tagline.style.fontSize=(baseFont*targetWidth/naturalWidth).toFixed(2)+"px";
+   if(targetWidth>0&&naturalWidth>0){const mobileBoost=window.matchMedia("(max-width:700px)").matches?1.2:1;tagline.style.fontSize=(baseFont*targetWidth/naturalWidth*mobileBoost).toFixed(2)+"px";}
   };
   measure();
   const observer=new ResizeObserver(measure);
