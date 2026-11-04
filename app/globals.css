@@ -759,7 +759,7 @@
 .historyClosing h2{font-size:clamp(37px,5.5vw,84px);line-height:1.07;letter-spacing:-.063em;margin:32px 0}
 .historyClosing p{font-size:clamp(19px,1.8vw,28px);line-height:1.55;color:#d7d8d1;max-width:750px;margin:0}
 @media(max-width:850px){.historyEditorial{grid-template-columns:1fr;gap:32px}.historySectionIntro{position:static}.historyYearEntry{grid-template-columns:1fr;gap:17px}.historyTimeline{padding-top:65px;padding-bottom:70px}.historyHeroInner{padding-top:82px;padding-bottom:83px}}
-@media(max-width:700px){.historyHero h1{font-size:clamp(38px,9.8vw,63px);overflow-wrap:break-word}.historyHero small,.historyClosing small{font-size:9px}.historyProse p,.historyYearCopy p{font-size:16px;line-height:1.75}.historySectionIntro h2{font-size:clamp(30px,8vw,46px)}.historyYearEntry{padding:30px 0 35px}.historyHeroLine{margin-top:33px}}
+@media(max-width:700px){.historyHero h1{font-size:clamp(36px,9.2vw,60px);overflow-wrap:break-word}.historyHero small,.historyClosing small{font-size:9px}.historyProse p,.historyYearCopy p{font-size:16px;line-height:1.75}.historySectionIntro h2{font-size:clamp(30px,8vw,46px)}.historyYearEntry{padding:30px 0 35px}.historyHeroLine{margin-top:33px}}
 
 /* Studio & Team: headline and one-line tagline share an editorial width. */
 .darkIntro.teamHero{padding-top:75px;padding-bottom:115px}
