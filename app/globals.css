@@ -2583,9 +2583,9 @@
   .teamEgorShowcase .teamEgorLinks .teamGeorgeOval{
     flex:0 1 auto;
     min-width:0;
-    min-height:42px;
-    padding:8.4px clamp(6px,2.16vw,12px);
-    font-size:clamp(9.6px,2.88vw,12px);
+    min-height:46px;
+    padding:9.2px clamp(6.6px,2.38vw,13.2px);
+    font-size:clamp(10.56px,3.168vw,13.2px);
     letter-spacing:.025em;
     line-height:1.2;
     white-space:nowrap;
@@ -2596,8 +2596,8 @@
   .teamEgorShowcase .teamEgorLinks{gap:3px}
   .teamShowcase .teamGeorgeLinks .teamGeorgeOval,
   .teamEgorShowcase .teamEgorLinks .teamGeorgeOval{
-    padding-inline:6px;
-    font-size:9.6px;
+    padding-inline:6.6px;
+    font-size:10.56px;
     letter-spacing:0;
   }
 }
