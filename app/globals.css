@@ -2391,3 +2391,14 @@
 @media(max-width:700px){
   .bookingHero .bookingHeroIntroSplit > span{display:block}
 }
+
+/* Mobile only: slimmer BACK ON THE BLOCK divider and slightly wider word gaps. */
+@media(max-width:700px){
+  .site .homeBackBlockDivider{
+    min-height:86px;
+    padding:12px 16px;
+  }
+  .site .homeBackBlockDivider > span{
+    word-spacing:.12em;
+  }
+}
