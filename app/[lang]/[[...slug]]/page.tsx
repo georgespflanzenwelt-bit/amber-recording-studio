@@ -126,9 +126,61 @@ function ArtistStrip({lang,expanded,onToggle}:{lang:Lang;expanded:boolean;onTogg
  const router=useRouter();
  const [artists,setArtists]=useState<Artist[]>([]);
  const [selected,setSelected]=useState<Artist|null>(null);
+ const [mobileCredit,setMobileCredit]=useState<string|null>(null);
  const track=useRef<HTMLDivElement|null>(null);
  const paused=useRef(false);const hovering=useRef(false);const dragging=useRef(false);const moved=useRef(false);
  const dragStart=useRef({x:0,scroll:0});
+ const touchStartPoint=useRef({x:0,y:0,scroll:0,active:false,moved:false});
+ const isMobileStrip=()=>typeof window!=="undefined"&&window.matchMedia("(max-width:700px)").matches;
+ const touchStart=(e:React.TouchEvent<HTMLDivElement>)=>{
+  if(!isMobileStrip()||e.touches.length!==1)return;
+  const finger=e.touches[0];
+  touchStartPoint.current={x:finger.clientX,y:finger.clientY,scroll:track.current?.scrollLeft||0,active:true,moved:false};
+  moved.current=false;
+  paused.current=true;
+ };
+ const touchMove=(e:React.TouchEvent<HTMLDivElement>)=>{
+  const touch=touchStartPoint.current;
+  if(!touch.active||e.touches.length!==1)return;
+  const finger=e.touches[0];
+  if(Math.abs(finger.clientX-touch.x)>7||Math.abs(finger.clientY-touch.y)>7){
+   if(!touch.moved)setMobileCredit(null);
+   touch.moved=true;
+   moved.current=true;
+  }
+ };
+ const touchEnd=(e:React.TouchEvent<HTMLDivElement>)=>{
+  const touch=touchStartPoint.current;
+  if(!touch.active)return;
+  touch.active=false;
+  const scrolled=Math.abs((track.current?.scrollLeft||0)-touch.scroll)>4;
+  if(touch.moved||scrolled){
+   moved.current=true;
+   paused.current=false;
+  }else if(!(e.target instanceof Element&&e.target.closest(".artistTile"))){
+   paused.current=false;
+  }
+ };
+ const touchCancel=()=>{
+  touchStartPoint.current.active=false;
+  moved.current=true;
+  paused.current=false;
+ };
+ const chooseArtist=(artist:Artist)=>{
+  if(!isMobileStrip()){
+   if(!moved.current)setSelected(artist);
+   moved.current=false;
+   return;
+  }
+  if(moved.current){
+   moved.current=false;
+   paused.current=mobileCredit!==null;
+   return;
+  }
+  const next=mobileCredit===artist.id?null:artist.id;
+  setMobileCredit(next);
+  paused.current=next!==null;
+ };
  useEffect(()=>{let alive=true;fetch("/api/artists",{cache:"no-store"}).then(r=>r.json()).then(data=>{if(alive&&Array.isArray(data.artists))setArtists(data.artists)}).catch(()=>{});return()=>{alive=false}},[]);
  useEffect(()=>{const el=track.current;if(!el||artists.length===0)return;let raf=0;let prev=0;
  const tick=(time:number)=>{if(prev===0)prev=time;const delta=Math.min(48,time-prev);prev=time;
@@ -136,14 +188,14 @@ function ArtistStrip({lang,expanded,onToggle}:{lang:Lang;expanded:boolean;onTogg
  raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick);return()=>cancelAnimationFrame(raf)},[artists]);
  useEffect(()=>{if(!artists.length)return;const el=document.querySelector(".artistCreditsCallout.collabEnterRight");if(!el)return;const obs=new IntersectionObserver(entries=>{if(entries[0]?.isIntersecting){el.classList.add("shown");obs.disconnect()}},{threshold:.1});obs.observe(el);return()=>obs.disconnect()},[artists]);
  useEffect(()=>{if(!selected)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setSelected(null)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[selected]);
- const down=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="touch"){paused.current=true;moved.current=false;return}if(e.pointerType==="mouse"&&e.button!==0)return;dragging.current=true;paused.current=true;moved.current=false;dragStart.current={x:e.clientX,scroll:track.current?.scrollLeft||0};e.currentTarget.setPointerCapture(e.pointerId)};
+ const down=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="touch")return;if(e.pointerType==="mouse"&&e.button!==0)return;dragging.current=true;paused.current=true;moved.current=false;dragStart.current={x:e.clientX,scroll:track.current?.scrollLeft||0};e.currentTarget.setPointerCapture(e.pointerId)};
  const move=(e:React.PointerEvent<HTMLDivElement>)=>{if(!dragging.current||!track.current)return;const distance=e.clientX-dragStart.current.x;if(Math.abs(distance)>6)moved.current=true;track.current.scrollLeft=dragStart.current.scroll-distance;const half=track.current.scrollWidth/2;if(half>0){if(track.current.scrollLeft>=half){track.current.scrollLeft-=half;dragStart.current={x:e.clientX,scroll:track.current.scrollLeft}}}};
- const up=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="touch"){paused.current=false;dragging.current=false;return}dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);paused.current=hovering.current;};
+ const up=(e:React.PointerEvent<HTMLDivElement>)=>{if(e.pointerType==="touch")return;dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);paused.current=hovering.current;};
  if(!artists.length)return <section className="artistStripEmpty"><span>{lang==="de"?"ARTISTS & COLLABORATIONS":"ARTISTS & COLLABORATIONS"}</span><p>{lang==="de"?"Künstlerfotos werden aus public/images/artist/ geladen, sobald sie dort vorhanden sind.":"Artist portraits appear here once added to public/images/artist/."}</p></section>;
  return <section className="artistStrip" aria-label="Artists and collaborators">
   <div className="artistStripHeading"><small>{lang==="de"?"UNSERE ZUSAMMENARBEITEN":"OUR COLLABORATIONS"}</small></div>
-  <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onMouseEnter={()=>{hovering.current=true;paused.current=true}} onMouseLeave={()=>{hovering.current=false;if(!dragging.current)paused.current=false}}>
-   {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className="artistTile" key={artist.id+"-"+i} onClick={()=>{if(!moved.current)setSelected(artist);moved.current=false}} aria-label={artist.name}>
+  <div className="artistTrack" ref={track} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd} onTouchCancel={touchCancel} onMouseEnter={()=>{hovering.current=true;paused.current=true}} onMouseLeave={()=>{hovering.current=false;if(!dragging.current&&!mobileCredit)paused.current=false}}>
+   {[...artists,...artists].map((artist,i)=><button type="button" draggable={false} className={"artistTile"+(mobileCredit===artist.id?" mobileCreditsVisible":"")} key={artist.id+"-"+i} onClick={()=>chooseArtist(artist)} aria-label={artist.name} aria-pressed={mobileCredit===artist.id}>
      <img src={artist.image} alt={artist.name} draggable={false}/><span className="artistOverlay"><span className="artistMetaLabel">ARTIST</span><strong>{artist.name}</strong><span className="artistMetaLabel">TITLE</span><span className="artistMetaTitle">{artist.title||"—"}</span>{artist.label&&<><span className="artistMetaLabel">LABEL</span><span className="artistMetaTitle">{artist.label}</span></>}<span className="artistMetaDivider"/><span className="artistMetaLabel">WORK</span><span className="artistMetaRole">{artist.contribution||"—"}</span><span className="artistMetaLabel">CREDIT</span><span className="artistMetaBy">{(artist.by||"George Brasch").replace(/^by\s+/i,"")}</span></span>
     </button>)}
   </div>
