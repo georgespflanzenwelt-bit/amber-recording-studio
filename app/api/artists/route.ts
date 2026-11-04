@@ -30,15 +30,27 @@ function parseArtistFilename(filename:string){
 function titleFromFilename(name:string){
  return name.replace(/\.[^.]+$/,"").replace(/^(\d+[ _.-]+)|([_-]+\d+)$/g,"").replace(/[_-]+/g," ").replace(/\s+/g," ").trim();
 }
-export async function GET(){
+export async function GET(request:Request){
  try{
   const root=path.join(process.cwd(),"public","images","artist");
+  const requestedFile=new URL(request.url).searchParams.get("file");
+  if(requestedFile!==null){
+   const extension=path.extname(requestedFile).toLowerCase();
+   const mimeTypes:Record<string,string>={".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".webp":"image/webp",".avif":"image/avif"};
+   if(!requestedFile||requestedFile==="."||requestedFile===".."||requestedFile.includes("/")||requestedFile.includes("\\")||!mimeTypes[extension]){
+    return new NextResponse("Invalid image filename",{status:400});
+   }
+   try{
+    const bytes=await readFile(path.join(root,requestedFile));
+    return new NextResponse(new Uint8Array(bytes),{headers:{"Content-Type":mimeTypes[extension],"Cache-Control":"public, max-age=86400, s-maxage=604800","X-Content-Type-Options":"nosniff"}});
+   }catch{return new NextResponse("Artist image not found",{status:404})}
+  }
   const files=(await readdir(root,{withFileTypes:true})).filter(f=>f.isFile()&&extensions.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));
   const metadata=JSON.parse(await readFile(path.join(process.cwd(),"data","artists.json"),"utf8").catch(()=>"{}")) as {artists?:Record<string,{name?:string;title?:string;contribution?:string;year?:string;description?:string;by?:string;label?:string}>};
   const artists=files.map((f,i)=>{
    const parsed=parseArtistFilename(f.name);
    const info=metadata.artists?.[f.name];
-   return {id:String(i)+"-"+f.name,name:info?.name||parsed.name||titleFromFilename(f.name),image:"/images/artist/"+encodeURIComponent(f.name),title:info?.title||parsed.title,label:info?.label??parsed.label,contribution:info?.contribution?expandArtistCredits(info.contribution):parsed.contribution,by:info?.by||parsed.by,year:info?.year||parsed.year,description:info?.description||""};
+   return {id:String(i)+"-"+f.name,name:info?.name||parsed.name||titleFromFilename(f.name),image:"/api/artists?file="+encodeURIComponent(f.name),title:info?.title||parsed.title,label:info?.label??parsed.label,contribution:info?.contribution?expandArtistCredits(info.contribution):parsed.contribution,by:info?.by||parsed.by,year:info?.year||parsed.year,description:info?.description||""};
   });
   return NextResponse.json({artists});
  }catch{return NextResponse.json({artists:[]})}
